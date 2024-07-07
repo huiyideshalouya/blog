@@ -13,25 +13,27 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://huiyideshalouya.github.io/2024/07/06/netty 高性能网络通讯框架/"/>
+    <link rel="canonical" href="https://huiyideshalouya.github.io/2024/05/06/jmm模型/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="Netty 高性能网络通讯框架关联网络I&#x2F;O模型,I&#x2F;O多路复用机制,Reactor模型(分治思想) 前置知识阻塞队列是一种特殊的队列，当队列为空时进行获取操作会阻塞线程，直到队列中有元素；当队列已满时进行添加操作会阻塞线程，直到队列有空间。很多情况下，线程池使用的任务队列就是阻塞队列，比如常见的有ArrayBlockingQueue、LinkedBlockingQueue等，">
+        <meta name="description" content="JMM模型1.可见性Volitale  CPU缓存问题 MESI协议 缓存锁 总线锁 基于LOCK这么一个汇编指令   可见性,有序性保证  2.有序性 JVM如何实现跨平台下的线程安全  JMM模型,定义多线程场景下数据操作逻辑,根据不同平台生成对应的指令  通过区分本地内存和主内存 线程操作数据都会先从主内存拷贝,自己的本地内存完成修改后,再将其同步到主内存 每个线程都存有一个数据副本到自己的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://huiyideshalouya.github.io/2024/07/06/Netty%20%E9%AB%98%E6%80%A7%E8%83%BD%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF%E6%A1%86%E6%9E%B6/index.html">
+<meta property="og:title" content="JMM模型">
+<meta property="og:url" content="https://huiyideshalouya.github.io/2024/05/06/JMM%E6%A8%A1%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Netty 高性能网络通讯框架关联网络I&#x2F;O模型,I&#x2F;O多路复用机制,Reactor模型(分治思想) 前置知识阻塞队列是一种特殊的队列，当队列为空时进行获取操作会阻塞线程，直到队列中有元素；当队列已满时进行添加操作会阻塞线程，直到队列有空间。很多情况下，线程池使用的任务队列就是阻塞队列，比如常见的有ArrayBlockingQueue、LinkedBlockingQueue等，">
+<meta property="og:description" content="JMM模型1.可见性Volitale  CPU缓存问题 MESI协议 缓存锁 总线锁 基于LOCK这么一个汇编指令   可见性,有序性保证  2.有序性 JVM如何实现跨平台下的线程安全  JMM模型,定义多线程场景下数据操作逻辑,根据不同平台生成对应的指令  通过区分本地内存和主内存 线程操作数据都会先从主内存拷贝,自己的本地内存完成修改后,再将其同步到主内存 每个线程都存有一个数据副本到自己的">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="g:\%E5%92%95%E6%B3%A1%E5%AD%A6%E4%B9%A0\Netty\assets\%E4%BA%8B%E4%BB%B6%E6%B3%A8%E5%86%8C%E6%88%96%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B.png">
-<meta property="og:image" content="g:\%E5%92%95%E6%B3%A1%E5%AD%A6%E4%B9%A0\Netty\assets\%E4%BA%8B%E4%BB%B6%E8%B0%83%E5%BA%A6%E6%B5%81%E7%A8%8B.png">
-<meta property="article:published_time" content="2024-07-06T02:27:31.466Z">
-<meta property="article:modified_time" content="2024-07-06T09:18:12.347Z">
+<meta property="og:image" content="c:\Users\food\AppData\Roaming\Typora\typora-user-images\image-20240411140150189.png">
+<meta property="og:image" content="c:\Users\food\AppData\Roaming\Typora\typora-user-images\image-20240411142644224.png">
+<meta property="og:image" content="c:\Users\food\AppData\Roaming\Typora\typora-user-images\image-20240411201344994.png">
+<meta property="og:image" content="c:\Users\food\AppData\Roaming\Typora\typora-user-images\image-20240412141156134.png">
+<meta property="article:published_time" content="2024-05-06T08:15:21.000Z">
+<meta property="article:modified_time" content="2024-07-07T07:30:45.959Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="g:\%E5%92%95%E6%B3%A1%E5%AD%A6%E4%B9%A0\Netty\assets\%E4%BA%8B%E4%BB%B6%E6%B3%A8%E5%86%8C%E6%88%96%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B.png">
+<meta name="twitter:image" content="c:\Users\food\AppData\Roaming\Typora\typora-user-images\image-20240411140150189.png">
     
     
     <!--- Icon Part-->
@@ -42,6 +44,8 @@
     <!--- Page Info-->
     
     <title>
+        
+            JMM模型 -
         
         Theme Redefine
     </title>
@@ -361,7 +365,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/blog/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">3</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">8</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -387,7 +391,7 @@
         <div class="article-title relative w-full">
             
                 <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3"></h1>
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">JMM模型</h1>
                 </div>
             
             </div>
@@ -401,22 +405,22 @@
                     <div class="author flex items-center">
                         <span class="name text-default-text-color text-lg font-semibold">The Redefine Team</span>
                         
-                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv1</span>
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
                         
                     </div>
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2024-07-06 10:27:31</span>
-        <span class="mobile">2024-07-06 10:27:31</span>
+        <span class="desktop">2024-05-06 16:15:21</span>
+        <span class="mobile">2024-05-06 16:15:21</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-07-06 17:18:12</span>
-            <span class="mobile">2024-07-06 17:18:12</span>
+            <span class="desktop">2024-07-07 15:30:45</span>
+            <span class="mobile">2024-07-07 15:30:45</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -443,246 +447,279 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h2 id="Netty-高性能网络通讯框架"><a href="#Netty-高性能网络通讯框架" class="headerlink" title="Netty 高性能网络通讯框架"></a>Netty 高性能网络通讯框架</h2><p>关联网络I&#x2F;O模型,I&#x2F;O多路复用机制,Reactor模型(分治思想)</p>
-<p>前置知识<br>阻塞队列是一种特殊的队列，当队列为空时进行获取操作会阻塞线程，直到队列中有元素；当队列已满时进行添加操作会阻塞线程，直到队列有空间。很多情况下，线程池使用的任务队列就是阻塞队列，比如常见的有<code>ArrayBlockingQueue</code>、<code>LinkedBlockingQueue</code>等，它们能很好地配合线程池的运行机制，实现任务的暂存和调度。但也存在一些非阻塞队列被用作任务队列的情况。</p>
-<p>它其实是对NIO的一种封装后的高性能通讯框架</p>
-<h3 id="1-常用api"><a href="#1-常用api" class="headerlink" title="1.常用api"></a>1.常用api</h3><ul>
-<li>EventLoop</li>
-<li>TransSportChannel</li>
-<li>ChannelPipline</li>
-<li>ChannelHandler</li>
-<li>ByteBuffer</li>
-<li>Bootstrap</li>
-<li>ServerBootStrap</li>
+            <h2 id="JMM模型"><a href="#JMM模型" class="headerlink" title="JMM模型"></a>JMM模型</h2><h3 id="1-可见性"><a href="#1-可见性" class="headerlink" title="1.可见性"></a>1.可见性</h3><p>Volitale</p>
+<ul>
+<li>CPU缓存问题</li>
+<li>MESI协议<ul>
+<li>缓存锁</li>
+<li>总线锁</li>
+<li>基于LOCK这么一个汇编指令</li>
 </ul>
-<h3 id="2-Netty工作机制"><a href="#2-Netty工作机制" class="headerlink" title="2.Netty工作机制"></a>2.Netty工作机制</h3><ul>
-<li><p>核心流程</p>
 </li>
-<li><p>层次划分</p>
+<li>可见性,有序性保证</li>
+</ul>
+<h3 id="2-有序性"><a href="#2-有序性" class="headerlink" title="2.有序性"></a>2.有序性</h3><ul>
+<li><p>JVM如何实现跨平台下的线程安全</p>
 <ul>
-<li><p>网络通讯层</p>
+<li><p>JMM模型,定义多线程场景下数据操作逻辑,根据不同平台生成对应的指令</p>
+<ul>
+<li>通过区分本地内存和主内存</li>
+<li>线程操作数据都会先从主内存拷贝,自己的本地内存完成修改后,再将其同步到主内存</li>
+<li>每个线程都存有一个数据副本到自己的本地内存</li>
+</ul>
 </li>
-<li><p>事件调度器</p>
+<li><p>CPU内存屏障指令(针对不同系统,架构有不同实现)</p>
+<p>屏障类型</p>
 <ul>
-<li><p>事件注册&#x2F;提交</p>
-<blockquote>
+<li><p>LoadLoad  读1操作不可优先于读2操作</p>
+</li>
+<li><p>StoreStore 写1操作不可优先于写2操作</p>
+</li>
+<li><p>LoadStore 读操作优先于写操作</p>
+</li>
+<li><p>StoreLoad 写操作优先于读操作</p>
+</li>
+<li><p>基于上述方法接口,实现出不同平台下的逻辑</p>
+</li>
+<li><blockquote>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="G:\咕泡学习\Netty\assets\事件注册或提交流程.png"
-                      alt="事件注册或提交流程"
+                     data-src="C:\Users\food\AppData\Roaming\Typora\typora-user-images\image-20240411140150189.png"
+                      alt="image-20240411140150189"
                 ></p>
 </blockquote>
 </li>
-<li><p>整体流程</p>
-<blockquote>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>产生原因</p>
+<ul>
+<li>CPU高速缓存<ul>
+<li>MESI(同步给其它cpu),解决可见性,保证缓存一致性</li>
+</ul>
+</li>
+<li>指令重排序<ul>
+<li>内存屏障(避免指令执行顺序被优化),解决有序性</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>volitale重排序规则</p>
+<p>不管是普通变量还是volitale变量,对于在volitale变量的读操作之间进行写操作是不允许重排序的</p>
+<ul>
+<li><blockquote>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="G:\咕泡学习\Netty\assets\事件调度流程.png"
-                      alt="事件调度流程"
+                     data-src="C:\Users\food\AppData\Roaming\Typora\typora-user-images\image-20240411142644224.png"
+                      alt="image-20240411142644224"
                 ></p>
 </blockquote>
 </li>
 </ul>
 </li>
-<li><p>服务编排层</p>
-</li>
 </ul>
-</li>
-</ul>
-<h3 id="3-支持的I-O模式"><a href="#3-支持的I-O模式" class="headerlink" title="3.支持的I&#x2F;O模式"></a>3.支持的I&#x2F;O模式</h3><ul>
-<li>NIO,主要支持的模型,同步非阻塞,支持Reactor模式,如单线程,多线程,主从多线程</li>
-<li>OIO,同步阻塞</li>
-</ul>
-<h3 id="4-请求处理"><a href="#4-请求处理" class="headerlink" title="4.请求处理"></a>4.请求处理</h3><p>Tomcat也是对请求参数的封装,然后再传递到对应的展现层,否则Http请求无法直接使用<br>需要一个转换的过程</p>
-<p>Netty则使用了Handler的方式完成参数的处理</p>
-<h3 id="5-事件轮询"><a href="#5-事件轮询" class="headerlink" title="5.事件轮询"></a>5.事件轮询</h3><p>轮询注册器找到需要执行的I&#x2F;O事件,这个操作是阻塞的,会让线程阻塞一段时间,等待一下<br>超时</p>
-<h3 id="6-服务编排"><a href="#6-服务编排" class="headerlink" title="6.服务编排"></a>6.服务编排</h3><p>每个channel 具有一个channelPipline,所以这个管道是线程安全的,不会出现数据安全问题</p>
-<p>存储的结构为双向链表,对应的channelHandler存储在这里</p>
-<h3 id="7-核心角色"><a href="#7-核心角色" class="headerlink" title="7.核心角色"></a>7.核心角色</h3><p>事件循环组</p>
-<p>工作时间循环</p>
-<p>注册器</p>
-<p>处理器</p>
-<p>处理器管道</p>
-<p>通道</p>
-<p>通道管道</p>
-<h3 id="8-注册"><a href="#8-注册" class="headerlink" title="8.注册"></a>8.注册</h3><p>serverSocket开启端口监听,多个客户端连接该端口,server在监听到连接请求后,<br>为其分配channel并将其注册到不同的Selector上,交给不同线程处理</p>
-<h3 id="9-实现"><a href="#9-实现" class="headerlink" title="9.实现"></a>9.实现</h3><ul>
-<li>RPC<ul>
-<li>Dubbo</li>
-<li>gRpc</li>
-</ul>
-</li>
-<li>MQ<ul>
-<li>Rocket</li>
-</ul>
-</li>
-<li>WEB<ul>
-<li>Spring WebFlux</li>
-</ul>
-</li>
-<li>DB<ul>
-<li>ElasticSearch</li>
-</ul>
-</li>
-</ul>
-<h3 id="10-ByteBuf"><a href="#10-ByteBuf" class="headerlink" title="10.ByteBuf"></a>10.ByteBuf</h3><p>它是NIO中的Bytebuffer的具体实现,用于网络通讯中的数据缓冲,<br>但不同的点是它使用了池化技术</p>
-<h3 id="11-拆包和粘包"><a href="#11-拆包和粘包" class="headerlink" title="11.拆包和粘包"></a>11.拆包和粘包</h3><p>定义消息传输协议,在这里面就会涉及到数据的粘包和拆包,通俗的说<br>就是数据包如何装起来,倒出来</p>
-<p>数据结构</p>
+<p>如何解决上述问题</p>
 <ul>
-<li>销毁</li>
-<li>读取</li>
-<li>写入</li>
-<li>扩容</li>
-<li>当前容量</li>
-<li>最大容量</li>
+<li><p>synchroized</p>
+</li>
+<li><p>volitale</p>
+</li>
+<li><p>final(内存屏障指令),只能在构造方法之内完成初始化,而在构造方法中初始化的指令,不允许重排序到构造</p>
+<p>方法之外,这里使用了内存屏障指令</p>
+</li>
 </ul>
-<p>回退</p>
+<p><strong>不是所有的程序指令都会存在可见性或指令重排序(as-if-serial )问题</strong></p>
+<p>Happens-Before(明确哪些场景下不会出现问题)操作的有序性,操作性依赖</p>
 <ul>
-<li>为什么要回退</li>
-<li>对于已经读取过的数据,想要再次读取,就可以使用对应方法再次读取</li>
-<li>分别为读回退和写回退</li>
+<li>程序顺序型规则 (as-if-serial),单线程执行不影响</li>
+<li>传递性规则</li>
+<li>volatile变量规则</li>
+<li>监视器锁规则</li>
+<li>start规则</li>
+<li>join规则<ul>
+<li>哪个线程调用就阻塞哪个线程,必须等待join线程完成,适用于按照指定顺序执行的情况</li>
 </ul>
-<p>零拷贝(浅拷贝,修改引用内容,而不是深拷贝)</p>
+</li>
+<li>单线程环境下不改变程序运行的结果,以及不存在依赖关系这些场景允许重排序</li>
+<li>本质上是描述可见性的规则(有序性导致的可见性问题)</li>
+</ul>
+<p>典型案例</p>
+<p>DCL(Double Check Lock)</p>
 <ul>
-<li>如何提高内存复制性能,这里和网络拷贝的零拷贝不一样</li>
-<li>如何实现,对元素数据切片,再修改指定索引的元素,意思是直接修改的内存数据吗<br>而不是先拷贝,再修改</li>
-<li>逻辑合并的原理是其内部维护了一个引用列表?然后对对应的指针完成引用数据数据修改,而不是拷贝出来一个新的</li>
-<li>拆分场景</li>
-<li>合并场景<ul>
-<li>深拷贝</li>
-<li>浅拷贝</li>
-<li>Unpooled</li>
-</ul>
+<li><p>在new对象的过程中,在jvm里需要三个步骤,开辟空间—&gt;对象初始化—&gt;返回对象引用</p>
+</li>
+<li><p>而在多线程场景下,如果不对这个对象使用Volatile修饰(lock指令加锁),就有可能出现指令</p>
+<p>重排序的问题</p>
 </li>
 </ul>
-<p>拆包&#x2F;粘包</p>
-<p>拆分原因,TCP的传输是基于数据流传输,而流化的数据是没有界限的,当客户端向服务端<br>发送数据时,可能会把一个完整的数据报文拆分成多个小报文进行传输,也可能将多个报文<br>合并成一个大报文进行传输</p>
+<h3 id="3-Lock设计预想"><a href="#3-Lock设计预想" class="headerlink" title="3.Lock设计预想"></a>3.Lock设计预想</h3><p>重入锁指的是再获取同一把锁时,无需重复获取,记录持有次数即可</p>
+<p>特点</p>
 <ul>
-<li>大包拆分</li>
-<li>大包+小包</li>
-<li>小包+(小包+小包)</li>
-<li>主要分为拆分+混装+合并</li>
+<li>可重入</li>
+<li>支持公平,非公平锁</li>
+<li>支持打断</li>
+<li>支持多条件变量</li>
+<li>支持手动释放,需要在finally使用完后进行兜底释放</li>
 </ul>
-<h3 id="12-通讯协议定义"><a href="#12-通讯协议定义" class="headerlink" title="12.通讯协议定义"></a>12.通讯协议定义</h3><ul>
-<li>Zookeeper</li>
-</ul>
-<h3 id="13-解码器的实现"><a href="#13-解码器的实现" class="headerlink" title="13.解码器的实现"></a>13.解码器的实现</h3><ul>
-<li><p>固定长度</p>
-</li>
-<li><p>特殊分隔符</p>
-</li>
-<li><p>长度域解码器(特定消息协议的解码,针对复杂消息报文)</p>
+<p>实现原理</p>
 <ul>
-<li><p>报文长度,决定拆包的范围</p>
-</li>
-<li><p>报文内容,根据需求选择是否拆包和截取指定范围的报文内容</p>
-</li>
-<li><p>长度域调整计算公式</p>
+<li><p>如何支持线程互斥特性,只有拿到锁后才能执行lock方法里的代码,否则只能排队等待</p>
 <ul>
-<li><p>需要字节数-包实际字节数-长度字节数-不需要字节数</p>
-</li>
-<li><p>如一个包的总长为14字节,长度占2个字节,不需要的占2个字节</p>
-<p>实际只需要10个字节</p>
-<p>计算公式如下:</p>
-<p>10-14-2-2 &#x3D; -8</p>
-<p>得出长度域调整值为-8,代表长度域需要覆盖到这个位置</p>
+<li>涉及到锁的抢占,需要一个标记是否有线程获取到锁,全局变量(0,1)</li>
+<li>抢到会怎么样,无需任何操作</li>
+<li>没抢到会怎么样<ul>
+<li>需要等待 (等待线程进入阻塞状态,释放CPU资源,阻塞—&gt;CPU资源释放)<ul>
+<li>如何让线程等待<ul>
+<li>wait&#x2F;notify线程通信机制,但无法指定唤醒某个线程</li>
+<li>LockSupport.park&#x2F;unpark (阻塞一个指定线程,唤醒一个指定线程)</li>
+<li>Condition</li>
+</ul>
 </li>
 </ul>
 </li>
-<li><p>对于长度域的调整可以理解为扩展字段,等于框架的扩展点,都是为了增强</p>
-<p>某个场景,解决如复杂的数据结构,将主要数据和其它数据分开的场景</p>
-</li>
-<li><p>在这里主要是为了处理粘包合并数据的拆分场景,也就是拆包</p>
+<li>需要排队 (运行有n个线程被阻塞,被存储之前的线程都处于活跃状态)<ul>
+<li>通过一个数据结构,把需要等待线程存储起来</li>
+</ul>
 </li>
 </ul>
 </li>
-<li><p>编码的容错机制</p>
+<li>使用完如何释放<ul>
+<li>LockSupport.park—-&gt;唤醒队列中指定线程</li>
+</ul>
+</li>
+<li>锁抢占的公平性(是否允许插队)<ul>
+<li>公平</li>
+<li>非公平</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>获取不到锁会阻塞,直到获取到后才会继续执行</p>
+</li>
+<li><p>抢占锁—&gt;抢占到后修改状态—&gt;执行任务—&gt;执行完成—&gt;修改state—&gt;释放锁资源—&gt;唤醒队列中等待线程</p>
+<p>​           —&gt;没抢占到进入阻塞队列—&gt;修改线程状态—&gt;释放CPU执行资源—&gt;等待唤醒—&gt;再次抢占</p>
+</li>
+</ul>
+<p>具体实现</p>
 <ul>
-<li>快速失败</li>
-<li>尽最大努力</li>
-</ul>
+<li><p>reentrantLock本质上就是AQS+LOCK组成</p>
 </li>
-</ul>
-<h3 id="14-源码核心"><a href="#14-源码核心" class="headerlink" title="14.源码核心"></a>14.源码核心</h3><ul>
-<li>ServerBootStrap初始化<ul>
-<li>服务参数<ul>
-<li>SocketChannel,比如NioSocketChannel,EpollSocketChannel,需要根据不同的操作系统选择<ul>
-<li>可以理解为就是一个抽象的Channel,只不过Server持有了这个抽象Channel的集合,并且对其管理和协调,其中主要的工作就是channel分发及channel事件发现(注册)</li>
-<li>作为客户端和服务端之间数据传输的桥梁</li>
-<li>ServerSocketChannel和SocketChannel,分别处理客户端连接时间和I&#x2F;O事件,角色不同</li>
-</ul>
-</li>
-<li>Handler</li>
-<li>ChildHandler<ul>
-<li>Pipeline,针对当前ServerSocketChannel关联,只要进入当前服务都会进入该处理器链</li>
-</ul>
-</li>
-<li>Bind</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Bind端口绑定</li>
-<li>Pipeline构建</li>
-<li>流程<ul>
-<li>参数设置</li>
-<li>Handler初始化</li>
-<li>EventLoop初始化</li>
-<li>SocketChannel注册,客户端将自己注册到BossEventLoopGroup的Selector中,成为一个被监听Channel</li>
-</ul>
-</li>
-<li>为什么要使用反射的方式构建Channel</li>
-<li>事件循环组担当了Selector的功能,完成Channel事件的注册和协调工作</li>
-</ul>
-<p>EventLoop</p>
+<li><p>内部结构</p>
 <ul>
-<li><p>本质是一个线程池,Event就相当于里面的线程池</p>
+<li><p>锁持有线程(记录当前持有线程对象)</p>
 </li>
-<li><p>netty支持异步和异步延时执行</p>
-</li>
-<li><p>NioEventLoop通过轮询Selector完成Channel事件监听,然后执行任务</p>
-</li>
-<li><p>线程执行流程</p>
+<li><p>共享变量(初始0,持有为1,重入则可能大于0(重入次数))</p>
 <ul>
-<li>外部(主线程)调用excute提交一个任务</li>
-<li>内部(工作线程)起一个线程去执行任务</li>
-<li>调用Selector的select方法获取任务,有就执行,咩有就持续轮询</li>
-<li>内部维护了一套策略,针对队列任务,避免一直阻塞,导致无法真正执行<ul>
-<li>如何处理</li>
-<li>返回结果</li>
+<li>volatile修饰保证可见性</li>
+<li>cas()方法保证原子性,尝试修改</li>
 </ul>
 </li>
-</ul>
-</li>
-<li><p>事件状态</p>
+<li><p>等待队列</p>
 <ul>
-<li>ACCEPT</li>
-<li>READ</li>
-<li>WRITE</li>
+<li><p>双向链表存储,Head节点指向第一个节点,tail指向最后一个节点,将线程对象封装c</p>
+<p>成Node对象</p>
+</li>
+<li><p>自旋操作,尝试抢占资源,未获取成功则进入阻塞状态,避免浪费cpu资源</p>
+<p>调用LockSupport.parlk(this),阻塞自己</p>
+</li>
+<li><p>线程使用完锁后,唤醒等待队列的线程,从Head开始唤醒,唤醒它的下一个节点</p>
+<p>.再调用LockSupport.unpark(ThreadB),唤醒指定线程</p>
+</li>
+<li><p>非公平允许插队,不管队列中有没有线程,公平则不允许,必须加入队列,排队等待</p>
+</li>
 </ul>
 </li>
-<li><p>空轮转</p>
+</ul>
+</li>
+<li><p>流程图</p>
 <ul>
-<li><p>指的是线程在轮询阻塞的过程中,产生的异常唤醒,其实没有实际事件可执行</p>
-<p>如何处理</p>
-</li>
-<li><p>数据迁移过程中,使用双写,旧的仍然可读,在迁移过程中产生的数据放入新的,保证可用且不影响性能</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>数据包和数据报的区别</p>
-<p>您的这种理解有一定的道理。</p>
-<p>数据报，尤其是像 IP 数据报这样在网络层中具有明确规范的，其格式和结构相对较为固定和严谨。这有助于在网络中进行统一的路由和转发处理。</p>
-<p>而数据包的概念更为广泛，确实会因为处于不同的网络层次和遵循不同的协议而在格式和内容上有所变化和转换。</p>
-<p>例如，在传输层的 TCP 数据包和 UDP 数据包，它们除了包含源端口和目的端口等特定信息外，格式和控制字段与 IP 数据报就有所不同。</p>
-<p>当数据在网络中传输时，可能会根据需要在不同层次进行封装和解封装，导致数据包的形式和内容发生相应的改变。</p>
-<p>但需要注意的是，严谨性的比较也不能绝对化，这取决于具体的网络环境和需求。在某些特定的场景中，特定协议下的数据包也可能具有高度的严谨性和规范性。</p>
-<blockquote>
-<p>报文重在特定协议的传输格式的数据,包重在数据的传输内容本身</p>
+<li><blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="C:\Users\food\AppData\Roaming\Typora\typora-user-images\image-20240411201344994.png"
+                      alt="image-20240411201344994"
+                ></p>
 </blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-LOCK的具体实现"><a href="#4-LOCK的具体实现" class="headerlink" title="4.LOCK的具体实现"></a>4.LOCK的具体实现</h3><ul>
+<li><p>具体实现</p>
+<blockquote>
+<p>ReentrantLock</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="C:\Users\food\AppData\Roaming\Typora\typora-user-images\image-20240412141156134.png"
+                      alt="image-20240412141156134"
+                ></p>
+<ul>
+<li>reentrant实现Lock(锁机制)和持有Sync(同步队列)</li>
+<li>AQS负责实现同步队列的基本逻辑,如唤醒,加入队列等方法</li>
+<li>Sync继承AQS抽象类</li>
+<li>在Sync的基础上实现公平和非公平</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>节点状态</p>
+<ul>
+<li>signal  需要被唤醒的一个节点</li>
+<li>cancelled 一个取消的节点</li>
+<li>condition </li>
+<li>propgate</li>
+<li>0 默认值</li>
+</ul>
+<p>公平锁和非公平锁</p>
+<ul>
+<li><p>是否阻塞线程</p>
+</li>
+<li><p>是否公平</p>
+</li>
+<li><p>抢占时机</p>
+</li>
+<li><p>抢占失败</p>
+<ul>
+<li><p>进入队列</p>
+</li>
+<li><p>自旋(重试获取锁),等待(重试达到上限后将节点状态变为阻塞)</p>
+</li>
+<li><p>阻塞重试达到上限的线程</p>
+</li>
+<li><p>等待唤醒</p>
+</li>
+<li><p>当前线程抢占失败—&gt;进入同步队列—&gt;包装成Node节点.赋waitStatus状态为0—&gt;自旋,判断前置节点</p>
+<p>—&gt;尝试获取锁,重试上限—&gt;放弃获取,进入阻塞状态</p>
+</li>
+</ul>
+</li>
+<li><p>唤醒时机</p>
+</li>
+<li><p>锁释放</p>
+</li>
+</ul>
+<h3 id="5-遵守原则"><a href="#5-遵守原则" class="headerlink" title="5.遵守原则"></a>5.遵守原则</h3><ol>
+<li><strong>缓存一致性模型</strong>：保证不同处理器核心或线程的缓存数据同步。</li>
+<li><strong>重排序规则</strong>：指令执行顺序可能会被重新排列，但要遵循特定的约束以保证正确性。</li>
+<li><strong>Happen-Before 关系</strong>：明确操作之间的先后顺序，确保多线程程序的正确执行。</li>
+<li><strong>同步机制规则</strong>：包括锁、同步方法和同步块等的使用规则。</li>
+<li><strong>内存屏障规则</strong>：用于控制指令重排序和确保内存操作的顺序。</li>
+</ol>
+<ul>
+<li>按照这些规则做,就会降低线程安全产生的风险</li>
+</ul>
+<p>JMM</p>
+<p>JUC</p>
+<p>ThreadExectors</p>
+<p>阻塞队列</p>
+<p>可见性—&gt;缓存一致性问题—&gt;MESI和总线锁</p>
+<p>有序性—&gt;CPU指令重排序—&gt;Volatile</p>
+<p>happens-before</p>
 
         </div>
 
@@ -690,18 +727,18 @@
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> </li>
+        <li><strong>Title:</strong> JMM模型</li>
         <li><strong>Author:</strong> The Redefine Team</li>
         <li><strong>Created at
-                :</strong> 2024-07-06 10:27:31</li>
+                :</strong> 2024-05-06 16:15:21</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-07-06 17:18:12
+                    :</strong> 2024-07-07 15:30:45
             </li>
         
         <li>
-            <strong>Link:</strong> https://redefine.ohevan.com/2024/07/06/Netty 高性能网络通讯框架/
+            <strong>Link:</strong> https://redefine.ohevan.com/2024/05/06/JMM模型/
         </li>
         <li>
             <strong>
@@ -726,21 +763,21 @@
         
             <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
                 
-                
-                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="next"
-                        rel="next"
-                        href="/blog/2024/07/06/My-New-Post/"
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/blog/2024/05/28/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%8D%8F%E8%AE%AE/"
                         >
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">My New Post</span>
-                                <span class="post-nav-item">Next posts</span>
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
                             </span>
-                            <span class="right arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-right"></i>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">网络编程协议</span>
+                                <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
                     </div>
+                
                 
             </div>
         
@@ -797,8 +834,8 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title"></div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Netty-%E9%AB%98%E6%80%A7%E8%83%BD%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF%E6%A1%86%E6%9E%B6"><span class="nav-text">Netty 高性能网络通讯框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%B8%B8%E7%94%A8api"><span class="nav-text">1.常用api</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Netty%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="nav-text">2.Netty工作机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%94%AF%E6%8C%81%E7%9A%84I-O%E6%A8%A1%E5%BC%8F"><span class="nav-text">3.支持的I&#x2F;O模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%AF%B7%E6%B1%82%E5%A4%84%E7%90%86"><span class="nav-text">4.请求处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E4%BA%8B%E4%BB%B6%E8%BD%AE%E8%AF%A2"><span class="nav-text">5.事件轮询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E6%9C%8D%E5%8A%A1%E7%BC%96%E6%8E%92"><span class="nav-text">6.服务编排</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E6%A0%B8%E5%BF%83%E8%A7%92%E8%89%B2"><span class="nav-text">7.核心角色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E6%B3%A8%E5%86%8C"><span class="nav-text">8.注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E5%AE%9E%E7%8E%B0"><span class="nav-text">9.实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-ByteBuf"><span class="nav-text">10.ByteBuf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E6%8B%86%E5%8C%85%E5%92%8C%E7%B2%98%E5%8C%85"><span class="nav-text">11.拆包和粘包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE%E5%AE%9A%E4%B9%89"><span class="nav-text">12.通讯协议定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-%E8%A7%A3%E7%A0%81%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-text">13.解码器的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-%E6%BA%90%E7%A0%81%E6%A0%B8%E5%BF%83"><span class="nav-text">14.源码核心</span></a></li></ol></li></ol>
+        <div class="page-title">JMM模型</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JMM%E6%A8%A1%E5%9E%8B"><span class="nav-text">JMM模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%8F%AF%E8%A7%81%E6%80%A7"><span class="nav-text">1.可见性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%9C%89%E5%BA%8F%E6%80%A7"><span class="nav-text">2.有序性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Lock%E8%AE%BE%E8%AE%A1%E9%A2%84%E6%83%B3"><span class="nav-text">3.Lock设计预想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-LOCK%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="nav-text">4.LOCK的具体实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E9%81%B5%E5%AE%88%E5%8E%9F%E5%88%99"><span class="nav-text">5.遵守原则</span></a></li></ol></li></ol>
 
     </div>
 </div>
@@ -831,7 +868,7 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        3 posts in total
+                        8 posts in total
                     </span>
                     
                 </p>

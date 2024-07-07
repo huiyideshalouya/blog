@@ -13,16 +13,20 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://huiyideshalouya.github.io/archives/2024/07/"/>
+    <link rel="canonical" href="https://huiyideshalouya.github.io/2024/06/19/网络io模型/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://huiyideshalouya.github.io/archives/2024/07/index.html">
+        <meta name="description" content="网络I&#x2F;O模型1.阻塞&#x2F;非阻塞 阻塞分为连接阻塞(处理数量)和I&#x2F;O阻塞(读取数据) 非阻塞  异步 多路复用  2.异步&#x2F;同步 3.TCP&#x2F;UDP协议 4.Socket(套接字) 是什么  它是TCP&#x2F;UDP封装后的用户网络数据传输的接口工具  底层实现  底层通过TCP&#x2F;UDP的方式实现通过网络传送数据 在监听连接和接收数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络I&#x2F;O模型">
+<meta property="og:url" content="https://huiyideshalouya.github.io/2024/06/19/%E7%BD%91%E7%BB%9CIO%E6%A8%A1%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="网络I&#x2F;O模型1.阻塞&#x2F;非阻塞 阻塞分为连接阻塞(处理数量)和I&#x2F;O阻塞(读取数据) 非阻塞  异步 多路复用  2.异步&#x2F;同步 3.TCP&#x2F;UDP协议 4.Socket(套接字) 是什么  它是TCP&#x2F;UDP封装后的用户网络数据传输的接口工具  底层实现  底层通过TCP&#x2F;UDP的方式实现通过网络传送数据 在监听连接和接收数据">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-19T12:59:28.000Z">
+<meta property="article:modified_time" content="2024-07-07T07:27:54.799Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
     
@@ -36,7 +40,7 @@
     
     <title>
         
-            Archive: 2024/7 -
+            网络I/O模型 -
         
         Theme Redefine
     </title>
@@ -376,119 +380,365 @@
             <div class="main-content">
 
                 
-                    <div class="archive-container shadow-none hover:shadow-none sm:shadow-redefine sm:hover:shadow-redefine-hover">
-    
-<div class="archive-list-container">
-    
-        <section class="archive-item mb-spacing-unit last:mb-0">
-            <div class="archive-item-header flex flex-row items-center mb-2">
-                <span class="archive-year font-semibold text-3xl mr-2">2024</span>
-                <span class="archive-year-post-count text-xs md:text-sm font-bold rounded-small bg-third-background-color py-[2px] px-[10px] border border-border-color">8</span>
-            </div>
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
             
-            <ul class="article-list pl-0 md:pl-8 text-lg leading-[1.5]">
-                
-                    
-                    
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='07-07'>
-                    
-                    <a href="/blog/2024/07/07/Netty%20%E9%AB%98%E6%80%A7%E8%83%BD%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF%E6%A1%86%E6%9E%B6/" class="block overflow-hidden w-fit">
-                        <span class="article-title my-0.5 text-2xl">Neetty高性能网络通讯框架</span>
-                    </a>
-                    
-                
-                    
-                    
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">网络I/O模型</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/blog/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">The Redefine Team</span>
                         
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='07-06'>
-                    
-                    <a href="/blog/2024/07/06/hello-world/" class="block overflow-hidden w-fit">
-                        <span class="article-title my-0.5 text-2xl">Hello World</span>
-                    </a>
-                    
-                
-                    
-                    
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
                         
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='06-22'>
-                    
-                    <a href="/blog/2024/06/22/%E6%B6%88%E6%81%AF%E5%8D%8F%E8%AE%AE%E8%AE%BE%E8%AE%A1%E5%8F%8A%E5%AE%9E%E6%88%98/" class="block overflow-hidden w-fit">
-                        <span class="article-title my-0.5 text-2xl">消息协议设计及实战</span>
-                    </a>
-                    
-                
-                    
-                    
-                        
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='06-19'>
-                    
-                    <a href="/blog/2024/06/19/%E7%BD%91%E7%BB%9CIO%E6%A8%A1%E5%9E%8B/" class="block overflow-hidden w-fit">
-                        <span class="article-title my-0.5 text-2xl">网络I/O模型</span>
-                    </a>
-                    
-                
-                    
-                    
-                        
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='06-01'>
-                    
-                    <a href="/blog/2024/06/01/%E5%85%AB%E8%82%A1%E7%9F%A5%E8%AF%86%E7%82%B9/" class="block overflow-hidden w-fit">
-                        <span class="article-title my-0.5 text-2xl">八股知识点</span>
-                    </a>
-                    
-                
-                    
-                    
-                        
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='05-29'>
-                    
-                    <a href="/blog/2024/05/29/BPMN%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/" class="block overflow-hidden w-fit">
-                        <span class="article-title my-0.5 text-2xl">BPMN相关知识</span>
-                    </a>
-                    
-                
-                    
-                    
-                        
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='05-28'>
-                    
-                    <a href="/blog/2024/05/28/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%8D%8F%E8%AE%AE/" class="block overflow-hidden w-fit">
-                        <span class="article-title my-0.5 text-2xl">网络编程协议</span>
-                    </a>
-                    
-                
-                    
-                    
-                        
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='05-06'>
-                    
-                    <a href="/blog/2024/05/06/JMM%E6%A8%A1%E5%9E%8B/" class="block overflow-hidden w-fit">
-                        <span class="article-title my-0.5 text-2xl">JMM模型</span>
-                    </a>
-                    
-                
-                </li> <!-- Ensure the last item is properly closed -->
-            </ul>
-        </section>
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-06-19 20:59:28</span>
+        <span class="mobile">2024-06-19 20:59:28</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-07-07 15:27:54</span>
+            <span class="mobile">2024-07-07 15:27:54</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
     
 </div>
 
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h2 id="网络I-O模型"><a href="#网络I-O模型" class="headerlink" title="网络I&#x2F;O模型"></a>网络I&#x2F;O模型</h2><p>1.阻塞&#x2F;非阻塞</p>
+<p><strong>阻塞分为连接阻塞(处理数量)和I&#x2F;O阻塞(读取数据)</strong></p>
+<p>非阻塞</p>
+<ul>
+<li>异步</li>
+<li>多路复用</li>
+</ul>
+<p>2.异步&#x2F;同步</p>
+<p>3.TCP&#x2F;UDP协议</p>
+<p>4.Socket(套接字)</p>
+<p>是什么</p>
+<ul>
+<li>它是TCP&#x2F;UDP封装后的用户网络数据传输的接口工具</li>
+</ul>
+<p>底层实现</p>
+<ul>
+<li>底层通过TCP&#x2F;UDP的方式实现通过网络传送数据</li>
+<li>在监听连接和接收数据时会阻塞</li>
+<li>创建完socket后,会使用poll select recv 接收数据,这里使用方法<br>和操作系统相关</li>
+</ul>
+<p>使用场景</p>
+<blockquote>
+<p>使用Socket实现网络 I&#x2F;O 传输流程：</p>
+<ol>
+<li><p><strong>应用程序调用 <code>socket()</code> 创建套接字</strong>，并指定相关参数（如协议类型等），套接字进入监听状态，等待外部客户端连接。</p>
+</li>
+<li><p><strong>客户端发起连接请求</strong>，经过网络传输到达服务器。</p>
+</li>
+<li><p><strong>服务器端操作系统接收到连接请求</strong>，验证并建立连接，为该连接分配一个独特的 <code>fd</code> 文件描述符。</p>
+</li>
+<li><p>数据传输阶段</p>
+<p>：</p>
+<ul>
+<li><strong>发送数据</strong>：应用程序将待发送数据写入与套接字对应的内核缓冲区，操作系统根据网络状况和协议栈逐步将数据从缓冲区通过网卡发送出去。</li>
+<li><strong>接收数据</strong>：网卡接收到外部数据后，通知操作系统，操作系统将数据写入到内核缓冲区中与该套接字相关的区域。</li>
+</ul>
+</li>
+<li><p><strong>应用程序调用相关函数获取接收数据</strong>，从内核缓冲区读取数据到应用程序的内存空间。</p>
+</li>
+<li><p><strong>读取完成后</strong>，操作系统可能会根据情况清空或重新管理相应的内核缓冲区数据，以准备接收新的数据。</p>
+</li>
+</ol>
+<p>需要注意的是，这只是一个简化的流程，实际中还涉及到很多细节和优化机制，比如缓冲区的管理、数据的确认与重传、拥塞控制等，以确保网络通信的高效和可靠。</p>
+</blockquote>
+<p>数据到达之后如何唤醒(硬件层面)</p>
+<p>网络数据包到达网卡—&gt;发送中断信号告知CPU有数据写入—&gt;然后唤醒阻塞进程,然后通过硬件电路将数据写入内存</p>
+<p>阻塞流程</p>
+<p>操作系统多任务调度,所以它有一个存储进程的<strong>运行队列</strong>,用于执行多任务调度,阻塞的进程就在<br>这里阻塞等待唤醒</p>
+<p>在创建完socket后会为其创建一个fd描述对象,用于关联socket</p>
+<p>连接创建—&gt;等待接收数据</p>
+<p>5.I&#x2F;O多路复用</p>
+<p>是什么</p>
+<ul>
+<li><p>一种用于提高服务器处理数据传输的并发处理以及提高系统资源利用率的方式</p>
+</li>
+<li><p>可以同时监听多个文件描述符,避免大量线程或进程阻塞等待单个I&#x2F;O的操作</p>
+</li>
+<li><p>能够处理大量并发连接,使得服务器能够同时处理多个客户端的请求,而不是组个处理</p>
+</li>
+<li><p>简化编程模型,让开发者可以通过统一的接口来管理多个I&#x2F;O操作,降低编程的复杂性,</p>
+<p>无需我们实现</p>
+</li>
+<li><p>epoll通过事件驱动的方式唤醒线程&#x2F;进程,提高资源利用率,避免使用阻塞的方式降低性能</p>
+<p>而select&#x2F;poll都会产生阻塞</p>
+</li>
+<li><p>单个socket的监听如 Recv,在使用多路复用之前</p>
+</li>
+</ul>
+<p>现模型</p>
+<ul>
+<li><p>select(连接上限1024)</p>
+</li>
+<li><p>poll(无上限)</p>
+</li>
+<li><p>epoll(事件驱动)</p>
+<ul>
+<li><p>核心角色</p>
+<ul>
+<li><p>事件池,包含事件对象以及事件队列</p>
+</li>
+<li><p>Socket对象,在创建后为其关联了一个fd描述符,内部存储了读&#x2F;写缓冲区以及等待队列</p>
+<p>用于管理连接的客户端,用于后续的唤醒,中断等操作</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>三者区别</p>
+<p>6.TCP&#x2F;IP网络模型</p>
+<ul>
+<li>应用层</li>
+<li>传输层</li>
+<li>网络层</li>
+<li>数据链路层</li>
+<li>功能参考OSI七层模型</li>
+</ul>
+<p>7.OSI网络七层模型</p>
+<ul>
+<li>应用层(客户端)</li>
+<li>表示层(数据转换)</li>
+<li>会话层(连接创建&#x2F;校验)</li>
+<li>传输层(数据传输)</li>
+<li>网络层(路由寻址)</li>
+<li>数据链路层(数据打包)</li>
+<li>物理层(硬件设备)</li>
+</ul>
+<p>8.流量整形TODO</p>
+<p>9.网络通讯就是网络编程</p>
+<p>10.Reactor(响应式)I&#x2F;O模型</p>
+<p>它是基于NIO来实现的高性能I&#x2F;O模型</p>
+<p>NIO的核心角色</p>
+<ul>
+<li><p>Selector ,注册器,负责管理和协调Channel</p>
+</li>
+<li><p>Channel,包装后的Socket对象,相当于一个高级的双向连接对象</p>
+</li>
+<li><p>ByteBuffer,用于缓存传输的数据</p>
+</li>
+<li><p>Selector和Channel的关系</p>
+<blockquote>
+<p>就相当于拍卖物品,首先我将物品寄放到拍卖行,告知拍卖行我的预期价格,然后等达到预期价格后,拍卖行就通知我,有符合我预期的价格了</p>
+<p>在这个类比中：</p>
+<ul>
+<li>“物品”就相当于 Channel。</li>
+<li>“拍卖行”相当于 Selector 。</li>
+<li>“预期价格”相当于您为 Channel 注册到 Selector 时指定的感兴趣的事件（比如可读、可写等）。</li>
+<li>“达到预期价格”相当于 Channel 上发生了您注册时指定的事件。</li>
+<li>“拍卖行通知您”相当于 Selector 回调 Channel 。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>核心角色</p>
+<ul>
+<li>Reactor,负责监听和分发事件,将事件分发给对应的Handler进行处理</li>
+<li>Acceptors,处理客户端连接请求,创建对应的Handler</li>
+<li>Handler,异步(非阻塞)执行读写任务,处理具体业务逻辑</li>
+</ul>
+<p>单线程</p>
+<ul>
+<li>只有一个主线程负责处理连接和请求</li>
+</ul>
+<p>多线程(线程池)</p>
+<ul>
+<li>职责拆分,主线程负责处理连接,使用线程池中的线程异步处理请求</li>
+</ul>
+<p>主从多线程(线程池)</p>
+<ul>
+<li>主线程负责处理连接,将连接请分发给从线程,从线程负责请求的处理</li>
+</ul>
+<p>11.三种网络I&#x2F;O模型的生动描述</p>
+<p>再次理解AIO,BIO,NIO 先描述一个场景 假设有一家很火的餐饮店,需要排队,有一天我到了这家店,店员告知我前面咩有空桌,需要排队等待 </p>
+<p>但店员告知我有三种方案你选哪一种 </p>
+<p>第一种,你先取一个号,等叫号叫到你后,我通过电话通知你,这就是AIO </p>
+<p>第二种,你就在门口等着,等叫到你后,你再进去,这就是BIO </p>
+<p>第三种,你取一个号,但你需要时不时过来看一看,在这期间你可以做其它的事,这是NIO </p>
+<p>其中第一种和第三种方法比较类似,在等待的时间里你可以做自己的时,但一个是我主动叫你,一个是你主动查看</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 网络I/O模型</li>
+        <li><strong>Author:</strong> The Redefine Team</li>
+        <li><strong>Created at
+                :</strong> 2024-06-19 20:59:28</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-07-07 15:27:54
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://redefine.ohevan.com/2024/06/19/网络IO模型/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
 </div>
+
+            </div>
+        
+
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/blog/2024/06/22/%E6%B6%88%E6%81%AF%E5%8D%8F%E8%AE%AE%E8%AE%BE%E8%AE%A1%E5%8F%8A%E5%AE%9E%E6%88%98/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">消息协议设计及实战</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/blog/2024/06/01/%E5%85%AB%E8%82%A1%E7%9F%A5%E8%AF%86%E7%82%B9/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">八股知识点</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/blog/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          recaptchaV3Key: "wasd",
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">网络I/O模型</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9CI-O%E6%A8%A1%E5%9E%8B"><span class="nav-text">网络I&#x2F;O模型</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
 
                 
 
@@ -570,6 +820,27 @@
         </div>
     </div>
 
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
     
 
     <div class="right-side-tools-container">
