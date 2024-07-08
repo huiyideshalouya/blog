@@ -55,7 +55,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/imgs%5CJMM%5C%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C%E7%B1%BB%E5%9E%8B.png"
+                     data-src="/imgs/JMM/%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C%E7%B1%BB%E5%9E%8B.png"
                       alt="内存屏障类型"
                 ></p>
 </blockquote>
@@ -83,7 +83,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/imgs%5CJMM%5CVolatile%E9%87%8D%E6%8E%92%E5%BA%8F%E8%A7%84%E5%88%99.png"
+                     data-src="/imgs/JMM/Volatile%E9%87%8D%E6%8E%92%E5%BA%8F%E8%A7%84%E5%88%99.png"
                       alt="Volatile重排序规则"
                 ></p>
 </blockquote>
@@ -210,7 +210,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/imgs%5CJMM%5CReenTrantLock%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png"
+                     data-src="/imgs/JMM/ReenTrantLock%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png"
                       alt="ReenTrantLock实现原理"
                 ></p>
 </blockquote>
@@ -225,7 +225,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/imgs%5CJMM%5CJava%E9%94%81%E5%AE%9E%E7%8E%B0%E5%85%B3%E7%B3%BB.png"
+                     data-src="/imgs/JMM/Java%E9%94%81%E5%AE%9E%E7%8E%B0%E5%85%B3%E7%B3%BB.png"
                       alt="Java锁实现关系"
                 ></p>
 <ul>
@@ -290,24 +290,6 @@
 <p>可见性—&gt;缓存一致性问题—&gt;MESI和总线锁</p>
 <p>有序性—&gt;CPU指令重排序—&gt;Volatile</p>
 <p>happens-before</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2024/07/06/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/writing.html" >Writing <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/server.html" >Server <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/generating.html" >Generating <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 ]]></content>
   </entry>
   <entry>
@@ -556,6 +538,24 @@
 ]]></content>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2024/07/06/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/writing.html" >Writing <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/server.html" >Server <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/generating.html" >Generating <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>消息协议设计及实战</title>
     <url>/2024/06/22/%E6%B6%88%E6%81%AF%E5%8D%8F%E8%AE%AE%E8%AE%BE%E8%AE%A1%E5%8F%8A%E5%AE%9E%E6%88%98/</url>
     <content><![CDATA[<h3 id="消息协议设计及实战"><a href="#消息协议设计及实战" class="headerlink" title="消息协议设计及实战"></a>消息协议设计及实战</h3><h3 id="1-协议"><a href="#1-协议" class="headerlink" title="1.协议"></a>1.协议</h3><ul>
@@ -756,6 +756,1462 @@
 ]]></content>
   </entry>
   <entry>
+    <title>网络I/O模型</title>
+    <url>/2024/06/19/%E7%BD%91%E7%BB%9CIO%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<h2 id="网络I-O模型"><a href="#网络I-O模型" class="headerlink" title="网络I&#x2F;O模型"></a>网络I&#x2F;O模型</h2><p>1.阻塞&#x2F;非阻塞</p>
+<p><strong>阻塞分为连接阻塞(处理数量)和I&#x2F;O阻塞(读取数据)</strong></p>
+<p>非阻塞</p>
+<ul>
+<li>异步</li>
+<li>多路复用</li>
+</ul>
+<p>2.异步&#x2F;同步</p>
+<p>3.TCP&#x2F;UDP协议</p>
+<p>4.Socket(套接字)</p>
+<p>是什么</p>
+<ul>
+<li>它是TCP&#x2F;UDP封装后的用户网络数据传输的接口工具</li>
+</ul>
+<p>底层实现</p>
+<ul>
+<li>底层通过TCP&#x2F;UDP的方式实现通过网络传送数据</li>
+<li>在监听连接和接收数据时会阻塞</li>
+<li>创建完socket后,会使用poll select recv 接收数据,这里使用方法<br>和操作系统相关</li>
+</ul>
+<p>使用场景</p>
+<blockquote>
+<p>使用Socket实现网络 I&#x2F;O 传输流程：</p>
+<ol>
+<li><p><strong>应用程序调用 <code>socket()</code> 创建套接字</strong>，并指定相关参数（如协议类型等），套接字进入监听状态，等待外部客户端连接。</p>
+</li>
+<li><p><strong>客户端发起连接请求</strong>，经过网络传输到达服务器。</p>
+</li>
+<li><p><strong>服务器端操作系统接收到连接请求</strong>，验证并建立连接，为该连接分配一个独特的 <code>fd</code> 文件描述符。</p>
+</li>
+<li><p>数据传输阶段</p>
+<p>：</p>
+<ul>
+<li><strong>发送数据</strong>：应用程序将待发送数据写入与套接字对应的内核缓冲区，操作系统根据网络状况和协议栈逐步将数据从缓冲区通过网卡发送出去。</li>
+<li><strong>接收数据</strong>：网卡接收到外部数据后，通知操作系统，操作系统将数据写入到内核缓冲区中与该套接字相关的区域。</li>
+</ul>
+</li>
+<li><p><strong>应用程序调用相关函数获取接收数据</strong>，从内核缓冲区读取数据到应用程序的内存空间。</p>
+</li>
+<li><p><strong>读取完成后</strong>，操作系统可能会根据情况清空或重新管理相应的内核缓冲区数据，以准备接收新的数据。</p>
+</li>
+</ol>
+<p>需要注意的是，这只是一个简化的流程，实际中还涉及到很多细节和优化机制，比如缓冲区的管理、数据的确认与重传、拥塞控制等，以确保网络通信的高效和可靠。</p>
+</blockquote>
+<p>数据到达之后如何唤醒(硬件层面)</p>
+<p>网络数据包到达网卡—&gt;发送中断信号告知CPU有数据写入—&gt;然后唤醒阻塞进程,然后通过硬件电路将数据写入内存</p>
+<p>阻塞流程</p>
+<p>操作系统多任务调度,所以它有一个存储进程的<strong>运行队列</strong>,用于执行多任务调度,阻塞的进程就在<br>这里阻塞等待唤醒</p>
+<p>在创建完socket后会为其创建一个fd描述对象,用于关联socket</p>
+<p>连接创建—&gt;等待接收数据</p>
+<p>5.I&#x2F;O多路复用</p>
+<p>是什么</p>
+<ul>
+<li><p>一种用于提高服务器处理数据传输的并发处理以及提高系统资源利用率的方式</p>
+</li>
+<li><p>可以同时监听多个文件描述符,避免大量线程或进程阻塞等待单个I&#x2F;O的操作</p>
+</li>
+<li><p>能够处理大量并发连接,使得服务器能够同时处理多个客户端的请求,而不是组个处理</p>
+</li>
+<li><p>简化编程模型,让开发者可以通过统一的接口来管理多个I&#x2F;O操作,降低编程的复杂性,</p>
+<p>无需我们实现</p>
+</li>
+<li><p>epoll通过事件驱动的方式唤醒线程&#x2F;进程,提高资源利用率,避免使用阻塞的方式降低性能</p>
+<p>而select&#x2F;poll都会产生阻塞</p>
+</li>
+<li><p>单个socket的监听如 Recv,在使用多路复用之前</p>
+</li>
+</ul>
+<p>现模型</p>
+<ul>
+<li><p>select(连接上限1024)</p>
+</li>
+<li><p>poll(无上限)</p>
+</li>
+<li><p>epoll(事件驱动)</p>
+<ul>
+<li><p>核心角色</p>
+<ul>
+<li><p>事件池,包含事件对象以及事件队列</p>
+</li>
+<li><p>Socket对象,在创建后为其关联了一个fd描述符,内部存储了读&#x2F;写缓冲区以及等待队列</p>
+<p>用于管理连接的客户端,用于后续的唤醒,中断等操作</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>三者区别</p>
+<p>6.TCP&#x2F;IP网络模型</p>
+<ul>
+<li>应用层</li>
+<li>传输层</li>
+<li>网络层</li>
+<li>数据链路层</li>
+<li>功能参考OSI七层模型</li>
+</ul>
+<p>7.OSI网络七层模型</p>
+<ul>
+<li>应用层(客户端)</li>
+<li>表示层(数据转换)</li>
+<li>会话层(连接创建&#x2F;校验)</li>
+<li>传输层(数据传输)</li>
+<li>网络层(路由寻址)</li>
+<li>数据链路层(数据打包)</li>
+<li>物理层(硬件设备)</li>
+</ul>
+<p>8.流量整形TODO</p>
+<p>9.网络通讯就是网络编程</p>
+<p>10.Reactor(响应式)I&#x2F;O模型</p>
+<p>它是基于NIO来实现的高性能I&#x2F;O模型</p>
+<p>NIO的核心角色</p>
+<ul>
+<li><p>Selector ,注册器,负责管理和协调Channel</p>
+</li>
+<li><p>Channel,包装后的Socket对象,相当于一个高级的双向连接对象</p>
+</li>
+<li><p>ByteBuffer,用于缓存传输的数据</p>
+</li>
+<li><p>Selector和Channel的关系</p>
+<blockquote>
+<p>就相当于拍卖物品,首先我将物品寄放到拍卖行,告知拍卖行我的预期价格,然后等达到预期价格后,拍卖行就通知我,有符合我预期的价格了</p>
+<p>在这个类比中：</p>
+<ul>
+<li>“物品”就相当于 Channel。</li>
+<li>“拍卖行”相当于 Selector 。</li>
+<li>“预期价格”相当于您为 Channel 注册到 Selector 时指定的感兴趣的事件（比如可读、可写等）。</li>
+<li>“达到预期价格”相当于 Channel 上发生了您注册时指定的事件。</li>
+<li>“拍卖行通知您”相当于 Selector 回调 Channel 。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>核心角色</p>
+<ul>
+<li>Reactor,负责监听和分发事件,将事件分发给对应的Handler进行处理</li>
+<li>Acceptors,处理客户端连接请求,创建对应的Handler</li>
+<li>Handler,异步(非阻塞)执行读写任务,处理具体业务逻辑</li>
+</ul>
+<p>单线程</p>
+<ul>
+<li>只有一个主线程负责处理连接和请求</li>
+</ul>
+<p>多线程(线程池)</p>
+<ul>
+<li>职责拆分,主线程负责处理连接,使用线程池中的线程异步处理请求</li>
+</ul>
+<p>主从多线程(线程池)</p>
+<ul>
+<li>主线程负责处理连接,将连接请分发给从线程,从线程负责请求的处理</li>
+</ul>
+<p>11.三种网络I&#x2F;O模型的生动描述</p>
+<p>再次理解AIO,BIO,NIO 先描述一个场景 假设有一家很火的餐饮店,需要排队,有一天我到了这家店,店员告知我前面咩有空桌,需要排队等待 </p>
+<p>但店员告知我有三种方案你选哪一种 </p>
+<p>第一种,你先取一个号,等叫号叫到你后,我通过电话通知你,这就是AIO </p>
+<p>第二种,你就在门口等着,等叫到你后,你再进去,这就是BIO </p>
+<p>第三种,你取一个号,但你需要时不时过来看一看,在这期间你可以做其它的事,这是NIO </p>
+<p>其中第一种和第三种方法比较类似,在等待的时间里你可以做自己的时,但一个是我主动叫你,一个是你主动查看</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>网络编程协议</title>
+    <url>/2024/05/28/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%8D%8F%E8%AE%AE/</url>
+    <content><![CDATA[<h2 id="网络编程协议"><a href="#网络编程协议" class="headerlink" title="网络编程协议"></a>网络编程协议</h2><h3 id="1-网络模型"><a href="#1-网络模型" class="headerlink" title="1.网络模型"></a>1.网络模型</h3><p>OSI网络模型</p>
+<ul>
+<li><p>经典七层</p>
+<ul>
+<li><p>应用层(Application) 客户端,比如用户使用的浏览器</p>
+</li>
+<li><p>表示层(Presentation) 数据的处理,转换,压缩,比如图片的从编码转换为可见的</p>
+</li>
+<li><p>会话层(Session) 应用的会话,用于管理会话的创建,终止,负责本地和远程的通讯及身份验证,校验等功能</p>
+</li>
+<li><p>传输层(Transport) 传输的方式,如TCP和UDP,还比如网络I&#x2F;O模型</p>
+</li>
+<li><p>网络层(Network) 用于路径的逻辑寻址,如IP</p>
+</li>
+<li><p>数据链路层(Data Link) 数据包装,以及安全检测,如将位数据包装成帧(打包),负责节点与节点之间的数据</p>
+<p>传输</p>
+</li>
+<li><p>物理层(Physical) 物理设备,如网线</p>
+</li>
+<li><p>离下层越远,离用户越近,如应用层</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>TCP&#x2F;IP网络模型</p>
+<p>四层</p>
+<ul>
+<li>应用层</li>
+<li>传输层</li>
+<li>网络层</li>
+<li>数据链路层</li>
+</ul>
+<p>为什么要分层</p>
+<ul>
+<li>将任务进行拆分,独立的去解决每个子任务<ul>
+<li>为什么要拆分</li>
+<li>效率提升,职责分明</li>
+<li>耦合度降低</li>
+</ul>
+</li>
+<li>建立</li>
+<li>代码复用性(重用)</li>
+<li>可扩展性</li>
+<li>标准化接口</li>
+</ul>
+<p>二者区别</p>
+<p>OSI属于概念,基础,TCP则属于具体的实现,比如一个商品</p>
+<h3 id="2-物理层-数据链路层"><a href="#2-物理层-数据链路层" class="headerlink" title="2.物理层+数据链路层"></a>2.物理层+数据链路层</h3><ul>
+<li>硬件规格定义</li>
+<li>编码和信号处理</li>
+<li>数据转发</li>
+<li>拓扑和物理网络设计</li>
+</ul>
+<p>为什么需要数据链路层</p>
+<ul>
+<li><p>LLC</p>
+</li>
+<li><p>MAC</p>
+</li>
+<li><p>Flow Control(传输控制)</p>
+<ul>
+<li><p>流量传输控制</p>
+</li>
+<li><p>ACK确认表示,指的是接收端在接收到完整的帧后,返回给发送端的一个确认标识</p>
+</li>
+<li><p>使用算法</p>
+<ul>
+<li><p>stop and wait 属于其中的一个最简单的算法,传输的方式是通过接收端在接收到完整的帧</p>
+<p>后返回的标识,在接收到该标识后才会继续发送下一个帧,较大的帧也会拆分成多个,按照上<br>述的逻辑发送</p>
+</li>
+<li><p>slidingwindow 保证同一时刻有几个帧同时发送</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Error Control(故障控制)</p>
+<ul>
+<li>传输故障控制</li>
+<li>自动重发请求协议(AQR)</li>
+<li>使用算法<ul>
+<li>stop and wait 和传输时的控制一致,只有在接收到接收端返回的ACK标识后,才会发送下一个帧,效率相对较低<ul>
+<li>失败场景,发送过程中和接收后返回时出现问题</li>
+</ul>
+</li>
+<li>go back  n 基于滑动窗口算法<ul>
+<li>失败场景</li>
+<li>返回的ACK的类型,RR(接收),RJ(拒绝)</li>
+<li>Reject 当出现错误帧,会拒绝(丢弃)在这个帧及后面所有的帧,直到这个帧发送成功</li>
+<li>重传帧<ul>
+<li>错误帧及其后面的帧</li>
+<li>错误帧(会缓存后面的帧)</li>
+</ul>
+</li>
+<li>重传时机<ul>
+<li>发送超时,接收失败,RJ(拒绝接收)</li>
+<li>发送超时,SREJ(拒绝接收)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>错误检测</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-帧"><a href="#3-帧" class="headerlink" title="3.帧"></a>3.帧</h3><p>结构</p>
+<ul>
+<li>FLAG 前后各占8bits,各1个,比特填充的首尾标志法,根据information来进行填充<ul>
+<li>每5个1后补0</li>
+</ul>
+</li>
+<li>Address 占8bits,辅助字段,用于备注接收方的地址</li>
+<li>Control 8&#x2F;16bits,标识字段,用于标识该帧的类型</li>
+<li>Information 可变长度,实际内容为01二进制</li>
+<li>FCS 16&#x2F;32bits  帧检查序列字段</li>
+<li>例子 01111110  ……   01111110</li>
+</ul>
+<h3 id="4-网络层"><a href="#4-网络层" class="headerlink" title="4.网络层"></a>4.网络层</h3><p>层级</p>
+<blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E5%B1%82.png"
+                      alt="网络协议分层"
+                ></p>
+</blockquote>
+<p>数据结构</p>
+<blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.png"
+                      alt="网络协议数据结构"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E6%8A%93%E5%8C%85%E7%BB%93%E6%9E%84.png"
+                      alt="网络协议抓包结构"
+                ></p>
+</blockquote>
+<p>什么是网络</p>
+<ul>
+<li>网络是一组或两个或更多连接的计算设备</li>
+</ul>
+<p>为什么需要网络层</p>
+<ul>
+<li>路由 当数据包到达路由器的输入链路时.路由器会将数据包移动到输出链路</li>
+<li>逻辑寻址 数据链路层实现物理寻址,网络层实现逻辑寻址,还用于区别源系统和目标系统</li>
+<li>互联网络 它提供了不同类型网络之间的逻辑连接</li>
+<li>分段 它是将数据包分解为不同网络传播的最小的单个数据单元的过程</li>
+</ul>
+<p>数据包</p>
+<ul>
+<li>通过Internet发送的所有数据被分解后称为数据包</li>
+</ul>
+<p>IP地址</p>
+<ul>
+<li>IP地址由4段10进制数字组成,由句点分隔开</li>
+</ul>
+<p>层</p>
+<p>对外提供的功能,具体</p>
+<p>协议</p>
+<p>具体的行为,怎么做</p>
+<h3 id="5-传输层"><a href="#5-传输层" class="headerlink" title="5.传输层"></a>5.传输层</h3><p>什么是传输层</p>
+<ul>
+<li>提供了端到端(点对点)的方案,数据传输,建立连接的过程</li>
+</ul>
+<p>为什么需要传输层</p>
+<ul>
+<li>通讯服务 为两台主机进程之间的通行提供服务</li>
+<li>处理数据包 处理数据包的顺序,数据包的错误</li>
+<li>传输问题 解决传输过程中的错误</li>
+</ul>
+<p>TCP</p>
+<ul>
+<li><p>全称是Transmission Control Protocol ,他是一种通讯协议</p>
+</li>
+<li><p>通过该协议,数据可以通过网络完成系统之间的传输</p>
+</li>
+<li><p>在这种情况下,数据以数据包的形式传输,包括错误检查,以及保证数据</p>
+<p>传输过程数据包的顺序问题</p>
+<ul>
+<li>错误检测指的是接收方对数据包的完整</li>
+<li>发送方会检测接收方是否返回接收成功,决定是否重新发送</li>
+</ul>
+</li>
+</ul>
+<p>UDP</p>
+<ul>
+<li>不提供错误检查和数据恢复</li>
+<li>并且不会因为某次发送错误停止,而是继续下次发送</li>
+<li>其它的和TCP协议基本相同</li>
+<li>速度相对较快,但不保证发送成功,可能会出现数据包丢失</li>
+<li>适用于允许部分丢失,实时运行的场景</li>
+</ul>
+<p>三次握手(发送方占据主动)</p>
+<ul>
+<li>你吃了吗(SYN) —&gt; 发送方(请求)</li>
+<li>你是问我吃了吗(SYN   ACK) —&gt; 接收方(确认)</li>
+<li>是的(ACK) —&gt;发送方(确认)</li>
+</ul>
+<p>四次挥手(接收方占据主动)</p>
+<ul>
+<li>我要分手,虽然你很漂亮(SYN) —&gt; 发送方(请求)</li>
+<li>林志玲表示,好的我同意分手(SYN   ACK) —&gt; 接收方(确认)</li>
+<li>但是我要和你分手,不是你要和我分手(SYN) —&gt; 接收方(请求)</li>
+<li>好吧,我同意(ACK) —&gt; 发送方(确认)</li>
+</ul>
+<h3 id="6-应用层-表示层-会话层"><a href="#6-应用层-表示层-会话层" class="headerlink" title="6.应用层+表示层+会话层"></a>6.应用层+表示层+会话层</h3><p>表示层</p>
+<ul>
+<li>是为通信提供了一种公共语言,以便能够进行操作,用于转换不同类型的数据</li>
+</ul>
+<p>会话层</p>
+<ul>
+<li>提供了应用建立与维持会话的服务,并且可以是会话获得同步,如SSL(安全套接字协议),TLS(安全传输层协议)</li>
+</ul>
+<p>应用层</p>
+<ul>
+<li>将主机上的数据传输到客户端上,如http(超文本传输协议),https(超文本安全传输协议)</li>
+</ul>
+<h3 id="7-网络传输模型数据结构"><a href="#7-网络传输模型数据结构" class="headerlink" title="7.网络传输模型数据结构"></a>7.网络传输模型数据结构</h3><p>在网络传输模型中，通常会采用类似于“<strong>header + data</strong>”的结构。</p>
+<blockquote>
+<p>在这种结构中，header（头部）包含了关于数据的各种信息，例如：</p>
+<ol>
+<li>源和目标地址；</li>
+<li>数据类型；</li>
+<li>长度；</li>
+<li>顺序等。</li>
+</ol>
+<p>data（数据）则是实际要传输的信息。</p>
+<p>这种结构的优点包括：</p>
+<ol>
+<li>提供了对数据的描述和控制信息，便于网络设备进行处理和路由选择。</li>
+<li>允许不同类型的数据进行区分和识别。</li>
+<li>有助于确保数据的完整性和正确性。</li>
+</ol>
+<p>不同的网络协议和传输模型可能会有不同的具体实现方式，但总体上都采用了类似的头部加数据的结构。</p>
+</blockquote>
+<h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><h3 id="1-二进制"><a href="#1-二进制" class="headerlink" title="1.二进制"></a>1.二进制</h3><p>二进制计算方式(十进制转二进制)</p>
+<ul>
+<li><p>取模运算,将一个数模以2,取余数,有余数为1,无余数为0,,依次往下一直计算,直到无法模2,直接赋1为最高位</p>
+</li>
+<li><p>减法运算,将十进制数与当前位的十进制数运算后进行比较,最高位无需运算,大于则为1,小于则为0,</p>
+<p>与低位进行换算时,需减去高位,再与低位比较,计算规则同上,直到计算结果为0,剩余位补齐为0</p>
+<ul>
+<li>比较规则 大于等于为1,小于为0</li>
+</ul>
+<p>如十进制数208,转换为二进制数为11000000</p>
+<p>208 &#x3D; 128+64+16</p>
+<p>只计算位上数为1的值</p>
+<p>1 1 0 1 0 0 0 0</p>
+<ul>
+<li>从高位到低位的值分别是128 64 32 16  8  4  2  1  </li>
+<li>使用十进制数208与最高位比较,大于则为1,小于则为0</li>
+<li>与低位进行转换时,需要减去高位,在进行比较,规则同上</li>
+<li>208-128&#x3D;80,80与64进行比较,大于为1</li>
+<li>再次运算80-64&#x3D;16,16小于32,小于为0</li>
+<li>16无法与32进行运算,直接为0</li>
+<li>16再与16进行运算,结果为0,赋为1</li>
+<li>计算结果为0,不用再进行运算,剩余位补齐为0</li>
+</ul>
+</li>
+</ul>
+<p>二进制计算方式(二进制转十进制)</p>
+<ul>
+<li>从低位开始,以2为底,位数为幂,从0开始,直到最高位,</li>
+<li><strong>2的幂次方</strong>乘以当前位数的0&#x2F;1,得出结果</li>
+<li>累加得到的值就是十进制的值</li>
+</ul>
+<p><strong>案例</strong></p>
+<p>计算二进制数10110010</p>
+<ul>
+<li>0 2 0 0 16 32 0 128</li>
+<li>128+32+16+2</li>
+<li>178</li>
+<li>128 64 32 16 8 4 2 1</li>
+<li>178 &gt; 128 ,大于为1</li>
+<li>178-128&#x3D;50,再与64比较,小于为0</li>
+<li>50 &gt; 32 ,大于为1</li>
+<li>50-32&#x3D;18,再与16比较,大于为1</li>
+<li>18-16&#x3D;2,再与8比较,小于为0</li>
+<li>2 &lt; 4,小于为0 1011001</li>
+<li>2 &#x3D; 2,等于为1</li>
+<li>2-2&#x3D;0,最后结果为0,为1,并且结束运算</li>
+<li>最终二进制数为10110010</li>
+</ul>
+<h3 id="2-八进制"><a href="#2-八进制" class="headerlink" title="2.八进制"></a>2.八进制</h3><p>计算方式和二进制一样,位数上的值乘以进制为底数的幂次方(次方为位的位置,从0开始)</p>
+<p>值的表示范围0-7</p>
+<ul>
+<li>高位表示补齐的数(二进制数10,表示的就是2,高位表示的1表示进位后的结果,0则表示高位进行进位运算了)</li>
+<li>低位表示为0,表示它的前一位数进行了进位运算</li>
+<li>并且0在转换过程中是可以忽略的,无需运算</li>
+<li>连续0,代表最终进位,取最终进位1的结果(最终进位的结果)</li>
+<li>连续1,代表连续进位,取连续进位1的结果(连续进位的结果)</li>
+<li>逢二进一,当低位结果运算结果大于1时,低位变成0,高位加1</li>
+</ul>
+<p>八进制中0-7的代码表示1-8</p>
+<p>例子如下</p>
+<p>10 表示的就是十进制的 8,以此类推,</p>
+<p>11 表示的就是9,</p>
+<p>12 表示的就是10</p>
+<h3 id="3-十六进制"><a href="#3-十六进制" class="headerlink" title="3.十六进制"></a>3.十六进制</h3><p>计算方式同二进制类似,底数变为16的幂次方</p>
+<p>值的表达范围为0-9 A-F,10在16进制用A来表示</p>
+<h3 id="4-二进制运算"><a href="#4-二进制运算" class="headerlink" title="4.二进制运算"></a>4.二进制运算</h3><p>案例</p>
+<p><strong>加法运算</strong></p>
+<p>二进制 11+3,逢二进一</p>
+<p>01011</p>
+<p>00011</p>
+<p>01110</p>
+<p><strong>减法运算</strong></p>
+<p>二进制 14-9</p>
+<p>1110</p>
+<p>1001</p>
+<p>补码运算(时钟运算,使用溢出值得到结果)</p>
+<p>二进制减法运算是把<strong>减法运算转换为加法</strong>来完成的</p>
+<p>0000 1110</p>
+<p>0000 1001  原码  9</p>
+<p>1111  0110  反码   -118</p>
+<p>1111  0111  补码   -119</p>
+<p>0000 1110     加法运算</p>
+<p>1111  0111</p>
+<p>运算</p>
+<p>1110</p>
+<p>0111</p>
+<p><strong>码的类型</strong></p>
+<p><strong>原码</strong></p>
+<ul>
+<li>正常的二进制数,最高位为符号位</li>
+</ul>
+<p><strong>反码</strong>(取反)</p>
+<ul>
+<li>正数的反码就是正数,负数的反码除符号位全部取反</li>
+</ul>
+<p><strong>补码</strong>(先取反,后加1(最低位加1))</p>
+<ul>
+<li>正数的补码还是正数,负数的补码除符号位取反后加一</li>
+</ul>
+<p><strong>计算规则</strong></p>
+<ul>
+<li><p>0+1 为 1</p>
+</li>
+<li><p>0+0 为  0</p>
+</li>
+<li><p>1+1 为  10  </p>
+</li>
+<li><p>案例</p>
+<p>1011</p>
+<p>0111</p>
+<ul>
+<li><p>第一位 0</p>
+</li>
+<li><p>第二位 1 </p>
+</li>
+<li><p>第三位 0</p>
+</li>
+<li><p>第四位 0</p>
+</li>
+<li><p>第五位 1</p>
+</li>
+<li><p>顺序从右往左,结果为10010</p>
+</li>
+<li><p>1+1时,高位加1,低位变0</p>
+<p>逢二进一,当计算结果为2时,高位就加1,低位就变为0</p>
+</li>
+<li><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/Idea%E7%9A%84Debugger%E8%B0%83%E7%94%A8%E6%A0%88.png"
+                      alt="Idea的Debugger调用栈"
+                ></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-二进制逻辑运算"><a href="#5-二进制逻辑运算" class="headerlink" title="5.二进制逻辑运算"></a>5.二进制逻辑运算</h3><p>false(0)  true(1)</p>
+<p>一对值</p>
+<ul>
+<li>逻辑与(AND)    相同取对应值0&#x2F;1,不同取0,满足所有条件时才成立,可达到类似取模的效果,并且可以得到一个特定范围的值(范围为0-被除数这个区间内)</li>
+<li>逻辑或(OR)    相同取对应值0&#x2F;1,不同取1,任意条件满足都成立</li>
+</ul>
+<p>单个值</p>
+<ul>
+<li>逻辑非(NOT) 取反,0取1,1取0</li>
+</ul>
+<p>取反值</p>
+<ul>
+<li>逻辑异或(XOR) 二者相同时取0,不同时取1(适用于查找,找不同)</li>
+<li>逻辑同或(XNOR) 二者相同时取1,不同时取0</li>
+</ul>
+<p>5.取模,取余运算</p>
+<p>计算结果都为最后的余数,取的都是被能够整除后的余数</p>
+<p>区别</p>
+<ul>
+<li><p>取模,除数为负,余数就为负</p>
+</li>
+<li><p>取余,被除数为负,余数就为负</p>
+</li>
+<li><p>例如 5%2,此时5为被除数.2为除数</p>
+<blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/%E5%8F%96%E6%A8%A1%E5%8F%96%E4%BD%99%E8%BF%90%E7%AE%97%E5%B7%AE%E5%BC%82.png"
+                      alt="取模取余运算差异"
+                ></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="6-进制转换公式"><a href="#6-进制转换公式" class="headerlink" title="6.进制转换公式"></a>6.进制转换公式</h3><ul>
+<li><p>转换</p>
+<p>被除数 &#x3D; 商*除数+余数</p>
+<p>商&#x3D;初始值&#x2F;除数(进制)</p>
+<p>商作为下次被除数与除数参与运算,直到无法整除结束</p>
+</li>
+<li><p>计算</p>
+<p>总值 &#x3D; 进制的幂次方(当前位的下标) * 位值(当前位上的值)+… 依次加上后续位的计算结果(也就是进制的幂次方乘以位上的值)</p>
+</li>
+</ul>
+<h3 id="7-计算方式结果叫法"><a href="#7-计算方式结果叫法" class="headerlink" title="7.计算方式结果叫法"></a>7.计算方式结果叫法</h3><ul>
+<li>加法运算结果称为和</li>
+<li>减法运算结果称为差</li>
+<li>乘法运算结果称为积</li>
+<li>除法运算结果称为商</li>
+</ul>
+<h3 id="8-位移运算符"><a href="#8-位移运算符" class="headerlink" title="8.位移运算符"></a>8.位移运算符</h3><ul>
+<li><p>左移(&lt;&lt;),左移几位,高位就丢弃几位</p>
+<p>例,如下,左移1位</p>
+<p>01110</p>
+<p>11100</p>
+</li>
+<li><p>右移,右移几位,高位就补齐几位</p>
+<ul>
+<li>无符号右移(&gt;&gt;&gt;),正数,高位补0,负数,高位补1</li>
+<li>右移(&gt;&gt;),不管正数,负数,都在高位补0</li>
+</ul>
+<p>例,右移1位</p>
+<p>11110  源</p>
+<p>01111  右移</p>
+<p>11111  无符号右移</p>
+</li>
+<li><p>总结</p>
+<ul>
+<li>左乘右除,左边位移几位,就是乘以2的幂次方(幂为位移的个数)</li>
+<li>右移则是除以2的幂次方(幂为位移的个数)</li>
+</ul>
+</li>
+</ul>
+<h2 id="网络编程应用场景"><a href="#网络编程应用场景" class="headerlink" title="网络编程应用场景"></a>网络编程应用场景</h2><h3 id="1-IP"><a href="#1-IP" class="headerlink" title="1.IP"></a>1.IP</h3><p>什么是IP</p>
+<ul>
+<li>是一个使用四组数字构成的地址,中间用句点分隔<ul>
+<li>每组数字又是一个8位的二进制数值</li>
+<li>最大显示为255,在使用时需要转换为二进制给计算机使用</li>
+<li>255.255.255.0</li>
+</ul>
+</li>
+<li>它被分配给网络设备的网络接口卡(网卡)</li>
+<li>分为两部分,分别是网络部分(整体,如某某市,区,街道)和主机部分(个体,如门牌号,具体地址)</li>
+</ul>
+<p>怎么使用IP</p>
+<ul>
+<li><p>网络地址</p>
+<ul>
+<li><p>非具体,更像指向某一个区域,被称为网络前缀</p>
+<blockquote>
+<ul>
+<li><p>203.0.113.0</p>
+</li>
+<li><p>最后一组数值为主机地址,前三组为网络地址</p>
+</li>
+<li><p>最后一组数值为0时,转换为2进制为00000000,</p>
+</li>
+</ul>
+<p> 代表该地址为网络地址</p>
+<ul>
+<li>不能将这个地址分配给网卡所使用</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>广播地址</p>
+<ul>
+<li><p>群发,所有设备的通用标识符,类似于邮箱,大家都会使用</p>
+<blockquote>
+<ul>
+<li><p>203.0.113.255</p>
+</li>
+<li><p>最后一组数值为255时,转换为2进制为11111111,</p>
+</li>
+</ul>
+<p> 代表该地址为广播地址</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>主机地址</p>
+<ul>
+<li><p>具体地址,指向某台特定设备,主机</p>
+<blockquote>
+<ul>
+<li><p>203.0.113.10</p>
+</li>
+<li><p>最后一组数值(子网掩码)不为0或255时,假设是10,转换为2进制为00001010,</p>
+</li>
+</ul>
+<p> 代表该地址为主机地址,可以分配给硬件设备,如一台打印机</p>
+<ul>
+<li>可使用范围为1-254</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>私有地址</p>
+<ul>
+<li><p>只允许公司内部使用(不可再公网暴露)</p>
+<blockquote>
+<ul>
+<li>10.0.0.0 —  10.255.255.255</li>
+<li>172.16.0.0 — 172.16.255.255</li>
+<li>192.168.0.0 — 192.168.255.255</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>IP类型数据报(打包后的数据包裹)Header的构成</p>
+<blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/Ip%E5%8D%8F%E8%AE%AEHeader%E7%BB%93%E6%9E%84.png"
+                      alt="Ip协议Header结构"
+                ></p>
+<ul>
+<li>一行占32bit</li>
+<li>Vesion IP协议版本好,占4bit,如IPV6,版本号显示为6</li>
+<li>IHL Internet Head Length,表示网络头部长度,占4bit</li>
+<li>Type of Service,表示服务的类型,决定传输的性能优劣,占8bit</li>
+<li>Total Length,表示Head和数据的总长度,占16bit</li>
+<li>Identification,表示的一个标识,用于标识一个唯一数据包,占16bit</li>
+<li>Flags 表示一个标记,占3bit</li>
+<li>Fragment Offset 表示片的偏移量,占13bit</li>
+<li>Time to LIve 表示数据包的存活时间,以秒计算,占8bit</li>
+<li>Protocol 表示下一个层级的协议,占8bit</li>
+<li>Header Checksum 表示头的错误检测,占16bit</li>
+<li>Source Address 表述源地址(源ip),占32bit</li>
+<li>Destination Address 表示目标地址(目标ip),占32bit</li>
+<li>Options 表示选项,可变的参数,如传输数据的编码格式,占</li>
+<li>Padding 表示数据包头的长度一定是32的倍数</li>
+<li>Data 表示具体的数据</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>人类可识别的 如ABCD,这种都属于符号</p>
+<p>再将其转换为特定编码,转换为特定的数值</p>
+<p>再将其转换为计算机可失败的二进制数值</p>
+</blockquote>
+<h3 id="2-IP地址组成及分类"><a href="#2-IP地址组成及分类" class="headerlink" title="2.IP地址组成及分类"></a>2.IP地址组成及分类</h3><ul>
+<li>类型及表示范围(ABCDE)1981年</li>
+</ul>
+<blockquote>
+<ul>
+<li>A<ul>
+<li>0.0.0.0 — 127.255.255.255</li>
+<li><strong>10</strong>.0.10.0</li>
+<li>前8位(第一组数值)为网络地址,后24位(后三组数值)为主机地址</li>
+</ul>
+</li>
+<li>B<ul>
+<li>128.0.0.0 — 191.255.255.255</li>
+<li><strong>172</strong>.<strong>16</strong>.10.10</li>
+<li>前16位(前两组数值)为网络地址,后8位(后两组数值)为主机地址</li>
+</ul>
+</li>
+<li>C<ul>
+<li>192.0.0.0 — 223.255.255.255</li>
+<li><strong>192</strong>.<strong>168</strong>.<strong>0</strong>.10</li>
+<li>前24位(前三组数值)为网络地址,后8位(后一组数值)为主机地址</li>
+<li>可用网络地址计算<ul>
+<li>223-192+1(起始地址) &#x3D; 32  代表32种可能,从192到223</li>
+<li>每个网络地址都可以包含254个可用主机地址,已经去除2个不能分配的地址,<br>0和255,分别是网络地址和广播地址</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>D<ul>
+<li>224.0.0.0 — 239.255.255.255</li>
+<li><strong>224</strong>.<strong>0</strong>.<strong>0</strong>.<strong>6</strong></li>
+<li>全部为网络地址</li>
+<li>一般用于广播</li>
+</ul>
+</li>
+<li>E<ul>
+<li>240.0.0.0  — 255.255.255.255</li>
+<li>一般用于实验</li>
+</ul>
+</li>
+<li>为什么说ABCDE分类比较浪费<ul>
+<li>适用于一个IP使用量比较大的公司</li>
+<li>假设我们有500ip地址,但c级无法满足,需要使用b级,但b级的范围太广了,造成了浪费</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>类型及表示范围(无类寻址)1995年</p>
+<blockquote>
+<ul>
+<li><p><strong>203</strong>.<strong>0</strong>.<strong>113</strong>.10</p>
+</li>
+<li><p>前24位为网络地址,后8位为主机地址</p>
+</li>
+<li><p>通过子网掩码的方式告知我们哪个部分是网络地址(寻址部分),哪个部分是主机地址</p>
+<p>在宿主部分的位置用零来告知,如255.0.0.0.或255.255.225.0</p>
+</li>
+<li><p>0的起始位置就是主机地址</p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>子网掩码</p>
+<blockquote>
+<ul>
+<li><p>255.255.255.0</p>
+</li>
+<li><p>每多一个字节来显示0,代表主机地址组合增加</p>
+</li>
+<li><p>作为网络地址和主机地址的分界</p>
+</li>
+<li><p>需把子网掩码数值转换为二进制后的位,作为分界的规则</p>
+<p>如掩码的位数为22时,从第22位后,就作为主机地址了,22位<br>之前就都是网络地址了</p>
+</li>
+<li><p>通过子网掩码的方式,决定哪部分是寻址部分(网络地址)</p>
+</li>
+<li><p>缓解IPV4的一部分压力</p>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="3-IPV6"><a href="#3-IPV6" class="headerlink" title="3.IPV6"></a>3.IPV6</h3><p>为什么</p>
+<p>原有的IPV4,因为历史的原因,随着使用量的增加,剩余的可使用ip越来越少,所以<br>产生了IPV6,于1996年诞生</p>
+<p>怎么做</p>
+<ul>
+<li>IPV4和IPV6不同点</li>
+</ul>
+<blockquote>
+<ul>
+<li><p>大小方面</p>
+<ul>
+<li>IPV4   32位的表达范围</li>
+<li>IPV6  128位的表达范围</li>
+</ul>
+</li>
+<li><p>分组方面</p>
+<ul>
+<li>IPV4 分为4组数值</li>
+<li>IPV6 分为8组数值</li>
+</ul>
+</li>
+<li><p>网络地址</p>
+<ul>
+<li>IPV4 根据类型或子网掩码区分网络地址部分</li>
+<li>IPV6 前四组数值为网络地址部分</li>
+</ul>
+</li>
+<li><p>表示</p>
+<ul>
+<li>IPV4  203.0.123.10</li>
+<li>FC00:0000:130F:0000:0000:09C0:876A:130B</li>
+</ul>
+</li>
+<li><p>大小</p>
+<ul>
+<li><p>IPV6,每组用16进制表示,数值最大为四位,每位16进制数转换为2进制后,</p>
+<p>需要用四位二进制数表示,一组则需要16位,总共8组,共128位</p>
+</li>
+<li><p>IPV4,每组用10进制表示,最大的数值为255,转换2进制后,需用8位来表示</p>
+<p>总共四组,共32位</p>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>表示</p>
+<blockquote>
+<ul>
+<li><p>IPv6地址总长度为128比特，通常分为8组，每组为4个十六进制数的形式，每组十六进制数间用冒号分隔。例如：FC00:0000:130F:0000:0000:09C0:876A:130B，这是IPv6地址的首选格式</p>
+</li>
+<li><p>为了书写方便，IPv6还提供了压缩格式，以上述IPv6地址为例，具体压缩规则为：</p>
+<ul>
+<li><p>每组中的前导“0”都可以省略，所以上述地址可写为：FC00:0:130F:0:0:9C0:876A:130B。</p>
+</li>
+<li><p>地址中包含的连续两个或多个均为0的组，可以用双冒号“::”来代替，所以上述地址又可以进一步简写为：FC00:0:130F::9C0:876A:130B。</p>
+</li>
+</ul>
+<p> 说明：<br> 需要注意的是，在一个IPv6地址中只能使用一次双冒号“::”，<br> 否则当计算机将压缩后的地址恢复成128位时，无法确定每个“::”代表0的个数</p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>访问</p>
+<blockquote>
+<ul>
+<li>一般只有在相同网段(网络地址)的ip才能相互访问</li>
+<li>可以通过设置路由表或修改到相同网段下,就可以互相访问了</li>
+</ul>
+</blockquote>
+</li>
+<li><p>地址类型</p>
+<blockquote>
+<ul>
+<li><p>单播地址 - 用于本地通讯</p>
+</li>
+<li><p>全球单播地址</p>
+</li>
+<li><p>链路本地地址 - 用于本地通讯,格式必须是FE80::&#x2F;10</p>
+</li>
+<li><p>环回地址 -    ::1&#x2F;128(对应IPV4的127.0.0.1)</p>
+</li>
+<li><p>未指定地址 ::&#x2F;128</p>
+</li>
+<li><p>唯一本地地址-不可和公共网络交流(IPV4可以)</p>
+</li>
+<li><p>组播地址-用于一对多的通讯,可针对某组,IPV4则不行</p>
+</li>
+<li><p>任播地址-用于将一个地址赋给多台主机,一般不允许使用</p>
+</li>
+</ul>
+</blockquote>
+<p>是什么</p>
+<ul>
+<li>是一组能够在茫茫网络中寻找主机的地址</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-IP子网框架"><a href="#4-IP子网框架" class="headerlink" title="4.IP子网框架"></a>4.IP子网框架</h3><ul>
+<li><p>为什么</p>
+<ul>
+<li>为了得到一个更小的网络单位,通过限定位数的方式来达到拆分的效果</li>
+</ul>
+</li>
+<li><p>怎么做</p>
+<blockquote>
+<p>案例</p>
+<ul>
+<li>203.0.13这么一个网络地址,我们想要分配一个0到31范围的主机地址</li>
+<li>可以通过限定网络地址的位数以及起始IP</li>
+<li>如203.0.13.0&#x2F;27 ,0代表起始IP,27代表网络地址位数</li>
+<li>正常的网络地址位数为24,多了3位则代表限定了起始IP</li>
+</ul>
+</blockquote>
+</li>
+<li><p>是什么</p>
+<ul>
+<li>通过限定一定位数,达到网段的划分</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-路由器工作原理-IP路由"><a href="#5-路由器工作原理-IP路由" class="headerlink" title="5.路由器工作原理(IP路由)"></a>5.路由器工作原理(IP路由)</h3><ul>
+<li>为什么<ul>
+<li>不同网络下的主机需要互相连接,需要通过路由器这个中转的角色来完成|<br>相互记录</li>
+</ul>
+</li>
+<li>怎么做<ul>
+<li>路由器通过路由表记录当前目的地与下一个目的地</li>
+<li>通过记录目标ip与下一个ip,通过下一个ip再找到下一个ip</li>
+<li>通过这条路径来寻找到最终的目的地</li>
+<li>root—&gt;目标ip—&gt;下一个ip—&gt;下一个ip</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-TCP-数据传输"><a href="#6-TCP-数据传输" class="headerlink" title="6.TCP(数据传输)"></a>6.TCP(数据传输)</h3><ul>
+<li><p>为什么</p>
+<ul>
+<li>主机事务数据需要传输</li>
+</ul>
+</li>
+<li><p>怎么做</p>
+<ul>
+<li><p>三次握手,四次挥手(建立连接的流程与断开连接的流程)</p>
+<ul>
+<li>大部分场景下断开连接的操作是由发送方完成的,<br>在某些情况下,接收方也会主动断开,具体情况可能<br>和web服务器的具体实现相关</li>
+</ul>
+</li>
+<li><p>连接重置(Reset,发送方和接收方都可以执行该操作)</p>
+<ul>
+<li>数据传输的过程中被安全设施发现数据不太安全,接收方<br>将会重置该TCP连接</li>
+</ul>
+</li>
+<li><p>端口号</p>
+<ul>
+<li><p>可使用范围0-65535</p>
+</li>
+<li><p>分类</p>
+<ul>
+<li><p>公认,指的是历史上,经过考验并长期使用的端口号,范围是0-1023</p>
+<ul>
+<li><p>比较常用的有Http的80,Https的443,Ssh的22,Ftp的20&#x2F;21,Telent的</p>
+<p>23</p>
+</li>
+</ul>
+</li>
+<li><p>注册,指的是特定某个官方去组织里注册的端口号,合规,范围是1024-49191</p>
+</li>
+<li><p>临时,指的是未去注册的端口号,仅临时使用,范围是49192-65535</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>协议数据单元(数据传输时的结构&#x2F;数据结构) Segment(包含头Header和数据段data)</p>
+<blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/Tcp%E5%8D%8F%E8%AE%AE%E6%95%B0%E6%8D%AE%E5%8D%95%E5%85%83.png"
+                      alt="Tcp协议数据单元"
+                ></p>
+</blockquote>
+<ul>
+<li>Source Port  源端口号 </li>
+<li>Destination Port 目标端口号 </li>
+<li>Flags 请求标识<ul>
+<li>SYN</li>
+<li>SYN-ACK</li>
+<li>ACK</li>
+<li>FIN</li>
+<li>FIN-ACK</li>
+<li>RST</li>
+<li>URG</li>
+</ul>
+</li>
+<li>Seq# 序列号</li>
+<li>Ack# 确认序列号</li>
+<li>Payload 负载,实际传输的数据(侧重于数据本身)</li>
+</ul>
+</li>
+<li><p>Packet(数据包)</p>
+<blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/Tcp%E5%8D%8F%E8%AE%AE%E6%95%B0%E6%8D%AE%E5%8C%85.png"
+                      alt="Tcp协议数据包"
+                ></p>
+</blockquote>
+<ul>
+<li><p>Segment属于数据包所拆分出的一部分</p>
+</li>
+<li><p>然后将Packet作为Frame的一部分,然后发送到服务端</p>
+</li>
+<li><p>服务器端会向剥开洋葱一样,一层一层剥开,把Packet从Frame中取出</p>
+</li>
+<li><p>在把Segmen从Packet中剥离出,再做类似的动作将新的Segment和Packet包装成新的Frame返回</p>
+<p>给客户端</p>
+</li>
+<li><p>客户端发送数据–&gt;打包–&gt;成为Frame(数据包)—&gt;经过网络中的路由器路由到真正的主机后</p>
+<p>—&gt;服务端取出里面的包裹Packet—&gt;再取出包裹里的Segment—&gt;服务端经过处理后生成新的Packet和Segment</p>
+<p>包装成新的Frame返回给客户端</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>是什么</p>
+<ul>
+<li>它的全称是Transmission Control Protocol</li>
+<li>这个协议的目的是通过创建Session的方式,来完成数据传输</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-TCP-数据传输流程"><a href="#7-TCP-数据传输流程" class="headerlink" title="7.TCP(数据传输流程)"></a>7.TCP(数据传输流程)</h3><p><strong>传输层链接过程中需要三次握手,四次挥手</strong></p>
+<p>层级从<strong>低</strong>到<strong>高</strong></p>
+<p>分别是从物理层到数据链路层,再到到网络层,再到传输层,再到应用层的<br>数据结构</p>
+<p>Bit—&gt;Frame—&gt;Packet—&gt;Segment—&gt;Data</p>
+<p>服务端</p>
+<blockquote>
+<ul>
+<li><p>服务端在接收到请求后,拨开Packet,拿到Segment</p>
+</li>
+<li><p>修改Seq(数据开始的字节,从这里开始发送)为1,Ack(确认收到的字节)为1</p>
+</li>
+</ul>
+<p> payload则放入需要传输的数据.图片(假设此时图片较大,需要分片发送)</p>
+<ul>
+<li><p>seq默认为0,ack默认为1,payload最大能够存放1450byte</p>
+</li>
+<li><p>修改完成后,将其放入Packet(包裹),打包返回Frame(数据包)给客户端</p>
+</li>
+</ul>
+</blockquote>
+<p>客户端</p>
+<blockquote>
+<ul>
+<li><p>客户端在接收完数据包后,解析其中的segment</p>
+</li>
+<li><p>接收完成后,修改Seq为1(因为客户端未发送数据,修改为1),ACK则修改为1251</p>
+<p>代表接收到1250个字节的数据,下次则从这里再次发送</p>
+</li>
+<li><p>修改完数据段后,进行打包,返回数据包给服务端</p>
+</li>
+<li><p>循环往复,直到全部接收完成</p>
+</li>
+</ul>
+</blockquote>
+<p>传输遇到问题</p>
+<ul>
+<li><p>如何解决(数据未接收到)</p>
+<ul>
+<li><p>重试</p>
+</li>
+<li><p>客户端告知哪些部分未收到(发送给服务端一个特殊的Segment),里面的flags为SACK,Seq为1,Ack为上次接收的字节数上加1(如5001),和丢失的范围 (如2501-3750),服务端将这些数据重新打包后再发送</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="8-UDP-数据传输"><a href="#8-UDP-数据传输" class="headerlink" title="8.UDP(数据传输)"></a>8.UDP(数据传输)</h3><ul>
+<li>使用什么协议由客户决定,看其选择效率还是稳定</li>
+</ul>
+<blockquote>
+<p>使用TCP协议</p>
+<ul>
+<li>传输(超文本传输协议)<ul>
+<li>HTTP,HTTPS</li>
+</ul>
+</li>
+<li>会话<ul>
+<li>Telnet,SSH,FTP,SFTP</li>
+</ul>
+</li>
+<li>邮件<ul>
+<li>POP,IMAP,SMTP</li>
+</ul>
+</li>
+</ul>
+<p>使用UDP协议</p>
+<ul>
+<li>解析<ul>
+<li>DNS</li>
+<li>SNMP</li>
+</ul>
+</li>
+<li>传输(纯粹使用UDP)<ul>
+<li>TFTP 传输小的文件(一个简单的传输)</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>UDP header结构<ul>
+<li>source port(源端口) 占16bit</li>
+<li>destination port(目标端口) 占16bit</li>
+<li>length 占16bit</li>
+<li>checksum 占16bit</li>
+</ul>
+</li>
+</ul>
+<h3 id="9-数据包和数据报侧重方面"><a href="#9-数据包和数据报侧重方面" class="headerlink" title="9.数据包和数据报侧重方面"></a>9.数据包和数据报侧重方面</h3><p>数据包侧重于结构方面,数据报则更侧重于传输方面</p>
+<p>数据包通常强调以下方面：</p>
+<ol>
+<li><strong>结构和格式</strong>：包括头部信息、数据部分等。</li>
+<li><strong>封装和标识</strong>：明确数据源和目标。</li>
+<li><strong>完整性和一致性</strong>：确保数据在传输过程中不丢失或损坏。</li>
+</ol>
+<p>数据报则更侧重于：</p>
+<ol>
+<li><strong>传输过程</strong>：如何在网络中<a class="link"   href="coco://sendMessage?ext={" s%24wiki_link"%3A"https%3A%2F%2Fm.baike.com%2Fwikiid%2F2129442810616176116"}&msg=路由">路由 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>和传递。</li>
+<li><strong>实时性</strong>：满足某些应用对实时性的要求。</li>
+<li><strong>效率和性能</strong>：优化传输速度和资源利用。</li>
+</ol>
+<p>然而，这两个概念在实际应用中并非完全割裂。</p>
+<p>数据包的结构设计也会影响传输性能，而数据报的传输方式也需要遵循一定的结构规范。</p>
+<p>在不同的场景中，可能会根据具体需求强调数据包或数据报的某些方面。</p>
+<p>例如，在一些对数据完整性和准确性要求较高的场景中，可能更关注数据包的结构；而在一些实时性要求较高的场景中，可能更侧重数据报的传输效率。</p>
+<p>总之，数据包和数据报的侧重点可能因应用场景和需求的不同而有所差异，但它们相互关联，共同确保数据在网络中的有效传输。</p>
+<h3 id="10-TCP拥塞模型–需要再次学习"><a href="#10-TCP拥塞模型–需要再次学习" class="headerlink" title="10.TCP拥塞模型–需要再次学习"></a>10.TCP拥塞模型–需要再次学习</h3><p>提高网络带宽的使用效率</p>
+<p>为什么</p>
+<ul>
+<li>提高网络性能</li>
+<li>增强可靠性</li>
+<li>公平性</li>
+<li>使用性</li>
+<li>稳定性</li>
+<li>优化资源利用</li>
+</ul>
+<p>怎么做</p>
+<ul>
+<li>拥塞窗口</li>
+<li>拥塞算法</li>
+<li>慢启动</li>
+<li>快速启动</li>
+<li>拥塞检测机制<ul>
+<li>一种是丢包</li>
+<li>另一种是是测量延时</li>
+</ul>
+</li>
+</ul>
+<p>什么是Mss</p>
+<p>是什么</p>
+<ul>
+<li>一种帮助TCP高效稳定的利用网络资源传输的策略(行为)<br>这种行为下的执行效率更高</li>
+</ul>
+<h3 id="11-NetStat命令"><a href="#11-NetStat命令" class="headerlink" title="11.NetStat命令"></a>11.NetStat命令</h3><p>查看主机上的TCP连接对应的端口及IP地址的信息</p>
+<p>前置知识</p>
+<ul>
+<li>全双工,指的是在通信过程中,数据可以同时在两个方向进行数据的传输<br>与之相对的是半双工,它只能在一个时间点内进行单向的数据传输</li>
+<li>状态切换,连接的状态变换</li>
+</ul>
+<p>命令执行</p>
+<ul>
+<li>-n  快照</li>
+<li>-n 1 每秒刷新</li>
+<li>-na 查看所有的连接,TCP&#x2F;UDP连接 </li>
+<li>-nap TCP 查看TCP的连接</li>
+<li>-R 查看路由表信息</li>
+</ul>
+<h3 id="12-HTTP"><a href="#12-HTTP" class="headerlink" title="12.HTTP"></a>12.HTTP</h3><p>是什么</p>
+<ul>
+<li>http是一个简单的请求-响应协议,通常运行在TCP之上,它指定了客户端<br>可能发送给服务器什么样的消息以及得到什么样的响应结果</li>
+<li>为了将超文本标记语言(HTML)文档从web服务器传输到客户端的浏览器</li>
+<li>它定义了与服务端的交互逻辑与方式.实现客户端与服务端的交互</li>
+</ul>
+<p>怎么做</p>
+<ul>
+<li><p>分类</p>
+<ul>
+<li><p>http 0.9 —&gt;1991</p>
+</li>
+<li><p>http 1.0 —&gt;1996</p>
+</li>
+<li><p>http 1.1 —&gt;1999</p>
+<ul>
+<li><p>提供了更多选择的缓存头来控制缓存策略</p>
+</li>
+<li><p>带宽优化及网络连接使用</p>
+</li>
+<li><p>Host处理,在Http1.0中认为每台服务器都绑定一个唯一的ip地址</p>
+</li>
+<li><p>长连接优化,有一个叫做Connection的信息,默认设置为keep-alive.</p>
+<p>对于Tcp的连接复用,用一个TCP连接完成多次传输复用</p>
+</li>
+<li><p>错误通知管理</p>
+<ul>
+<li><p>200,客户端请求资源</p>
+<ul>
+<li>200 请求资源ok,返回成功</li>
+<li>201 创建资源ok,返回成功</li>
+</ul>
+</li>
+<li><p>400</p>
+<ul>
+<li><p>400 客户端请求语法错误,服务器无法理解</p>
+</li>
+<li><p>401 请求要求用户需要身份认证</p>
+</li>
+<li><p>403 服务器理解客户端请求,但拒绝执行该请求</p>
+</li>
+<li><p>404 服务器无法根据客户端的请求找到资源(网页)</p>
+<p>网站设计人员可设置请求资源无法找到的个性页面</p>
+</li>
+</ul>
+</li>
+<li><p>500</p>
+<ul>
+<li>500 服务器内部错误,无法处理请求</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>http 2 —&gt;2015</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>为什么</p>
+<ul>
+<li><p>尼尔森定律,以一定的规律线性增长</p>
+</li>
+<li><p>带宽,它是在被用来描述信道时,能够有效通过信道的信号最大频带宽度</p>
+<p>如现实中某个水管能够通过的最大的流量,电线能够通过的最大电流,<br>高速公路能够运行的车辆数量</p>
+</li>
+<li><p>延迟,它则是在传输介质中所用传输的时间,即从报文进入到离开网络的所</p>
+<p>消耗的时间,和网络使用情况相关</p>
+</li>
+<li><p>资源加载和带宽的关系,网页加载延迟消耗时间</p>
+</li>
+<li><p>随着时间增长,网页加载所需的资源越来越多</p>
+</li>
+</ul>
+<p>http1版本的缺点</p>
+<ul>
+<li>队头阻塞<ul>
+<li>后面发起的请求会被之前未处理的请求阻塞住</li>
+</ul>
+</li>
+<li>流量控制<ul>
+<li>无法保证客户端与服务端传输速率的动态调整,造成带宽浪费,性能降低</li>
+</ul>
+</li>
+</ul>
+<p>SPDY(Goole提出的一种解决方案,Http2的前身)</p>
+<ul>
+<li>降低延迟</li>
+<li>请求优先级</li>
+<li>Header压缩</li>
+<li>基于Https的加密协议传输</li>
+<li>服务端推送</li>
+</ul>
+<p>Http2</p>
+<ul>
+<li><p>1 传输的内容是明文</p>
+</li>
+<li><p>2 传输的内容则是二进制,但传输的内容和1是一致的</p>
+</li>
+<li><p>向下兼容(<strong>H2C</strong>),为了http1可以在http2的环境下可以继续使用,</p>
+<p>http2提供了向下兼容的解决方案,通过在请求前发送一个升级包</p>
+<p>会返回一个101.表示更换协议,升级连接</p>
+<p>如果不支持,则会返回200,或404的状态码</p>
+</li>
+</ul>
+<p>12.Http和Https区别</p>
+<ul>
+<li>开头</li>
+<li>安全</li>
+<li>端口</li>
+<li>相关层</li>
+<li>证书</li>
+<li>加密</li>
+<li>Https可以有效防止运营商劫持,解决了防止劫持的问题</li>
+</ul>
+<blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/Http%E4%B8%8EHttps%E5%8C%BA%E5%88%AB.png"
+                      alt="Http与Https区别"
+                ></p>
+</blockquote>
+<h3 id="13-HTTP2"><a href="#13-HTTP2" class="headerlink" title="13.HTTP2"></a>13.HTTP2</h3><p>优点</p>
+<ul>
+<li><p>多向请求和响应</p>
+</li>
+<li><p>TCP连接多路复用</p>
+<ul>
+<li>TCP拥塞机制</li>
+<li>数据流复用一个连接</li>
+</ul>
+</li>
+<li><p>请求优先级</p>
+<ul>
+<li>优先加载必要资源</li>
+</ul>
+</li>
+<li><p>每个来源一个连接</p>
+</li>
+<li><p>流量控制</p>
+</li>
+<li><p>头压缩</p>
+</li>
+<li><p>缺点</p>
+<ul>
+<li>多路复用所带来的问题</li>
+<li>依赖于TCP相关机制</li>
+</ul>
+</li>
+</ul>
+<h3 id="14-HTTPS"><a href="#14-HTTPS" class="headerlink" title="14.HTTPS"></a>14.HTTPS</h3><p>安全的超文本传输协议</p>
+<p>CA证书</p>
+<ul>
+<li>由特定单位颁发的安全证书</li>
+<li>加入可信(计算机)</li>
+<li>敏感且重要</li>
+</ul>
+<p>SSL(安全套接字)</p>
+<p>TLS(SSL的接任者)</p>
+<blockquote>
+<p>TLS握手流程</p>
+<ul>
+<li>客户端先开始握手流程</li>
+<li>将其支持的最高解绑TLS和其他信息一起发送给服务端</li>
+</ul>
+</blockquote>
+<h3 id="15-DNS-域名解析"><a href="#15-DNS-域名解析" class="headerlink" title="15.DNS(域名解析)"></a>15.DNS(域名解析)</h3><p>将域名翻译为主机的实际IP地址</p>
+<p>host文件</p>
+<ul>
+<li>存储ip地址和域名映射关系的文件,DNS就是类似该文件</li>
+</ul>
+<p>DNS解析流程</p>
+<ul>
+<li><p>本地文件—&gt;DNS缓存—&gt;DNS服务器</p>
+</li>
+<li><p>首先尝试检查本地计算机查找,然后查找不到的话,再尝试去DNS缓存(本地的)中查找<br>最后才会去DNS服务器上查找,解析,实在查找不到才会去DNS服务器</p>
+</li>
+<li><p>本地计算机存储映射关系的文件一般叫做主机文件</p>
+</li>
+<li><p>windos的文件为hosts,路径一般为 c:\windows\System32\drivers\etc\hosts</p>
+</li>
+<li><p>linux的文件为hosts, 路径一般为 &#x2F;etc&#x2F;hosts</p>
+</li>
+<li><p>本地找不到,去DNS服务器去找,当前服务器找不到就会将其传递给下一个DNS服务器</p>
+<p>流程是<strong>根服务器</strong>—&gt;<strong>顶级服务器</strong>—&gt;<strong>权威服务器</strong>,根服务器和顶级服务器不会直接返回</p>
+<p>实际主机地址,而是返回它俩的下级,也就是顶级和权威的主机地址,只有权威服务器会</p>
+<p>返回真正的主机地址.然后将其缓存到本地的DNS缓存中</p>
+</li>
+</ul>
+<p>权威和非权威的回应</p>
+<ul>
+<li><p>ZONE,加入你有一个和DNS服务器相同的域名,如test.com,就代表它们处在一个相同的网络区域</p>
+<p>也就是ZONE,可以通过该DNS服务查出 test.com相关的所有主机</p>
+</li>
+<li><p>直接从该DNS服务器查询出的结果就代表为最权威的.是最可信的</p>
+</li>
+<li><p>而非权威则相反,通过不断询问,这个结果可能是其他的区域(ZONE)返回的,所以不太权威</p>
+</li>
+</ul>
+<p>DNS结构</p>
+<ul>
+<li>Root 最高的DNS级别,一个有13个,如.com  .net ,也被称为Top Level Domain</li>
+<li>Second 第二级别,如  xxx.com,xxx则代表二级域名</li>
+<li>ICANN(Internet Corporation for Assigned Names),专门负责管理顶级域名分配的服务器,<br>负责完成大部分TLD的分配,它也被叫做TLD服务器</li>
+</ul>
+<p>DNS Zone查找方式???(具体是什么)</p>
+<ul>
+<li><p>正向查找 通过hostname去查找ip,你给我hostname,我去帮你查找ip</p>
+</li>
+<li><p>泛型查找 通过ip去查找对应hostname,一般用于邮件服务器验证这个源域名</p>
+<p>是否来自合法的域名</p>
+</li>
+</ul>
+<p>DNS Zone type(区域类型) ???分别是什么</p>
+<ul>
+<li>Primary Zone(主区域)<ul>
+<li>权威的区域信息</li>
+<li>具有区域数据的读&#x2F;写副本</li>
+<li>接收来自客户端的动态更新或动态DNS</li>
+</ul>
+</li>
+<li>Second Zone(次要区域)</li>
+<li>Zone Transfer DNS 传输区域</li>
+</ul>
+<p>缓存DNS服务器 是什么 ???</p>
+<p>资源记录 是什么??? 域名和主机地址</p>
+<ul>
+<li>普通资源记录</li>
+<li>特殊资源记录</li>
+</ul>
+<h3 id="16-NAT-网络控制"><a href="#16-NAT-网络控制" class="headerlink" title="16.NAT(网络控制)"></a>16.NAT(网络控制)</h3><p>因为internet爆炸性的增长导致ip地址空间耗尽,然后nat产生了</p>
+<h3 id="17-SMTP-邮件"><a href="#17-SMTP-邮件" class="headerlink" title="17.SMTP(邮件)"></a>17.SMTP(邮件)</h3><h3 id="18-VPN-代理"><a href="#18-VPN-代理" class="headerlink" title="18.VPN(代理)"></a>18.VPN(代理)</h3><h3 id="19-SSH-远程连接"><a href="#19-SSH-远程连接" class="headerlink" title="19.SSH(远程连接)"></a>19.SSH(远程连接)</h3><h3 id="n-TCP-IP协议总结"><a href="#n-TCP-IP协议总结" class="headerlink" title="n.TCP&#x2F;IP协议总结"></a>n.TCP&#x2F;IP协议总结</h3><p>TCP&#x2F;IP 协议栈的每一层都是使用下层的基础,并且在其基础上进行增强</p>
+<p>底层相对<strong>抽象</strong>,高层在<strong>依赖抽象</strong>的基础上对其使用并增强</p>
+<p>这种分层设计具有以下优点：</p>
+<ol>
+<li><strong>模块化</strong>：每一层都可以独立设计、实现和维护。</li>
+<li><strong>可扩展性</strong>：新的功能可以在适当的层添加，而不影响其他层。</li>
+<li><strong>灵活性</strong>：不同的应用可以根据需要选择使用协议栈的不同层次。</li>
+<li><strong>易于理解和调试</strong>：分层使得复杂的网络通信过程更易于分析和处理。</li>
+</ol>
+<p>下层提供的服务为上层提供了基础，上层在此基础上进行增强和扩展：</p>
+<ol>
+<li><strong>网络接口层</strong>：提供物理连接和数据传输功能。</li>
+<li><strong>IP 层</strong>：实现网络寻址和数据包<a class="link"   href="coco://sendMessage?ext={" s%24wiki_link"%3A"https%3A%2F%2Fm.baike.com%2Fwikiid%2F2129442810616176116"}&msg=路由">路由 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。</li>
+<li><strong>TCP 层</strong>：保证可靠的数据传输。</li>
+</ol>
+<p>每一层都对下层的功能进行了扩展和优化，以满足不同的需求。</p>
+<p>这种分层结构有助于提高网络的效率、可靠性和安全性。</p>
+<p>TCP&#x2F;IP 协议的分层结构在某些方面确实具有代理模式的特点。</p>
+<p>在代理模式中，一个对象代表另一个对象执行操作，提供了一种间接的方式来处理请求。</p>
+<p>类似地，TCP&#x2F;IP 协议的分层结构：</p>
+<ol>
+<li><strong>抽象和封装</strong>：每一层都对下层的功能进行了抽象和封装。</li>
+<li><strong>提供统一接口</strong>：上层通过下层提供的接口进行通信。</li>
+<li><strong>隔离变化</strong>：下层的改变不直接影响上层。</li>
+</ol>
+<p>然而，它们也有一些区别：</p>
+<ol>
+<li><strong>协议是固定的</strong>：而代理模式中的代理对象可以根据需求进行定制。</li>
+<li><strong>协议具有强制性</strong>：所有遵循 TCP&#x2F;IP 协议的系统都必须遵循相应的规范。</li>
+</ol>
+<p>尽管存在一些差异，但两者都关注于提供一种灵活、可扩展的方式来处理复杂的功能</p>
+]]></content>
+  </entry>
+  <entry>
     <title>八股知识点</title>
     <url>/2024/06/01/%E5%85%AB%E8%82%A1%E7%9F%A5%E8%AF%86%E7%82%B9/</url>
     <content><![CDATA[<h2 id="八股知识点"><a href="#八股知识点" class="headerlink" title="八股知识点"></a>八股知识点</h2><h3 id="1-是否会注入"><a href="#1-是否会注入" class="headerlink" title="1.是否会注入"></a>1.是否会注入</h3><p>不会</p>
@@ -876,7 +2332,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/imgs%5C%E5%85%AB%E8%82%A1%E6%96%87%5C%E7%BA%BF%E4%B8%8AGC%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86.png"
+                     data-src="/imgs/%E5%85%AB%E8%82%A1%E6%96%87/%E7%BA%BF%E4%B8%8AGC%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86.png"
                       alt="线上GC如何处理"
                 ></p>
 </blockquote>
@@ -1609,1462 +3065,6 @@
 <li><p>高可用,则更侧重于部署的方式</p>
 </li>
 </ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>网络I/O模型</title>
-    <url>/2024/06/19/%E7%BD%91%E7%BB%9CIO%E6%A8%A1%E5%9E%8B/</url>
-    <content><![CDATA[<h2 id="网络I-O模型"><a href="#网络I-O模型" class="headerlink" title="网络I&#x2F;O模型"></a>网络I&#x2F;O模型</h2><p>1.阻塞&#x2F;非阻塞</p>
-<p><strong>阻塞分为连接阻塞(处理数量)和I&#x2F;O阻塞(读取数据)</strong></p>
-<p>非阻塞</p>
-<ul>
-<li>异步</li>
-<li>多路复用</li>
-</ul>
-<p>2.异步&#x2F;同步</p>
-<p>3.TCP&#x2F;UDP协议</p>
-<p>4.Socket(套接字)</p>
-<p>是什么</p>
-<ul>
-<li>它是TCP&#x2F;UDP封装后的用户网络数据传输的接口工具</li>
-</ul>
-<p>底层实现</p>
-<ul>
-<li>底层通过TCP&#x2F;UDP的方式实现通过网络传送数据</li>
-<li>在监听连接和接收数据时会阻塞</li>
-<li>创建完socket后,会使用poll select recv 接收数据,这里使用方法<br>和操作系统相关</li>
-</ul>
-<p>使用场景</p>
-<blockquote>
-<p>使用Socket实现网络 I&#x2F;O 传输流程：</p>
-<ol>
-<li><p><strong>应用程序调用 <code>socket()</code> 创建套接字</strong>，并指定相关参数（如协议类型等），套接字进入监听状态，等待外部客户端连接。</p>
-</li>
-<li><p><strong>客户端发起连接请求</strong>，经过网络传输到达服务器。</p>
-</li>
-<li><p><strong>服务器端操作系统接收到连接请求</strong>，验证并建立连接，为该连接分配一个独特的 <code>fd</code> 文件描述符。</p>
-</li>
-<li><p>数据传输阶段</p>
-<p>：</p>
-<ul>
-<li><strong>发送数据</strong>：应用程序将待发送数据写入与套接字对应的内核缓冲区，操作系统根据网络状况和协议栈逐步将数据从缓冲区通过网卡发送出去。</li>
-<li><strong>接收数据</strong>：网卡接收到外部数据后，通知操作系统，操作系统将数据写入到内核缓冲区中与该套接字相关的区域。</li>
-</ul>
-</li>
-<li><p><strong>应用程序调用相关函数获取接收数据</strong>，从内核缓冲区读取数据到应用程序的内存空间。</p>
-</li>
-<li><p><strong>读取完成后</strong>，操作系统可能会根据情况清空或重新管理相应的内核缓冲区数据，以准备接收新的数据。</p>
-</li>
-</ol>
-<p>需要注意的是，这只是一个简化的流程，实际中还涉及到很多细节和优化机制，比如缓冲区的管理、数据的确认与重传、拥塞控制等，以确保网络通信的高效和可靠。</p>
-</blockquote>
-<p>数据到达之后如何唤醒(硬件层面)</p>
-<p>网络数据包到达网卡—&gt;发送中断信号告知CPU有数据写入—&gt;然后唤醒阻塞进程,然后通过硬件电路将数据写入内存</p>
-<p>阻塞流程</p>
-<p>操作系统多任务调度,所以它有一个存储进程的<strong>运行队列</strong>,用于执行多任务调度,阻塞的进程就在<br>这里阻塞等待唤醒</p>
-<p>在创建完socket后会为其创建一个fd描述对象,用于关联socket</p>
-<p>连接创建—&gt;等待接收数据</p>
-<p>5.I&#x2F;O多路复用</p>
-<p>是什么</p>
-<ul>
-<li><p>一种用于提高服务器处理数据传输的并发处理以及提高系统资源利用率的方式</p>
-</li>
-<li><p>可以同时监听多个文件描述符,避免大量线程或进程阻塞等待单个I&#x2F;O的操作</p>
-</li>
-<li><p>能够处理大量并发连接,使得服务器能够同时处理多个客户端的请求,而不是组个处理</p>
-</li>
-<li><p>简化编程模型,让开发者可以通过统一的接口来管理多个I&#x2F;O操作,降低编程的复杂性,</p>
-<p>无需我们实现</p>
-</li>
-<li><p>epoll通过事件驱动的方式唤醒线程&#x2F;进程,提高资源利用率,避免使用阻塞的方式降低性能</p>
-<p>而select&#x2F;poll都会产生阻塞</p>
-</li>
-<li><p>单个socket的监听如 Recv,在使用多路复用之前</p>
-</li>
-</ul>
-<p>现模型</p>
-<ul>
-<li><p>select(连接上限1024)</p>
-</li>
-<li><p>poll(无上限)</p>
-</li>
-<li><p>epoll(事件驱动)</p>
-<ul>
-<li><p>核心角色</p>
-<ul>
-<li><p>事件池,包含事件对象以及事件队列</p>
-</li>
-<li><p>Socket对象,在创建后为其关联了一个fd描述符,内部存储了读&#x2F;写缓冲区以及等待队列</p>
-<p>用于管理连接的客户端,用于后续的唤醒,中断等操作</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>三者区别</p>
-<p>6.TCP&#x2F;IP网络模型</p>
-<ul>
-<li>应用层</li>
-<li>传输层</li>
-<li>网络层</li>
-<li>数据链路层</li>
-<li>功能参考OSI七层模型</li>
-</ul>
-<p>7.OSI网络七层模型</p>
-<ul>
-<li>应用层(客户端)</li>
-<li>表示层(数据转换)</li>
-<li>会话层(连接创建&#x2F;校验)</li>
-<li>传输层(数据传输)</li>
-<li>网络层(路由寻址)</li>
-<li>数据链路层(数据打包)</li>
-<li>物理层(硬件设备)</li>
-</ul>
-<p>8.流量整形TODO</p>
-<p>9.网络通讯就是网络编程</p>
-<p>10.Reactor(响应式)I&#x2F;O模型</p>
-<p>它是基于NIO来实现的高性能I&#x2F;O模型</p>
-<p>NIO的核心角色</p>
-<ul>
-<li><p>Selector ,注册器,负责管理和协调Channel</p>
-</li>
-<li><p>Channel,包装后的Socket对象,相当于一个高级的双向连接对象</p>
-</li>
-<li><p>ByteBuffer,用于缓存传输的数据</p>
-</li>
-<li><p>Selector和Channel的关系</p>
-<blockquote>
-<p>就相当于拍卖物品,首先我将物品寄放到拍卖行,告知拍卖行我的预期价格,然后等达到预期价格后,拍卖行就通知我,有符合我预期的价格了</p>
-<p>在这个类比中：</p>
-<ul>
-<li>“物品”就相当于 Channel。</li>
-<li>“拍卖行”相当于 Selector 。</li>
-<li>“预期价格”相当于您为 Channel 注册到 Selector 时指定的感兴趣的事件（比如可读、可写等）。</li>
-<li>“达到预期价格”相当于 Channel 上发生了您注册时指定的事件。</li>
-<li>“拍卖行通知您”相当于 Selector 回调 Channel 。</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<p>核心角色</p>
-<ul>
-<li>Reactor,负责监听和分发事件,将事件分发给对应的Handler进行处理</li>
-<li>Acceptors,处理客户端连接请求,创建对应的Handler</li>
-<li>Handler,异步(非阻塞)执行读写任务,处理具体业务逻辑</li>
-</ul>
-<p>单线程</p>
-<ul>
-<li>只有一个主线程负责处理连接和请求</li>
-</ul>
-<p>多线程(线程池)</p>
-<ul>
-<li>职责拆分,主线程负责处理连接,使用线程池中的线程异步处理请求</li>
-</ul>
-<p>主从多线程(线程池)</p>
-<ul>
-<li>主线程负责处理连接,将连接请分发给从线程,从线程负责请求的处理</li>
-</ul>
-<p>11.三种网络I&#x2F;O模型的生动描述</p>
-<p>再次理解AIO,BIO,NIO 先描述一个场景 假设有一家很火的餐饮店,需要排队,有一天我到了这家店,店员告知我前面咩有空桌,需要排队等待 </p>
-<p>但店员告知我有三种方案你选哪一种 </p>
-<p>第一种,你先取一个号,等叫号叫到你后,我通过电话通知你,这就是AIO </p>
-<p>第二种,你就在门口等着,等叫到你后,你再进去,这就是BIO </p>
-<p>第三种,你取一个号,但你需要时不时过来看一看,在这期间你可以做其它的事,这是NIO </p>
-<p>其中第一种和第三种方法比较类似,在等待的时间里你可以做自己的时,但一个是我主动叫你,一个是你主动查看</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>网络编程协议</title>
-    <url>/2024/05/28/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%8D%8F%E8%AE%AE/</url>
-    <content><![CDATA[<h2 id="网络编程协议"><a href="#网络编程协议" class="headerlink" title="网络编程协议"></a>网络编程协议</h2><h3 id="1-网络模型"><a href="#1-网络模型" class="headerlink" title="1.网络模型"></a>1.网络模型</h3><p>OSI网络模型</p>
-<ul>
-<li><p>经典七层</p>
-<ul>
-<li><p>应用层(Application) 客户端,比如用户使用的浏览器</p>
-</li>
-<li><p>表示层(Presentation) 数据的处理,转换,压缩,比如图片的从编码转换为可见的</p>
-</li>
-<li><p>会话层(Session) 应用的会话,用于管理会话的创建,终止,负责本地和远程的通讯及身份验证,校验等功能</p>
-</li>
-<li><p>传输层(Transport) 传输的方式,如TCP和UDP,还比如网络I&#x2F;O模型</p>
-</li>
-<li><p>网络层(Network) 用于路径的逻辑寻址,如IP</p>
-</li>
-<li><p>数据链路层(Data Link) 数据包装,以及安全检测,如将位数据包装成帧(打包),负责节点与节点之间的数据</p>
-<p>传输</p>
-</li>
-<li><p>物理层(Physical) 物理设备,如网线</p>
-</li>
-<li><p>离下层越远,离用户越近,如应用层</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>TCP&#x2F;IP网络模型</p>
-<p>四层</p>
-<ul>
-<li>应用层</li>
-<li>传输层</li>
-<li>网络层</li>
-<li>数据链路层</li>
-</ul>
-<p>为什么要分层</p>
-<ul>
-<li>将任务进行拆分,独立的去解决每个子任务<ul>
-<li>为什么要拆分</li>
-<li>效率提升,职责分明</li>
-<li>耦合度降低</li>
-</ul>
-</li>
-<li>建立</li>
-<li>代码复用性(重用)</li>
-<li>可扩展性</li>
-<li>标准化接口</li>
-</ul>
-<p>二者区别</p>
-<p>OSI属于概念,基础,TCP则属于具体的实现,比如一个商品</p>
-<h3 id="2-物理层-数据链路层"><a href="#2-物理层-数据链路层" class="headerlink" title="2.物理层+数据链路层"></a>2.物理层+数据链路层</h3><ul>
-<li>硬件规格定义</li>
-<li>编码和信号处理</li>
-<li>数据转发</li>
-<li>拓扑和物理网络设计</li>
-</ul>
-<p>为什么需要数据链路层</p>
-<ul>
-<li><p>LLC</p>
-</li>
-<li><p>MAC</p>
-</li>
-<li><p>Flow Control(传输控制)</p>
-<ul>
-<li><p>流量传输控制</p>
-</li>
-<li><p>ACK确认表示,指的是接收端在接收到完整的帧后,返回给发送端的一个确认标识</p>
-</li>
-<li><p>使用算法</p>
-<ul>
-<li><p>stop and wait 属于其中的一个最简单的算法,传输的方式是通过接收端在接收到完整的帧</p>
-<p>后返回的标识,在接收到该标识后才会继续发送下一个帧,较大的帧也会拆分成多个,按照上<br>述的逻辑发送</p>
-</li>
-<li><p>slidingwindow 保证同一时刻有几个帧同时发送</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Error Control(故障控制)</p>
-<ul>
-<li>传输故障控制</li>
-<li>自动重发请求协议(AQR)</li>
-<li>使用算法<ul>
-<li>stop and wait 和传输时的控制一致,只有在接收到接收端返回的ACK标识后,才会发送下一个帧,效率相对较低<ul>
-<li>失败场景,发送过程中和接收后返回时出现问题</li>
-</ul>
-</li>
-<li>go back  n 基于滑动窗口算法<ul>
-<li>失败场景</li>
-<li>返回的ACK的类型,RR(接收),RJ(拒绝)</li>
-<li>Reject 当出现错误帧,会拒绝(丢弃)在这个帧及后面所有的帧,直到这个帧发送成功</li>
-<li>重传帧<ul>
-<li>错误帧及其后面的帧</li>
-<li>错误帧(会缓存后面的帧)</li>
-</ul>
-</li>
-<li>重传时机<ul>
-<li>发送超时,接收失败,RJ(拒绝接收)</li>
-<li>发送超时,SREJ(拒绝接收)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>错误检测</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="3-帧"><a href="#3-帧" class="headerlink" title="3.帧"></a>3.帧</h3><p>结构</p>
-<ul>
-<li>FLAG 前后各占8bits,各1个,比特填充的首尾标志法,根据information来进行填充<ul>
-<li>每5个1后补0</li>
-</ul>
-</li>
-<li>Address 占8bits,辅助字段,用于备注接收方的地址</li>
-<li>Control 8&#x2F;16bits,标识字段,用于标识该帧的类型</li>
-<li>Information 可变长度,实际内容为01二进制</li>
-<li>FCS 16&#x2F;32bits  帧检查序列字段</li>
-<li>例子 01111110  ……   01111110</li>
-</ul>
-<h3 id="4-网络层"><a href="#4-网络层" class="headerlink" title="4.网络层"></a>4.网络层</h3><p>层级</p>
-<blockquote>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E5%B1%82.png"
-                      alt="网络协议分层"
-                ></p>
-</blockquote>
-<p>数据结构</p>
-<blockquote>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.png"
-                      alt="网络协议数据结构"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E6%8A%93%E5%8C%85%E7%BB%93%E6%9E%84.png"
-                      alt="网络协议抓包结构"
-                ></p>
-</blockquote>
-<p>什么是网络</p>
-<ul>
-<li>网络是一组或两个或更多连接的计算设备</li>
-</ul>
-<p>为什么需要网络层</p>
-<ul>
-<li>路由 当数据包到达路由器的输入链路时.路由器会将数据包移动到输出链路</li>
-<li>逻辑寻址 数据链路层实现物理寻址,网络层实现逻辑寻址,还用于区别源系统和目标系统</li>
-<li>互联网络 它提供了不同类型网络之间的逻辑连接</li>
-<li>分段 它是将数据包分解为不同网络传播的最小的单个数据单元的过程</li>
-</ul>
-<p>数据包</p>
-<ul>
-<li>通过Internet发送的所有数据被分解后称为数据包</li>
-</ul>
-<p>IP地址</p>
-<ul>
-<li>IP地址由4段10进制数字组成,由句点分隔开</li>
-</ul>
-<p>层</p>
-<p>对外提供的功能,具体</p>
-<p>协议</p>
-<p>具体的行为,怎么做</p>
-<h3 id="5-传输层"><a href="#5-传输层" class="headerlink" title="5.传输层"></a>5.传输层</h3><p>什么是传输层</p>
-<ul>
-<li>提供了端到端(点对点)的方案,数据传输,建立连接的过程</li>
-</ul>
-<p>为什么需要传输层</p>
-<ul>
-<li>通讯服务 为两台主机进程之间的通行提供服务</li>
-<li>处理数据包 处理数据包的顺序,数据包的错误</li>
-<li>传输问题 解决传输过程中的错误</li>
-</ul>
-<p>TCP</p>
-<ul>
-<li><p>全称是Transmission Control Protocol ,他是一种通讯协议</p>
-</li>
-<li><p>通过该协议,数据可以通过网络完成系统之间的传输</p>
-</li>
-<li><p>在这种情况下,数据以数据包的形式传输,包括错误检查,以及保证数据</p>
-<p>传输过程数据包的顺序问题</p>
-<ul>
-<li>错误检测指的是接收方对数据包的完整</li>
-<li>发送方会检测接收方是否返回接收成功,决定是否重新发送</li>
-</ul>
-</li>
-</ul>
-<p>UDP</p>
-<ul>
-<li>不提供错误检查和数据恢复</li>
-<li>并且不会因为某次发送错误停止,而是继续下次发送</li>
-<li>其它的和TCP协议基本相同</li>
-<li>速度相对较快,但不保证发送成功,可能会出现数据包丢失</li>
-<li>适用于允许部分丢失,实时运行的场景</li>
-</ul>
-<p>三次握手(发送方占据主动)</p>
-<ul>
-<li>你吃了吗(SYN) —&gt; 发送方(请求)</li>
-<li>你是问我吃了吗(SYN   ACK) —&gt; 接收方(确认)</li>
-<li>是的(ACK) —&gt;发送方(确认)</li>
-</ul>
-<p>四次挥手(接收方占据主动)</p>
-<ul>
-<li>我要分手,虽然你很漂亮(SYN) —&gt; 发送方(请求)</li>
-<li>林志玲表示,好的我同意分手(SYN   ACK) —&gt; 接收方(确认)</li>
-<li>但是我要和你分手,不是你要和我分手(SYN) —&gt; 接收方(请求)</li>
-<li>好吧,我同意(ACK) —&gt; 发送方(确认)</li>
-</ul>
-<h3 id="6-应用层-表示层-会话层"><a href="#6-应用层-表示层-会话层" class="headerlink" title="6.应用层+表示层+会话层"></a>6.应用层+表示层+会话层</h3><p>表示层</p>
-<ul>
-<li>是为通信提供了一种公共语言,以便能够进行操作,用于转换不同类型的数据</li>
-</ul>
-<p>会话层</p>
-<ul>
-<li>提供了应用建立与维持会话的服务,并且可以是会话获得同步,如SSL(安全套接字协议),TLS(安全传输层协议)</li>
-</ul>
-<p>应用层</p>
-<ul>
-<li>将主机上的数据传输到客户端上,如http(超文本传输协议),https(超文本安全传输协议)</li>
-</ul>
-<h3 id="7-网络传输模型数据结构"><a href="#7-网络传输模型数据结构" class="headerlink" title="7.网络传输模型数据结构"></a>7.网络传输模型数据结构</h3><p>在网络传输模型中，通常会采用类似于“<strong>header + data</strong>”的结构。</p>
-<blockquote>
-<p>在这种结构中，header（头部）包含了关于数据的各种信息，例如：</p>
-<ol>
-<li>源和目标地址；</li>
-<li>数据类型；</li>
-<li>长度；</li>
-<li>顺序等。</li>
-</ol>
-<p>data（数据）则是实际要传输的信息。</p>
-<p>这种结构的优点包括：</p>
-<ol>
-<li>提供了对数据的描述和控制信息，便于网络设备进行处理和路由选择。</li>
-<li>允许不同类型的数据进行区分和识别。</li>
-<li>有助于确保数据的完整性和正确性。</li>
-</ol>
-<p>不同的网络协议和传输模型可能会有不同的具体实现方式，但总体上都采用了类似的头部加数据的结构。</p>
-</blockquote>
-<h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><h3 id="1-二进制"><a href="#1-二进制" class="headerlink" title="1.二进制"></a>1.二进制</h3><p>二进制计算方式(十进制转二进制)</p>
-<ul>
-<li><p>取模运算,将一个数模以2,取余数,有余数为1,无余数为0,,依次往下一直计算,直到无法模2,直接赋1为最高位</p>
-</li>
-<li><p>减法运算,将十进制数与当前位的十进制数运算后进行比较,最高位无需运算,大于则为1,小于则为0,</p>
-<p>与低位进行换算时,需减去高位,再与低位比较,计算规则同上,直到计算结果为0,剩余位补齐为0</p>
-<ul>
-<li>比较规则 大于等于为1,小于为0</li>
-</ul>
-<p>如十进制数208,转换为二进制数为11000000</p>
-<p>208 &#x3D; 128+64+16</p>
-<p>只计算位上数为1的值</p>
-<p>1 1 0 1 0 0 0 0</p>
-<ul>
-<li>从高位到低位的值分别是128 64 32 16  8  4  2  1  </li>
-<li>使用十进制数208与最高位比较,大于则为1,小于则为0</li>
-<li>与低位进行转换时,需要减去高位,在进行比较,规则同上</li>
-<li>208-128&#x3D;80,80与64进行比较,大于为1</li>
-<li>再次运算80-64&#x3D;16,16小于32,小于为0</li>
-<li>16无法与32进行运算,直接为0</li>
-<li>16再与16进行运算,结果为0,赋为1</li>
-<li>计算结果为0,不用再进行运算,剩余位补齐为0</li>
-</ul>
-</li>
-</ul>
-<p>二进制计算方式(二进制转十进制)</p>
-<ul>
-<li>从低位开始,以2为底,位数为幂,从0开始,直到最高位,</li>
-<li><strong>2的幂次方</strong>乘以当前位数的0&#x2F;1,得出结果</li>
-<li>累加得到的值就是十进制的值</li>
-</ul>
-<p><strong>案例</strong></p>
-<p>计算二进制数10110010</p>
-<ul>
-<li>0 2 0 0 16 32 0 128</li>
-<li>128+32+16+2</li>
-<li>178</li>
-<li>128 64 32 16 8 4 2 1</li>
-<li>178 &gt; 128 ,大于为1</li>
-<li>178-128&#x3D;50,再与64比较,小于为0</li>
-<li>50 &gt; 32 ,大于为1</li>
-<li>50-32&#x3D;18,再与16比较,大于为1</li>
-<li>18-16&#x3D;2,再与8比较,小于为0</li>
-<li>2 &lt; 4,小于为0 1011001</li>
-<li>2 &#x3D; 2,等于为1</li>
-<li>2-2&#x3D;0,最后结果为0,为1,并且结束运算</li>
-<li>最终二进制数为10110010</li>
-</ul>
-<h3 id="2-八进制"><a href="#2-八进制" class="headerlink" title="2.八进制"></a>2.八进制</h3><p>计算方式和二进制一样,位数上的值乘以进制为底数的幂次方(次方为位的位置,从0开始)</p>
-<p>值的表示范围0-7</p>
-<ul>
-<li>高位表示补齐的数(二进制数10,表示的就是2,高位表示的1表示进位后的结果,0则表示高位进行进位运算了)</li>
-<li>低位表示为0,表示它的前一位数进行了进位运算</li>
-<li>并且0在转换过程中是可以忽略的,无需运算</li>
-<li>连续0,代表最终进位,取最终进位1的结果(最终进位的结果)</li>
-<li>连续1,代表连续进位,取连续进位1的结果(连续进位的结果)</li>
-<li>逢二进一,当低位结果运算结果大于1时,低位变成0,高位加1</li>
-</ul>
-<p>八进制中0-7的代码表示1-8</p>
-<p>例子如下</p>
-<p>10 表示的就是十进制的 8,以此类推,</p>
-<p>11 表示的就是9,</p>
-<p>12 表示的就是10</p>
-<h3 id="3-十六进制"><a href="#3-十六进制" class="headerlink" title="3.十六进制"></a>3.十六进制</h3><p>计算方式同二进制类似,底数变为16的幂次方</p>
-<p>值的表达范围为0-9 A-F,10在16进制用A来表示</p>
-<h3 id="4-二进制运算"><a href="#4-二进制运算" class="headerlink" title="4.二进制运算"></a>4.二进制运算</h3><p>案例</p>
-<p><strong>加法运算</strong></p>
-<p>二进制 11+3,逢二进一</p>
-<p>01011</p>
-<p>00011</p>
-<p>01110</p>
-<p><strong>减法运算</strong></p>
-<p>二进制 14-9</p>
-<p>1110</p>
-<p>1001</p>
-<p>补码运算(时钟运算,使用溢出值得到结果)</p>
-<p>二进制减法运算是把<strong>减法运算转换为加法</strong>来完成的</p>
-<p>0000 1110</p>
-<p>0000 1001  原码  9</p>
-<p>1111  0110  反码   -118</p>
-<p>1111  0111  补码   -119</p>
-<p>0000 1110     加法运算</p>
-<p>1111  0111</p>
-<p>运算</p>
-<p>1110</p>
-<p>0111</p>
-<p><strong>码的类型</strong></p>
-<p><strong>原码</strong></p>
-<ul>
-<li>正常的二进制数,最高位为符号位</li>
-</ul>
-<p><strong>反码</strong>(取反)</p>
-<ul>
-<li>正数的反码就是正数,负数的反码除符号位全部取反</li>
-</ul>
-<p><strong>补码</strong>(先取反,后加1(最低位加1))</p>
-<ul>
-<li>正数的补码还是正数,负数的补码除符号位取反后加一</li>
-</ul>
-<p><strong>计算规则</strong></p>
-<ul>
-<li><p>0+1 为 1</p>
-</li>
-<li><p>0+0 为  0</p>
-</li>
-<li><p>1+1 为  10  </p>
-</li>
-<li><p>案例</p>
-<p>1011</p>
-<p>0111</p>
-<ul>
-<li><p>第一位 0</p>
-</li>
-<li><p>第二位 1 </p>
-</li>
-<li><p>第三位 0</p>
-</li>
-<li><p>第四位 0</p>
-</li>
-<li><p>第五位 1</p>
-</li>
-<li><p>顺序从右往左,结果为10010</p>
-</li>
-<li><p>1+1时,高位加1,低位变0</p>
-<p>逢二进一,当计算结果为2时,高位就加1,低位就变为0</p>
-</li>
-<li><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5CIdea%E7%9A%84Debugger%E8%B0%83%E7%94%A8%E6%A0%88.png"
-                      alt="Idea的Debugger调用栈"
-                ></p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="5-二进制逻辑运算"><a href="#5-二进制逻辑运算" class="headerlink" title="5.二进制逻辑运算"></a>5.二进制逻辑运算</h3><p>false(0)  true(1)</p>
-<p>一对值</p>
-<ul>
-<li>逻辑与(AND)    相同取对应值0&#x2F;1,不同取0,满足所有条件时才成立,可达到类似取模的效果,并且可以得到一个特定范围的值(范围为0-被除数这个区间内)</li>
-<li>逻辑或(OR)    相同取对应值0&#x2F;1,不同取1,任意条件满足都成立</li>
-</ul>
-<p>单个值</p>
-<ul>
-<li>逻辑非(NOT) 取反,0取1,1取0</li>
-</ul>
-<p>取反值</p>
-<ul>
-<li>逻辑异或(XOR) 二者相同时取0,不同时取1(适用于查找,找不同)</li>
-<li>逻辑同或(XNOR) 二者相同时取1,不同时取0</li>
-</ul>
-<p>5.取模,取余运算</p>
-<p>计算结果都为最后的余数,取的都是被能够整除后的余数</p>
-<p>区别</p>
-<ul>
-<li><p>取模,除数为负,余数就为负</p>
-</li>
-<li><p>取余,被除数为负,余数就为负</p>
-</li>
-<li><p>例如 5%2,此时5为被除数.2为除数</p>
-<blockquote>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5C%E5%8F%96%E6%A8%A1%E5%8F%96%E4%BD%99%E8%BF%90%E7%AE%97%E5%B7%AE%E5%BC%82.png"
-                      alt="取模取余运算差异"
-                ></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="6-进制转换公式"><a href="#6-进制转换公式" class="headerlink" title="6.进制转换公式"></a>6.进制转换公式</h3><ul>
-<li><p>转换</p>
-<p>被除数 &#x3D; 商*除数+余数</p>
-<p>商&#x3D;初始值&#x2F;除数(进制)</p>
-<p>商作为下次被除数与除数参与运算,直到无法整除结束</p>
-</li>
-<li><p>计算</p>
-<p>总值 &#x3D; 进制的幂次方(当前位的下标) * 位值(当前位上的值)+… 依次加上后续位的计算结果(也就是进制的幂次方乘以位上的值)</p>
-</li>
-</ul>
-<h3 id="7-计算方式结果叫法"><a href="#7-计算方式结果叫法" class="headerlink" title="7.计算方式结果叫法"></a>7.计算方式结果叫法</h3><ul>
-<li>加法运算结果称为和</li>
-<li>减法运算结果称为差</li>
-<li>乘法运算结果称为积</li>
-<li>除法运算结果称为商</li>
-</ul>
-<h3 id="8-位移运算符"><a href="#8-位移运算符" class="headerlink" title="8.位移运算符"></a>8.位移运算符</h3><ul>
-<li><p>左移(&lt;&lt;),左移几位,高位就丢弃几位</p>
-<p>例,如下,左移1位</p>
-<p>01110</p>
-<p>11100</p>
-</li>
-<li><p>右移,右移几位,高位就补齐几位</p>
-<ul>
-<li>无符号右移(&gt;&gt;&gt;),正数,高位补0,负数,高位补1</li>
-<li>右移(&gt;&gt;),不管正数,负数,都在高位补0</li>
-</ul>
-<p>例,右移1位</p>
-<p>11110  源</p>
-<p>01111  右移</p>
-<p>11111  无符号右移</p>
-</li>
-<li><p>总结</p>
-<ul>
-<li>左乘右除,左边位移几位,就是乘以2的幂次方(幂为位移的个数)</li>
-<li>右移则是除以2的幂次方(幂为位移的个数)</li>
-</ul>
-</li>
-</ul>
-<h2 id="网络编程应用场景"><a href="#网络编程应用场景" class="headerlink" title="网络编程应用场景"></a>网络编程应用场景</h2><h3 id="1-IP"><a href="#1-IP" class="headerlink" title="1.IP"></a>1.IP</h3><p>什么是IP</p>
-<ul>
-<li>是一个使用四组数字构成的地址,中间用句点分隔<ul>
-<li>每组数字又是一个8位的二进制数值</li>
-<li>最大显示为255,在使用时需要转换为二进制给计算机使用</li>
-<li>255.255.255.0</li>
-</ul>
-</li>
-<li>它被分配给网络设备的网络接口卡(网卡)</li>
-<li>分为两部分,分别是网络部分(整体,如某某市,区,街道)和主机部分(个体,如门牌号,具体地址)</li>
-</ul>
-<p>怎么使用IP</p>
-<ul>
-<li><p>网络地址</p>
-<ul>
-<li><p>非具体,更像指向某一个区域,被称为网络前缀</p>
-<blockquote>
-<ul>
-<li><p>203.0.113.0</p>
-</li>
-<li><p>最后一组数值为主机地址,前三组为网络地址</p>
-</li>
-<li><p>最后一组数值为0时,转换为2进制为00000000,</p>
-</li>
-</ul>
-<p> 代表该地址为网络地址</p>
-<ul>
-<li>不能将这个地址分配给网卡所使用</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>广播地址</p>
-<ul>
-<li><p>群发,所有设备的通用标识符,类似于邮箱,大家都会使用</p>
-<blockquote>
-<ul>
-<li><p>203.0.113.255</p>
-</li>
-<li><p>最后一组数值为255时,转换为2进制为11111111,</p>
-</li>
-</ul>
-<p> 代表该地址为广播地址</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>主机地址</p>
-<ul>
-<li><p>具体地址,指向某台特定设备,主机</p>
-<blockquote>
-<ul>
-<li><p>203.0.113.10</p>
-</li>
-<li><p>最后一组数值(子网掩码)不为0或255时,假设是10,转换为2进制为00001010,</p>
-</li>
-</ul>
-<p> 代表该地址为主机地址,可以分配给硬件设备,如一台打印机</p>
-<ul>
-<li>可使用范围为1-254</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>私有地址</p>
-<ul>
-<li><p>只允许公司内部使用(不可再公网暴露)</p>
-<blockquote>
-<ul>
-<li>10.0.0.0 —  10.255.255.255</li>
-<li>172.16.0.0 — 172.16.255.255</li>
-<li>192.168.0.0 — 192.168.255.255</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>IP类型数据报(打包后的数据包裹)Header的构成</p>
-<blockquote>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5CIp%E5%8D%8F%E8%AE%AEHeader%E7%BB%93%E6%9E%84.png"
-                      alt="Ip协议Header结构"
-                ></p>
-<ul>
-<li>一行占32bit</li>
-<li>Vesion IP协议版本好,占4bit,如IPV6,版本号显示为6</li>
-<li>IHL Internet Head Length,表示网络头部长度,占4bit</li>
-<li>Type of Service,表示服务的类型,决定传输的性能优劣,占8bit</li>
-<li>Total Length,表示Head和数据的总长度,占16bit</li>
-<li>Identification,表示的一个标识,用于标识一个唯一数据包,占16bit</li>
-<li>Flags 表示一个标记,占3bit</li>
-<li>Fragment Offset 表示片的偏移量,占13bit</li>
-<li>Time to LIve 表示数据包的存活时间,以秒计算,占8bit</li>
-<li>Protocol 表示下一个层级的协议,占8bit</li>
-<li>Header Checksum 表示头的错误检测,占16bit</li>
-<li>Source Address 表述源地址(源ip),占32bit</li>
-<li>Destination Address 表示目标地址(目标ip),占32bit</li>
-<li>Options 表示选项,可变的参数,如传输数据的编码格式,占</li>
-<li>Padding 表示数据包头的长度一定是32的倍数</li>
-<li>Data 表示具体的数据</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<blockquote>
-<p>人类可识别的 如ABCD,这种都属于符号</p>
-<p>再将其转换为特定编码,转换为特定的数值</p>
-<p>再将其转换为计算机可失败的二进制数值</p>
-</blockquote>
-<h3 id="2-IP地址组成及分类"><a href="#2-IP地址组成及分类" class="headerlink" title="2.IP地址组成及分类"></a>2.IP地址组成及分类</h3><ul>
-<li>类型及表示范围(ABCDE)1981年</li>
-</ul>
-<blockquote>
-<ul>
-<li>A<ul>
-<li>0.0.0.0 — 127.255.255.255</li>
-<li><strong>10</strong>.0.10.0</li>
-<li>前8位(第一组数值)为网络地址,后24位(后三组数值)为主机地址</li>
-</ul>
-</li>
-<li>B<ul>
-<li>128.0.0.0 — 191.255.255.255</li>
-<li><strong>172</strong>.<strong>16</strong>.10.10</li>
-<li>前16位(前两组数值)为网络地址,后8位(后两组数值)为主机地址</li>
-</ul>
-</li>
-<li>C<ul>
-<li>192.0.0.0 — 223.255.255.255</li>
-<li><strong>192</strong>.<strong>168</strong>.<strong>0</strong>.10</li>
-<li>前24位(前三组数值)为网络地址,后8位(后一组数值)为主机地址</li>
-<li>可用网络地址计算<ul>
-<li>223-192+1(起始地址) &#x3D; 32  代表32种可能,从192到223</li>
-<li>每个网络地址都可以包含254个可用主机地址,已经去除2个不能分配的地址,<br>0和255,分别是网络地址和广播地址</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>D<ul>
-<li>224.0.0.0 — 239.255.255.255</li>
-<li><strong>224</strong>.<strong>0</strong>.<strong>0</strong>.<strong>6</strong></li>
-<li>全部为网络地址</li>
-<li>一般用于广播</li>
-</ul>
-</li>
-<li>E<ul>
-<li>240.0.0.0  — 255.255.255.255</li>
-<li>一般用于实验</li>
-</ul>
-</li>
-<li>为什么说ABCDE分类比较浪费<ul>
-<li>适用于一个IP使用量比较大的公司</li>
-<li>假设我们有500ip地址,但c级无法满足,需要使用b级,但b级的范围太广了,造成了浪费</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<ul>
-<li><p>类型及表示范围(无类寻址)1995年</p>
-<blockquote>
-<ul>
-<li><p><strong>203</strong>.<strong>0</strong>.<strong>113</strong>.10</p>
-</li>
-<li><p>前24位为网络地址,后8位为主机地址</p>
-</li>
-<li><p>通过子网掩码的方式告知我们哪个部分是网络地址(寻址部分),哪个部分是主机地址</p>
-<p>在宿主部分的位置用零来告知,如255.0.0.0.或255.255.225.0</p>
-</li>
-<li><p>0的起始位置就是主机地址</p>
-</li>
-</ul>
-</blockquote>
-</li>
-<li><p>子网掩码</p>
-<blockquote>
-<ul>
-<li><p>255.255.255.0</p>
-</li>
-<li><p>每多一个字节来显示0,代表主机地址组合增加</p>
-</li>
-<li><p>作为网络地址和主机地址的分界</p>
-</li>
-<li><p>需把子网掩码数值转换为二进制后的位,作为分界的规则</p>
-<p>如掩码的位数为22时,从第22位后,就作为主机地址了,22位<br>之前就都是网络地址了</p>
-</li>
-<li><p>通过子网掩码的方式,决定哪部分是寻址部分(网络地址)</p>
-</li>
-<li><p>缓解IPV4的一部分压力</p>
-</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<h3 id="3-IPV6"><a href="#3-IPV6" class="headerlink" title="3.IPV6"></a>3.IPV6</h3><p>为什么</p>
-<p>原有的IPV4,因为历史的原因,随着使用量的增加,剩余的可使用ip越来越少,所以<br>产生了IPV6,于1996年诞生</p>
-<p>怎么做</p>
-<ul>
-<li>IPV4和IPV6不同点</li>
-</ul>
-<blockquote>
-<ul>
-<li><p>大小方面</p>
-<ul>
-<li>IPV4   32位的表达范围</li>
-<li>IPV6  128位的表达范围</li>
-</ul>
-</li>
-<li><p>分组方面</p>
-<ul>
-<li>IPV4 分为4组数值</li>
-<li>IPV6 分为8组数值</li>
-</ul>
-</li>
-<li><p>网络地址</p>
-<ul>
-<li>IPV4 根据类型或子网掩码区分网络地址部分</li>
-<li>IPV6 前四组数值为网络地址部分</li>
-</ul>
-</li>
-<li><p>表示</p>
-<ul>
-<li>IPV4  203.0.123.10</li>
-<li>FC00:0000:130F:0000:0000:09C0:876A:130B</li>
-</ul>
-</li>
-<li><p>大小</p>
-<ul>
-<li><p>IPV6,每组用16进制表示,数值最大为四位,每位16进制数转换为2进制后,</p>
-<p>需要用四位二进制数表示,一组则需要16位,总共8组,共128位</p>
-</li>
-<li><p>IPV4,每组用10进制表示,最大的数值为255,转换2进制后,需用8位来表示</p>
-<p>总共四组,共32位</p>
-</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<ul>
-<li><p>表示</p>
-<blockquote>
-<ul>
-<li><p>IPv6地址总长度为128比特，通常分为8组，每组为4个十六进制数的形式，每组十六进制数间用冒号分隔。例如：FC00:0000:130F:0000:0000:09C0:876A:130B，这是IPv6地址的首选格式</p>
-</li>
-<li><p>为了书写方便，IPv6还提供了压缩格式，以上述IPv6地址为例，具体压缩规则为：</p>
-<ul>
-<li><p>每组中的前导“0”都可以省略，所以上述地址可写为：FC00:0:130F:0:0:9C0:876A:130B。</p>
-</li>
-<li><p>地址中包含的连续两个或多个均为0的组，可以用双冒号“::”来代替，所以上述地址又可以进一步简写为：FC00:0:130F::9C0:876A:130B。</p>
-</li>
-</ul>
-<p> 说明：<br> 需要注意的是，在一个IPv6地址中只能使用一次双冒号“::”，<br> 否则当计算机将压缩后的地址恢复成128位时，无法确定每个“::”代表0的个数</p>
-</li>
-</ul>
-</blockquote>
-</li>
-<li><p>访问</p>
-<blockquote>
-<ul>
-<li>一般只有在相同网段(网络地址)的ip才能相互访问</li>
-<li>可以通过设置路由表或修改到相同网段下,就可以互相访问了</li>
-</ul>
-</blockquote>
-</li>
-<li><p>地址类型</p>
-<blockquote>
-<ul>
-<li><p>单播地址 - 用于本地通讯</p>
-</li>
-<li><p>全球单播地址</p>
-</li>
-<li><p>链路本地地址 - 用于本地通讯,格式必须是FE80::&#x2F;10</p>
-</li>
-<li><p>环回地址 -    ::1&#x2F;128(对应IPV4的127.0.0.1)</p>
-</li>
-<li><p>未指定地址 ::&#x2F;128</p>
-</li>
-<li><p>唯一本地地址-不可和公共网络交流(IPV4可以)</p>
-</li>
-<li><p>组播地址-用于一对多的通讯,可针对某组,IPV4则不行</p>
-</li>
-<li><p>任播地址-用于将一个地址赋给多台主机,一般不允许使用</p>
-</li>
-</ul>
-</blockquote>
-<p>是什么</p>
-<ul>
-<li>是一组能够在茫茫网络中寻找主机的地址</li>
-</ul>
-</li>
-</ul>
-<h3 id="4-IP子网框架"><a href="#4-IP子网框架" class="headerlink" title="4.IP子网框架"></a>4.IP子网框架</h3><ul>
-<li><p>为什么</p>
-<ul>
-<li>为了得到一个更小的网络单位,通过限定位数的方式来达到拆分的效果</li>
-</ul>
-</li>
-<li><p>怎么做</p>
-<blockquote>
-<p>案例</p>
-<ul>
-<li>203.0.13这么一个网络地址,我们想要分配一个0到31范围的主机地址</li>
-<li>可以通过限定网络地址的位数以及起始IP</li>
-<li>如203.0.13.0&#x2F;27 ,0代表起始IP,27代表网络地址位数</li>
-<li>正常的网络地址位数为24,多了3位则代表限定了起始IP</li>
-</ul>
-</blockquote>
-</li>
-<li><p>是什么</p>
-<ul>
-<li>通过限定一定位数,达到网段的划分</li>
-</ul>
-</li>
-</ul>
-<h3 id="5-路由器工作原理-IP路由"><a href="#5-路由器工作原理-IP路由" class="headerlink" title="5.路由器工作原理(IP路由)"></a>5.路由器工作原理(IP路由)</h3><ul>
-<li>为什么<ul>
-<li>不同网络下的主机需要互相连接,需要通过路由器这个中转的角色来完成|<br>相互记录</li>
-</ul>
-</li>
-<li>怎么做<ul>
-<li>路由器通过路由表记录当前目的地与下一个目的地</li>
-<li>通过记录目标ip与下一个ip,通过下一个ip再找到下一个ip</li>
-<li>通过这条路径来寻找到最终的目的地</li>
-<li>root—&gt;目标ip—&gt;下一个ip—&gt;下一个ip</li>
-</ul>
-</li>
-</ul>
-<h3 id="6-TCP-数据传输"><a href="#6-TCP-数据传输" class="headerlink" title="6.TCP(数据传输)"></a>6.TCP(数据传输)</h3><ul>
-<li><p>为什么</p>
-<ul>
-<li>主机事务数据需要传输</li>
-</ul>
-</li>
-<li><p>怎么做</p>
-<ul>
-<li><p>三次握手,四次挥手(建立连接的流程与断开连接的流程)</p>
-<ul>
-<li>大部分场景下断开连接的操作是由发送方完成的,<br>在某些情况下,接收方也会主动断开,具体情况可能<br>和web服务器的具体实现相关</li>
-</ul>
-</li>
-<li><p>连接重置(Reset,发送方和接收方都可以执行该操作)</p>
-<ul>
-<li>数据传输的过程中被安全设施发现数据不太安全,接收方<br>将会重置该TCP连接</li>
-</ul>
-</li>
-<li><p>端口号</p>
-<ul>
-<li><p>可使用范围0-65535</p>
-</li>
-<li><p>分类</p>
-<ul>
-<li><p>公认,指的是历史上,经过考验并长期使用的端口号,范围是0-1023</p>
-<ul>
-<li><p>比较常用的有Http的80,Https的443,Ssh的22,Ftp的20&#x2F;21,Telent的</p>
-<p>23</p>
-</li>
-</ul>
-</li>
-<li><p>注册,指的是特定某个官方去组织里注册的端口号,合规,范围是1024-49191</p>
-</li>
-<li><p>临时,指的是未去注册的端口号,仅临时使用,范围是49192-65535</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>协议数据单元(数据传输时的结构&#x2F;数据结构) Segment(包含头Header和数据段data)</p>
-<blockquote>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5CTcp%E5%8D%8F%E8%AE%AE%E6%95%B0%E6%8D%AE%E5%8D%95%E5%85%83.png"
-                      alt="Tcp协议数据单元"
-                ></p>
-</blockquote>
-<ul>
-<li>Source Port  源端口号 </li>
-<li>Destination Port 目标端口号 </li>
-<li>Flags 请求标识<ul>
-<li>SYN</li>
-<li>SYN-ACK</li>
-<li>ACK</li>
-<li>FIN</li>
-<li>FIN-ACK</li>
-<li>RST</li>
-<li>URG</li>
-</ul>
-</li>
-<li>Seq# 序列号</li>
-<li>Ack# 确认序列号</li>
-<li>Payload 负载,实际传输的数据(侧重于数据本身)</li>
-</ul>
-</li>
-<li><p>Packet(数据包)</p>
-<blockquote>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5CTcp%E5%8D%8F%E8%AE%AE%E6%95%B0%E6%8D%AE%E5%8C%85.png"
-                      alt="Tcp协议数据包"
-                ></p>
-</blockquote>
-<ul>
-<li><p>Segment属于数据包所拆分出的一部分</p>
-</li>
-<li><p>然后将Packet作为Frame的一部分,然后发送到服务端</p>
-</li>
-<li><p>服务器端会向剥开洋葱一样,一层一层剥开,把Packet从Frame中取出</p>
-</li>
-<li><p>在把Segmen从Packet中剥离出,再做类似的动作将新的Segment和Packet包装成新的Frame返回</p>
-<p>给客户端</p>
-</li>
-<li><p>客户端发送数据–&gt;打包–&gt;成为Frame(数据包)—&gt;经过网络中的路由器路由到真正的主机后</p>
-<p>—&gt;服务端取出里面的包裹Packet—&gt;再取出包裹里的Segment—&gt;服务端经过处理后生成新的Packet和Segment</p>
-<p>包装成新的Frame返回给客户端</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>是什么</p>
-<ul>
-<li>它的全称是Transmission Control Protocol</li>
-<li>这个协议的目的是通过创建Session的方式,来完成数据传输</li>
-</ul>
-</li>
-</ul>
-<h3 id="7-TCP-数据传输流程"><a href="#7-TCP-数据传输流程" class="headerlink" title="7.TCP(数据传输流程)"></a>7.TCP(数据传输流程)</h3><p><strong>传输层链接过程中需要三次握手,四次挥手</strong></p>
-<p>层级从<strong>低</strong>到<strong>高</strong></p>
-<p>分别是从物理层到数据链路层,再到到网络层,再到传输层,再到应用层的<br>数据结构</p>
-<p>Bit—&gt;Frame—&gt;Packet—&gt;Segment—&gt;Data</p>
-<p>服务端</p>
-<blockquote>
-<ul>
-<li><p>服务端在接收到请求后,拨开Packet,拿到Segment</p>
-</li>
-<li><p>修改Seq(数据开始的字节,从这里开始发送)为1,Ack(确认收到的字节)为1</p>
-</li>
-</ul>
-<p> payload则放入需要传输的数据.图片(假设此时图片较大,需要分片发送)</p>
-<ul>
-<li><p>seq默认为0,ack默认为1,payload最大能够存放1450byte</p>
-</li>
-<li><p>修改完成后,将其放入Packet(包裹),打包返回Frame(数据包)给客户端</p>
-</li>
-</ul>
-</blockquote>
-<p>客户端</p>
-<blockquote>
-<ul>
-<li><p>客户端在接收完数据包后,解析其中的segment</p>
-</li>
-<li><p>接收完成后,修改Seq为1(因为客户端未发送数据,修改为1),ACK则修改为1251</p>
-<p>代表接收到1250个字节的数据,下次则从这里再次发送</p>
-</li>
-<li><p>修改完数据段后,进行打包,返回数据包给服务端</p>
-</li>
-<li><p>循环往复,直到全部接收完成</p>
-</li>
-</ul>
-</blockquote>
-<p>传输遇到问题</p>
-<ul>
-<li><p>如何解决(数据未接收到)</p>
-<ul>
-<li><p>重试</p>
-</li>
-<li><p>客户端告知哪些部分未收到(发送给服务端一个特殊的Segment),里面的flags为SACK,Seq为1,Ack为上次接收的字节数上加1(如5001),和丢失的范围 (如2501-3750),服务端将这些数据重新打包后再发送</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="8-UDP-数据传输"><a href="#8-UDP-数据传输" class="headerlink" title="8.UDP(数据传输)"></a>8.UDP(数据传输)</h3><ul>
-<li>使用什么协议由客户决定,看其选择效率还是稳定</li>
-</ul>
-<blockquote>
-<p>使用TCP协议</p>
-<ul>
-<li>传输(超文本传输协议)<ul>
-<li>HTTP,HTTPS</li>
-</ul>
-</li>
-<li>会话<ul>
-<li>Telnet,SSH,FTP,SFTP</li>
-</ul>
-</li>
-<li>邮件<ul>
-<li>POP,IMAP,SMTP</li>
-</ul>
-</li>
-</ul>
-<p>使用UDP协议</p>
-<ul>
-<li>解析<ul>
-<li>DNS</li>
-<li>SNMP</li>
-</ul>
-</li>
-<li>传输(纯粹使用UDP)<ul>
-<li>TFTP 传输小的文件(一个简单的传输)</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<ul>
-<li>UDP header结构<ul>
-<li>source port(源端口) 占16bit</li>
-<li>destination port(目标端口) 占16bit</li>
-<li>length 占16bit</li>
-<li>checksum 占16bit</li>
-</ul>
-</li>
-</ul>
-<h3 id="9-数据包和数据报侧重方面"><a href="#9-数据包和数据报侧重方面" class="headerlink" title="9.数据包和数据报侧重方面"></a>9.数据包和数据报侧重方面</h3><p>数据包侧重于结构方面,数据报则更侧重于传输方面</p>
-<p>数据包通常强调以下方面：</p>
-<ol>
-<li><strong>结构和格式</strong>：包括头部信息、数据部分等。</li>
-<li><strong>封装和标识</strong>：明确数据源和目标。</li>
-<li><strong>完整性和一致性</strong>：确保数据在传输过程中不丢失或损坏。</li>
-</ol>
-<p>数据报则更侧重于：</p>
-<ol>
-<li><strong>传输过程</strong>：如何在网络中<a class="link"   href="coco://sendMessage?ext={" s%24wiki_link"%3A"https%3A%2F%2Fm.baike.com%2Fwikiid%2F2129442810616176116"}&msg=路由">路由 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>和传递。</li>
-<li><strong>实时性</strong>：满足某些应用对实时性的要求。</li>
-<li><strong>效率和性能</strong>：优化传输速度和资源利用。</li>
-</ol>
-<p>然而，这两个概念在实际应用中并非完全割裂。</p>
-<p>数据包的结构设计也会影响传输性能，而数据报的传输方式也需要遵循一定的结构规范。</p>
-<p>在不同的场景中，可能会根据具体需求强调数据包或数据报的某些方面。</p>
-<p>例如，在一些对数据完整性和准确性要求较高的场景中，可能更关注数据包的结构；而在一些实时性要求较高的场景中，可能更侧重数据报的传输效率。</p>
-<p>总之，数据包和数据报的侧重点可能因应用场景和需求的不同而有所差异，但它们相互关联，共同确保数据在网络中的有效传输。</p>
-<h3 id="10-TCP拥塞模型–需要再次学习"><a href="#10-TCP拥塞模型–需要再次学习" class="headerlink" title="10.TCP拥塞模型–需要再次学习"></a>10.TCP拥塞模型–需要再次学习</h3><p>提高网络带宽的使用效率</p>
-<p>为什么</p>
-<ul>
-<li>提高网络性能</li>
-<li>增强可靠性</li>
-<li>公平性</li>
-<li>使用性</li>
-<li>稳定性</li>
-<li>优化资源利用</li>
-</ul>
-<p>怎么做</p>
-<ul>
-<li>拥塞窗口</li>
-<li>拥塞算法</li>
-<li>慢启动</li>
-<li>快速启动</li>
-<li>拥塞检测机制<ul>
-<li>一种是丢包</li>
-<li>另一种是是测量延时</li>
-</ul>
-</li>
-</ul>
-<p>什么是Mss</p>
-<p>是什么</p>
-<ul>
-<li>一种帮助TCP高效稳定的利用网络资源传输的策略(行为)<br>这种行为下的执行效率更高</li>
-</ul>
-<h3 id="11-NetStat命令"><a href="#11-NetStat命令" class="headerlink" title="11.NetStat命令"></a>11.NetStat命令</h3><p>查看主机上的TCP连接对应的端口及IP地址的信息</p>
-<p>前置知识</p>
-<ul>
-<li>全双工,指的是在通信过程中,数据可以同时在两个方向进行数据的传输<br>与之相对的是半双工,它只能在一个时间点内进行单向的数据传输</li>
-<li>状态切换,连接的状态变换</li>
-</ul>
-<p>命令执行</p>
-<ul>
-<li>-n  快照</li>
-<li>-n 1 每秒刷新</li>
-<li>-na 查看所有的连接,TCP&#x2F;UDP连接 </li>
-<li>-nap TCP 查看TCP的连接</li>
-<li>-R 查看路由表信息</li>
-</ul>
-<h3 id="12-HTTP"><a href="#12-HTTP" class="headerlink" title="12.HTTP"></a>12.HTTP</h3><p>是什么</p>
-<ul>
-<li>http是一个简单的请求-响应协议,通常运行在TCP之上,它指定了客户端<br>可能发送给服务器什么样的消息以及得到什么样的响应结果</li>
-<li>为了将超文本标记语言(HTML)文档从web服务器传输到客户端的浏览器</li>
-<li>它定义了与服务端的交互逻辑与方式.实现客户端与服务端的交互</li>
-</ul>
-<p>怎么做</p>
-<ul>
-<li><p>分类</p>
-<ul>
-<li><p>http 0.9 —&gt;1991</p>
-</li>
-<li><p>http 1.0 —&gt;1996</p>
-</li>
-<li><p>http 1.1 —&gt;1999</p>
-<ul>
-<li><p>提供了更多选择的缓存头来控制缓存策略</p>
-</li>
-<li><p>带宽优化及网络连接使用</p>
-</li>
-<li><p>Host处理,在Http1.0中认为每台服务器都绑定一个唯一的ip地址</p>
-</li>
-<li><p>长连接优化,有一个叫做Connection的信息,默认设置为keep-alive.</p>
-<p>对于Tcp的连接复用,用一个TCP连接完成多次传输复用</p>
-</li>
-<li><p>错误通知管理</p>
-<ul>
-<li><p>200,客户端请求资源</p>
-<ul>
-<li>200 请求资源ok,返回成功</li>
-<li>201 创建资源ok,返回成功</li>
-</ul>
-</li>
-<li><p>400</p>
-<ul>
-<li><p>400 客户端请求语法错误,服务器无法理解</p>
-</li>
-<li><p>401 请求要求用户需要身份认证</p>
-</li>
-<li><p>403 服务器理解客户端请求,但拒绝执行该请求</p>
-</li>
-<li><p>404 服务器无法根据客户端的请求找到资源(网页)</p>
-<p>网站设计人员可设置请求资源无法找到的个性页面</p>
-</li>
-</ul>
-</li>
-<li><p>500</p>
-<ul>
-<li>500 服务器内部错误,无法处理请求</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>http 2 —&gt;2015</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>为什么</p>
-<ul>
-<li><p>尼尔森定律,以一定的规律线性增长</p>
-</li>
-<li><p>带宽,它是在被用来描述信道时,能够有效通过信道的信号最大频带宽度</p>
-<p>如现实中某个水管能够通过的最大的流量,电线能够通过的最大电流,<br>高速公路能够运行的车辆数量</p>
-</li>
-<li><p>延迟,它则是在传输介质中所用传输的时间,即从报文进入到离开网络的所</p>
-<p>消耗的时间,和网络使用情况相关</p>
-</li>
-<li><p>资源加载和带宽的关系,网页加载延迟消耗时间</p>
-</li>
-<li><p>随着时间增长,网页加载所需的资源越来越多</p>
-</li>
-</ul>
-<p>http1版本的缺点</p>
-<ul>
-<li>队头阻塞<ul>
-<li>后面发起的请求会被之前未处理的请求阻塞住</li>
-</ul>
-</li>
-<li>流量控制<ul>
-<li>无法保证客户端与服务端传输速率的动态调整,造成带宽浪费,性能降低</li>
-</ul>
-</li>
-</ul>
-<p>SPDY(Goole提出的一种解决方案,Http2的前身)</p>
-<ul>
-<li>降低延迟</li>
-<li>请求优先级</li>
-<li>Header压缩</li>
-<li>基于Https的加密协议传输</li>
-<li>服务端推送</li>
-</ul>
-<p>Http2</p>
-<ul>
-<li><p>1 传输的内容是明文</p>
-</li>
-<li><p>2 传输的内容则是二进制,但传输的内容和1是一致的</p>
-</li>
-<li><p>向下兼容(<strong>H2C</strong>),为了http1可以在http2的环境下可以继续使用,</p>
-<p>http2提供了向下兼容的解决方案,通过在请求前发送一个升级包</p>
-<p>会返回一个101.表示更换协议,升级连接</p>
-<p>如果不支持,则会返回200,或404的状态码</p>
-</li>
-</ul>
-<p>12.Http和Https区别</p>
-<ul>
-<li>开头</li>
-<li>安全</li>
-<li>端口</li>
-<li>相关层</li>
-<li>证书</li>
-<li>加密</li>
-<li>Https可以有效防止运营商劫持,解决了防止劫持的问题</li>
-</ul>
-<blockquote>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5CHttp%E4%B8%8EHttps%E5%8C%BA%E5%88%AB.png"
-                      alt="Http与Https区别"
-                ></p>
-</blockquote>
-<h3 id="13-HTTP2"><a href="#13-HTTP2" class="headerlink" title="13.HTTP2"></a>13.HTTP2</h3><p>优点</p>
-<ul>
-<li><p>多向请求和响应</p>
-</li>
-<li><p>TCP连接多路复用</p>
-<ul>
-<li>TCP拥塞机制</li>
-<li>数据流复用一个连接</li>
-</ul>
-</li>
-<li><p>请求优先级</p>
-<ul>
-<li>优先加载必要资源</li>
-</ul>
-</li>
-<li><p>每个来源一个连接</p>
-</li>
-<li><p>流量控制</p>
-</li>
-<li><p>头压缩</p>
-</li>
-<li><p>缺点</p>
-<ul>
-<li>多路复用所带来的问题</li>
-<li>依赖于TCP相关机制</li>
-</ul>
-</li>
-</ul>
-<h3 id="14-HTTPS"><a href="#14-HTTPS" class="headerlink" title="14.HTTPS"></a>14.HTTPS</h3><p>安全的超文本传输协议</p>
-<p>CA证书</p>
-<ul>
-<li>由特定单位颁发的安全证书</li>
-<li>加入可信(计算机)</li>
-<li>敏感且重要</li>
-</ul>
-<p>SSL(安全套接字)</p>
-<p>TLS(SSL的接任者)</p>
-<blockquote>
-<p>TLS握手流程</p>
-<ul>
-<li>客户端先开始握手流程</li>
-<li>将其支持的最高解绑TLS和其他信息一起发送给服务端</li>
-</ul>
-</blockquote>
-<h3 id="15-DNS-域名解析"><a href="#15-DNS-域名解析" class="headerlink" title="15.DNS(域名解析)"></a>15.DNS(域名解析)</h3><p>将域名翻译为主机的实际IP地址</p>
-<p>host文件</p>
-<ul>
-<li>存储ip地址和域名映射关系的文件,DNS就是类似该文件</li>
-</ul>
-<p>DNS解析流程</p>
-<ul>
-<li><p>本地文件—&gt;DNS缓存—&gt;DNS服务器</p>
-</li>
-<li><p>首先尝试检查本地计算机查找,然后查找不到的话,再尝试去DNS缓存(本地的)中查找<br>最后才会去DNS服务器上查找,解析,实在查找不到才会去DNS服务器</p>
-</li>
-<li><p>本地计算机存储映射关系的文件一般叫做主机文件</p>
-</li>
-<li><p>windos的文件为hosts,路径一般为 c:\windows\System32\drivers\etc\hosts</p>
-</li>
-<li><p>linux的文件为hosts, 路径一般为 &#x2F;etc&#x2F;hosts</p>
-</li>
-<li><p>本地找不到,去DNS服务器去找,当前服务器找不到就会将其传递给下一个DNS服务器</p>
-<p>流程是<strong>根服务器</strong>—&gt;<strong>顶级服务器</strong>—&gt;<strong>权威服务器</strong>,根服务器和顶级服务器不会直接返回</p>
-<p>实际主机地址,而是返回它俩的下级,也就是顶级和权威的主机地址,只有权威服务器会</p>
-<p>返回真正的主机地址.然后将其缓存到本地的DNS缓存中</p>
-</li>
-</ul>
-<p>权威和非权威的回应</p>
-<ul>
-<li><p>ZONE,加入你有一个和DNS服务器相同的域名,如test.com,就代表它们处在一个相同的网络区域</p>
-<p>也就是ZONE,可以通过该DNS服务查出 test.com相关的所有主机</p>
-</li>
-<li><p>直接从该DNS服务器查询出的结果就代表为最权威的.是最可信的</p>
-</li>
-<li><p>而非权威则相反,通过不断询问,这个结果可能是其他的区域(ZONE)返回的,所以不太权威</p>
-</li>
-</ul>
-<p>DNS结构</p>
-<ul>
-<li>Root 最高的DNS级别,一个有13个,如.com  .net ,也被称为Top Level Domain</li>
-<li>Second 第二级别,如  xxx.com,xxx则代表二级域名</li>
-<li>ICANN(Internet Corporation for Assigned Names),专门负责管理顶级域名分配的服务器,<br>负责完成大部分TLD的分配,它也被叫做TLD服务器</li>
-</ul>
-<p>DNS Zone查找方式???(具体是什么)</p>
-<ul>
-<li><p>正向查找 通过hostname去查找ip,你给我hostname,我去帮你查找ip</p>
-</li>
-<li><p>泛型查找 通过ip去查找对应hostname,一般用于邮件服务器验证这个源域名</p>
-<p>是否来自合法的域名</p>
-</li>
-</ul>
-<p>DNS Zone type(区域类型) ???分别是什么</p>
-<ul>
-<li>Primary Zone(主区域)<ul>
-<li>权威的区域信息</li>
-<li>具有区域数据的读&#x2F;写副本</li>
-<li>接收来自客户端的动态更新或动态DNS</li>
-</ul>
-</li>
-<li>Second Zone(次要区域)</li>
-<li>Zone Transfer DNS 传输区域</li>
-</ul>
-<p>缓存DNS服务器 是什么 ???</p>
-<p>资源记录 是什么??? 域名和主机地址</p>
-<ul>
-<li>普通资源记录</li>
-<li>特殊资源记录</li>
-</ul>
-<h3 id="16-NAT-网络控制"><a href="#16-NAT-网络控制" class="headerlink" title="16.NAT(网络控制)"></a>16.NAT(网络控制)</h3><p>因为internet爆炸性的增长导致ip地址空间耗尽,然后nat产生了</p>
-<h3 id="17-SMTP-邮件"><a href="#17-SMTP-邮件" class="headerlink" title="17.SMTP(邮件)"></a>17.SMTP(邮件)</h3><h3 id="18-VPN-代理"><a href="#18-VPN-代理" class="headerlink" title="18.VPN(代理)"></a>18.VPN(代理)</h3><h3 id="19-SSH-远程连接"><a href="#19-SSH-远程连接" class="headerlink" title="19.SSH(远程连接)"></a>19.SSH(远程连接)</h3><h3 id="n-TCP-IP协议总结"><a href="#n-TCP-IP协议总结" class="headerlink" title="n.TCP&#x2F;IP协议总结"></a>n.TCP&#x2F;IP协议总结</h3><p>TCP&#x2F;IP 协议栈的每一层都是使用下层的基础,并且在其基础上进行增强</p>
-<p>底层相对<strong>抽象</strong>,高层在<strong>依赖抽象</strong>的基础上对其使用并增强</p>
-<p>这种分层设计具有以下优点：</p>
-<ol>
-<li><strong>模块化</strong>：每一层都可以独立设计、实现和维护。</li>
-<li><strong>可扩展性</strong>：新的功能可以在适当的层添加，而不影响其他层。</li>
-<li><strong>灵活性</strong>：不同的应用可以根据需要选择使用协议栈的不同层次。</li>
-<li><strong>易于理解和调试</strong>：分层使得复杂的网络通信过程更易于分析和处理。</li>
-</ol>
-<p>下层提供的服务为上层提供了基础，上层在此基础上进行增强和扩展：</p>
-<ol>
-<li><strong>网络接口层</strong>：提供物理连接和数据传输功能。</li>
-<li><strong>IP 层</strong>：实现网络寻址和数据包<a class="link"   href="coco://sendMessage?ext={" s%24wiki_link"%3A"https%3A%2F%2Fm.baike.com%2Fwikiid%2F2129442810616176116"}&msg=路由">路由 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。</li>
-<li><strong>TCP 层</strong>：保证可靠的数据传输。</li>
-</ol>
-<p>每一层都对下层的功能进行了扩展和优化，以满足不同的需求。</p>
-<p>这种分层结构有助于提高网络的效率、可靠性和安全性。</p>
-<p>TCP&#x2F;IP 协议的分层结构在某些方面确实具有代理模式的特点。</p>
-<p>在代理模式中，一个对象代表另一个对象执行操作，提供了一种间接的方式来处理请求。</p>
-<p>类似地，TCP&#x2F;IP 协议的分层结构：</p>
-<ol>
-<li><strong>抽象和封装</strong>：每一层都对下层的功能进行了抽象和封装。</li>
-<li><strong>提供统一接口</strong>：上层通过下层提供的接口进行通信。</li>
-<li><strong>隔离变化</strong>：下层的改变不直接影响上层。</li>
-</ol>
-<p>然而，它们也有一些区别：</p>
-<ol>
-<li><strong>协议是固定的</strong>：而代理模式中的代理对象可以根据需求进行定制。</li>
-<li><strong>协议具有强制性</strong>：所有遵循 TCP&#x2F;IP 协议的系统都必须遵循相应的规范。</li>
-</ol>
-<p>尽管存在一些差异，但两者都关注于提供一种灵活、可扩展的方式来处理复杂的功能</p>
 ]]></content>
   </entry>
 </search>
