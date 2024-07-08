@@ -544,7 +544,7 @@
 <li><strong>全局变量或静态方法的使用</strong>：限制了代码的可复用性和可扩展性。</li>
 <li><strong>紧密耦合的组件</strong>：组件之间耦合度过高，使得扩展一个组件可能影响其他组件。</li>
 <li><strong>缺乏抽象</strong>：没有正确使用抽象类或接口，导致具体实现与扩展紧密绑定。</li>
-<li><strong>代码重复</strong>：大量重复的代码使得维护和扩展变得复杂，容易引入错误。<br>为了避免破坏开闭原则，应该尽量采用更灵活的扩展方式，如使用抽象、接口、组合等设计模式，以及配置文件、<a class="link"   href="coco://sendMessage?ext={" s%24wiki_link"%3A"https%3A%2F%2Fm.baike.com%2Fwikiid%2F5672419420006108837"}&msg=插件">插件 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>机制等技术。这样可以提高代码的可维护性和可扩展性，使系统更易于应对变化和扩展。</li>
+<li><strong>代码重复</strong>：大量重复的代码使得维护和扩展变得复杂，容易引入错误。<br>为了避免破坏开闭原则，应该尽量采用更灵活的扩展方式，如使用抽象、接口、组合等设计模式，以及配置文件、<a class="link" href="coco://sendMessage?ext={" s%24wiki_link"%3a"https%3a%2f%2fm.baike.com%2fwikiid%2f5672419420006108837"}&msg="插件"">插件 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>机制等技术。这样可以提高代码的可维护性和可扩展性，使系统更易于应对变化和扩展。</li>
 </ol>
 <h3 id="6-为什么要使用final修饰变量"><a href="#6-为什么要使用final修饰变量" class="headerlink" title="6.为什么要使用final修饰变量"></a>6.为什么要使用final修饰变量</h3><p>是的，在某些场景下，使用 <code>final</code> 可以作为一种兜底的安全策略。</p>
 <p>将变量声明为 <code>final</code> 可以带来以下安全方面的好处：</p>
@@ -566,12 +566,7 @@
 </ol>
 <p>这种处理方式使得属性注入更加精确和可控，有助于提高系统的稳定性和可维护性。</p>
 <h3 id="8-线上GC如何处理"><a href="#8-线上GC如何处理" class="headerlink" title="8.线上GC如何处理"></a>8.线上GC如何处理</h3><blockquote>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/imgs%5C%E5%85%AB%E8%82%A1%E6%96%87%5C%E7%BA%BF%E4%B8%8AGC%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86.png"
-                      alt="线上GC如何处理"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="/imgs%5C%E5%85%AB%E8%82%A1%E6%96%87%5C%E7%BA%BF%E4%B8%8AGC%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86.png" alt="线上GC如何处理"></p>
 </blockquote>
 <h3 id="9-遇到一个设计题：亿级订单，千万日活，如何设计存储方案，容量，性能，拓展性，业务场景聚焦个大电商物流单，要给个成熟方案，大家思考一下"><a href="#9-遇到一个设计题：亿级订单，千万日活，如何设计存储方案，容量，性能，拓展性，业务场景聚焦个大电商物流单，要给个成熟方案，大家思考一下" class="headerlink" title="9.遇到一个设计题：亿级订单，千万日活，如何设计存储方案，容量，性能，拓展性，业务场景聚焦个大电商物流单，要给个成熟方案，大家思考一下"></a>9.遇到一个设计题：亿级订单，千万日活，如何设计存储方案，容量，性能，拓展性，业务场景聚焦个大电商物流单，要给个成熟方案，大家思考一下</h3><blockquote>
 <p>存储层设计：<br>订单数据库： 使用分布式数据库（例如MySQL Cluster、TiDB等）存储订单信息，按照订单号进行分片存储，保证存储和查询的高性能。<br>缓存层： 使用分布式缓存系统（例如Redis Cluster）缓存热门订单数据和查询结果，减少数据库访问压力。<br>日志存储： 使用分布式文件系统（例如HDFS）存储订单操作日志，保证数据可追溯性和故障恢复能力。<br>应用层设计：<br>订单服务： 提供订单的创建、查询、修改和删除等接口，负责处理订单相关的业务逻辑。<br>物流服务： 提供物流信息的查询和更新接口，负责物流状态的实时更新和查询。<br>用户服务： 提供用户信息的查询和更新接口，负责管理用户账号和地址信息。</p>
