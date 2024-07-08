@@ -25,15 +25,15 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="JMM模型1.可见性Volitale  CPU缓存问题 MESI协议 缓存锁 总线锁 基于LOCK这么一个汇编指令   可见性,有序性保证  2.有序性 JVM如何实现跨平台下的线程安全  JMM模型,定义多线程场景下数据操作逻辑,根据不同平台生成对应的指令  通过区分本地内存和主内存 线程操作数据都会先从主内存拷贝,自己的本地内存完成修改后,再将其同步到主内存 每个线程都存有一个数据副本到自己的">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="c:\Users\food\AppData\Roaming\Typora\typora-user-images\image-20240411140150189.png">
-<meta property="og:image" content="c:\Users\food\AppData\Roaming\Typora\typora-user-images\image-20240411142644224.png">
-<meta property="og:image" content="c:\Users\food\AppData\Roaming\Typora\typora-user-images\image-20240411201344994.png">
-<meta property="og:image" content="c:\Users\food\AppData\Roaming\Typora\typora-user-images\image-20240412141156134.png">
+<meta property="og:image" content="https://huiyideshalouya.github.io/imgs%5CJMM%5C%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C%E7%B1%BB%E5%9E%8B.png">
+<meta property="og:image" content="https://huiyideshalouya.github.io/imgs%5CJMM%5CVolatile%E9%87%8D%E6%8E%92%E5%BA%8F%E8%A7%84%E5%88%99.png">
+<meta property="og:image" content="https://huiyideshalouya.github.io/imgs%5CJMM%5CReenTrantLock%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png">
+<meta property="og:image" content="https://huiyideshalouya.github.io/imgs%5CJMM%5CJava%E9%94%81%E5%AE%9E%E7%8E%B0%E5%85%B3%E7%B3%BB.png">
 <meta property="article:published_time" content="2024-05-06T08:15:21.000Z">
-<meta property="article:modified_time" content="2024-07-07T07:30:45.959Z">
+<meta property="article:modified_time" content="2024-07-08T06:42:55.032Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:\Users\food\AppData\Roaming\Typora\typora-user-images\image-20240411140150189.png">
+<meta name="twitter:image" content="https://huiyideshalouya.github.io/imgs%5CJMM%5C%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C%E7%B1%BB%E5%9E%8B.png">
     
     
     <!--- Icon Part-->
@@ -426,8 +426,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-07-07 15:30:45</span>
-            <span class="mobile">2024-07-07 15:30:45</span>
+            <span class="desktop">2024-07-08 14:42:55</span>
+            <span class="mobile">2024-07-08 14:42:55</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -492,8 +492,8 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\food\AppData\Roaming\Typora\typora-user-images\image-20240411140150189.png"
-                      alt="image-20240411140150189"
+                     data-src="/imgs%5CJMM%5C%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C%E7%B1%BB%E5%9E%8B.png"
+                      alt="内存屏障类型"
                 ></p>
 </blockquote>
 </li>
@@ -520,8 +520,8 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\food\AppData\Roaming\Typora\typora-user-images\image-20240411142644224.png"
-                      alt="image-20240411142644224"
+                     data-src="/imgs%5CJMM%5CVolatile%E9%87%8D%E6%8E%92%E5%BA%8F%E8%A7%84%E5%88%99.png"
+                      alt="Volatile重排序规则"
                 ></p>
 </blockquote>
 </li>
@@ -647,8 +647,8 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\food\AppData\Roaming\Typora\typora-user-images\image-20240411201344994.png"
-                      alt="image-20240411201344994"
+                     data-src="/imgs%5CJMM%5CReenTrantLock%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png"
+                      alt="ReenTrantLock实现原理"
                 ></p>
 </blockquote>
 </li>
@@ -662,8 +662,8 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\food\AppData\Roaming\Typora\typora-user-images\image-20240412141156134.png"
-                      alt="image-20240412141156134"
+                     data-src="/imgs%5CJMM%5CJava%E9%94%81%E5%AE%9E%E7%8E%B0%E5%85%B3%E7%B3%BB.png"
+                      alt="Java锁实现关系"
                 ></p>
 <ul>
 <li>reentrant实现Lock(锁机制)和持有Sync(同步队列)</li>
@@ -741,7 +741,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-07-07 15:30:45
+                    :</strong> 2024-07-08 14:42:55
             </li>
         
         <li>
