@@ -15,281 +15,1077 @@
 ]]></content>
   </entry>
   <entry>
-    <title>JMM模型</title>
-    <url>/2024/05/06/JMM%E6%A8%A1%E5%9E%8B/</url>
-    <content><![CDATA[<h2 id="JMM模型"><a href="#JMM模型" class="headerlink" title="JMM模型"></a>JMM模型</h2><h3 id="1-可见性"><a href="#1-可见性" class="headerlink" title="1.可见性"></a>1.可见性</h3><p>Volitale</p>
+    <title>Hello World</title>
+    <url>/2024/07/06/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/writing.html" >Writing <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/server.html" >Server <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/generating.html" >Generating <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>八股知识点</title>
+    <url>/2024/06/01/%E5%85%AB%E8%82%A1%E7%9F%A5%E8%AF%86%E7%82%B9/</url>
+    <content><![CDATA[<h2 id="八股知识点"><a href="#八股知识点" class="headerlink" title="八股知识点"></a>八股知识点</h2><h3 id="1-是否会注入"><a href="#1-是否会注入" class="headerlink" title="1.是否会注入"></a>1.是否会注入</h3><p>不会</p>
+<p>@Autowired<br>public void test(){<br>    HashMap&lt;String, Object&gt; map  &#x3D; new HashMap&lt;&gt;();<br>    map.put(“test”,”ces”);<br>    TestBean.instance &#x3D; map;</p>
+<p>}这么写会依赖注入吗,还是说只会执行该方法一次</p>
+<p>在你提供的代码中，<code>@Autowired</code> 注解用在了 <code>test</code> 方法上，但这样的使用方式是不符合 Spring 框架的依赖注入原则的。<code>@Autowired</code> 注解通常用于字段、构造函数或配置方法上，而不是普通的业务逻辑方法。</p>
+<p>在你的例子中，<code>test</code> 方法会创建一个新的 <code>HashMap</code> 对象，并向其中添加一些数据，然后把这个 <code>HashMap</code> 赋值给 <code>TestBean</code> 的静态成员 <code>instance</code>。这个过程不会触发 Spring 的依赖注入机制，因为 <code>@Autowired</code> 在这里没有被用于任何可以被 Spring 管理的依赖项上。</p>
+<p>所以，即使你在这个方法上使用了 <code>@Autowired</code>，Spring 也不会尝试去注入任何依赖。这个方法会按照普通的 Java 方法那样执行，并且只会执行一次（除非有其他代码在其他地方调用了这个方法）。</p>
+<p>如果你希望 <code>TestBean</code> 的 <code>instance</code> 成员被 Spring 管理，并且能够通过依赖注入来设置，你应该这样做：</p>
+<ol>
+<li>将 <code>TestBean</code> 声明为一个 Spring Bean（例如，通过 <code>@Component</code>、<code>@Service</code>、<code>@Repository</code> 或 <code>@Controller</code> 等注解）。</li>
+<li>使用 <code>@Autowired</code> 在需要 <code>TestBean</code> 实例的地方进行注入。</li>
+</ol>
+<p>例如：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">java@Componentpublic class TestBean &#123;    public static TestBean instance;    // 其他成员和方法&#125;@Componentpublic class SomeOtherBean &#123;    private final TestBean testBean;    @Autowired    public SomeOtherBean(TestBean testBean) &#123;        this.testBean = testBean;        TestBean.instance = testBean; // 通常不推荐这样做，因为它破坏了依赖注入的原则    &#125;    // 其他成员和方法&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>在这个例子中，<code>TestBean</code> 被声明为一个 Spring Bean，并且 <code>SomeOtherBean</code> 通过构造函数注入获得了 <code>TestBean</code> 的实例。虽然我在这里还是把 <code>TestBean</code> 的实例赋值给了静态成员 <code>instance</code>，但这通常是不推荐的做法，因为它破坏了 Spring 的依赖注入原则，使得代码更难以测试和维护。更好的做法是直接使用 Spring 注入的 <code>TestBean</code> 实例，而不是依赖一个静态的 <code>instance</code> 成员。</p>
+<p>其实我理解的是，Spring本意是想注入来着，就像Autowried写到set方法上的时候，他本意也是注入，实际上Spring的工作就是调用执行一下这个方法，有参数，spring就找自己管理的bean里有没有对应类型的(或者对应名字的)，没参数，所以就直接执行了</p>
+<p>注入的动作，完成了方法的调用而已，只不过之前放到set方法的时候，会注入，这个不会注入了而已</p>
+<p>简单理解就是autowired在方法上时，启动时他都会把这个方法调用一下，如果有参数则会在调用的时候尝试从初始化好的bean里注入实参</p>
+<h3 id="2-DI注入和初始化的区别"><a href="#2-DI注入和初始化的区别" class="headerlink" title="2.DI注入和初始化的区别"></a>2.DI注入和初始化的区别</h3><p>在Spring框架中，初始化阶段可以执行的操作主要包括：</p>
+<ol>
+<li><strong>静态代码块</strong>：静态代码块在类加载时自动执行，是最优先执行的初始化操作12。</li>
+<li><strong>构造方法</strong>：当类加载并实例化时，会执行构造方法中的逻辑12。</li>
+<li><strong>实现ApplicationContextAware接口</strong>：通过实现<code>ApplicationContextAware</code>接口并重写<code>setApplicationContext()</code>方法，可以在Spring容器初始化时调用该方法，从而进行相关代码的初始化。这个类还可以获取Spring容器中的所有对象和信息2。</li>
+<li><strong>使用@PostConstruct注解</strong>：<code>@PostConstruct</code>注解可以标注一个非静态的void方法，该方法会在类被Spring容器初始化后立即执行。因为执行时机在依赖注入和对象构造完成之后，所以适合进行一些需要在对象创建后才能进行的数据初始化操作1。</li>
+</ol>
+<p>这些操作可以帮助开发者在Spring容器启动后，执行必要的初始化任务，如资源加载、配置读取、数据初始化等，以确保应用程序的正常运行。</p>
 <ul>
-<li>CPU缓存问题</li>
-<li>MESI协议<ul>
-<li>缓存锁</li>
-<li>总线锁</li>
-<li>基于LOCK这么一个汇编指令</li>
+<li><strong>初始化</strong>：初始化是指在创建对象后，对对象的属性进行赋值或执行其他必要的设置操作。初始化通常由对象的构造函数或特定的初始化方法来完成。初始化的目的是为了确保对象在使用之前具有正确的初始状态。</li>
+<li><strong>依赖注入</strong>：依赖注入是指在创建对象时，将对象所需的依赖项（其他对象或资源）注入到对象中。依赖注入的目的是减少对象之间的硬编码依赖，提高代码的灵活性和可维护性。依赖注入可以通过构造函数注入、属性注入、接口注入等方式实现。</li>
+</ul>
+<p>简而言之，初始化是为了设置对象的初始状态，而依赖注入是为了注入对象所需的依赖项，以实现松耦合的设计。</p>
+<ul>
+<li><p>DI是一种注入属性的机制,将Bean与注入属性解耦,类似构造方法</p>
+</li>
+<li><p>初始化则是类似静态代码块,但执行时机晚于构造方法也就是DI注入,并且主要针对于对象,静态代码块则早于构造方法,针对于整个类<br>初始化不仅可以执行复杂逻辑,也可以对属性赋值</p>
+</li>
+</ul>
+<h3 id="3-finally的执行时机"><a href="#3-finally的执行时机" class="headerlink" title="3.finally的执行时机"></a>3.finally的执行时机</h3><p>在java中,finally虽然处于return语句的下方,但它的执行是在return返回结果之前执行的,属于java对于线程异常的<br>一个兜底策略,避免一些资源因为异常而未释放</p>
+<ul>
+<li>但需要注意,被final所修饰的不可变类型,就算执行了,也不会影响return的执行结果</li>
+<li>一个原因是局部变量,一个原因是被final修饰的类</li>
+</ul>
+<p>4.Java的可变类型和不可变类型在 Java 中，可变类型和不可变类型的一些常见示例如下：</p>
+<ul>
+<li>不可变类型：<ul>
+<li>整数类型（如 int、long 等）。</li>
+<li>浮点类型（如 float、double 等）。</li>
+<li>字符类型（char）。</li>
+<li>布尔类型（boolean）。</li>
+<li>字符串类型（String）。</li>
 </ul>
 </li>
-<li>可见性,有序性保证</li>
-</ul>
-<h3 id="2-有序性"><a href="#2-有序性" class="headerlink" title="2.有序性"></a>2.有序性</h3><ul>
-<li><p>JVM如何实现跨平台下的线程安全</p>
-<ul>
-<li><p>JMM模型,定义多线程场景下数据操作逻辑,根据不同平台生成对应的指令</p>
-<ul>
-<li>通过区分本地内存和主内存</li>
-<li>线程操作数据都会先从主内存拷贝,自己的本地内存完成修改后,再将其同步到主内存</li>
-<li>每个线程都存有一个数据副本到自己的本地内存</li>
+<li>可变类型：<ul>
+<li>数组。</li>
+<li>集合类（如 ArrayList、HashSet 等）。</li>
 </ul>
 </li>
-<li><p>CPU内存屏障指令(针对不同系统,架构有不同实现)</p>
-<p>屏障类型</p>
+</ul>
+<p>不可变类型的特点是其值一旦确定就不能被修改。例如，String 类型的字符串是不可变的，任何对字符串的操作都会返回一个新的字符串对象。</p>
+<p>可变类型则可以在其生命周期内进行修改。</p>
+<p>选择使用可变类型还是不可变类型取决于具体的需求和场景。不可变类型通常具有更好的安全性和简洁性，而可变类型在某些情况下提供了更灵活的操作方式。</p>
 <ul>
-<li><p>LoadLoad  读1操作不可优先于读2操作</p>
+<li>如何声明一个不可变类型<ul>
+<li>成员变量私有化,限制外部访问,修饰为final</li>
+<li>对外部不提供修改成员变量的方法</li>
+<li>创建一个对象时,只能在构造方法里完成赋值,后续无法修改</li>
+</ul>
 </li>
-<li><p>StoreStore 写1操作不可优先于写2操作</p>
-</li>
-<li><p>LoadStore 读操作优先于写操作</p>
-</li>
-<li><p>StoreLoad 写操作优先于读操作</p>
-</li>
-<li><p>基于上述方法接口,实现出不同平台下的逻辑</p>
-</li>
-<li><blockquote>
+</ul>
+<h3 id="5-开闭原则"><a href="#5-开闭原则" class="headerlink" title="5.开闭原则"></a>5.开闭原则</h3><p>继承在某些情况下可以被视为一种扩展方式，但它并不总是意味着符合开闭原则的扩展。</p>
+<p>继承可以实现代码的重用和功能的扩展。通过继承现有类，可以获取其已有属性和方法，并在此基础上进行扩展或修改。</p>
+<p>然而，在开闭原则的背景下，单纯的继承可能存在一些问题：</p>
+<ol>
+<li><strong>紧耦合</strong>：继承关系往往导致较高的耦合性，使得子类紧密依赖于父类的实现。</li>
+<li><strong>灵活性受限</strong>：对父类的修改可能会影响到所有子类。</li>
+<li><strong>不易扩展</strong>：当需要添加新的特性时，可能需要在父类中进行修改。</li>
+</ol>
+<p>为了更好地实现扩展，符合开闭原则，可以考虑以下几点：</p>
+<ol>
+<li><strong>依赖接口而非具体类</strong>：通过实现接口来提供扩展点。</li>
+<li><strong>使用抽象类</strong>：在必要时定义抽象类，提供部分通用实现。</li>
+<li><strong>组合而非继承</strong>：通过组合的方式来组合不同的功能模块。</li>
+</ol>
+<p>这样可以提高代码的灵活性和可扩展性，更容易进行扩展而不影响现有代码的稳定性。</p>
+<p>哪些情况会破坏开闭原则</p>
+<p>以下扩展方式可能会破坏开闭原则：(直接修改,直接依赖具体实现,重复代码,耦合性重)</p>
+<ol>
+<li><strong>直接修改源代码</strong>：每次扩展都需要直接修改现有代码，不符合开闭原则对修改关闭的要求。</li>
+<li><strong>过度使用继承</strong>：当继承关系复杂且紧密时，可能导致代码的灵活性降低，不利于扩展。</li>
+<li><strong>硬编码依赖</strong>：在代码中直接硬编码依赖特定的实现，使得扩展变得困难。</li>
+<li><strong>全局变量或静态方法的使用</strong>：限制了代码的可复用性和可扩展性。</li>
+<li><strong>紧密耦合的组件</strong>：组件之间耦合度过高，使得扩展一个组件可能影响其他组件。</li>
+<li><strong>缺乏抽象</strong>：没有正确使用抽象类或接口，导致具体实现与扩展紧密绑定。</li>
+<li><strong>代码重复</strong>：大量重复的代码使得维护和扩展变得复杂，容易引入错误。<br>为了避免破坏开闭原则，应该尽量采用更灵活的扩展方式，如使用抽象、接口、组合等设计模式，以及配置文件、<a class="link"   href="coco://sendMessage?ext={" s%24wiki_link"%3A"https%3A%2F%2Fm.baike.com%2Fwikiid%2F5672419420006108837"}&msg=插件">插件 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>机制等技术。这样可以提高代码的可维护性和可扩展性，使系统更易于应对变化和扩展。</li>
+</ol>
+<h3 id="6-为什么要使用final修饰变量"><a href="#6-为什么要使用final修饰变量" class="headerlink" title="6.为什么要使用final修饰变量"></a>6.为什么要使用final修饰变量</h3><p>是的，在某些场景下，使用 <code>final</code> 可以作为一种兜底的安全策略。</p>
+<p>将变量声明为 <code>final</code> 可以带来以下安全方面的好处：</p>
+<ol>
+<li><strong>防止意外修改</strong>：明确表示变量的值在指定区域内是不可变的，避免了意外的修改导致的错误。</li>
+<li><strong>保证一致性</strong>：确保在特定的场景中，变量的值保持一致，不会因为误操作而改变。</li>
+<li><strong>提高可读性</strong>：让开发者清楚地知道该变量是不可变的，增强了代码的可读性和可维护性。</li>
+<li><strong>限制访问</strong>：限制了对变量的修改，从而减少了可能出现的错误和安全隐患。</li>
+</ol>
+<p>通过将关键变量或参数声明为 <code>final</code>，可以作为一种兜底的安全策略，增加代码的稳定性和可靠性。尤其在一些关键的场景中，如安全性要求较高的模块或处理重要数据的部分，使用 <code>final</code> 可以提供额外的保障。</p>
+<p>然而，是否使用 <code>final</code> 作为兜底的安全策略，需要根据具体的情况来决定，权衡性能、灵活性和安全性等因素。</p>
+<h3 id="7-Spring的ignoreDependencyInterface为什么需要在实例化阶段完成忽略"><a href="#7-Spring的ignoreDependencyInterface为什么需要在实例化阶段完成忽略" class="headerlink" title="7.Spring的ignoreDependencyInterface为什么需要在实例化阶段完成忽略"></a>7.Spring的ignoreDependencyInterface为什么需要在实例化阶段完成忽略</h3><p>是的，在<strong>反射创建 Bean</strong> 时忽略这些接口的方法，可以避免属性注入属性的冲突。</p>
+<p>通过忽略这些接口的方法，Spring 可以确保在自动装配过程中不会尝试为这些接口相关的属性进行注入。</p>
+<p>这样做有以下好处：</p>
+<ol>
+<li>防止重复注入：避免了在自动装配和接口回调方法中对相同属性的重复注入。</li>
+<li>避免冲突：降低了属性注入过程中发生冲突的风险。</li>
+<li>提高效率：减少了不必要的注入操作，提高了系统的性能。</li>
+</ol>
+<p>这种处理方式使得属性注入更加精确和可控，有助于提高系统的稳定性和可维护性。</p>
+<h3 id="8-线上GC如何处理"><a href="#8-线上GC如何处理" class="headerlink" title="8.线上GC如何处理"></a>8.线上GC如何处理</h3><blockquote>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/imgs/JMM/%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C%E7%B1%BB%E5%9E%8B.png"
-                      alt="内存屏障类型"
+                     data-src="/imgs/%E5%85%AB%E8%82%A1%E6%96%87/%E7%BA%BF%E4%B8%8AGC%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86.png"
+                      alt="线上GC如何处理"
                 ></p>
+</blockquote>
+<h3 id="9-遇到一个设计题：亿级订单，千万日活，如何设计存储方案，容量，性能，拓展性，业务场景聚焦个大电商物流单，要给个成熟方案，大家思考一下"><a href="#9-遇到一个设计题：亿级订单，千万日活，如何设计存储方案，容量，性能，拓展性，业务场景聚焦个大电商物流单，要给个成熟方案，大家思考一下" class="headerlink" title="9.遇到一个设计题：亿级订单，千万日活，如何设计存储方案，容量，性能，拓展性，业务场景聚焦个大电商物流单，要给个成熟方案，大家思考一下"></a>9.遇到一个设计题：亿级订单，千万日活，如何设计存储方案，容量，性能，拓展性，业务场景聚焦个大电商物流单，要给个成熟方案，大家思考一下</h3><blockquote>
+<p>存储层设计：<br>订单数据库： 使用分布式数据库（例如MySQL Cluster、TiDB等）存储订单信息，按照订单号进行分片存储，保证存储和查询的高性能。<br>缓存层： 使用分布式缓存系统（例如Redis Cluster）缓存热门订单数据和查询结果，减少数据库访问压力。<br>日志存储： 使用分布式文件系统（例如HDFS）存储订单操作日志，保证数据可追溯性和故障恢复能力。<br>应用层设计：<br>订单服务： 提供订单的创建、查询、修改和删除等接口，负责处理订单相关的业务逻辑。<br>物流服务： 提供物流信息的查询和更新接口，负责物流状态的实时更新和查询。<br>用户服务： 提供用户信息的查询和更新接口，负责管理用户账号和地址信息。</p>
+</blockquote>
+<h3 id="10-组合复用原则"><a href="#10-组合复用原则" class="headerlink" title="10.组合复用原则"></a>10.组合复用原则</h3><p>组合,主体和其它对象高度依赖,生命周期一致</p>
+<p>聚合,主体和其它对象不强制依赖,可以早于晚于主体创建</p>
+<h3 id="11-高可用的通用性解决方案"><a href="#11-高可用的通用性解决方案" class="headerlink" title="11.高可用的通用性解决方案"></a>11.高可用的通用性解决方案</h3><p><strong>主从架构</strong>：设置主节点和多个从节点，当主节点故障时，可以提升某个从节点为主节点继续提供服务。</p>
+<blockquote>
+<p>冗余,主从架通过冗余配置来保证服务的连续性</p>
+</blockquote>
+<p><strong>集群模式</strong>：如 Redis 集群等，通过多个节点共同承担数据存储和处理任务，提高整体的可靠性和容错性。</p>
+<blockquote>
+<p>容错,集群模式体现了容错性,增强系统应对故障的能力</p>
+</blockquote>
+<p><strong>数据复制</strong>：确保数据在多个节点之间进行实时或定期的复制，保证数据有多个副本。</p>
+<blockquote>
+<p>兜底,数据复杂是一种兜底手段,防止数据丢失,是持续动态的保障机制</p>
+</blockquote>
+<p><strong>负载均衡</strong>：使用负载均衡器将请求均匀分发到多个节点上，避免单个节点负载过高。</p>
+<blockquote>
+<p>分治思想,负载均衡运用分治思想,提高整体性能和资源利用率</p>
+</blockquote>
+<p><strong>监控与告警</strong>：实时监控系统的关键指标，一旦出现异常及时发出告警以便快速响应。</p>
+<blockquote>
+<p>预防,监控和告警起到预防的作用,让我们能及时发现问题</p>
+</blockquote>
+<p><strong>自动故障转移</strong>：通过程序或机制实现自动检测主节点故障并进行切换的过程。</p>
+<blockquote>
+<p>智能,自动故障转移展现了智能化的处理方式,减少人工干预</p>
+</blockquote>
+<p><strong>数据备份与恢复</strong>：定期进行数据备份，以便在出现严重故障时进行数据恢复。</p>
+<blockquote>
+<p>容灾,数据备份与恢复则是重要的容灾措施,确保在极端情况下数据的可恢复性,是最后的”保险防线”</p>
+</blockquote>
+<h3 id="12-分布式场景下会遇到的一些问题"><a href="#12-分布式场景下会遇到的一些问题" class="headerlink" title="12.分布式场景下会遇到的一些问题"></a>12.分布式场景下会遇到的一些问题</h3><p><strong>网络延迟和故障</strong>：节点之间通信可能出现延迟、丢包甚至网络中断，影响数据同步和协调。</p>
+<blockquote>
+<p>注册中心,用于管理节点的信息和状态,当网络延迟或故障发生时,注册中心可以帮组及时感知和处理</p>
+<p>节点的状态变化,以保证数据听同步和协调的准确性</p>
+</blockquote>
+<p><strong>数据一致性问题</strong>：确保多个节点上的数据保持一致是一个挑战，可能出现数据不一致的情况。</p>
+<blockquote>
+<p>强一致&#x2F;最终一致,如MQ,可以在一定程度上缓解数据一致性问题,通过异步出来消息来协调不同节点的</p>
+<p>数据操作</p>
+</blockquote>
+<p><strong>分布式事务问题</strong>：事务涉及多个节点时，协调事务的提交和回滚较为复杂。</p>
+<blockquote>
+<p>阶段提交,是解决分布式事务问题的一种常见方式，通过分阶段的操作来确保事务在多个节点上的一致性</p>
+</blockquote>
+<p><strong>节点故障</strong>：某个或某些节点可能出现故障，需要有应对机制来保障系统的正常运行。</p>
+<blockquote>
+<p>负载均衡和熔断机制,负载均衡可以将请求分发到不同的健康节点，减少故障节点的影响；熔断机制则可以在节点出现问题时快速切断对故障节点的调用，保障系统的稳定性</p>
+</blockquote>
+<p><strong>资源竞争</strong>：多个节点对共享资源的竞争可能导致性能问题。</p>
+<blockquote>
+<p>锁优化,资源分区,缓存,通过这些方式减缓竞争的激烈程度,以合理的机制和策略安排来实现更有序,高效的资源访问和利用,从而根本上提高整体性能,而不仅仅是”减缓竞争”这么简单</p>
+</blockquote>
+<p><strong>分布式锁问题</strong>：保证在分布式环境下对关键资源的互斥访问。</p>
+<blockquote>
+<p>数据库锁,Redis锁,Zookeeper,利用这些中间件的一些锁的特性来解决分布式锁的问题,和资源竞争相关但又不完全相同，它更强调在分布式环境下精确地控制对特定关键资源的访问顺序和互斥性。</p>
+</blockquote>
+<p><strong>数据分区问题</strong>：数据分布不合理可能导致某些分区负载过高或过低。</p>
+<blockquote>
+<p>分片,通过合理的数据分区（分片）可以解决数据分区问题，实现更均衡的负载分布</p>
+</blockquote>
+<p><strong>时钟同步问题</strong>：不同节点的时钟可能存在偏差，影响一些基于时间的判断和操作。</p>
+<blockquote>
+<p>网络时间协议,可以通过专门的时钟同步服务或协议来确保不同节点的时钟尽量保持一致，例如网络时间协议（NTP）等，避免因时钟偏差导致错误的判断和操作</p>
+</blockquote>
+<p><strong>安全问题</strong>：分布式系统面临更广泛的安全威胁和攻击面。</p>
+<blockquote>
+<p>WAF,可以抵御针对分布式系统的一些网络安全攻击，保护系统的安全</p>
+</blockquote>
+<h3 id="13-Mysql的redo和doubleWrite的区别"><a href="#13-Mysql的redo和doubleWrite的区别" class="headerlink" title="13.Mysql的redo和doubleWrite的区别"></a>13.Mysql的redo和doubleWrite的区别</h3><p>解决</p>
+<ul>
+<li><p>redo主要是用于解决事务场景下对于数据修改的持久性和一致性,对于数据的最终结果保证</p>
+</li>
+<li><p>double则是解决针对部分写失效场景问题,将完整的数据页写入到双写缓存,然后再分批写入数据文件,更侧重于</p>
+</li>
+</ul>
+<p>​		数据写入磁盘时的一种保障机制(ibddata1文件中,属于系统表空间),具体数据则存储在对应独立表空间中</p>
+<blockquote>
+<p>本质是页数据(页大小默认16kb)写入到磁盘时,发现文件管理只能以4k的大小来写入,所以需要分批写入,</p>
+<p>并且如果在写入时出现故障,导致写入数据不完整,导致无法使用该数据恢复</p>
+<p>双写缓存此时就是作为页数据的一个兜底备份存在,避免写入出现问题</p>
+</blockquote>
+<h3 id="14-超时和熔断"><a href="#14-超时和熔断" class="headerlink" title="14.超时和熔断"></a>14.超时和熔断</h3><ul>
+<li><p>超时是对于上游调用方的保护,避免因为下游长期处理导致上游调用超时,波及到它</p>
+</li>
+<li><p>熔断则是对下游被调用方的保护,避免上游的故障&#x2F;错误数据波及到下游,主动断开与上游的关联</p>
+<blockquote>
+<p>1.假设有一个电商系统，订单处理模块是下游，库存管理模块是上游。当订单处理模块在处理订单时需要调用库存管理模块来确认商品库存数量。</p>
+<p>2.如果下游的订单处理模块发现上游的库存管理模块响应很慢，或者频繁返回错误（比如库存数据不一致等问题）。那么订单处理模块可能会采取以下行动：</p>
+<p>3.首先，它可能会记录这些异常情况，并向系统的监控告警模块发送通知，让相关人员知道上游出现了问题。然后，它可能会暂时停止向库存管理模块发送新的请求，避免因继续请求而导致更多的错误或延迟累积。同时，它可以利用之前缓存的一些库存信息（如果有的话）来继续处理一些紧急的订单，以尽量减少对业务的影响。或者它可能会切换到一个备用的库存数据源（如果存在的话）来获取库存信息，直到原库存管理模块恢复正常。</p>
 </blockquote>
 </li>
 </ul>
+<h3 id="15-Redisson获取锁最大努力的思路"><a href="#15-Redisson获取锁最大努力的思路" class="headerlink" title="15.Redisson获取锁最大努力的思路"></a>15.Redisson获取锁最大努力的思路</h3><blockquote>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//RedissonLock的trylock方法</span></span><br><span class="line"><span class="keyword">if</span>(ttl &gt;=<span class="number">0L</span>&amp;&amp;ttl&lt;time)&#123;</span><br><span class="line">  ((RedissonLockEntry) <span class="built_in">this</span>.commandExecutor.getNow(subscribeFuture)).getLatch().tryAcquire(ttl, TimeUnit.MILLISECONDS);</span><br><span class="line">&#125; <span class="keyword">else</span>&#123;</span><br><span class="line">  ((RedissonLockEntry) <span class="built_in">this</span>.commandExecutor.getNow(subscribeFuture)).getLatch().tryAcquire(time, TimeUnit.MILLISECONDS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>这样的设计可以让程序在不同的时间和条件下都尝试去获取锁，尽量减少因时间限制或特定情况而错过获取锁的可能，体现了一种尽力争取、不轻易放弃的策略，从而达到尽最大努力不浪费机会的效果。</p>
+<p>同时，通过这种分情况处理的方式，也增加了程序的容错性。它可以应对多种可能出现的场景和状态，使得锁的获取机制更加健壮和可靠，即便在一些不太理想的情况下也能做出相对合理的尝试和应对，降低因意外情况导致锁操作失败而引发问题的风险。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//RedissonMultiLock的tryLock方法</span></span><br><span class="line"><span class="keyword">if</span> (failedLocksLimit == <span class="number">0</span>) &#123;</span><br><span class="line"> <span class="built_in">this</span>.unlockInner(acquiredLocks);</span><br><span class="line">      <span class="keyword">if</span> (waitTime &lt;= <span class="number">0L</span>) &#123;</span><br><span class="line">             <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         failedLocksLimit = <span class="built_in">this</span>.failedLocksLimit();</span><br><span class="line">         acquiredLocks.clear();</span><br><span class="line"></span><br><span class="line">         <span class="keyword">while</span> (iterator.hasPrevious()) &#123;</span><br><span class="line">             iterator.previous();</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>这里也是类似的情况,尽最大努力的尝试</strong></p>
+<p>以往很多时候是采用快速失败的策略，即如果尝试获取失败就直接结束。</p>
+<p>但像这种不断尝试的方式也有其应用场景和优势。它可以在一些对获取锁的确定性要求较高，或者希望尽可能争取到锁的情况下使用。这样可以避免因为一次尝试失败就立刻放弃，而是通过持续尝试来增加成功的机会，也许在某些特殊情况下，经过一段时间的努力后能够最终获取到锁，从而使得程序能够继续正常运行。当然，具体采用哪种方式还是要根据实际的业务需求和场景特点来权衡和选择。</p>
+<p>复制重新生成</p>
+</blockquote>
+<h3 id="16-HashMap的驱逐思想"><a href="#16-HashMap的驱逐思想" class="headerlink" title="16.HashMap的驱逐思想"></a>16.HashMap的驱逐思想</h3><blockquote>
+<p>1.在 Java 中，<code>HashMap</code>的<code>evict</code>参数用于控制是否在插入元素时进行驱逐（eviction）操作。驱逐操作的目的是在内存不足时，从<code>HashMap</code>中删除一些元素，以释放内存空间。</p>
+<p>2.当<code>evict</code>参数设置为<code>false</code>时，表示在插入元素时不进行驱逐操作。在这种情况下，<code>HashMap</code>会尽可能地保存所有插入的元素，直到内存不足时才会进行驱逐操作。</p>
+<p>3.当<code>evict</code>参数设置为<code>true</code>时，表示在插入元素时进行驱逐操作。在这种情况下，<code>HashMap</code>会在插入元素时，根据一定的策略删除一些元素，以释放内存空间。驱逐操作的具体策略可能会因<code>HashMap</code>的实现而有所不同。</p>
+<p>4.需要注意的是，驱逐操作可能会导致<code>HashMap</code>中的元素被删除，因此在使用<code>evict</code>参数时，需要谨慎考虑其对应用程序的影响。</p>
+</blockquote>
+<h3 id="17-HashMap的增强点"><a href="#17-HashMap的增强点" class="headerlink" title="17.HashMap的增强点"></a>17.HashMap的增强点</h3><blockquote>
+<p>**afterNodeAccess(Node&lt;K,V&gt; p)**：</p>
+<ul>
+<li>主要用于在节点被访问后执行一些自定义的后续动作。比如可以用于统计节点的访问频率，或者根据访问情况进行一些状态更新等。</li>
+</ul>
+<p>**afterNodeInsertion(boolean evict)**：</p>
+<ul>
+<li>当元素插入后，通过这个方法可以根据插入的情况以及 <code>evict</code> 的值进行不同的处理。比如如果 <code>evict</code> 为 <code>false</code> 且处于特定的创建模式，可以进行一些与创建模式相关的操作或记录；如果 <code>evict</code> 为 <code>true</code> ，可能执行与正常模式下插入后不同的逻辑。</li>
+</ul>
+<p>**afterNodeRemoval(Node&lt;K,V&gt; p)**：</p>
+<ul>
+<li>它允许在节点移除后进行一些清理或后续的处理工作。例如，可能需要释放与该节点相关的一些资源，或者对整个数据结构的状态进行相应调整。</li>
+</ul>
+</blockquote>
+<h3 id="18-分布式组件理论"><a href="#18-分布式组件理论" class="headerlink" title="18.分布式组件理论"></a>18.分布式组件理论</h3><ul>
+<li>好的架构不仅需要知道怎么用,还得知道为什么,可以带来什么好处,并且需要知道增加会带来什么问题,存在什么隐患</li>
+<li>优质的架构不但要明晰其具体的运用之法，更要深刻理解背后的缘由，清楚其所能带来的益处，同时还要知晓增添它可能引发的各类问题。</li>
+</ul>
+<h4 id="1-架构演进-应用-软件-部署"><a href="#1-架构演进-应用-软件-部署" class="headerlink" title="1.架构演进(应用&#x2F;软件&#x2F;部署)"></a>1.<strong>架构演进</strong>(应用&#x2F;软件&#x2F;部署)</h4><blockquote>
+<p>架构演进过程</p>
+<p>可分为以下三个阶段,单机式,集中式,分布式微服务</p>
+<p>下面演进过程中则是对应用模块的进一步划分,<strong>从一个整体到多个细分模块构成一个整体的过程</strong></p>
+<ul>
+<li><p>**单体架构(协调,整体)**：所有功能都集中在一个应用程序中，简单直接，但随着业务增长，会面临性能瓶颈、难以扩展和维护等问题,但简单直接、易于开发和部署。</p>
+</li>
+<li><p>**垂直架构(职责分离)**：将单体架构按照不同的业务功能进行垂直拆分，形成多个独立的子系统，一定程度上提高了可扩展性和维护性,强调一定的分层和专业性。</p>
+</li>
+<li><p>**分布式架构(分治,压力均摊)**：各个子系统进一步分布部署在不同的节点上，通过网络进行通信和协作，提升了系统的处理能力和可用性,保证了服务的高可用性、容错性等。</p>
+</li>
+<li><p><strong>SOA（面向服务架构,标准协议）</strong>：强调服务的概念，将系统功能封装为独立的服务，通过标准的接口进行交互，提高了系统的灵活性和复用性,强调服务的重用性和松耦合。</p>
+</li>
+<li><p>**微服务架构(独立,自主)**：将服务进一步细化和拆分，每个微服务都可以独立部署、扩展和维护，具有更高的灵活性、敏捷性和可扩展性,强调敏捷性、弹性等。</p>
+</li>
+<li><p>演进的过程从逻辑划分变为物理划分</p>
+</li>
+<li><p>分布式和微服务有点类似多面手和螺丝钉的区别,相当于是通过一个整体的过程,协调多个服务完成一件事,而微服务仅仅专注自己的职责,更单一</p>
+<blockquote>
+<p>微服务和分布式有很强的相关性，主要体现在以下几个方面：</p>
+<p>首先，微服务的实现通常需要依托于分布式技术。每个微服务都可能运行在不同的节点上，这本身就是一种分布式的部署方式，通过分布式的基础设施来支撑微服务之间的通信、协调和资源分配。</p>
+<p>其次，分布式强调的资源分散和协同工作的理念与微服务的架构思想是契合的。微服务架构也是为了更好地实现系统的分布式特性，比如提高系统的可扩展性、容错性等，这些都是分布式所追求的目标。</p>
+<p>再者，从系统的构建和运行角度来看，微服务和分布式都致力于解决大规模复杂系统的问题，它们相互配合，共同营造出一个高效、灵活的系统环境。</p>
+<p>比如，在一个大型的应用系统中，通过分布式部署来将各个微服务分布到不同的服务器上，以实现性能的提升和资源的合理利用，二者是紧密结合在一起的。所以不能单纯地将它们割裂开来，它们在很多方面是相互关联、相互促进的</p>
+</blockquote>
+</li>
+<li><p>所以,架构的演进过程中,可能包含了以往的一些特性,并且在此基础上进行了增强</p>
+</li>
+<li><p>最后总结一句,分布式重在部署方式及协调整体,而微服务重在服务自治,灵活,扩展,敏捷</p>
+</li>
+</ul>
+<p>最后是部署,将服务部署到不同的机器上,达到对外暴露服务</p>
+<p>总结:</p>
+<ul>
+<li>我觉得软件架构是教你如何设计,应用架构则是教你如何组合,部署架构则是如何对外服务</li>
+<li>软件架构<strong>设计</strong>关乎如何以最有的方式组织和构建软件的各个部分,包括模块划分,层次结构,交互方式等,以满足功能和非功能和需求</li>
+<li>应用架构的<strong>组合</strong>则是强调的是不同的应用组件或模块如何协同工作,形成一个有机的整体,以实现特定的业务功能和流程</li>
+<li>部署架构则是侧重于如何将软件系统部署到实际的硬件环境中,以提供稳定,可靠的<strong>服务</strong>,它涉及到服务器的配置,网络的布局,资源的分配等方面,直接影响着软件系统的可用性和性能表现</li>
+<li>三者互相影响,互相成就,共同决定了一个软件系统的质量和能效</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>为什么要进化</p>
+<p>在这个演进过程中，是为了不断适应业务的发展变化、提高系统性能、增强可靠性和可维护性等，以更好地满足不断增长的用户需求和应对各种挑战。</p>
+<p>我主要是从系统架构设计、性能优化、业务需求满足以及资源管理等方面来理解这个问题的。</p>
+<ul>
+<li><p>从<strong>系统架构设计角度</strong>来看，物理划分是架构演进的一个重要手段，涉及如何合理布局和构建系统的物理架构。</p>
+</li>
+<li><p>从<strong>性能优化</strong>方面，这是推动进行物理划分的重要动力之一，关乎如何通过这种方式提升系统的整体性能表现。</p>
+</li>
+<li><p>从<strong>业务需求</strong>满足的层面，是考虑怎样更好地适应业务不断发展变化以及多样化的要求。</p>
+</li>
+<li><p>从<strong>资源管理</strong>的角度，则是要处理好资源分配、协调和利用等一系列相关问题，以保障系统的稳定高效运行。通过这些方面的综合考量，能更全面、深入地理解从逻辑划分到物理划分所涉及的核心问题。</p>
+</li>
+<li><p>架构演进的核心,就是需求带来变化,没有需求谈何变化</p>
+</li>
+<li><p>需求(表)是拆分的<strong>因</strong>,资源合理利用(内核)则是是拆分的<strong>果</strong>,但也不能简单的将其<strong>割裂</strong>的来看待,实际它们之间是<strong>相互关联,相互影响</strong>的动态过程</p>
+<blockquote>
+<ul>
+<li>在追求资源合理利用的过程中,可能又会反过来影响对需求的进一步理解和完善</li>
+<li>同时,资源的合理利用也并非仅仅是需求推动的唯一结果,它本身也是为了保障系统的良好运行和持续发展,所以它们的关系是较为复杂且紧密交织的</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>发展的几个阶段:</p>
+<ol>
+<li><strong>单机架构阶段（大一统阶段）</strong>：<ul>
+<li><strong>特点</strong>：所有数据和计算都集中在一台机器上，类似于中央集权的制度。</li>
+<li><strong>优势</strong>：简单直接，无需考虑复杂的网络通信和分布式协调问题。</li>
+<li><strong>挑战</strong>：随着数据和计算需求的增长，单机性能可能成为瓶颈，扩展性受限。</li>
+<li><strong>比喻</strong>：类似于历史上的大一统时期，中央集权，所有资源和任务都由中央统一管理和执行。</li>
+</ul>
+</li>
+<li><strong>集中式架构阶段（诸侯阶段）</strong>：<ul>
+<li><strong>特点</strong>：存在一个中心化的服务器或节点，负责统一管理和协调整个系统，其他节点或组件具有一定的自治权和独立性。</li>
+<li><strong>优势</strong>：通过分布式处理提高了系统的可扩展性和灵活性，同时保留了中心化管理的优势。</li>
+<li><strong>挑战</strong>：中心服务器可能成为单点故障的风险点，对中心服务器的依赖可能导致整个系统的可靠性问题。</li>
+<li><strong>比喻</strong>：类似于历史上的诸侯阶段，中心服务器类似于周天子，其他节点类似于诸侯，各自为政但受中心服务器统一管理。</li>
+</ul>
+</li>
+<li><strong>分布式架构阶段（权利下放阶段）</strong>：<ul>
+<li><strong>特点</strong>：数据和计算任务被分散到多个节点或服务器上，这些节点之间通过网络进行通信和协调，形成一个去中心化的系统。</li>
+<li><strong>优势</strong>：极大地提高了系统的可扩展性、容错性和灵活性。由于数据和计算被分散到多个节点上，可以充分利用集群的计算和存储能力，同时减少了单点故障的风险。</li>
+<li><strong>挑战</strong>：分布式系统面临着复杂的网络通信、数据一致性和并发控制等问题。需要设计合理的分布式算法和协议来确保系统的正确性和性能。</li>
+<li><strong>比喻</strong>：类似于权力下放的社会制度，各个节点或服务器拥有更多的自主权和决策权，能够更快地响应变化并做出决策，整个系统更加灵活和健壮。</li>
+</ul>
+</li>
+<li><strong>总结</strong>：架构方式在不同的阶段下存在的问题从性能瓶颈，变为极度依赖，再到数据同步，网络通讯，并发控制等问题，随之带来的好处分别是结构简单（维护方便），职责分离（中心协调，其它承担具体任务），高度自治，扩展方便（独立自足，增加方便）</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>常用架构:</p>
+<p><strong>微服务架构</strong>：灵活性高，易于扩展和维护。</p>
+<p><strong>分布式架构</strong>：提升系统的处理能力和可靠性。</p>
+<p><strong>面向服务架构（SOA）</strong>：便于服务的集成和复用。</p>
+<p><strong>分层架构（如三层架构）</strong>：清晰划分功能层次。</p>
+<p><strong>事件驱动架构</strong>：适合对事件响应要求高的场景。</p>
+<p><strong>CQRS（命令查询职责分离）架构</strong>：明确区分数据操作类型。</p>
+<p><strong>Actor 模型架构</strong>：适用于并发处理复杂的情况。</p>
+<p><strong>模型-视图-控制器（MVC）架构</strong>：广泛应用于 Web 开发。</p>
+<p><strong>模型-视图-视图模型（MVVM）架构</strong>：常用于前端开发。</p>
+<p><strong>领域驱动设计（DDD）架构</strong>：强化业务领域概念。</p>
+<p><strong>无服务器架构</strong>：简化开发和运维。</p>
+</blockquote>
+<blockquote>
+<p>设计的融和:</p>
+<p>为满足业务需求与达成理想效果，架构与设计往往并非单一形态，而是会不断融合与创新</p>
+<p>总结:</p>
+<p><strong>设计并不孤单,而会不断融合,一起拥抱变化吧</strong></p>
+</blockquote>
+<h4 id="2-分布式场景"><a href="#2-分布式场景" class="headerlink" title="2.分布式场景"></a>2.<strong>分布式场景</strong></h4><blockquote>
+<p><strong>服务治理与交互</strong>：</p>
+<ul>
+<li>注册中心（如 Eureka、Consul、Spring Cloud Alibaba Nacos）：用于服务的自动注册与发现。</li>
+<li>远程调用（如 gRPC、Thrift、Dubbo）：实现不同服务之间的高效通信。</li>
+<li>负载均衡（如 Nginx、F5）：将请求均衡分发到多个后端服务。</li>
+<li>网关（如 Spring Cloud Gateway）：统一入口，进行路由和过滤等操作。</li>
+<li>服务降级&#x2F;限流（如 Sentinel、Hystrix）：保障系统在异常或高负载时的稳定性。</li>
+</ul>
+<p><strong>通讯与消息传递</strong>：</p>
+<ul>
+<li>消息队列<ul>
+<li>高性能（如 Kafka）：分布式流处理平台，处理海量数据和高并发。</li>
+<li>可靠（如 RabbitMQ、RocketMQ、ActiveMQ）：确保消息可靠传输（使用确认机制、事务、持久化、副本方式保证可靠性）。</li>
+<li>低延迟（如 ZeroMQ）：适用于对延迟要求极高的场景。</li>
+</ul>
+</li>
+<li>分布式通信协议<ul>
+<li>ZooKeeper 协议：分布式协调服务的基础协议。</li>
+<li>Raft 协议：用于实现分布式一致性的主流协议之一。</li>
+<li>Paxos 协议：经典的分布式一致性协议。</li>
+</ul>
+</li>
+</ul>
+<p><strong>数据存储和管理</strong>：</p>
+<ul>
+<li>结构化存储<ul>
+<li>关系型数据库（如 MySQL、PgSQL、Oracle 等）：传统的结构化数据存储。</li>
+</ul>
+</li>
+<li>非结构化存储<ul>
+<li>内存型数据库（如 Redis）：高速缓存和数据存储。</li>
+<li>文档型数据库（如 MongoDB）：灵活的文档存储。</li>
+<li>文件型数据库（如 FastDFS）：分布式文件存储。</li>
+<li>对象型数据库（如 MinIO）：对象存储。</li>
+</ul>
+</li>
+</ul>
+<p><strong>协调与同步</strong>：</p>
+<ul>
+<li>分布式协调（如 ZooKeeper）：实现分布式系统的协调工作(管理者)。</li>
+<li>数据同步（如 Canal）：监听数据库变更进行同步。</li>
+<li>事务（如 Seata）：分布式事务处理框架。</li>
+<li>任务同步<ul>
+<li>定时任务（如 XXL-job，Quartz）：定时执行任务。</li>
+</ul>
+</li>
+<li>状态同步<ul>
+<li>状态机（如 Spring Statemachine）：管理状态的流转。</li>
+</ul>
+</li>
+</ul>
+<p><strong>配置管理</strong>：</p>
+<ul>
+<li>配置中心（如 Spring Cloud Config，Spring Cloud Alibaba Nacos Config）：集中管理系统配置。</li>
+</ul>
+<p><strong>安全管理</strong>：</p>
+<ul>
+<li>权限框架（如 Shiro、Spring Security）：实现访问控制和权限管理。</li>
+</ul>
+<p><strong>容错与恢复</strong>：</p>
+<ul>
+<li>限流&#x2F;熔断（如 Sentinel、Hystrix）：限制流量和防止故障扩散。</li>
+<li>故障自动恢复 （如 Kubernetes）：自动处理节点或服务故障。</li>
+<li>重试策略（如 Spring Retry）：对失败请求进行重试。</li>
+</ul>
+<p><strong>监控与追踪</strong>：</p>
+<ul>
+<li>日志记录（ELK、Flume）：收集和分析日志。</li>
+<li>链路追踪（如 Zipkin、Jaeger、SkyWalking）：追踪请求的全链路。</li>
+<li>监控（如 Prometheus、Grafana、Zabbix、Nagios）：对系统性能等进行监控。</li>
+</ul>
+<p><strong>部署和运维</strong>：</p>
+<ul>
+<li>容器（如 Docker）：应用容器化技术。</li>
+<li>容器编排（如 Kubernetes）：管理容器集群。</li>
+</ul>
+<p><strong>数据处理和分析</strong>：</p>
+<ul>
+<li>大数据处理框架（如 Hadoop、Spark）：处理大规模数据。</li>
+<li>流处理技术（如 Flink）：实时流数据处理。</li>
+</ul>
+</blockquote>
+<h4 id="3-分布式理论"><a href="#3-分布式理论" class="headerlink" title="3.分布式理论"></a>3.<strong>分布式理论</strong></h4><ul>
+<li>CAP(基础理论)<ul>
+<li>一致性</li>
+<li>可用性</li>
+<li>分区容错性</li>
+</ul>
+</li>
+<li>BASE(CAP的具体实现)</li>
+</ul>
+<h4 id="4-MQ"><a href="#4-MQ" class="headerlink" title="4.MQ"></a>4.<strong>MQ</strong></h4><blockquote>
+<ul>
+<li>解耦<ul>
+<li>在传统架构中，有效避免了服务间的直接强关联，降低了服务之间相互影响的风险，当某一服务出现故障时，能极大减少对其他服务及应用整体性能的不良影响。</li>
+<li>从传统的 A 直接调用 B 的模式，转变为 A 调用 C，再由 C 调用 B，通过引入第三方（如 MQ）的方式，实现服务间的灵活解耦。</li>
+</ul>
+</li>
+<li>异步<ul>
+<li>针对数据（尤其是高频次）量大且可能对主流程造成显著影响的情况。</li>
+<li>通过将相关数据置入队列，能够确保在不阻塞当前主流程运行的同时，还可维持良好的用户体验。</li>
+</ul>
+</li>
+<li>削峰<ul>
+<li>针对突发的大量请求导致服务处理效率降低，进而使应用性能下降的状况。</li>
+<li>将数据放入队列中进行缓冲，随后逐步消费，实现平稳处理，从而有效降低即时的高压力。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h4 id="5-锁"><a href="#5-锁" class="headerlink" title="5.锁"></a>5.<strong>锁</strong></h4><h4 id="6-事务"><a href="#6-事务" class="headerlink" title="6.事务"></a>6.<strong>事务</strong></h4><p>MQ&#x2F;锁&#x2F;事务 围绕着数据一致性来说</p>
+<h4 id="7-定时任务"><a href="#7-定时任务" class="headerlink" title="7.定时任务"></a>7.<strong>定时任务</strong></h4><p>围绕着协调来说</p>
+<h4 id="8-限流-熔断-故障恢复"><a href="#8-限流-熔断-故障恢复" class="headerlink" title="8.限流&#x2F;熔断&#x2F;故障恢复"></a>8.<strong>限流&#x2F;熔断&#x2F;故障恢复</strong></h4><h4 id="9-超时-重试"><a href="#9-超时-重试" class="headerlink" title="9.超时&#x2F;重试"></a>9.<strong>超时&#x2F;重试</strong></h4><p>限流&#x2F;熔断&#x2F;故障恢复&#x2F;超时&#x2F;重试 围绕着高可用来说</p>
+<h4 id="10-服务治理与交互"><a href="#10-服务治理与交互" class="headerlink" title="10.服务治理与交互"></a>10.<strong>服务治理与交互</strong></h4><h4 id="11-监控与追踪"><a href="#11-监控与追踪" class="headerlink" title="11.监控与追踪"></a>11.<strong>监控与追踪</strong></h4><h4 id="12-安全"><a href="#12-安全" class="headerlink" title="12.安全"></a>12.<strong>安全</strong></h4><h3 id="19-并发原则"><a href="#19-并发原则" class="headerlink" title="19.并发原则"></a>19.并发原则</h3><ul>
+<li>并发设计</li>
+</ul>
+<blockquote>
+<p><strong>有序性</strong></p>
+<p>1.<strong>“串行一致”和”先行发生”这两个原则并不是平级的概念</strong>，它们在并发编程的理论体系中扮演着不同角色，但相互关联，共同支撑着并发程序的正确性和理解性。</p>
+<ul>
+<li><strong>先行发生（Happen-Before）原则</strong>：这是一个更为基础的概念，它定义了程序中操作之间的偏序关系，说明了哪些操作必须在其他操作之前执行。先行发生原则为并发程序中的内存访问、线程交互等提供了逻辑上的顺序保证，是理解和分析并发程序行为的基础框架。</li>
+<li><strong>串行一致（Sequential Consistency）</strong>：这是一种内存一致性模型，是最强的一种一致性模型。它要求多线程程序在执行结果上与某个串行执行的顺序相对应，即程序的执行仿佛是在某个不确定的串行顺序下进行的，尽管实际可能是乱序执行。串行一致性可以看作是程序执行结果的一种理想状态，而先行发生原则则是达成这一状态的机制之一。</li>
+</ul>
+<p>简而言之，先行发生原则是构建并发程序逻辑顺序的基础规则，而串行一致性是一种理想化的内存交互视图，它依赖于先行发生原则等机制来实现。因此，从某种程度上说，先行发生原则可以视为实现串行一致性的工具之一，两者在逻辑上有包含和被包含的关系，但分别关注于操作间的顺序关系和整体执行效果。</p>
+<p>2.<strong>重排序问题的核心确实与操作之间的依赖关系紧密相关</strong>。当存在依赖的操作被不恰当地重排序，即执行顺序与逻辑上的预期顺序不一致时，确实可能导致程序行为偏离预期，不论是局部变量还是全局变量，也不论是单线程还是多线程环境。</p>
+<ul>
+<li><strong>局部变量</strong>：尽管单线程中的局部变量通常不涉及并发访问问题，但若这些变量的操作之间存在逻辑依赖（例如，一个变量的值依赖于前一个变量的计算结果），不恰当的重排序可能导致逻辑错误，尽管这种情况较为少见。</li>
+<li><strong>全局变量&#x2F;静态变量&#x2F;实例变量</strong>：在多线程环境下，全局变量等共享状态的重排序问题更为显著，因为多个线程可能同时访问和修改这些变量，不恰当的重排序极易引发数据竞争和一致性问题，导致数据损坏或程序崩溃。</li>
+<li><strong>单线程环境</strong>：虽然单线程中并发问题较少，但重排序仍可能通过影响依赖关系，间接导致程序逻辑错误，尤其是当依赖于特定顺序的计算或I&#x2F;O操作时。</li>
+<li><strong>多线程环境</strong>：在多线程中，除了依赖关系外，重排序还会与数据竞争结合，显著增加出现不可预测行为的风险，如脏读、丢失更新等并发问题。</li>
+</ul>
+<p>总之，理解操作之间的依赖性，并在必要时使用适当的同步机制（如锁、volatile、原子操作等）来控制重排序，是保证程序在各种环境下的正确性和一致性的重要手段。</p>
+<p>3.<strong>JMM内存模型</strong>,它是Java虚拟机规范定义的一种内存模型,描述了Java各种变量(线程共享变量)的访问规则,以及在JVM中如何将工作内存中修改后的变量同步到主内存的这种底层细节,并且屏蔽了CPU和内存的交互细节,统一了不同平台下的内存交互方式</p>
+<ul>
+<li><p>访问规则</p>
+<ul>
+<li>将内存空间分为线程私有的工作内存和线程共享的主内存</li>
+<li>访问时先从主内存拷贝一份副本到工作内存中</li>
+<li>修改则先在工作内存中完成,然后在主内存中完成交互</li>
+</ul>
+</li>
+<li><p>同步方式</p>
+<ul>
+<li>当线程修改完成自己的数据后,通过(比如 volatile 变量的特殊规则、锁机制等)这些机制将数据同步到主内存中</li>
+</ul>
+</li>
+<li><p>并发问题</p>
+<ul>
+<li><p>原子</p>
+<ul>
+<li>可以使用Lock和Synchroized这些锁机制来保证执行的完整性,不会被其它的线程给打断</li>
+<li>Synchroized底层是通过对象头的锁持有标记实现互斥,在字节码则是采用lock指令锁住区间实现操作原子性</li>
+<li>Lock底层则是通过State标记实现互斥,CAS操作实现操作原子性</li>
+</ul>
+</li>
+<li><p>有序&#x2F;可见</p>
+<ul>
+<li><p>可以使用使用Lock和Synchroized这些锁机制以及volatile关键字来保证执行的有序和对数据</p>
+<p>修改后对其它线程的可见</p>
+</li>
+<li><p>Lock和Synchroized通过锁的互斥特性来保证一定的有序性(通过阻塞和唤醒机制来保证的),在进入临界区时会强制刷新自己的数据,并且在释放锁时将数据刷新会主内存,这样其它的线程就能看到最新的数据</p>
+</li>
+<li><p>Volatile则是通过内存屏障来保证有序性(读写屏障,读向上,写向下),MESI协议来保证可见性(监听)</p>
 </li>
 </ul>
 </li>
-<li><p>产生原因</p>
+</ul>
+</li>
+</ul>
+</blockquote>
 <ul>
-<li>CPU高速缓存<ul>
-<li>MESI(同步给其它cpu),解决可见性,保证缓存一致性</li>
+<li>三大特性</li>
+</ul>
+<blockquote>
+<p>可见&#x2F;有序性</p>
+<ul>
+<li>Volatile<ul>
+<li>MESI协议<ul>
+<li>操作系统内存—&gt;CPU缓存</li>
+<li>状态</li>
+<li>消息总线</li>
 </ul>
 </li>
 <li>指令重排序<ul>
-<li>内存屏障(避免指令执行顺序被优化),解决有序性</li>
+<li>编译器</li>
+<li>CPU</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>volitale重排序规则</p>
-<p>不管是普通变量还是volitale变量,对于在volitale变量的读操作之间进行写操作是不允许重排序的</p>
+</ul>
+<p>原子性</p>
 <ul>
-<li><blockquote>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/imgs/JMM/Volatile%E9%87%8D%E6%8E%92%E5%BA%8F%E8%A7%84%E5%88%99.png"
-                      alt="Volatile重排序规则"
-                ></p>
-</blockquote>
+<li><p><strong>竞争影响执行的效率</strong></p>
 </li>
-</ul>
-</li>
-</ul>
-<p>如何解决上述问题</p>
+<li><p>锁,Java中使用锁来保证执行操作的原子性(同步且互斥)</p>
 <ul>
-<li><p>synchroized</p>
-</li>
-<li><p>volitale</p>
-</li>
-<li><p>final(内存屏障指令),只能在构造方法之内完成初始化,而在构造方法中初始化的指令,不允许重排序到构造</p>
-<p>方法之外,这里使用了内存屏障指令</p>
-</li>
-</ul>
-<p><strong>不是所有的程序指令都会存在可见性或指令重排序(as-if-serial )问题</strong></p>
-<p>Happens-Before(明确哪些场景下不会出现问题)操作的有序性,操作性依赖</p>
-<ul>
-<li>程序顺序型规则 (as-if-serial),单线程执行不影响</li>
-<li>传递性规则</li>
-<li>volatile变量规则</li>
-<li>监视器锁规则</li>
-<li>start规则</li>
-<li>join规则<ul>
-<li>哪个线程调用就阻塞哪个线程,必须等待join线程完成,适用于按照指定顺序执行的情况</li>
-</ul>
-</li>
-<li>单线程环境下不改变程序运行的结果,以及不存在依赖关系这些场景允许重排序</li>
-<li>本质上是描述可见性的规则(有序性导致的可见性问题)</li>
-</ul>
-<p>典型案例</p>
-<p>DCL(Double Check Lock)</p>
-<ul>
-<li><p>在new对象的过程中,在jvm里需要三个步骤,开辟空间—&gt;对象初始化—&gt;返回对象引用</p>
-</li>
-<li><p>而在多线程场景下,如果不对这个对象使用Volatile修饰(lock指令加锁),就有可能出现指令</p>
-<p>重排序的问题</p>
-</li>
-</ul>
-<h3 id="3-Lock设计预想"><a href="#3-Lock设计预想" class="headerlink" title="3.Lock设计预想"></a>3.Lock设计预想</h3><p>重入锁指的是再获取同一把锁时,无需重复获取,记录持有次数即可</p>
-<p>特点</p>
-<ul>
-<li>可重入</li>
-<li>支持公平,非公平锁</li>
-<li>支持打断</li>
-<li>支持多条件变量</li>
-<li>支持手动释放,需要在finally使用完后进行兜底释放</li>
-</ul>
-<p>实现原理</p>
-<ul>
-<li><p>如何支持线程互斥特性,只有拿到锁后才能执行lock方法里的代码,否则只能排队等待</p>
-<ul>
-<li>涉及到锁的抢占,需要一个标记是否有线程获取到锁,全局变量(0,1)</li>
-<li>抢到会怎么样,无需任何操作</li>
-<li>没抢到会怎么样<ul>
-<li>需要等待 (等待线程进入阻塞状态,释放CPU资源,阻塞—&gt;CPU资源释放)<ul>
-<li>如何让线程等待<ul>
-<li>wait&#x2F;notify线程通信机制,但无法指定唤醒某个线程</li>
-<li>LockSupport.park&#x2F;unpark (阻塞一个指定线程,唤醒一个指定线程)</li>
-<li>Condition</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>需要排队 (运行有n个线程被阻塞,被存储之前的线程都处于活跃状态)<ul>
-<li>通过一个数据结构,把需要等待线程存储起来</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>使用完如何释放<ul>
-<li>LockSupport.park—-&gt;唤醒队列中指定线程</li>
-</ul>
-</li>
-<li>锁抢占的公平性(是否允许插队)<ul>
-<li>公平</li>
-<li>非公平</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>获取不到锁会阻塞,直到获取到后才会继续执行</p>
-</li>
-<li><p>抢占锁—&gt;抢占到后修改状态—&gt;执行任务—&gt;执行完成—&gt;修改state—&gt;释放锁资源—&gt;唤醒队列中等待线程</p>
-<p>​           —&gt;没抢占到进入阻塞队列—&gt;修改线程状态—&gt;释放CPU执行资源—&gt;等待唤醒—&gt;再次抢占</p>
-</li>
-</ul>
-<p>具体实现</p>
-<ul>
-<li><p>reentrantLock本质上就是AQS+LOCK组成</p>
-</li>
-<li><p>内部结构</p>
-<ul>
-<li><p>锁持有线程(记录当前持有线程对象)</p>
-</li>
-<li><p>共享变量(初始0,持有为1,重入则可能大于0(重入次数))</p>
-<ul>
-<li>volatile修饰保证可见性</li>
-<li>cas()方法保证原子性,尝试修改</li>
-</ul>
-</li>
-<li><p>等待队列</p>
-<ul>
-<li><p>双向链表存储,Head节点指向第一个节点,tail指向最后一个节点,将线程对象封装c</p>
-<p>成Node对象</p>
-</li>
-<li><p>自旋操作,尝试抢占资源,未获取成功则进入阻塞状态,避免浪费cpu资源</p>
-<p>调用LockSupport.parlk(this),阻塞自己</p>
-</li>
-<li><p>线程使用完锁后,唤醒等待队列的线程,从Head开始唤醒,唤醒它的下一个节点</p>
-<p>.再调用LockSupport.unpark(ThreadB),唤醒指定线程</p>
-</li>
-<li><p>非公平允许插队,不管队列中有没有线程,公平则不允许,必须加入队列,排队等待</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>流程图</p>
-<ul>
-<li><blockquote>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/imgs/JMM/ReenTrantLock%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png"
-                      alt="ReenTrantLock实现原理"
-                ></p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="4-LOCK的具体实现"><a href="#4-LOCK的具体实现" class="headerlink" title="4.LOCK的具体实现"></a>4.LOCK的具体实现</h3><ul>
-<li><p>具体实现</p>
+<li><p>悲观锁</p>
 <blockquote>
-<p>ReentrantLock</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/imgs/JMM/Java%E9%94%81%E5%AE%9E%E7%8E%B0%E5%85%B3%E7%B3%BB.png"
-                      alt="Java锁实现关系"
-                ></p>
+<p>1.Synchroized</p>
+<p>Java实现的其中一种锁机制,是java的一个内部使用关键字,直译叫做同步的,用于保证组合操作执行的原子性,</p>
+<p>通过进入和出去锁时的Monitor实现线程的唤醒和竞争锁,并且在性能考虑上有一定的优化,支持偏向锁(无竞争&#x2F;竞争少),轻量锁(交替执行),重量锁(大量竞争),并且在一定场景下会发生锁粗化(锁的范围增大),锁消除(不存在竞争时,JVM会将锁清除),锁升级和退化(对于锁的使用和性能动态变化,根据实际竞争情况进行调整,降低资源的消耗,提高性能),涉及到应用态到内核态的切换</p>
+<p>2.Lock</p>
+<p>支持打断,超时,限定条件,可重入等等特性,使用Java实现,相对Syn更灵活,不用和CPU直接打交道,<br>底层使用同步队列+CAS机制实现</p>
+</blockquote>
+</li>
+<li><p>乐观锁(不互斥,不阻塞,不同步)</p>
+<blockquote>
+<p>1.CAS</p>
+<p>它存在内存值,修改值,预期值的概念,首先内存中的值一定是最新的,而修改值和预期值都为线程所</p>
+<p>持有,预期值不一定是最新的,可能会被其它线程修改</p>
+<p>然后就是修改的流程了,线程会先将自己的预期值和内存值进行比较,相同则完成自己的修改,否则<br>就会自旋,当一直比较失败,就会尝试获取内存中的最新值覆盖自己的预期值,再次尝试修改,但存在一定的问题,容易造成CPU空转的问题,导致资源一直被浪费</p>
+<p>最后,为了避免上面的问题,通常会设置一定的自旋上限,然后放弃修改</p>
+<p>2。使用注意事项</p>
 <ul>
-<li>reentrant实现Lock(锁机制)和持有Sync(同步队列)</li>
-<li>AQS负责实现同步队列的基本逻辑,如唤醒,加入队列等方法</li>
-<li>Sync继承AQS抽象类</li>
-<li>在Sync的基础上实现公平和非公平</li>
+<li><p><strong>使用线程安全的集合或并发数据结构</strong>：可以考虑使用线程安全的集合或并发数据结构来替代<code>AtomicInteger</code>。例如，可以使用<code>ConcurrentHashMap</code>或<code>ConcurrentLinkedQueue</code>等数据结构来存储和操作共享数据，这些数据结构在多线程环境下具有更好的并发性和性能。</p>
+</li>
+<li><p><strong>调整线程池配置</strong>：可以调整线程池的配置，例如增加线程池的大小或调整任务队列的大小，以减少线程竞争和阻塞的可能性。</p>
+</li>
+<li><p><strong>避免共享状态</strong>：尽量避免在多线程环境中共享可变状态。如果可能的话，可以将任务设计为无状态的，或者通过参数传递数据而不是共享变量。</p>
+</li>
+<li><p><strong>使用锁或同步机制</strong>：如果必须共享状态并且需要确保线程安全，可以使用适当的锁或同步机制来保护共享数据。例如，可以使用<code>synchronized</code>关键字或<code>ReentrantLock</code>等锁来实现线程同步。</p>
+</li>
 </ul>
 </blockquote>
 </li>
 </ul>
-<p>节点状态</p>
-<ul>
-<li>signal  需要被唤醒的一个节点</li>
-<li>cancelled 一个取消的节点</li>
-<li>condition </li>
-<li>propgate</li>
-<li>0 默认值</li>
-</ul>
-<p>公平锁和非公平锁</p>
-<ul>
-<li><p>是否阻塞线程</p>
-</li>
-<li><p>是否公平</p>
-</li>
-<li><p>抢占时机</p>
-</li>
-<li><p>抢占失败</p>
-<ul>
-<li><p>进入队列</p>
-</li>
-<li><p>自旋(重试获取锁),等待(重试达到上限后将节点状态变为阻塞)</p>
-</li>
-<li><p>阻塞重试达到上限的线程</p>
-</li>
-<li><p>等待唤醒</p>
-</li>
-<li><p>当前线程抢占失败—&gt;进入同步队列—&gt;包装成Node节点.赋waitStatus状态为0—&gt;自旋,判断前置节点</p>
-<p>—&gt;尝试获取锁,重试上限—&gt;放弃获取,进入阻塞状态</p>
 </li>
 </ul>
-</li>
-<li><p>唤醒时机</p>
-</li>
-<li><p>锁释放</p>
+</blockquote>
+<ul>
+<li><p>总结</p>
+<blockquote>
+<p>在并发场景中，<strong>线程通讯</strong>和<strong>资源分配</strong>的确是至关重要。</p>
+<p>线程通讯确保了不同线程之间能够有效地协调和交互信息。例如，通过共享变量、消息总线、信号量等机制，线程可以传递状态、通知任务完成或请求其他线程执行特定操作。良好的线程通讯机制可以避免数据不一致、竞态条件等问题。比如在生产者-消费者模式中，生产者线程和消费者线程通过特定的通讯方式来协调生产和消费行为。</p>
+<p>资源分配则直接关系到系统的性能和稳定性。合理地分配诸如内存、CPU 时间、网络带宽等资源，能够避免资源竞争导致的死锁、性能下降等情况。比如，在多线程访问数据库时，需要合理地分配数据库连接资源，以确保线程不会因为竞争连接而阻塞。同时，对于关键资源的分配策略也需要精心设计，以满足不同场景下的需求。</p>
+<p>总之，在并发场景下，对线程通讯和资源分配的妥善处理是构建高效、可靠的并发系统的关键要素。它们相互配合，共同保障系统在高并发环境下的正常运行和良好性能表现。</p>
+</blockquote>
 </li>
 </ul>
-<h3 id="5-遵守原则"><a href="#5-遵守原则" class="headerlink" title="5.遵守原则"></a>5.遵守原则</h3><ol>
-<li><strong>缓存一致性模型</strong>：保证不同处理器核心或线程的缓存数据同步。</li>
-<li><strong>重排序规则</strong>：指令执行顺序可能会被重新排列，但要遵循特定的约束以保证正确性。</li>
-<li><strong>Happen-Before 关系</strong>：明确操作之间的先后顺序，确保多线程程序的正确执行。</li>
-<li><strong>同步机制规则</strong>：包括锁、同步方法和同步块等的使用规则。</li>
-<li><strong>内存屏障规则</strong>：用于控制指令重排序和确保内存操作的顺序。</li>
+<h3 id="20-CPU是如何保证同步的"><a href="#20-CPU是如何保证同步的" class="headerlink" title="20.CPU是如何保证同步的"></a>20.CPU是如何保证同步的</h3><ul>
+<li><strong>Synchroized</strong></li>
+</ul>
+<blockquote>
+<p>在Linux环境下，针对Java中<code>synchronized</code>关键字及其在HotSpot虚拟机中的不同锁实现机制（轻量级锁、偏向锁、重量级锁）所依赖的关键机制和与Linux紧密相关的指令或函数，可以总结如下：</p>
+<ul>
+<li><p><strong>轻量级锁</strong>:</p>
+<ul>
+<li><strong>核心依赖</strong>：利用CPU的<code>cmpxchg</code>指令执行Compare-And-Swap操作，以原子性尝试获取锁。</li>
+<li><strong>自旋优化</strong>：在自旋等待期间，可能会使用<code>pause</code>指令来减少CPU的空闲循环开销。</li>
+</ul>
+</li>
+<li><p><strong>偏向锁</strong>:</p>
+<ul>
+<li><strong>初始化与撤销</strong>：偏向锁的分配和撤销同样依靠<code>cmpxchg</code>指令，进行原子性地更新对象头Mark Word，以记录或清除线程ID。</li>
+<li><strong>状态检查</strong>：偏向锁维持期间，虽然直接关联的CPU指令不显著，但依赖硬件提供的原子读取来确认偏向状态。</li>
+<li><strong>撤销机制</strong>：撤销偏向锁可能涉及额外的原子操作和内存屏障，以确保数据一致性。</li>
+</ul>
+<blockquote>
+<p>从Java 15开始，偏向锁的默认启用被禁用，意味着JVM在启动时不会自动使用偏向锁。这一改动是因为在很多实际应用场景中，偏向锁带来的性能提升并不明显，有时甚至因为偏向锁的维护成本（如撤销偏向锁的操作）而导致性能下降。</p>
+<p>如果开发者确定自己的应用程序能够从偏向锁中获益，可以通过JVM启动参数 <code>-XX:+UseBiasedLocking</code> 显式启用偏向锁。尽管如此，Oracle官方建议除非经过充分测试并明确知道偏向锁能为特定的应用场景带来性能优势，否则应让JVM默认行为保持不变，即不使用偏向锁。</p>
+<p>因此，偏向锁并未废弃，只是其默认启用状态发生了变化，需要时仍可手动启用。</p>
+</blockquote>
+</li>
+<li><p><strong>重量级锁</strong>:</p>
+<ul>
+<li><strong>核心机制</strong>：依赖于Linux内核提供的<strong>futex</strong>（Fast Userspace Mutex）机制来实现线程的阻塞与唤醒。当锁竞争激烈，轻量级锁膨胀为重量级锁时，通过<code>futex</code>系统调用（如<code>SYS_futex</code>）与内核交互，这可能间接触发<code>syscall</code>指令来切换到内核态处理线程状态。</li>
+<li><strong>内存屏障</strong>：确保锁操作的内存可见性和正确顺序，使用如<code>mfence</code>之类的内存屏障指令。</li>
+</ul>
+</li>
+</ul>
+<p><strong>总结</strong>： 在Linux平台上，轻量级锁和偏向锁主要利用CPU级别的原子操作指令（如<code>cmpxchg</code>）来提升同步效率，减少开销，尤其是通过CAS操作。而重量级锁则借助操作系统级的futex机制来处理更复杂的线程同步问题，包括线程的阻塞与唤醒，这一过程涉及操作系统内核与用户空间的交互，间接使用到如<code>syscall</code>等指令。无论是哪种锁机制，为了确保数据一致性和操作的正确性，内存屏障的使用都是不可或缺的。</p>
+</blockquote>
+<ul>
+<li><strong>ReentrantLock</strong></li>
+</ul>
+<blockquote>
+<p><code>ReentrantLock</code>是Java并发包中的一个重入锁实现，它提供了与<code>synchronized</code>关键字类似的线程同步功能，但具有更高的灵活性和可控性。在HotSpot虚拟机中，<code>ReentrantLock</code>的实现（特别是公平锁与非公平锁）主要依赖以下机制和潜在的CPU指令：</p>
+<ul>
+<li><strong>非公平锁&#x2F;公平锁初始化</strong>:<ul>
+<li>初始状态下，<code>ReentrantLock</code>通过<code>AbstractQueuedSynchronizer</code>（AQS）内部的<code>state</code>变量来追踪锁的状态，该状态的修改通常基于CAS操作，使用CPU的<code>cmpxchg</code>指令来保证原子性。</li>
+</ul>
+</li>
+<li><strong>锁获取</strong>:<ul>
+<li><strong>非公平锁</strong>：在尝试获取锁时，首先尝试通过CAS操作快速获取锁，这一步骤直接利用了CPU的原子指令。</li>
+<li><strong>公平锁</strong>：会先检查是否有等待线程，然后决定是否尝试获取锁，尽管步骤更为复杂，但CAS操作依然是核心，确保了线程安全。</li>
+</ul>
+</li>
+<li><strong>自旋与阻塞</strong>:<ul>
+<li>在锁竞争激烈时，<code>ReentrantLock</code>可能会采用自旋等待策略，这期间可能会使用<code>pause</code>指令减少CPU消耗。</li>
+<li>自旋失败后，未能获取锁的线程会通过<code>LockSupport.park(this)</code>方法被阻塞，背后可能涉及系统调用（如在Linux中通过futex机制）来挂起线程，间接使用到<code>syscall</code>指令。</li>
+</ul>
+</li>
+<li><strong>锁释放</strong>:<ul>
+<li>锁的释放同样依赖CAS操作来原子性地修改AQS的<code>state</code>变量，并可能唤醒等待队列中的下一个线程，这过程涉及内存屏障指令确保释放操作的可见性。</li>
+</ul>
+</li>
+<li><strong>内存屏障</strong>:<ul>
+<li>在锁的获取和释放过程中，为了确保操作的内存效应得到正确传播，JVM会插入必要的内存屏障指令，如<code>mfence</code>，来维持内存的有序访问。</li>
+</ul>
+</li>
+</ul>
+<p>综上所述，<code>ReentrantLock</code>通过高度优化的CAS操作和AQS框架，实现了灵活且高效的锁管理机制。它在非竞争和轻度竞争情况下尽量减少开销，而在高竞争场景下能有效地通过自旋、阻塞与唤醒线程来保证同步，整个过程中充分利用了现代CPU的原子指令和内存屏障特性，同时也依赖于操作系统（如Linux的futex）来实现更复杂的线程管理功能。</p>
+</blockquote>
+<ul>
+<li><p>总结</p>
+<blockquote>
+<ul>
+<li><strong><code>synchronized</code>关键字</strong>：<ul>
+<li>在<strong>重量级锁</strong>场景下，确实高度依赖于操作系统提供的互斥量（mutex）来管理线程的阻塞与唤醒，这在Linux中可能通过<code>futex</code>系统调用实现。这背后的机制虽然不直接关联特定的CPU指令，但涉及操作系统层面的线程管理，可能间接使用到如<code>syscall</code>指令来进入内核模式处理线程状态。</li>
+<li>对于<strong>轻量级锁和偏向锁</strong>，主要依赖于CPU的<strong>Compare-And-Swap (CAS)</strong> 指令，如x86架构的<code>cmpxchg</code>，来实现原子性的锁获取与释放，减少重量级锁的开销，提高并发性能。</li>
+</ul>
+</li>
+<li>**<code>ReentrantLock</code>**：<ul>
+<li>无论是在公平锁还是非公平锁的实现中，<code>ReentrantLock</code>大量依赖于<strong>CAS指令</strong>来实现锁的获取与释放，尤其是在非竞争或轻度竞争的场景下，这使得它能够提供与<code>轻量级锁</code>相似的高效性能。即使是锁的竞争变得激烈，导致线程需要被阻塞，其底层的自旋、阻塞与唤醒机制也始于尝试通过CAS操作避免进入阻塞状态，体现了对CAS指令的广泛依赖。</li>
+</ul>
+</li>
+</ul>
+<p>总的来说，<code>synchronized</code>在不同锁状态下的实现策略反映了从轻量级的乐观锁策略（偏向锁、轻量级锁）逐渐过渡到重量级锁的悲观策略，而<code>ReentrantLock</code>则在设计上更加倾向于使用CAS指令实现的乐观锁策略，提供更多的控制选项和更高的灵活性。两者均利用了现代CPU的特性来优化性能，但具体的依赖机制根据锁的类型和竞争状况有所不同。</p>
+</blockquote>
+</li>
+<li><p>存在的问题</p>
+<ul>
+<li><p>锁饥饿</p>
+<ul>
+<li>合理的资源分配,患寡而患不均</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>活锁</p>
+<ul>
+<li><p>执行顺序设定,无需相互让步</p>
+</li>
+<li><p><strong>引入随机等待时间</strong>：在释放锁后，让线程等待一段随机的时间再尝试获取锁，避免多个线程总是同步地抢锁和让锁。</p>
+<ul>
+<li><strong>设置优先级</strong>：给线程明确不同的优先级，让高优先级的线程优先获取锁，减少无序竞争。</li>
+<li><strong>优化业务逻辑</strong>：仔细审查和改进业务流程，避免不合理的频繁获取和释放锁的操作模式。</li>
+<li><strong>限制重试频率</strong>：对线程获取锁的重试频率进行一定的限制，防止过于频繁的尝试。</li>
+<li><strong>使用更合适的同步机制</strong>：根据实际情况评估是否有更适合的同步方式来替代可能导致活锁的机制。</li>
+<li><strong>增加资源缓冲</strong>：例如设置一定数量的资源缓冲池，避免线程因直接竞争同一资源而容易陷入活锁。</li>
+<li><strong>监控和预警</strong>：建立监控系统，及时发现可能出现活锁的迹象并发出预警，以便及时干预和调整。</li>
+<li>核心是减轻竞争,避免线程之间相互影响</li>
+</ul>
+</li>
+<li><p>死锁</p>
+<ul>
+<li>使用完成后直接释放之前的资源,避免资源浪费</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>线程通讯</p>
+<ul>
+<li>控制执行的先后顺序<ul>
+<li>线程通讯之间的协调</li>
+</ul>
+</li>
+<li>线程的优先级</li>
+</ul>
+</li>
+</ul>
+<h3 id="21-Java对锁的优化和实现"><a href="#21-Java对锁的优化和实现" class="headerlink" title="21.Java对锁的优化和实现"></a>21.Java对锁的优化和实现</h3><ul>
+<li><strong>优化及实现</strong></li>
+</ul>
+<blockquote>
+<p>在并发编程的广阔天地里，锁机制扮演着确保数据一致性和线程安全的中心角色。我们已经探讨了锁升级、锁退化，以及锁粗化和锁膨胀等关键概念，它们共同编织了一个复杂而精妙的并发控制网。为了提供一个全面且优化的视角，让我们再次整合这些概念，特别强调锁粗化与锁膨胀的内涵，以及其他重要机制：</p>
+<h3 id="锁的动态调整与优化"><a href="#锁的动态调整与优化" class="headerlink" title="锁的动态调整与优化"></a>锁的动态调整与优化</h3><ul>
+<li><strong>锁升级与退化</strong>：反映锁机制根据竞争程度动态调整的能力。从偏向锁或无锁状态逐步过渡到轻量级锁，乃至最终的重量级锁，以应对不断加剧的线程竞争，此为锁升级。反之，在竞争减缓时，重量级锁退回到轻量级或无锁状态，减少资源消耗，即锁退化。</li>
+<li><strong>锁粗化与膨胀</strong>：<strong>锁粗化</strong>，作为优化策略，通过合并相邻且频繁被同一线程持有的细粒度锁为更广泛的锁，减少了锁操作的频次，提升了执行效率。相对地，<strong>锁膨胀</strong>是在面临高度竞争时，将原本轻量级的锁机制“膨胀”为重量级锁，以更强有力的手段管理并发访问，即使这可能伴随着更高的开销。</li>
+</ul>
+<h3 id="高级锁特性与策略"><a href="#高级锁特性与策略" class="headerlink" title="高级锁特性与策略"></a>高级锁特性与策略</h3><ul>
+<li><strong>锁消除</strong>：一种高级优化技术，编译器或运行时环境通过深度分析确定某段代码在执行过程中无并发风险，从而直接移除不必要的加锁操作，进一步提升性能。</li>
+<li><strong>读写锁</strong>：相较于传统互斥锁的独占访问，<strong>读写锁</strong>允许多线程同时读取共享资源，仅在写入时排斥所有读写访问，极大提高了读多写少场景下的并发效能。</li>
+<li><strong>可重入性</strong>：<strong>可重入锁</strong>允许线程多次获取同一锁而不会引发死锁，是<code>synchronized</code>和<code>ReentrantLock</code>等机制的核心特征。</li>
+<li><strong>公平与非公平锁</strong>：<strong>公平锁</strong>遵循先进先出原则，确保等待最久的线程优先获得锁；而<strong>非公平锁</strong>允许线程“插队”，牺牲一定的公平性以换取更快的响应速度。</li>
+<li><strong>偏向锁的动态管理</strong>：偏向锁设计为无竞争场景优化，当遇到竞争时撤销为轻量级锁或无锁状态，而原线程后续可能重新获取时恢复偏向状态，这一过程展示了锁状态的动态适应性。</li>
+<li><strong>自适应自旋</strong>：通过动态调整自旋周期，依据过去的自旋成功情况和CPU负载来决定最优自旋策略，力求平衡CPU使用效率与响应时间。</li>
+</ul>
+<p>这些机制共同构成了并发控制的生态系统，每一种都在特定场景下发挥着关键作用，以确保程序的高效执行与数据安全性。</p>
+</blockquote>
+<ul>
+<li><p>总结</p>
+<blockquote>
+<p>确切地说，锁机制的<strong>核心实现及优化策略</strong>，诸如偏向锁、轻量级锁、重量级锁的转换，以及自旋、锁粗化与膨胀等，主要由<strong>Java虚拟机</strong>（JVM，特别是HotSpot VM）<strong>负责实现与管理</strong>。这些底层机制确保了在不同并发场景下，资源访问的高效与安全。<strong>而Java语言层面上</strong>，<strong>则通过关键字如<code>synchronized</code>、<code>volatile</code>以及<code>java.util.concurrent</code>包中的高级并发类</strong>（如<code>ReentrantLock</code>, <code>ReadWriteLock</code>, <code>Semaphore</code>等）<strong>为开发者提供了便捷的接口和抽象</strong>，使得开发者能够在不直接操作JVM底层细节的前提下，轻松实现复杂的并发控制逻辑。简言之，JVM专注于优化和实现锁的底层机制，而Java语言及标准库则专注于提供易于使用的并发编程工具和接口，二者协同工作，共同支撑起了Java平台的并发编程模型。</p>
+</blockquote>
+</li>
+<li><p>分布式场景下的三大特性</p>
+<blockquote>
+<p>确实，无论是单体架构还是分布式微服务，甚至更广泛的并发编程场景，其核心问题往往归结于处理好三个基本特性：原子性、有序性、可见性。这些特性是并发控制和数据一致性的基石，无论架构如何变化，都是确保程序正确性的关键所在。</p>
+<ul>
+<li><strong>原子性</strong>：无论是在单线程环境下的简单操作，还是分布式系统中的事务处理，确保操作的不可分割性都是基础。在分布式系统中，通过两阶段提交、Saga事务等机制实现跨服务操作的原子性。</li>
+<li><strong>有序性</strong>：无论是单机多线程间的内存模型，还是分布式系统中的消息传递顺序，控制操作的执行顺序对于正确性至关重要。分布式系统中，消息队列、分布式协调服务（如Zookeeper）帮助维持操作的全局有序执行。</li>
+<li><strong>可见性</strong>：无论是在单个JVM内的线程共享数据，还是跨微服务间的数据同步，确保数据更新对所有访问者可见是避免数据不一致性的关键。分布式缓存、一致性协议（如Raft、Paxos）等技术保证数据的全局一致性或最终一致性。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="22-CPU亲和性"><a href="#22-CPU亲和性" class="headerlink" title="22.CPU亲和性"></a>22.CPU亲和性</h3><blockquote>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * 设置当前线程的 CPU 亲和性，即绑定线程到特定的 CPU 核心。</span></span><br><span class="line"><span class="comment"> * 优化线程在 CPU 上的调度和执行，减少线程在不同 CPU 核心之间切换的开销，从而提高系统性能。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">redisSetCpuAffinity(server.server_cpulist);</span><br></pre></td></tr></table></figure></div>
+
+<p>在 Redis 中使用 CPU 亲和性主要有以下原因：</p>
+<ol>
+<li><strong>提高性能稳定性</strong>：确保 Redis 进程主要在特定的 CPU 核心上运行，减少因 CPU 核心切换导致的性能波动，使性能表现更加稳定和可预测。</li>
+<li><strong>充分利用缓存</strong>：有助于保持相关数据和指令在特定 CPU 的缓存中，避免频繁在不同 CPU 间切换导致缓存失效和重新加载，提升数据访问效率。</li>
+<li><strong>降低上下文切换</strong>：减少进程在不同 CPU 间迁移带来的上下文切换开销，让 Redis 能够更专注和高效地处理任务。</li>
+<li><strong>优化资源分配</strong>：可以更好地规划和分配 CPU 资源，避免与其他进程竞争导致的性能下降，保障 Redis 对 CPU 资源的有效利用。</li>
 </ol>
-<ul>
-<li>按照这些规则做,就会降低线程安全产生的风险</li>
+</blockquote>
+<h3 id="23-多线程任务"><a href="#23-多线程任务" class="headerlink" title="23.多线程任务"></a>23.多线程任务</h3><ul>
+<li>数据分片导入</li>
 </ul>
-<p>JMM</p>
-<p>JUC</p>
-<p>ThreadExectors</p>
-<p>阻塞队列</p>
-<p>可见性—&gt;缓存一致性问题—&gt;MESI和总线锁</p>
-<p>有序性—&gt;CPU指令重排序—&gt;Volatile</p>
-<p>happens-before</p>
+<blockquote>
+<p>整体思路:</p>
+<p>1.数据分片,使用业务唯一字段,或组合字段作为区分依据 </p>
+<ul>
+<li>将数据分片后,交给线程执行</li>
+<li>当出现异常时需要进行回滚操作</li>
+</ul>
+<p>2.出口,使用CountDownLatch作为最终汇总依据 </p>
+<ul>
+<li>需要对线程执行的异常情况进行兜底</li>
+<li>当出现异常导致一直未归零,将之前的数据进行回滚操作</li>
+</ul>
+<p>3.导入成功 </p>
+<p>需要注意的是,在将数据分片时,每个线程执行的任务不应具有关联性,</p>
+<p>互为一个整体,避免相互影响,然后就是在异常情况下需要将原来的数据</p>
+<p>进行回滚操作,保证数据的一致性和完整性</p>
+<p>具体示例:</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//以下是一个简单的代码示例，展示了使用业务分片、多线程以及处理异常时回滚的基本思路：</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.CountDownLatch;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DataShardingExample</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">SHARD_COUNT</span> <span class="operator">=</span> <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 模拟数据</span></span><br><span class="line">        <span class="type">int</span>[][] data = &#123;</span><br><span class="line">                &#123;<span class="number">1</span>, <span class="number">2</span>&#125;,</span><br><span class="line">                &#123;<span class="number">3</span>, <span class="number">4</span>&#125;,</span><br><span class="line">                &#123;<span class="number">5</span>, <span class="number">6</span>&#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="type">CountDownLatch</span> <span class="variable">latch</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CountDownLatch</span>(SHARD_COUNT);</span><br><span class="line"></span><br><span class="line">        <span class="type">ExecutorService</span> <span class="variable">executor</span> <span class="operator">=</span> Executors.newFixedThreadPool(SHARD_COUNT);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; SHARD_COUNT; i++) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">finalI</span> <span class="operator">=</span> i;</span><br><span class="line">            executor.submit(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="comment">// 模拟处理分片数据</span></span><br><span class="line">                    System.out.println(<span class="string">&quot;处理分片 &quot;</span> + finalI + <span class="string">&quot; 数据&quot;</span>);</span><br><span class="line">                    <span class="keyword">if</span> (finalI == <span class="number">1</span>) &#123;</span><br><span class="line">                        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;模拟异常&quot;</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    <span class="comment">// 记录异常</span></span><br><span class="line">                    System.out.println(<span class="string">&quot;分片 &quot;</span> + finalI + <span class="string">&quot; 出现异常&quot;</span>);</span><br><span class="line">                &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                    latch.countDown();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 等待所有线程完成</span></span><br><span class="line">            latch.await(<span class="number">10</span>, TimeUnit.SECONDS);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (latch.getCount()!= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// 未归零，进行回滚操作</span></span><br><span class="line">            System.out.println(<span class="string">&quot;进行数据回滚&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;数据处理成功&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        executor.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这只是一个基础示例，实际应用中还需要根据具体业务逻辑进行更完善的设计和处理。</span></span><br></pre></td></tr></table></figure></div>
+
+<p>补充点:</p>
+<ul>
+<li>需要考虑数据分片的<strong>均衡性</strong>，<strong>避免某些分片任务过重或过轻</strong>。</li>
+<li>对于回滚操作，需要明确具体的实现机制和范围，比如是整个事务回滚还是部分数据的特定处理。</li>
+<li>异常情况的定义和分类需要更细致，不同类型的异常可能有不同的处理策略。</li>
+<li>线程池的管理和配置也很重要，包括线程数量的设置、资源的合理分配等。</li>
+<li>要考虑在高并发场景下的性能和稳定性，可能需要一些优化措施。</li>
+<li>对数据一致性和完整性的验证机制也应该明确，如何确保回滚后数据确实达到了预期状态。</li>
+</ul>
+<p>总体而言，这个思路是基础和核心的，但还需要结合具体业务场景和需求进一步细化和完善。</p>
+</blockquote>
+<ul>
+<li>CAS无锁机制<ul>
+<li>仅仅保证操作的原子性,无法保证线程执行的顺序性,容易导致阻塞,cpu空转</li>
+</ul>
+</li>
+</ul>
+<h3 id="24-高并发性能"><a href="#24-高并发性能" class="headerlink" title="24.高并发性能"></a>24.高并发性能</h3><p>高并发是什么</p>
+<ul>
+<li>高并发是在突发的情况下,出现大量请求到达服务端,导致处理效率降低的场景</li>
+</ul>
+<p>如何支持高并发性能</p>
+<ul>
+<li><p>可以从业务,异步,缓存,堆积,负载均衡,分布式处理,资源隔离,技术优化(尽最大努力)</p>
+<blockquote>
+<p>锁粒度变小主要带来了以下一些好处：</p>
+<p><strong>提高并发度</strong>：能让更多的线程或进程同时进行操作，而不会因为大范围的锁而相互阻塞，极大地提升了系统在高并发场景下的处理能力。</p>
+<p><strong>减少锁竞争</strong>：降低了发生激烈锁竞争的概率，从而减少了因锁等待导致的性能开销。</p>
+<p><strong>增强系统灵活性</strong>：可以根据具体业务需求更灵活地设置锁的范围，更好地适应不同的场景和操作模式。</p>
+<p><strong>提升资源利用率</strong>：使系统资源能更充分地被利用，避免因大范围锁导致的资源闲置或浪费。</p>
+<p>不过，锁粒度变小也并非全是优点，它可能会带来一定的设计和管理复杂性增加等问题哦。</p>
+</blockquote>
+</li>
+<li><p>限流和重试上限(快速失败),请求和异常场景下的控制</p>
+</li>
+</ul>
+<p>高并发性能带来了什么</p>
+<ul>
+<li>更好的用户体验:提高了用户访问系统的体验,可以感受到系统的快速响应</li>
+<li>提升系统效率:充分利用系统资源,实现更高的吞吐量</li>
+<li>支持业务增长:为业务规模的不断扩大提供有力支持,适应海量用户和业务量的需求</li>
+<li>增加竞争力:同类产品或服务中脱颖而出,吸引更多的用户和客户</li>
+<li>促进技术创新:促使开发者不断探索和采用更先进的技术来应对高并发带来的性能挑战</li>
+<li>更高的商业价值:有助于提高业务收益和商业成功的可能性</li>
+</ul>
+<p>其它相关特性</p>
+<ul>
+<li><p>高性能&#x2F;高并发,高性能作为能够支撑高并发的处理的基石,侧重于初期的设计,并且需要预留高可用的设计,</p>
+<p>否则一旦出现问题将会导致服务不可用</p>
+</li>
+<li><p>高可用,则更侧重于部署的方式</p>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>消息协议设计及实战</title>
+    <url>/2024/06/22/%E6%B6%88%E6%81%AF%E5%8D%8F%E8%AE%AE%E8%AE%BE%E8%AE%A1%E5%8F%8A%E5%AE%9E%E6%88%98/</url>
+    <content><![CDATA[<h3 id="消息协议设计及实战"><a href="#消息协议设计及实战" class="headerlink" title="消息协议设计及实战"></a>消息协议设计及实战</h3><h3 id="1-协议"><a href="#1-协议" class="headerlink" title="1.协议"></a>1.协议</h3><ul>
+<li><p>协议</p>
+<ul>
+<li><p>Http</p>
+</li>
+<li><p>Jute</p>
+<ul>
+<li><p>请求</p>
+<blockquote>
+<p>分为请求头和请求体</p>
+<ul>
+<li><p>长度(使用0-3byte的范围)</p>
+<ul>
+<li>len,表示整个请求的长度,使用0-3byte的范围表示</li>
+</ul>
+</li>
+<li><p>请求头(使用4-11byte的范围)</p>
+<ul>
+<li>xid,客户端请求序号,使用4-7byte的范围表示</li>
+<li>type,客户端请求的类类型,使用8-11byte的范围表示</li>
+</ul>
+</li>
+<li><p>请求体(使用12-n byte的范围)</p>
+<ul>
+<li>len,表示请求体的长度,使用12-15byte的范围表示</li>
+<li>path,表示节点的路径,使用16-(n-1)byte的范围表示</li>
+<li>watch,表示是否主从,使用n位置的字节表示</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Dubbo</p>
+</li>
+</ul>
+</li>
+<li><p>定义格式(约定)</p>
+<ul>
+<li><p>自定义</p>
+<blockquote>
+<ul>
+<li>魔数,CAFE特殊标识</li>
+<li>版本号</li>
+<li>消息类型,标识请求的方式类型,如请求&#x2F;响应,CRUD,PING&#x2F;PONG</li>
+<li>序列化算法,传输的格式</li>
+<li>请求序号,对Future的返回的内容进行编号</li>
+<li>消息长度</li>
+<li>消息正文</li>
+<li>……</li>
+<li>等一些属性</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>定义协议</p>
+<ul>
+<li>对协议需要的参数进行定义,约束</li>
+<li>sessionId</li>
+<li>reqType</li>
+<li>Content-length</li>
+<li>Content</li>
+</ul>
+</li>
+<li><p>实现的功能</p>
+<ul>
+<li>定义一个协议</li>
+<li>针对定义协议实现编解码</li>
+<li>基于自定义协议实现通讯</li>
+</ul>
+</li>
+<li><p>数据结构</p>
+</li>
+</ul>
+<h3 id="2-序列化"><a href="#2-序列化" class="headerlink" title="2.序列化"></a>2.序列化</h3><p>为什么要这么传输</p>
+<blockquote>
+<p>使用流的形式进行传输<br>“一组数据”“一套数据”“一条数据”这类描述往往暗示了数据的数量、类型等是相对明确和固定的。</p>
+<p>而“流”的概念更侧重于强调数据的动态性、连续性和不确定性，就像水流一样，不知道它会持续多久、包含多少以及具体的内容变化。</p>
+<p>例如，在实时视频流中，我们无法事先确切知道每一帧的具体内容和整个流的长度；在网络接收数据的过程中，流的大小和持续时间也可能是未知的，直到传输结束。</p>
+<p>这种对“流”与固定形式描述的区分，有助于我们在不同的场景中选择合适的方式来理解和处理数据。</p>
+</blockquote>
+<ul>
+<li><p>字节码</p>
+</li>
+<li><p>二进制流&#x2F;xxx进制流</p>
+</li>
+<li><p>JSON</p>
+</li>
+<li><p>XML</p>
+</li>
+<li><p>使用IO流</p>
+<ul>
+<li><p>API命名方式和下述场景相关</p>
+</li>
+<li><p>面向磁盘的</p>
+</li>
+<li><p>面向网络的</p>
+</li>
+<li><p>面向内存的</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Java序列化方式</p>
+<ul>
+<li><p>为什么</p>
+<ul>
+<li>保证安全,避免篡改导致的安全问题</li>
+</ul>
+</li>
+<li><p>怎么做</p>
+<ul>
+<li><p>实现Serializable接口,申明SerialVersionUID,表明唯一性</p>
+<blockquote>
+<p>为什么要实现</p>
+<p>在RPC这种场景下实现该接口,只是一个默认的策略,保证在传输过程中能够序列化</p>
+<p>序列化id</p>
+<p>双方需保证一致才能操作,并且需要显式设置,不然当类发生变化时,反序列化方没有感知到,将会导致序列化错误</p>
+</blockquote>
+</li>
+<li><p>对字段添加transient关键字决定是否序列化,压缩传输数据大小,<br>减少资源浪费</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>序列化方式考虑(不仅仅是序列化,技术方案的考虑也是如此)</p>
+<ul>
+<li>性能<ul>
+<li>空间—&gt;序列化后的数据报文大小</li>
+<li>时间—&gt;序列化消耗的时间</li>
+</ul>
+</li>
+<li>支持<ul>
+<li>语言特性</li>
+<li>跨平台</li>
+</ul>
+</li>
+<li>成熟度<ul>
+<li>生态</li>
+</ul>
+</li>
+<li>扩展性,兼容性<ul>
+<li>延展</li>
+<li>提升</li>
+</ul>
+</li>
+<li>示例<ul>
+<li>跨平台<ul>
+<li>XML</li>
+<li>web(Service)</li>
+<li>soap(html+xml)</li>
+<li>wsdl</li>
+<li>axis&#x2F;cxf</li>
+<li>json</li>
+</ul>
+</li>
+<li>独立平台<ul>
+<li>Java</li>
+<li>Dubbo</li>
+</ul>
+</li>
+<li>对内和对外通讯区别</li>
+<li>为什么要压缩数据报文大小<ul>
+<li>xml&#x2F;json</li>
+<li>hession&#x2F;jute</li>
+<li>进行对比</li>
+<li>因为序列化的方法相当于使用不同的语言进行翻译,最终翻译的格式和长短也就不一样,不同序列化的方式带来的结果也就不一样</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>3.Protobuf序列化</p>
+<p>为什么小</p>
+<p>存储结构</p>
+<ul>
+<li>类似传输协议的结构</li>
+<li>使用计算后的值代替属性名,压缩空间</li>
+<li>无效字节压缩</li>
+<li>tag</li>
+<li>length</li>
+<li>value</li>
+</ul>
+<p>什么情况下才能压缩</p>
+<ul>
+<li>有效</li>
+<li>无效</li>
+</ul>
+<p>压缩的方式</p>
+<ul>
+<li>正数压缩</li>
+<li>负数压缩</li>
+</ul>
 ]]></content>
   </entry>
   <entry>
@@ -535,224 +1331,6 @@
 <blockquote>
 <p>报文重在特定协议的传输格式的数据,包重在数据的传输内容本身</p>
 </blockquote>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2024/07/06/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/writing.html" >Writing <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/server.html" >Server <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/generating.html" >Generating <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>消息协议设计及实战</title>
-    <url>/2024/06/22/%E6%B6%88%E6%81%AF%E5%8D%8F%E8%AE%AE%E8%AE%BE%E8%AE%A1%E5%8F%8A%E5%AE%9E%E6%88%98/</url>
-    <content><![CDATA[<h3 id="消息协议设计及实战"><a href="#消息协议设计及实战" class="headerlink" title="消息协议设计及实战"></a>消息协议设计及实战</h3><h3 id="1-协议"><a href="#1-协议" class="headerlink" title="1.协议"></a>1.协议</h3><ul>
-<li><p>协议</p>
-<ul>
-<li><p>Http</p>
-</li>
-<li><p>Jute</p>
-<ul>
-<li><p>请求</p>
-<blockquote>
-<p>分为请求头和请求体</p>
-<ul>
-<li><p>长度(使用0-3byte的范围)</p>
-<ul>
-<li>len,表示整个请求的长度,使用0-3byte的范围表示</li>
-</ul>
-</li>
-<li><p>请求头(使用4-11byte的范围)</p>
-<ul>
-<li>xid,客户端请求序号,使用4-7byte的范围表示</li>
-<li>type,客户端请求的类类型,使用8-11byte的范围表示</li>
-</ul>
-</li>
-<li><p>请求体(使用12-n byte的范围)</p>
-<ul>
-<li>len,表示请求体的长度,使用12-15byte的范围表示</li>
-<li>path,表示节点的路径,使用16-(n-1)byte的范围表示</li>
-<li>watch,表示是否主从,使用n位置的字节表示</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>Dubbo</p>
-</li>
-</ul>
-</li>
-<li><p>定义格式(约定)</p>
-<ul>
-<li><p>自定义</p>
-<blockquote>
-<ul>
-<li>魔数,CAFE特殊标识</li>
-<li>版本号</li>
-<li>消息类型,标识请求的方式类型,如请求&#x2F;响应,CRUD,PING&#x2F;PONG</li>
-<li>序列化算法,传输的格式</li>
-<li>请求序号,对Future的返回的内容进行编号</li>
-<li>消息长度</li>
-<li>消息正文</li>
-<li>……</li>
-<li>等一些属性</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>定义协议</p>
-<ul>
-<li>对协议需要的参数进行定义,约束</li>
-<li>sessionId</li>
-<li>reqType</li>
-<li>Content-length</li>
-<li>Content</li>
-</ul>
-</li>
-<li><p>实现的功能</p>
-<ul>
-<li>定义一个协议</li>
-<li>针对定义协议实现编解码</li>
-<li>基于自定义协议实现通讯</li>
-</ul>
-</li>
-<li><p>数据结构</p>
-</li>
-</ul>
-<h3 id="2-序列化"><a href="#2-序列化" class="headerlink" title="2.序列化"></a>2.序列化</h3><p>为什么要这么传输</p>
-<blockquote>
-<p>使用流的形式进行传输<br>“一组数据”“一套数据”“一条数据”这类描述往往暗示了数据的数量、类型等是相对明确和固定的。</p>
-<p>而“流”的概念更侧重于强调数据的动态性、连续性和不确定性，就像水流一样，不知道它会持续多久、包含多少以及具体的内容变化。</p>
-<p>例如，在实时视频流中，我们无法事先确切知道每一帧的具体内容和整个流的长度；在网络接收数据的过程中，流的大小和持续时间也可能是未知的，直到传输结束。</p>
-<p>这种对“流”与固定形式描述的区分，有助于我们在不同的场景中选择合适的方式来理解和处理数据。</p>
-</blockquote>
-<ul>
-<li><p>字节码</p>
-</li>
-<li><p>二进制流&#x2F;xxx进制流</p>
-</li>
-<li><p>JSON</p>
-</li>
-<li><p>XML</p>
-</li>
-<li><p>使用IO流</p>
-<ul>
-<li><p>API命名方式和下述场景相关</p>
-</li>
-<li><p>面向磁盘的</p>
-</li>
-<li><p>面向网络的</p>
-</li>
-<li><p>面向内存的</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>Java序列化方式</p>
-<ul>
-<li><p>为什么</p>
-<ul>
-<li>保证安全,避免篡改导致的安全问题</li>
-</ul>
-</li>
-<li><p>怎么做</p>
-<ul>
-<li><p>实现Serializable接口,申明SerialVersionUID,表明唯一性</p>
-<blockquote>
-<p>为什么要实现</p>
-<p>在RPC这种场景下实现该接口,只是一个默认的策略,保证在传输过程中能够序列化</p>
-<p>序列化id</p>
-<p>双方需保证一致才能操作,并且需要显式设置,不然当类发生变化时,反序列化方没有感知到,将会导致序列化错误</p>
-</blockquote>
-</li>
-<li><p>对字段添加transient关键字决定是否序列化,压缩传输数据大小,<br>减少资源浪费</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>序列化方式考虑(不仅仅是序列化,技术方案的考虑也是如此)</p>
-<ul>
-<li>性能<ul>
-<li>空间—&gt;序列化后的数据报文大小</li>
-<li>时间—&gt;序列化消耗的时间</li>
-</ul>
-</li>
-<li>支持<ul>
-<li>语言特性</li>
-<li>跨平台</li>
-</ul>
-</li>
-<li>成熟度<ul>
-<li>生态</li>
-</ul>
-</li>
-<li>扩展性,兼容性<ul>
-<li>延展</li>
-<li>提升</li>
-</ul>
-</li>
-<li>示例<ul>
-<li>跨平台<ul>
-<li>XML</li>
-<li>web(Service)</li>
-<li>soap(html+xml)</li>
-<li>wsdl</li>
-<li>axis&#x2F;cxf</li>
-<li>json</li>
-</ul>
-</li>
-<li>独立平台<ul>
-<li>Java</li>
-<li>Dubbo</li>
-</ul>
-</li>
-<li>对内和对外通讯区别</li>
-<li>为什么要压缩数据报文大小<ul>
-<li>xml&#x2F;json</li>
-<li>hession&#x2F;jute</li>
-<li>进行对比</li>
-<li>因为序列化的方法相当于使用不同的语言进行翻译,最终翻译的格式和长短也就不一样,不同序列化的方式带来的结果也就不一样</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>3.Protobuf序列化</p>
-<p>为什么小</p>
-<p>存储结构</p>
-<ul>
-<li>类似传输协议的结构</li>
-<li>使用计算后的值代替属性名,压缩空间</li>
-<li>无效字节压缩</li>
-<li>tag</li>
-<li>length</li>
-<li>value</li>
-</ul>
-<p>什么情况下才能压缩</p>
-<ul>
-<li>有效</li>
-<li>无效</li>
-</ul>
-<p>压缩的方式</p>
-<ul>
-<li>正数压缩</li>
-<li>负数压缩</li>
-</ul>
 ]]></content>
   </entry>
   <entry>
@@ -2212,859 +2790,281 @@
 ]]></content>
   </entry>
   <entry>
-    <title>八股知识点</title>
-    <url>/2024/06/01/%E5%85%AB%E8%82%A1%E7%9F%A5%E8%AF%86%E7%82%B9/</url>
-    <content><![CDATA[<h2 id="八股知识点"><a href="#八股知识点" class="headerlink" title="八股知识点"></a>八股知识点</h2><h3 id="1-是否会注入"><a href="#1-是否会注入" class="headerlink" title="1.是否会注入"></a>1.是否会注入</h3><p>不会</p>
-<p>@Autowired<br>public void test(){<br>    HashMap&lt;String, Object&gt; map  &#x3D; new HashMap&lt;&gt;();<br>    map.put(“test”,”ces”);<br>    TestBean.instance &#x3D; map;</p>
-<p>}这么写会依赖注入吗,还是说只会执行该方法一次</p>
-<p>在你提供的代码中，<code>@Autowired</code> 注解用在了 <code>test</code> 方法上，但这样的使用方式是不符合 Spring 框架的依赖注入原则的。<code>@Autowired</code> 注解通常用于字段、构造函数或配置方法上，而不是普通的业务逻辑方法。</p>
-<p>在你的例子中，<code>test</code> 方法会创建一个新的 <code>HashMap</code> 对象，并向其中添加一些数据，然后把这个 <code>HashMap</code> 赋值给 <code>TestBean</code> 的静态成员 <code>instance</code>。这个过程不会触发 Spring 的依赖注入机制，因为 <code>@Autowired</code> 在这里没有被用于任何可以被 Spring 管理的依赖项上。</p>
-<p>所以，即使你在这个方法上使用了 <code>@Autowired</code>，Spring 也不会尝试去注入任何依赖。这个方法会按照普通的 Java 方法那样执行，并且只会执行一次（除非有其他代码在其他地方调用了这个方法）。</p>
-<p>如果你希望 <code>TestBean</code> 的 <code>instance</code> 成员被 Spring 管理，并且能够通过依赖注入来设置，你应该这样做：</p>
-<ol>
-<li>将 <code>TestBean</code> 声明为一个 Spring Bean（例如，通过 <code>@Component</code>、<code>@Service</code>、<code>@Repository</code> 或 <code>@Controller</code> 等注解）。</li>
-<li>使用 <code>@Autowired</code> 在需要 <code>TestBean</code> 实例的地方进行注入。</li>
-</ol>
-<p>例如：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">java@Componentpublic class TestBean &#123;    public static TestBean instance;    // 其他成员和方法&#125;@Componentpublic class SomeOtherBean &#123;    private final TestBean testBean;    @Autowired    public SomeOtherBean(TestBean testBean) &#123;        this.testBean = testBean;        TestBean.instance = testBean; // 通常不推荐这样做，因为它破坏了依赖注入的原则    &#125;    // 其他成员和方法&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>在这个例子中，<code>TestBean</code> 被声明为一个 Spring Bean，并且 <code>SomeOtherBean</code> 通过构造函数注入获得了 <code>TestBean</code> 的实例。虽然我在这里还是把 <code>TestBean</code> 的实例赋值给了静态成员 <code>instance</code>，但这通常是不推荐的做法，因为它破坏了 Spring 的依赖注入原则，使得代码更难以测试和维护。更好的做法是直接使用 Spring 注入的 <code>TestBean</code> 实例，而不是依赖一个静态的 <code>instance</code> 成员。</p>
-<p>其实我理解的是，Spring本意是想注入来着，就像Autowried写到set方法上的时候，他本意也是注入，实际上Spring的工作就是调用执行一下这个方法，有参数，spring就找自己管理的bean里有没有对应类型的(或者对应名字的)，没参数，所以就直接执行了</p>
-<p>注入的动作，完成了方法的调用而已，只不过之前放到set方法的时候，会注入，这个不会注入了而已</p>
-<p>简单理解就是autowired在方法上时，启动时他都会把这个方法调用一下，如果有参数则会在调用的时候尝试从初始化好的bean里注入实参</p>
-<h3 id="2-DI注入和初始化的区别"><a href="#2-DI注入和初始化的区别" class="headerlink" title="2.DI注入和初始化的区别"></a>2.DI注入和初始化的区别</h3><p>在Spring框架中，初始化阶段可以执行的操作主要包括：</p>
-<ol>
-<li><strong>静态代码块</strong>：静态代码块在类加载时自动执行，是最优先执行的初始化操作12。</li>
-<li><strong>构造方法</strong>：当类加载并实例化时，会执行构造方法中的逻辑12。</li>
-<li><strong>实现ApplicationContextAware接口</strong>：通过实现<code>ApplicationContextAware</code>接口并重写<code>setApplicationContext()</code>方法，可以在Spring容器初始化时调用该方法，从而进行相关代码的初始化。这个类还可以获取Spring容器中的所有对象和信息2。</li>
-<li><strong>使用@PostConstruct注解</strong>：<code>@PostConstruct</code>注解可以标注一个非静态的void方法，该方法会在类被Spring容器初始化后立即执行。因为执行时机在依赖注入和对象构造完成之后，所以适合进行一些需要在对象创建后才能进行的数据初始化操作1。</li>
-</ol>
-<p>这些操作可以帮助开发者在Spring容器启动后，执行必要的初始化任务，如资源加载、配置读取、数据初始化等，以确保应用程序的正常运行。</p>
+    <title>JMM模型</title>
+    <url>/2024/05/06/JMM%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<h2 id="JMM模型"><a href="#JMM模型" class="headerlink" title="JMM模型"></a>JMM模型</h2><h3 id="1-可见性"><a href="#1-可见性" class="headerlink" title="1.可见性"></a>1.可见性</h3><p>Volitale</p>
 <ul>
-<li><strong>初始化</strong>：初始化是指在创建对象后，对对象的属性进行赋值或执行其他必要的设置操作。初始化通常由对象的构造函数或特定的初始化方法来完成。初始化的目的是为了确保对象在使用之前具有正确的初始状态。</li>
-<li><strong>依赖注入</strong>：依赖注入是指在创建对象时，将对象所需的依赖项（其他对象或资源）注入到对象中。依赖注入的目的是减少对象之间的硬编码依赖，提高代码的灵活性和可维护性。依赖注入可以通过构造函数注入、属性注入、接口注入等方式实现。</li>
-</ul>
-<p>简而言之，初始化是为了设置对象的初始状态，而依赖注入是为了注入对象所需的依赖项，以实现松耦合的设计。</p>
-<ul>
-<li><p>DI是一种注入属性的机制,将Bean与注入属性解耦,类似构造方法</p>
-</li>
-<li><p>初始化则是类似静态代码块,但执行时机晚于构造方法也就是DI注入,并且主要针对于对象,静态代码块则早于构造方法,针对于整个类<br>初始化不仅可以执行复杂逻辑,也可以对属性赋值</p>
-</li>
-</ul>
-<h3 id="3-finally的执行时机"><a href="#3-finally的执行时机" class="headerlink" title="3.finally的执行时机"></a>3.finally的执行时机</h3><p>在java中,finally虽然处于return语句的下方,但它的执行是在return返回结果之前执行的,属于java对于线程异常的<br>一个兜底策略,避免一些资源因为异常而未释放</p>
-<ul>
-<li>但需要注意,被final所修饰的不可变类型,就算执行了,也不会影响return的执行结果</li>
-<li>一个原因是局部变量,一个原因是被final修饰的类</li>
-</ul>
-<p>4.Java的可变类型和不可变类型在 Java 中，可变类型和不可变类型的一些常见示例如下：</p>
-<ul>
-<li>不可变类型：<ul>
-<li>整数类型（如 int、long 等）。</li>
-<li>浮点类型（如 float、double 等）。</li>
-<li>字符类型（char）。</li>
-<li>布尔类型（boolean）。</li>
-<li>字符串类型（String）。</li>
+<li>CPU缓存问题</li>
+<li>MESI协议<ul>
+<li>缓存锁</li>
+<li>总线锁</li>
+<li>基于LOCK这么一个汇编指令</li>
 </ul>
 </li>
-<li>可变类型：<ul>
-<li>数组。</li>
-<li>集合类（如 ArrayList、HashSet 等）。</li>
+<li>可见性,有序性保证</li>
 </ul>
-</li>
-</ul>
-<p>不可变类型的特点是其值一旦确定就不能被修改。例如，String 类型的字符串是不可变的，任何对字符串的操作都会返回一个新的字符串对象。</p>
-<p>可变类型则可以在其生命周期内进行修改。</p>
-<p>选择使用可变类型还是不可变类型取决于具体的需求和场景。不可变类型通常具有更好的安全性和简洁性，而可变类型在某些情况下提供了更灵活的操作方式。</p>
+<h3 id="2-有序性"><a href="#2-有序性" class="headerlink" title="2.有序性"></a>2.有序性</h3><ul>
+<li><p>JVM如何实现跨平台下的线程安全</p>
 <ul>
-<li>如何声明一个不可变类型<ul>
-<li>成员变量私有化,限制外部访问,修饰为final</li>
-<li>对外部不提供修改成员变量的方法</li>
-<li>创建一个对象时,只能在构造方法里完成赋值,后续无法修改</li>
+<li><p>JMM模型,定义多线程场景下数据操作逻辑,根据不同平台生成对应的指令</p>
+<ul>
+<li>通过区分本地内存和主内存</li>
+<li>线程操作数据都会先从主内存拷贝,自己的本地内存完成修改后,再将其同步到主内存</li>
+<li>每个线程都存有一个数据副本到自己的本地内存</li>
 </ul>
 </li>
-</ul>
-<h3 id="5-开闭原则"><a href="#5-开闭原则" class="headerlink" title="5.开闭原则"></a>5.开闭原则</h3><p>继承在某些情况下可以被视为一种扩展方式，但它并不总是意味着符合开闭原则的扩展。</p>
-<p>继承可以实现代码的重用和功能的扩展。通过继承现有类，可以获取其已有属性和方法，并在此基础上进行扩展或修改。</p>
-<p>然而，在开闭原则的背景下，单纯的继承可能存在一些问题：</p>
-<ol>
-<li><strong>紧耦合</strong>：继承关系往往导致较高的耦合性，使得子类紧密依赖于父类的实现。</li>
-<li><strong>灵活性受限</strong>：对父类的修改可能会影响到所有子类。</li>
-<li><strong>不易扩展</strong>：当需要添加新的特性时，可能需要在父类中进行修改。</li>
-</ol>
-<p>为了更好地实现扩展，符合开闭原则，可以考虑以下几点：</p>
-<ol>
-<li><strong>依赖接口而非具体类</strong>：通过实现接口来提供扩展点。</li>
-<li><strong>使用抽象类</strong>：在必要时定义抽象类，提供部分通用实现。</li>
-<li><strong>组合而非继承</strong>：通过组合的方式来组合不同的功能模块。</li>
-</ol>
-<p>这样可以提高代码的灵活性和可扩展性，更容易进行扩展而不影响现有代码的稳定性。</p>
-<p>哪些情况会破坏开闭原则</p>
-<p>以下扩展方式可能会破坏开闭原则：(直接修改,直接依赖具体实现,重复代码,耦合性重)</p>
-<ol>
-<li><strong>直接修改源代码</strong>：每次扩展都需要直接修改现有代码，不符合开闭原则对修改关闭的要求。</li>
-<li><strong>过度使用继承</strong>：当继承关系复杂且紧密时，可能导致代码的灵活性降低，不利于扩展。</li>
-<li><strong>硬编码依赖</strong>：在代码中直接硬编码依赖特定的实现，使得扩展变得困难。</li>
-<li><strong>全局变量或静态方法的使用</strong>：限制了代码的可复用性和可扩展性。</li>
-<li><strong>紧密耦合的组件</strong>：组件之间耦合度过高，使得扩展一个组件可能影响其他组件。</li>
-<li><strong>缺乏抽象</strong>：没有正确使用抽象类或接口，导致具体实现与扩展紧密绑定。</li>
-<li><strong>代码重复</strong>：大量重复的代码使得维护和扩展变得复杂，容易引入错误。<br>为了避免破坏开闭原则，应该尽量采用更灵活的扩展方式，如使用抽象、接口、组合等设计模式，以及配置文件、<a class="link"   href="coco://sendMessage?ext={" s%24wiki_link"%3A"https%3A%2F%2Fm.baike.com%2Fwikiid%2F5672419420006108837"}&msg=插件">插件 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>机制等技术。这样可以提高代码的可维护性和可扩展性，使系统更易于应对变化和扩展。</li>
-</ol>
-<h3 id="6-为什么要使用final修饰变量"><a href="#6-为什么要使用final修饰变量" class="headerlink" title="6.为什么要使用final修饰变量"></a>6.为什么要使用final修饰变量</h3><p>是的，在某些场景下，使用 <code>final</code> 可以作为一种兜底的安全策略。</p>
-<p>将变量声明为 <code>final</code> 可以带来以下安全方面的好处：</p>
-<ol>
-<li><strong>防止意外修改</strong>：明确表示变量的值在指定区域内是不可变的，避免了意外的修改导致的错误。</li>
-<li><strong>保证一致性</strong>：确保在特定的场景中，变量的值保持一致，不会因为误操作而改变。</li>
-<li><strong>提高可读性</strong>：让开发者清楚地知道该变量是不可变的，增强了代码的可读性和可维护性。</li>
-<li><strong>限制访问</strong>：限制了对变量的修改，从而减少了可能出现的错误和安全隐患。</li>
-</ol>
-<p>通过将关键变量或参数声明为 <code>final</code>，可以作为一种兜底的安全策略，增加代码的稳定性和可靠性。尤其在一些关键的场景中，如安全性要求较高的模块或处理重要数据的部分，使用 <code>final</code> 可以提供额外的保障。</p>
-<p>然而，是否使用 <code>final</code> 作为兜底的安全策略，需要根据具体的情况来决定，权衡性能、灵活性和安全性等因素。</p>
-<h3 id="7-Spring的ignoreDependencyInterface为什么需要在实例化阶段完成忽略"><a href="#7-Spring的ignoreDependencyInterface为什么需要在实例化阶段完成忽略" class="headerlink" title="7.Spring的ignoreDependencyInterface为什么需要在实例化阶段完成忽略"></a>7.Spring的ignoreDependencyInterface为什么需要在实例化阶段完成忽略</h3><p>是的，在<strong>反射创建 Bean</strong> 时忽略这些接口的方法，可以避免属性注入属性的冲突。</p>
-<p>通过忽略这些接口的方法，Spring 可以确保在自动装配过程中不会尝试为这些接口相关的属性进行注入。</p>
-<p>这样做有以下好处：</p>
-<ol>
-<li>防止重复注入：避免了在自动装配和接口回调方法中对相同属性的重复注入。</li>
-<li>避免冲突：降低了属性注入过程中发生冲突的风险。</li>
-<li>提高效率：减少了不必要的注入操作，提高了系统的性能。</li>
-</ol>
-<p>这种处理方式使得属性注入更加精确和可控，有助于提高系统的稳定性和可维护性。</p>
-<h3 id="8-线上GC如何处理"><a href="#8-线上GC如何处理" class="headerlink" title="8.线上GC如何处理"></a>8.线上GC如何处理</h3><blockquote>
+<li><p>CPU内存屏障指令(针对不同系统,架构有不同实现)</p>
+<p>屏障类型</p>
+<ul>
+<li><p>LoadLoad  读1操作不可优先于读2操作</p>
+</li>
+<li><p>StoreStore 写1操作不可优先于写2操作</p>
+</li>
+<li><p>LoadStore 读操作优先于写操作</p>
+</li>
+<li><p>StoreLoad 写操作优先于读操作</p>
+</li>
+<li><p>基于上述方法接口,实现出不同平台下的逻辑</p>
+</li>
+<li><blockquote>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/imgs/%E5%85%AB%E8%82%A1%E6%96%87/%E7%BA%BF%E4%B8%8AGC%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86.png"
-                      alt="线上GC如何处理"
+                     data-src="/imgs/JMM/%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C%E7%B1%BB%E5%9E%8B.png"
+                      alt="内存屏障类型"
                 ></p>
 </blockquote>
-<h3 id="9-遇到一个设计题：亿级订单，千万日活，如何设计存储方案，容量，性能，拓展性，业务场景聚焦个大电商物流单，要给个成熟方案，大家思考一下"><a href="#9-遇到一个设计题：亿级订单，千万日活，如何设计存储方案，容量，性能，拓展性，业务场景聚焦个大电商物流单，要给个成熟方案，大家思考一下" class="headerlink" title="9.遇到一个设计题：亿级订单，千万日活，如何设计存储方案，容量，性能，拓展性，业务场景聚焦个大电商物流单，要给个成熟方案，大家思考一下"></a>9.遇到一个设计题：亿级订单，千万日活，如何设计存储方案，容量，性能，拓展性，业务场景聚焦个大电商物流单，要给个成熟方案，大家思考一下</h3><blockquote>
-<p>存储层设计：<br>订单数据库： 使用分布式数据库（例如MySQL Cluster、TiDB等）存储订单信息，按照订单号进行分片存储，保证存储和查询的高性能。<br>缓存层： 使用分布式缓存系统（例如Redis Cluster）缓存热门订单数据和查询结果，减少数据库访问压力。<br>日志存储： 使用分布式文件系统（例如HDFS）存储订单操作日志，保证数据可追溯性和故障恢复能力。<br>应用层设计：<br>订单服务： 提供订单的创建、查询、修改和删除等接口，负责处理订单相关的业务逻辑。<br>物流服务： 提供物流信息的查询和更新接口，负责物流状态的实时更新和查询。<br>用户服务： 提供用户信息的查询和更新接口，负责管理用户账号和地址信息。</p>
-</blockquote>
-<h3 id="10-组合复用原则"><a href="#10-组合复用原则" class="headerlink" title="10.组合复用原则"></a>10.组合复用原则</h3><p>组合,主体和其它对象高度依赖,生命周期一致</p>
-<p>聚合,主体和其它对象不强制依赖,可以早于晚于主体创建</p>
-<h3 id="11-高可用的通用性解决方案"><a href="#11-高可用的通用性解决方案" class="headerlink" title="11.高可用的通用性解决方案"></a>11.高可用的通用性解决方案</h3><p><strong>主从架构</strong>：设置主节点和多个从节点，当主节点故障时，可以提升某个从节点为主节点继续提供服务。</p>
-<blockquote>
-<p>冗余,主从架通过冗余配置来保证服务的连续性</p>
-</blockquote>
-<p><strong>集群模式</strong>：如 Redis 集群等，通过多个节点共同承担数据存储和处理任务，提高整体的可靠性和容错性。</p>
-<blockquote>
-<p>容错,集群模式体现了容错性,增强系统应对故障的能力</p>
-</blockquote>
-<p><strong>数据复制</strong>：确保数据在多个节点之间进行实时或定期的复制，保证数据有多个副本。</p>
-<blockquote>
-<p>兜底,数据复杂是一种兜底手段,防止数据丢失,是持续动态的保障机制</p>
-</blockquote>
-<p><strong>负载均衡</strong>：使用负载均衡器将请求均匀分发到多个节点上，避免单个节点负载过高。</p>
-<blockquote>
-<p>分治思想,负载均衡运用分治思想,提高整体性能和资源利用率</p>
-</blockquote>
-<p><strong>监控与告警</strong>：实时监控系统的关键指标，一旦出现异常及时发出告警以便快速响应。</p>
-<blockquote>
-<p>预防,监控和告警起到预防的作用,让我们能及时发现问题</p>
-</blockquote>
-<p><strong>自动故障转移</strong>：通过程序或机制实现自动检测主节点故障并进行切换的过程。</p>
-<blockquote>
-<p>智能,自动故障转移展现了智能化的处理方式,减少人工干预</p>
-</blockquote>
-<p><strong>数据备份与恢复</strong>：定期进行数据备份，以便在出现严重故障时进行数据恢复。</p>
-<blockquote>
-<p>容灾,数据备份与恢复则是重要的容灾措施,确保在极端情况下数据的可恢复性,是最后的”保险防线”</p>
-</blockquote>
-<h3 id="12-分布式场景下会遇到的一些问题"><a href="#12-分布式场景下会遇到的一些问题" class="headerlink" title="12.分布式场景下会遇到的一些问题"></a>12.分布式场景下会遇到的一些问题</h3><p><strong>网络延迟和故障</strong>：节点之间通信可能出现延迟、丢包甚至网络中断，影响数据同步和协调。</p>
-<blockquote>
-<p>注册中心,用于管理节点的信息和状态,当网络延迟或故障发生时,注册中心可以帮组及时感知和处理</p>
-<p>节点的状态变化,以保证数据听同步和协调的准确性</p>
-</blockquote>
-<p><strong>数据一致性问题</strong>：确保多个节点上的数据保持一致是一个挑战，可能出现数据不一致的情况。</p>
-<blockquote>
-<p>强一致&#x2F;最终一致,如MQ,可以在一定程度上缓解数据一致性问题,通过异步出来消息来协调不同节点的</p>
-<p>数据操作</p>
-</blockquote>
-<p><strong>分布式事务问题</strong>：事务涉及多个节点时，协调事务的提交和回滚较为复杂。</p>
-<blockquote>
-<p>阶段提交,是解决分布式事务问题的一种常见方式，通过分阶段的操作来确保事务在多个节点上的一致性</p>
-</blockquote>
-<p><strong>节点故障</strong>：某个或某些节点可能出现故障，需要有应对机制来保障系统的正常运行。</p>
-<blockquote>
-<p>负载均衡和熔断机制,负载均衡可以将请求分发到不同的健康节点，减少故障节点的影响；熔断机制则可以在节点出现问题时快速切断对故障节点的调用，保障系统的稳定性</p>
-</blockquote>
-<p><strong>资源竞争</strong>：多个节点对共享资源的竞争可能导致性能问题。</p>
-<blockquote>
-<p>锁优化,资源分区,缓存,通过这些方式减缓竞争的激烈程度,以合理的机制和策略安排来实现更有序,高效的资源访问和利用,从而根本上提高整体性能,而不仅仅是”减缓竞争”这么简单</p>
-</blockquote>
-<p><strong>分布式锁问题</strong>：保证在分布式环境下对关键资源的互斥访问。</p>
-<blockquote>
-<p>数据库锁,Redis锁,Zookeeper,利用这些中间件的一些锁的特性来解决分布式锁的问题,和资源竞争相关但又不完全相同，它更强调在分布式环境下精确地控制对特定关键资源的访问顺序和互斥性。</p>
-</blockquote>
-<p><strong>数据分区问题</strong>：数据分布不合理可能导致某些分区负载过高或过低。</p>
-<blockquote>
-<p>分片,通过合理的数据分区（分片）可以解决数据分区问题，实现更均衡的负载分布</p>
-</blockquote>
-<p><strong>时钟同步问题</strong>：不同节点的时钟可能存在偏差，影响一些基于时间的判断和操作。</p>
-<blockquote>
-<p>网络时间协议,可以通过专门的时钟同步服务或协议来确保不同节点的时钟尽量保持一致，例如网络时间协议（NTP）等，避免因时钟偏差导致错误的判断和操作</p>
-</blockquote>
-<p><strong>安全问题</strong>：分布式系统面临更广泛的安全威胁和攻击面。</p>
-<blockquote>
-<p>WAF,可以抵御针对分布式系统的一些网络安全攻击，保护系统的安全</p>
-</blockquote>
-<h3 id="13-Mysql的redo和doubleWrite的区别"><a href="#13-Mysql的redo和doubleWrite的区别" class="headerlink" title="13.Mysql的redo和doubleWrite的区别"></a>13.Mysql的redo和doubleWrite的区别</h3><p>解决</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>产生原因</p>
 <ul>
-<li><p>redo主要是用于解决事务场景下对于数据修改的持久性和一致性,对于数据的最终结果保证</p>
-</li>
-<li><p>double则是解决针对部分写失效场景问题,将完整的数据页写入到双写缓存,然后再分批写入数据文件,更侧重于</p>
-</li>
-</ul>
-<p>​		数据写入磁盘时的一种保障机制(ibddata1文件中,属于系统表空间),具体数据则存储在对应独立表空间中</p>
-<blockquote>
-<p>本质是页数据(页大小默认16kb)写入到磁盘时,发现文件管理只能以4k的大小来写入,所以需要分批写入,</p>
-<p>并且如果在写入时出现故障,导致写入数据不完整,导致无法使用该数据恢复</p>
-<p>双写缓存此时就是作为页数据的一个兜底备份存在,避免写入出现问题</p>
-</blockquote>
-<h3 id="14-超时和熔断"><a href="#14-超时和熔断" class="headerlink" title="14.超时和熔断"></a>14.超时和熔断</h3><ul>
-<li><p>超时是对于上游调用方的保护,避免因为下游长期处理导致上游调用超时,波及到它</p>
-</li>
-<li><p>熔断则是对下游被调用方的保护,避免上游的故障&#x2F;错误数据波及到下游,主动断开与上游的关联</p>
-<blockquote>
-<p>1.假设有一个电商系统，订单处理模块是下游，库存管理模块是上游。当订单处理模块在处理订单时需要调用库存管理模块来确认商品库存数量。</p>
-<p>2.如果下游的订单处理模块发现上游的库存管理模块响应很慢，或者频繁返回错误（比如库存数据不一致等问题）。那么订单处理模块可能会采取以下行动：</p>
-<p>3.首先，它可能会记录这些异常情况，并向系统的监控告警模块发送通知，让相关人员知道上游出现了问题。然后，它可能会暂时停止向库存管理模块发送新的请求，避免因继续请求而导致更多的错误或延迟累积。同时，它可以利用之前缓存的一些库存信息（如果有的话）来继续处理一些紧急的订单，以尽量减少对业务的影响。或者它可能会切换到一个备用的库存数据源（如果存在的话）来获取库存信息，直到原库存管理模块恢复正常。</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="15-Redisson获取锁最大努力的思路"><a href="#15-Redisson获取锁最大努力的思路" class="headerlink" title="15.Redisson获取锁最大努力的思路"></a>15.Redisson获取锁最大努力的思路</h3><blockquote>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//RedissonLock的trylock方法</span></span><br><span class="line"><span class="keyword">if</span>(ttl &gt;=<span class="number">0L</span>&amp;&amp;ttl&lt;time)&#123;</span><br><span class="line">  ((RedissonLockEntry) <span class="built_in">this</span>.commandExecutor.getNow(subscribeFuture)).getLatch().tryAcquire(ttl, TimeUnit.MILLISECONDS);</span><br><span class="line">&#125; <span class="keyword">else</span>&#123;</span><br><span class="line">  ((RedissonLockEntry) <span class="built_in">this</span>.commandExecutor.getNow(subscribeFuture)).getLatch().tryAcquire(time, TimeUnit.MILLISECONDS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-
-
-<p>这样的设计可以让程序在不同的时间和条件下都尝试去获取锁，尽量减少因时间限制或特定情况而错过获取锁的可能，体现了一种尽力争取、不轻易放弃的策略，从而达到尽最大努力不浪费机会的效果。</p>
-<p>同时，通过这种分情况处理的方式，也增加了程序的容错性。它可以应对多种可能出现的场景和状态，使得锁的获取机制更加健壮和可靠，即便在一些不太理想的情况下也能做出相对合理的尝试和应对，降低因意外情况导致锁操作失败而引发问题的风险。</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//RedissonMultiLock的tryLock方法</span></span><br><span class="line"><span class="keyword">if</span> (failedLocksLimit == <span class="number">0</span>) &#123;</span><br><span class="line"> <span class="built_in">this</span>.unlockInner(acquiredLocks);</span><br><span class="line">      <span class="keyword">if</span> (waitTime &lt;= <span class="number">0L</span>) &#123;</span><br><span class="line">             <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         failedLocksLimit = <span class="built_in">this</span>.failedLocksLimit();</span><br><span class="line">         acquiredLocks.clear();</span><br><span class="line"></span><br><span class="line">         <span class="keyword">while</span> (iterator.hasPrevious()) &#123;</span><br><span class="line">             iterator.previous();</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure></div>
-
-<p><strong>这里也是类似的情况,尽最大努力的尝试</strong></p>
-<p>以往很多时候是采用快速失败的策略，即如果尝试获取失败就直接结束。</p>
-<p>但像这种不断尝试的方式也有其应用场景和优势。它可以在一些对获取锁的确定性要求较高，或者希望尽可能争取到锁的情况下使用。这样可以避免因为一次尝试失败就立刻放弃，而是通过持续尝试来增加成功的机会，也许在某些特殊情况下，经过一段时间的努力后能够最终获取到锁，从而使得程序能够继续正常运行。当然，具体采用哪种方式还是要根据实际的业务需求和场景特点来权衡和选择。</p>
-<p>复制重新生成</p>
-</blockquote>
-<h3 id="16-HashMap的驱逐思想"><a href="#16-HashMap的驱逐思想" class="headerlink" title="16.HashMap的驱逐思想"></a>16.HashMap的驱逐思想</h3><blockquote>
-<p>1.在 Java 中，<code>HashMap</code>的<code>evict</code>参数用于控制是否在插入元素时进行驱逐（eviction）操作。驱逐操作的目的是在内存不足时，从<code>HashMap</code>中删除一些元素，以释放内存空间。</p>
-<p>2.当<code>evict</code>参数设置为<code>false</code>时，表示在插入元素时不进行驱逐操作。在这种情况下，<code>HashMap</code>会尽可能地保存所有插入的元素，直到内存不足时才会进行驱逐操作。</p>
-<p>3.当<code>evict</code>参数设置为<code>true</code>时，表示在插入元素时进行驱逐操作。在这种情况下，<code>HashMap</code>会在插入元素时，根据一定的策略删除一些元素，以释放内存空间。驱逐操作的具体策略可能会因<code>HashMap</code>的实现而有所不同。</p>
-<p>4.需要注意的是，驱逐操作可能会导致<code>HashMap</code>中的元素被删除，因此在使用<code>evict</code>参数时，需要谨慎考虑其对应用程序的影响。</p>
-</blockquote>
-<h3 id="17-HashMap的增强点"><a href="#17-HashMap的增强点" class="headerlink" title="17.HashMap的增强点"></a>17.HashMap的增强点</h3><blockquote>
-<p>**afterNodeAccess(Node&lt;K,V&gt; p)**：</p>
-<ul>
-<li>主要用于在节点被访问后执行一些自定义的后续动作。比如可以用于统计节点的访问频率，或者根据访问情况进行一些状态更新等。</li>
-</ul>
-<p>**afterNodeInsertion(boolean evict)**：</p>
-<ul>
-<li>当元素插入后，通过这个方法可以根据插入的情况以及 <code>evict</code> 的值进行不同的处理。比如如果 <code>evict</code> 为 <code>false</code> 且处于特定的创建模式，可以进行一些与创建模式相关的操作或记录；如果 <code>evict</code> 为 <code>true</code> ，可能执行与正常模式下插入后不同的逻辑。</li>
-</ul>
-<p>**afterNodeRemoval(Node&lt;K,V&gt; p)**：</p>
-<ul>
-<li>它允许在节点移除后进行一些清理或后续的处理工作。例如，可能需要释放与该节点相关的一些资源，或者对整个数据结构的状态进行相应调整。</li>
-</ul>
-</blockquote>
-<h3 id="18-分布式组件理论"><a href="#18-分布式组件理论" class="headerlink" title="18.分布式组件理论"></a>18.分布式组件理论</h3><ul>
-<li>好的架构不仅需要知道怎么用,还得知道为什么,可以带来什么好处,并且需要知道增加会带来什么问题,存在什么隐患</li>
-<li>优质的架构不但要明晰其具体的运用之法，更要深刻理解背后的缘由，清楚其所能带来的益处，同时还要知晓增添它可能引发的各类问题。</li>
-</ul>
-<h4 id="1-架构演进-应用-软件-部署"><a href="#1-架构演进-应用-软件-部署" class="headerlink" title="1.架构演进(应用&#x2F;软件&#x2F;部署)"></a>1.<strong>架构演进</strong>(应用&#x2F;软件&#x2F;部署)</h4><blockquote>
-<p>架构演进过程</p>
-<p>可分为以下三个阶段,单机式,集中式,分布式微服务</p>
-<p>下面演进过程中则是对应用模块的进一步划分,<strong>从一个整体到多个细分模块构成一个整体的过程</strong></p>
-<ul>
-<li><p>**单体架构(协调,整体)**：所有功能都集中在一个应用程序中，简单直接，但随着业务增长，会面临性能瓶颈、难以扩展和维护等问题,但简单直接、易于开发和部署。</p>
-</li>
-<li><p>**垂直架构(职责分离)**：将单体架构按照不同的业务功能进行垂直拆分，形成多个独立的子系统，一定程度上提高了可扩展性和维护性,强调一定的分层和专业性。</p>
-</li>
-<li><p>**分布式架构(分治,压力均摊)**：各个子系统进一步分布部署在不同的节点上，通过网络进行通信和协作，提升了系统的处理能力和可用性,保证了服务的高可用性、容错性等。</p>
-</li>
-<li><p><strong>SOA（面向服务架构,标准协议）</strong>：强调服务的概念，将系统功能封装为独立的服务，通过标准的接口进行交互，提高了系统的灵活性和复用性,强调服务的重用性和松耦合。</p>
-</li>
-<li><p>**微服务架构(独立,自主)**：将服务进一步细化和拆分，每个微服务都可以独立部署、扩展和维护，具有更高的灵活性、敏捷性和可扩展性,强调敏捷性、弹性等。</p>
-</li>
-<li><p>演进的过程从逻辑划分变为物理划分</p>
-</li>
-<li><p>分布式和微服务有点类似多面手和螺丝钉的区别,相当于是通过一个整体的过程,协调多个服务完成一件事,而微服务仅仅专注自己的职责,更单一</p>
-<blockquote>
-<p>微服务和分布式有很强的相关性，主要体现在以下几个方面：</p>
-<p>首先，微服务的实现通常需要依托于分布式技术。每个微服务都可能运行在不同的节点上，这本身就是一种分布式的部署方式，通过分布式的基础设施来支撑微服务之间的通信、协调和资源分配。</p>
-<p>其次，分布式强调的资源分散和协同工作的理念与微服务的架构思想是契合的。微服务架构也是为了更好地实现系统的分布式特性，比如提高系统的可扩展性、容错性等，这些都是分布式所追求的目标。</p>
-<p>再者，从系统的构建和运行角度来看，微服务和分布式都致力于解决大规模复杂系统的问题，它们相互配合，共同营造出一个高效、灵活的系统环境。</p>
-<p>比如，在一个大型的应用系统中，通过分布式部署来将各个微服务分布到不同的服务器上，以实现性能的提升和资源的合理利用，二者是紧密结合在一起的。所以不能单纯地将它们割裂开来，它们在很多方面是相互关联、相互促进的</p>
-</blockquote>
-</li>
-<li><p>所以,架构的演进过程中,可能包含了以往的一些特性,并且在此基础上进行了增强</p>
-</li>
-<li><p>最后总结一句,分布式重在部署方式及协调整体,而微服务重在服务自治,灵活,扩展,敏捷</p>
-</li>
-</ul>
-<p>最后是部署,将服务部署到不同的机器上,达到对外暴露服务</p>
-<p>总结:</p>
-<ul>
-<li>我觉得软件架构是教你如何设计,应用架构则是教你如何组合,部署架构则是如何对外服务</li>
-<li>软件架构<strong>设计</strong>关乎如何以最有的方式组织和构建软件的各个部分,包括模块划分,层次结构,交互方式等,以满足功能和非功能和需求</li>
-<li>应用架构的<strong>组合</strong>则是强调的是不同的应用组件或模块如何协同工作,形成一个有机的整体,以实现特定的业务功能和流程</li>
-<li>部署架构则是侧重于如何将软件系统部署到实际的硬件环境中,以提供稳定,可靠的<strong>服务</strong>,它涉及到服务器的配置,网络的布局,资源的分配等方面,直接影响着软件系统的可用性和性能表现</li>
-<li>三者互相影响,互相成就,共同决定了一个软件系统的质量和能效</li>
-</ul>
-</blockquote>
-<blockquote>
-<p>为什么要进化</p>
-<p>在这个演进过程中，是为了不断适应业务的发展变化、提高系统性能、增强可靠性和可维护性等，以更好地满足不断增长的用户需求和应对各种挑战。</p>
-<p>我主要是从系统架构设计、性能优化、业务需求满足以及资源管理等方面来理解这个问题的。</p>
-<ul>
-<li><p>从<strong>系统架构设计角度</strong>来看，物理划分是架构演进的一个重要手段，涉及如何合理布局和构建系统的物理架构。</p>
-</li>
-<li><p>从<strong>性能优化</strong>方面，这是推动进行物理划分的重要动力之一，关乎如何通过这种方式提升系统的整体性能表现。</p>
-</li>
-<li><p>从<strong>业务需求</strong>满足的层面，是考虑怎样更好地适应业务不断发展变化以及多样化的要求。</p>
-</li>
-<li><p>从<strong>资源管理</strong>的角度，则是要处理好资源分配、协调和利用等一系列相关问题，以保障系统的稳定高效运行。通过这些方面的综合考量，能更全面、深入地理解从逻辑划分到物理划分所涉及的核心问题。</p>
-</li>
-<li><p>架构演进的核心,就是需求带来变化,没有需求谈何变化</p>
-</li>
-<li><p>需求(表)是拆分的<strong>因</strong>,资源合理利用(内核)则是是拆分的<strong>果</strong>,但也不能简单的将其<strong>割裂</strong>的来看待,实际它们之间是<strong>相互关联,相互影响</strong>的动态过程</p>
-<blockquote>
-<ul>
-<li>在追求资源合理利用的过程中,可能又会反过来影响对需求的进一步理解和完善</li>
-<li>同时,资源的合理利用也并非仅仅是需求推动的唯一结果,它本身也是为了保障系统的良好运行和持续发展,所以它们的关系是较为复杂且紧密交织的</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<p>发展的几个阶段:</p>
-<ol>
-<li><strong>单机架构阶段（大一统阶段）</strong>：<ul>
-<li><strong>特点</strong>：所有数据和计算都集中在一台机器上，类似于中央集权的制度。</li>
-<li><strong>优势</strong>：简单直接，无需考虑复杂的网络通信和分布式协调问题。</li>
-<li><strong>挑战</strong>：随着数据和计算需求的增长，单机性能可能成为瓶颈，扩展性受限。</li>
-<li><strong>比喻</strong>：类似于历史上的大一统时期，中央集权，所有资源和任务都由中央统一管理和执行。</li>
-</ul>
-</li>
-<li><strong>集中式架构阶段（诸侯阶段）</strong>：<ul>
-<li><strong>特点</strong>：存在一个中心化的服务器或节点，负责统一管理和协调整个系统，其他节点或组件具有一定的自治权和独立性。</li>
-<li><strong>优势</strong>：通过分布式处理提高了系统的可扩展性和灵活性，同时保留了中心化管理的优势。</li>
-<li><strong>挑战</strong>：中心服务器可能成为单点故障的风险点，对中心服务器的依赖可能导致整个系统的可靠性问题。</li>
-<li><strong>比喻</strong>：类似于历史上的诸侯阶段，中心服务器类似于周天子，其他节点类似于诸侯，各自为政但受中心服务器统一管理。</li>
-</ul>
-</li>
-<li><strong>分布式架构阶段（权利下放阶段）</strong>：<ul>
-<li><strong>特点</strong>：数据和计算任务被分散到多个节点或服务器上，这些节点之间通过网络进行通信和协调，形成一个去中心化的系统。</li>
-<li><strong>优势</strong>：极大地提高了系统的可扩展性、容错性和灵活性。由于数据和计算被分散到多个节点上，可以充分利用集群的计算和存储能力，同时减少了单点故障的风险。</li>
-<li><strong>挑战</strong>：分布式系统面临着复杂的网络通信、数据一致性和并发控制等问题。需要设计合理的分布式算法和协议来确保系统的正确性和性能。</li>
-<li><strong>比喻</strong>：类似于权力下放的社会制度，各个节点或服务器拥有更多的自主权和决策权，能够更快地响应变化并做出决策，整个系统更加灵活和健壮。</li>
-</ul>
-</li>
-<li><strong>总结</strong>：架构方式在不同的阶段下存在的问题从性能瓶颈，变为极度依赖，再到数据同步，网络通讯，并发控制等问题，随之带来的好处分别是结构简单（维护方便），职责分离（中心协调，其它承担具体任务），高度自治，扩展方便（独立自足，增加方便）</li>
-</ol>
-</blockquote>
-<blockquote>
-<p>常用架构:</p>
-<p><strong>微服务架构</strong>：灵活性高，易于扩展和维护。</p>
-<p><strong>分布式架构</strong>：提升系统的处理能力和可靠性。</p>
-<p><strong>面向服务架构（SOA）</strong>：便于服务的集成和复用。</p>
-<p><strong>分层架构（如三层架构）</strong>：清晰划分功能层次。</p>
-<p><strong>事件驱动架构</strong>：适合对事件响应要求高的场景。</p>
-<p><strong>CQRS（命令查询职责分离）架构</strong>：明确区分数据操作类型。</p>
-<p><strong>Actor 模型架构</strong>：适用于并发处理复杂的情况。</p>
-<p><strong>模型-视图-控制器（MVC）架构</strong>：广泛应用于 Web 开发。</p>
-<p><strong>模型-视图-视图模型（MVVM）架构</strong>：常用于前端开发。</p>
-<p><strong>领域驱动设计（DDD）架构</strong>：强化业务领域概念。</p>
-<p><strong>无服务器架构</strong>：简化开发和运维。</p>
-</blockquote>
-<blockquote>
-<p>设计的融和:</p>
-<p>为满足业务需求与达成理想效果，架构与设计往往并非单一形态，而是会不断融合与创新</p>
-<p>总结:</p>
-<p><strong>设计并不孤单,而会不断融合,一起拥抱变化吧</strong></p>
-</blockquote>
-<h4 id="2-分布式场景"><a href="#2-分布式场景" class="headerlink" title="2.分布式场景"></a>2.<strong>分布式场景</strong></h4><blockquote>
-<p><strong>服务治理与交互</strong>：</p>
-<ul>
-<li>注册中心（如 Eureka、Consul、Spring Cloud Alibaba Nacos）：用于服务的自动注册与发现。</li>
-<li>远程调用（如 gRPC、Thrift、Dubbo）：实现不同服务之间的高效通信。</li>
-<li>负载均衡（如 Nginx、F5）：将请求均衡分发到多个后端服务。</li>
-<li>网关（如 Spring Cloud Gateway）：统一入口，进行路由和过滤等操作。</li>
-<li>服务降级&#x2F;限流（如 Sentinel、Hystrix）：保障系统在异常或高负载时的稳定性。</li>
-</ul>
-<p><strong>通讯与消息传递</strong>：</p>
-<ul>
-<li>消息队列<ul>
-<li>高性能（如 Kafka）：分布式流处理平台，处理海量数据和高并发。</li>
-<li>可靠（如 RabbitMQ、RocketMQ、ActiveMQ）：确保消息可靠传输（使用确认机制、事务、持久化、副本方式保证可靠性）。</li>
-<li>低延迟（如 ZeroMQ）：适用于对延迟要求极高的场景。</li>
-</ul>
-</li>
-<li>分布式通信协议<ul>
-<li>ZooKeeper 协议：分布式协调服务的基础协议。</li>
-<li>Raft 协议：用于实现分布式一致性的主流协议之一。</li>
-<li>Paxos 协议：经典的分布式一致性协议。</li>
-</ul>
-</li>
-</ul>
-<p><strong>数据存储和管理</strong>：</p>
-<ul>
-<li>结构化存储<ul>
-<li>关系型数据库（如 MySQL、PgSQL、Oracle 等）：传统的结构化数据存储。</li>
-</ul>
-</li>
-<li>非结构化存储<ul>
-<li>内存型数据库（如 Redis）：高速缓存和数据存储。</li>
-<li>文档型数据库（如 MongoDB）：灵活的文档存储。</li>
-<li>文件型数据库（如 FastDFS）：分布式文件存储。</li>
-<li>对象型数据库（如 MinIO）：对象存储。</li>
-</ul>
-</li>
-</ul>
-<p><strong>协调与同步</strong>：</p>
-<ul>
-<li>分布式协调（如 ZooKeeper）：实现分布式系统的协调工作(管理者)。</li>
-<li>数据同步（如 Canal）：监听数据库变更进行同步。</li>
-<li>事务（如 Seata）：分布式事务处理框架。</li>
-<li>任务同步<ul>
-<li>定时任务（如 XXL-job，Quartz）：定时执行任务。</li>
-</ul>
-</li>
-<li>状态同步<ul>
-<li>状态机（如 Spring Statemachine）：管理状态的流转。</li>
-</ul>
-</li>
-</ul>
-<p><strong>配置管理</strong>：</p>
-<ul>
-<li>配置中心（如 Spring Cloud Config，Spring Cloud Alibaba Nacos Config）：集中管理系统配置。</li>
-</ul>
-<p><strong>安全管理</strong>：</p>
-<ul>
-<li>权限框架（如 Shiro、Spring Security）：实现访问控制和权限管理。</li>
-</ul>
-<p><strong>容错与恢复</strong>：</p>
-<ul>
-<li>限流&#x2F;熔断（如 Sentinel、Hystrix）：限制流量和防止故障扩散。</li>
-<li>故障自动恢复 （如 Kubernetes）：自动处理节点或服务故障。</li>
-<li>重试策略（如 Spring Retry）：对失败请求进行重试。</li>
-</ul>
-<p><strong>监控与追踪</strong>：</p>
-<ul>
-<li>日志记录（ELK、Flume）：收集和分析日志。</li>
-<li>链路追踪（如 Zipkin、Jaeger、SkyWalking）：追踪请求的全链路。</li>
-<li>监控（如 Prometheus、Grafana、Zabbix、Nagios）：对系统性能等进行监控。</li>
-</ul>
-<p><strong>部署和运维</strong>：</p>
-<ul>
-<li>容器（如 Docker）：应用容器化技术。</li>
-<li>容器编排（如 Kubernetes）：管理容器集群。</li>
-</ul>
-<p><strong>数据处理和分析</strong>：</p>
-<ul>
-<li>大数据处理框架（如 Hadoop、Spark）：处理大规模数据。</li>
-<li>流处理技术（如 Flink）：实时流数据处理。</li>
-</ul>
-</blockquote>
-<h4 id="3-分布式理论"><a href="#3-分布式理论" class="headerlink" title="3.分布式理论"></a>3.<strong>分布式理论</strong></h4><ul>
-<li>CAP(基础理论)<ul>
-<li>一致性</li>
-<li>可用性</li>
-<li>分区容错性</li>
-</ul>
-</li>
-<li>BASE(CAP的具体实现)</li>
-</ul>
-<h4 id="4-MQ"><a href="#4-MQ" class="headerlink" title="4.MQ"></a>4.<strong>MQ</strong></h4><blockquote>
-<ul>
-<li>解耦<ul>
-<li>在传统架构中，有效避免了服务间的直接强关联，降低了服务之间相互影响的风险，当某一服务出现故障时，能极大减少对其他服务及应用整体性能的不良影响。</li>
-<li>从传统的 A 直接调用 B 的模式，转变为 A 调用 C，再由 C 调用 B，通过引入第三方（如 MQ）的方式，实现服务间的灵活解耦。</li>
-</ul>
-</li>
-<li>异步<ul>
-<li>针对数据（尤其是高频次）量大且可能对主流程造成显著影响的情况。</li>
-<li>通过将相关数据置入队列，能够确保在不阻塞当前主流程运行的同时，还可维持良好的用户体验。</li>
-</ul>
-</li>
-<li>削峰<ul>
-<li>针对突发的大量请求导致服务处理效率降低，进而使应用性能下降的状况。</li>
-<li>将数据放入队列中进行缓冲，随后逐步消费，实现平稳处理，从而有效降低即时的高压力。</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h4 id="5-锁"><a href="#5-锁" class="headerlink" title="5.锁"></a>5.<strong>锁</strong></h4><h4 id="6-事务"><a href="#6-事务" class="headerlink" title="6.事务"></a>6.<strong>事务</strong></h4><p>MQ&#x2F;锁&#x2F;事务 围绕着数据一致性来说</p>
-<h4 id="7-定时任务"><a href="#7-定时任务" class="headerlink" title="7.定时任务"></a>7.<strong>定时任务</strong></h4><p>围绕着协调来说</p>
-<h4 id="8-限流-熔断-故障恢复"><a href="#8-限流-熔断-故障恢复" class="headerlink" title="8.限流&#x2F;熔断&#x2F;故障恢复"></a>8.<strong>限流&#x2F;熔断&#x2F;故障恢复</strong></h4><h4 id="9-超时-重试"><a href="#9-超时-重试" class="headerlink" title="9.超时&#x2F;重试"></a>9.<strong>超时&#x2F;重试</strong></h4><p>限流&#x2F;熔断&#x2F;故障恢复&#x2F;超时&#x2F;重试 围绕着高可用来说</p>
-<h4 id="10-服务治理与交互"><a href="#10-服务治理与交互" class="headerlink" title="10.服务治理与交互"></a>10.<strong>服务治理与交互</strong></h4><h4 id="11-监控与追踪"><a href="#11-监控与追踪" class="headerlink" title="11.监控与追踪"></a>11.<strong>监控与追踪</strong></h4><h4 id="12-安全"><a href="#12-安全" class="headerlink" title="12.安全"></a>12.<strong>安全</strong></h4><h3 id="19-并发原则"><a href="#19-并发原则" class="headerlink" title="19.并发原则"></a>19.并发原则</h3><ul>
-<li>并发设计</li>
-</ul>
-<blockquote>
-<p><strong>有序性</strong></p>
-<p>1.<strong>“串行一致”和”先行发生”这两个原则并不是平级的概念</strong>，它们在并发编程的理论体系中扮演着不同角色，但相互关联，共同支撑着并发程序的正确性和理解性。</p>
-<ul>
-<li><strong>先行发生（Happen-Before）原则</strong>：这是一个更为基础的概念，它定义了程序中操作之间的偏序关系，说明了哪些操作必须在其他操作之前执行。先行发生原则为并发程序中的内存访问、线程交互等提供了逻辑上的顺序保证，是理解和分析并发程序行为的基础框架。</li>
-<li><strong>串行一致（Sequential Consistency）</strong>：这是一种内存一致性模型，是最强的一种一致性模型。它要求多线程程序在执行结果上与某个串行执行的顺序相对应，即程序的执行仿佛是在某个不确定的串行顺序下进行的，尽管实际可能是乱序执行。串行一致性可以看作是程序执行结果的一种理想状态，而先行发生原则则是达成这一状态的机制之一。</li>
-</ul>
-<p>简而言之，先行发生原则是构建并发程序逻辑顺序的基础规则，而串行一致性是一种理想化的内存交互视图，它依赖于先行发生原则等机制来实现。因此，从某种程度上说，先行发生原则可以视为实现串行一致性的工具之一，两者在逻辑上有包含和被包含的关系，但分别关注于操作间的顺序关系和整体执行效果。</p>
-<p>2.<strong>重排序问题的核心确实与操作之间的依赖关系紧密相关</strong>。当存在依赖的操作被不恰当地重排序，即执行顺序与逻辑上的预期顺序不一致时，确实可能导致程序行为偏离预期，不论是局部变量还是全局变量，也不论是单线程还是多线程环境。</p>
-<ul>
-<li><strong>局部变量</strong>：尽管单线程中的局部变量通常不涉及并发访问问题，但若这些变量的操作之间存在逻辑依赖（例如，一个变量的值依赖于前一个变量的计算结果），不恰当的重排序可能导致逻辑错误，尽管这种情况较为少见。</li>
-<li><strong>全局变量&#x2F;静态变量&#x2F;实例变量</strong>：在多线程环境下，全局变量等共享状态的重排序问题更为显著，因为多个线程可能同时访问和修改这些变量，不恰当的重排序极易引发数据竞争和一致性问题，导致数据损坏或程序崩溃。</li>
-<li><strong>单线程环境</strong>：虽然单线程中并发问题较少，但重排序仍可能通过影响依赖关系，间接导致程序逻辑错误，尤其是当依赖于特定顺序的计算或I&#x2F;O操作时。</li>
-<li><strong>多线程环境</strong>：在多线程中，除了依赖关系外，重排序还会与数据竞争结合，显著增加出现不可预测行为的风险，如脏读、丢失更新等并发问题。</li>
-</ul>
-<p>总之，理解操作之间的依赖性，并在必要时使用适当的同步机制（如锁、volatile、原子操作等）来控制重排序，是保证程序在各种环境下的正确性和一致性的重要手段。</p>
-<p>3.<strong>JMM内存模型</strong>,它是Java虚拟机规范定义的一种内存模型,描述了Java各种变量(线程共享变量)的访问规则,以及在JVM中如何将工作内存中修改后的变量同步到主内存的这种底层细节,并且屏蔽了CPU和内存的交互细节,统一了不同平台下的内存交互方式</p>
-<ul>
-<li><p>访问规则</p>
-<ul>
-<li>将内存空间分为线程私有的工作内存和线程共享的主内存</li>
-<li>访问时先从主内存拷贝一份副本到工作内存中</li>
-<li>修改则先在工作内存中完成,然后在主内存中完成交互</li>
-</ul>
-</li>
-<li><p>同步方式</p>
-<ul>
-<li>当线程修改完成自己的数据后,通过(比如 volatile 变量的特殊规则、锁机制等)这些机制将数据同步到主内存中</li>
-</ul>
-</li>
-<li><p>并发问题</p>
-<ul>
-<li><p>原子</p>
-<ul>
-<li>可以使用Lock和Synchroized这些锁机制来保证执行的完整性,不会被其它的线程给打断</li>
-<li>Synchroized底层是通过对象头的锁持有标记实现互斥,在字节码则是采用lock指令锁住区间实现操作原子性</li>
-<li>Lock底层则是通过State标记实现互斥,CAS操作实现操作原子性</li>
-</ul>
-</li>
-<li><p>有序&#x2F;可见</p>
-<ul>
-<li><p>可以使用使用Lock和Synchroized这些锁机制以及volatile关键字来保证执行的有序和对数据</p>
-<p>修改后对其它线程的可见</p>
-</li>
-<li><p>Lock和Synchroized通过锁的互斥特性来保证一定的有序性(通过阻塞和唤醒机制来保证的),在进入临界区时会强制刷新自己的数据,并且在释放锁时将数据刷新会主内存,这样其它的线程就能看到最新的数据</p>
-</li>
-<li><p>Volatile则是通过内存屏障来保证有序性(读写屏障,读向上,写向下),MESI协议来保证可见性(监听)</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<ul>
-<li>三大特性</li>
-</ul>
-<blockquote>
-<p>可见&#x2F;有序性</p>
-<ul>
-<li>Volatile<ul>
-<li>MESI协议<ul>
-<li>操作系统内存—&gt;CPU缓存</li>
-<li>状态</li>
-<li>消息总线</li>
+<li>CPU高速缓存<ul>
+<li>MESI(同步给其它cpu),解决可见性,保证缓存一致性</li>
 </ul>
 </li>
 <li>指令重排序<ul>
-<li>编译器</li>
-<li>CPU</li>
+<li>内存屏障(避免指令执行顺序被优化),解决有序性</li>
 </ul>
 </li>
 </ul>
 </li>
-</ul>
-<p>原子性</p>
+<li><p>volitale重排序规则</p>
+<p>不管是普通变量还是volitale变量,对于在volitale变量的读操作之间进行写操作是不允许重排序的</p>
 <ul>
-<li><p><strong>竞争影响执行的效率</strong></p>
+<li><blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs/JMM/Volatile%E9%87%8D%E6%8E%92%E5%BA%8F%E8%A7%84%E5%88%99.png"
+                      alt="Volatile重排序规则"
+                ></p>
+</blockquote>
 </li>
-<li><p>锁,Java中使用锁来保证执行操作的原子性(同步且互斥)</p>
+</ul>
+</li>
+</ul>
+<p>如何解决上述问题</p>
 <ul>
-<li><p>悲观锁</p>
+<li><p>synchroized</p>
+</li>
+<li><p>volitale</p>
+</li>
+<li><p>final(内存屏障指令),只能在构造方法之内完成初始化,而在构造方法中初始化的指令,不允许重排序到构造</p>
+<p>方法之外,这里使用了内存屏障指令</p>
+</li>
+</ul>
+<p><strong>不是所有的程序指令都会存在可见性或指令重排序(as-if-serial )问题</strong></p>
+<p>Happens-Before(明确哪些场景下不会出现问题)操作的有序性,操作性依赖</p>
+<ul>
+<li>程序顺序型规则 (as-if-serial),单线程执行不影响</li>
+<li>传递性规则</li>
+<li>volatile变量规则</li>
+<li>监视器锁规则</li>
+<li>start规则</li>
+<li>join规则<ul>
+<li>哪个线程调用就阻塞哪个线程,必须等待join线程完成,适用于按照指定顺序执行的情况</li>
+</ul>
+</li>
+<li>单线程环境下不改变程序运行的结果,以及不存在依赖关系这些场景允许重排序</li>
+<li>本质上是描述可见性的规则(有序性导致的可见性问题)</li>
+</ul>
+<p>典型案例</p>
+<p>DCL(Double Check Lock)</p>
+<ul>
+<li><p>在new对象的过程中,在jvm里需要三个步骤,开辟空间—&gt;对象初始化—&gt;返回对象引用</p>
+</li>
+<li><p>而在多线程场景下,如果不对这个对象使用Volatile修饰(lock指令加锁),就有可能出现指令</p>
+<p>重排序的问题</p>
+</li>
+</ul>
+<h3 id="3-Lock设计预想"><a href="#3-Lock设计预想" class="headerlink" title="3.Lock设计预想"></a>3.Lock设计预想</h3><p>重入锁指的是再获取同一把锁时,无需重复获取,记录持有次数即可</p>
+<p>特点</p>
+<ul>
+<li>可重入</li>
+<li>支持公平,非公平锁</li>
+<li>支持打断</li>
+<li>支持多条件变量</li>
+<li>支持手动释放,需要在finally使用完后进行兜底释放</li>
+</ul>
+<p>实现原理</p>
+<ul>
+<li><p>如何支持线程互斥特性,只有拿到锁后才能执行lock方法里的代码,否则只能排队等待</p>
+<ul>
+<li>涉及到锁的抢占,需要一个标记是否有线程获取到锁,全局变量(0,1)</li>
+<li>抢到会怎么样,无需任何操作</li>
+<li>没抢到会怎么样<ul>
+<li>需要等待 (等待线程进入阻塞状态,释放CPU资源,阻塞—&gt;CPU资源释放)<ul>
+<li>如何让线程等待<ul>
+<li>wait&#x2F;notify线程通信机制,但无法指定唤醒某个线程</li>
+<li>LockSupport.park&#x2F;unpark (阻塞一个指定线程,唤醒一个指定线程)</li>
+<li>Condition</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>需要排队 (运行有n个线程被阻塞,被存储之前的线程都处于活跃状态)<ul>
+<li>通过一个数据结构,把需要等待线程存储起来</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>使用完如何释放<ul>
+<li>LockSupport.park—-&gt;唤醒队列中指定线程</li>
+</ul>
+</li>
+<li>锁抢占的公平性(是否允许插队)<ul>
+<li>公平</li>
+<li>非公平</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>获取不到锁会阻塞,直到获取到后才会继续执行</p>
+</li>
+<li><p>抢占锁—&gt;抢占到后修改状态—&gt;执行任务—&gt;执行完成—&gt;修改state—&gt;释放锁资源—&gt;唤醒队列中等待线程</p>
+<p>​           —&gt;没抢占到进入阻塞队列—&gt;修改线程状态—&gt;释放CPU执行资源—&gt;等待唤醒—&gt;再次抢占</p>
+</li>
+</ul>
+<p>具体实现</p>
+<ul>
+<li><p>reentrantLock本质上就是AQS+LOCK组成</p>
+</li>
+<li><p>内部结构</p>
+<ul>
+<li><p>锁持有线程(记录当前持有线程对象)</p>
+</li>
+<li><p>共享变量(初始0,持有为1,重入则可能大于0(重入次数))</p>
+<ul>
+<li>volatile修饰保证可见性</li>
+<li>cas()方法保证原子性,尝试修改</li>
+</ul>
+</li>
+<li><p>等待队列</p>
+<ul>
+<li><p>双向链表存储,Head节点指向第一个节点,tail指向最后一个节点,将线程对象封装c</p>
+<p>成Node对象</p>
+</li>
+<li><p>自旋操作,尝试抢占资源,未获取成功则进入阻塞状态,避免浪费cpu资源</p>
+<p>调用LockSupport.parlk(this),阻塞自己</p>
+</li>
+<li><p>线程使用完锁后,唤醒等待队列的线程,从Head开始唤醒,唤醒它的下一个节点</p>
+<p>.再调用LockSupport.unpark(ThreadB),唤醒指定线程</p>
+</li>
+<li><p>非公平允许插队,不管队列中有没有线程,公平则不允许,必须加入队列,排队等待</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>流程图</p>
+<ul>
+<li><blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs/JMM/ReenTrantLock%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png"
+                      alt="ReenTrantLock实现原理"
+                ></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-LOCK的具体实现"><a href="#4-LOCK的具体实现" class="headerlink" title="4.LOCK的具体实现"></a>4.LOCK的具体实现</h3><ul>
+<li><p>具体实现</p>
 <blockquote>
-<p>1.Synchroized</p>
-<p>Java实现的其中一种锁机制,是java的一个内部使用关键字,直译叫做同步的,用于保证组合操作执行的原子性,</p>
-<p>通过进入和出去锁时的Monitor实现线程的唤醒和竞争锁,并且在性能考虑上有一定的优化,支持偏向锁(无竞争&#x2F;竞争少),轻量锁(交替执行),重量锁(大量竞争),并且在一定场景下会发生锁粗化(锁的范围增大),锁消除(不存在竞争时,JVM会将锁清除),锁升级和退化(对于锁的使用和性能动态变化,根据实际竞争情况进行调整,降低资源的消耗,提高性能),涉及到应用态到内核态的切换</p>
-<p>2.Lock</p>
-<p>支持打断,超时,限定条件,可重入等等特性,使用Java实现,相对Syn更灵活,不用和CPU直接打交道,<br>底层使用同步队列+CAS机制实现</p>
-</blockquote>
-</li>
-<li><p>乐观锁(不互斥,不阻塞,不同步)</p>
-<blockquote>
-<p>1.CAS</p>
-<p>它存在内存值,修改值,预期值的概念,首先内存中的值一定是最新的,而修改值和预期值都为线程所</p>
-<p>持有,预期值不一定是最新的,可能会被其它线程修改</p>
-<p>然后就是修改的流程了,线程会先将自己的预期值和内存值进行比较,相同则完成自己的修改,否则<br>就会自旋,当一直比较失败,就会尝试获取内存中的最新值覆盖自己的预期值,再次尝试修改,但存在一定的问题,容易造成CPU空转的问题,导致资源一直被浪费</p>
-<p>最后,为了避免上面的问题,通常会设置一定的自旋上限,然后放弃修改</p>
-<p>2。使用注意事项</p>
+<p>ReentrantLock</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs/JMM/Java%E9%94%81%E5%AE%9E%E7%8E%B0%E5%85%B3%E7%B3%BB.png"
+                      alt="Java锁实现关系"
+                ></p>
 <ul>
-<li><p><strong>使用线程安全的集合或并发数据结构</strong>：可以考虑使用线程安全的集合或并发数据结构来替代<code>AtomicInteger</code>。例如，可以使用<code>ConcurrentHashMap</code>或<code>ConcurrentLinkedQueue</code>等数据结构来存储和操作共享数据，这些数据结构在多线程环境下具有更好的并发性和性能。</p>
-</li>
-<li><p><strong>调整线程池配置</strong>：可以调整线程池的配置，例如增加线程池的大小或调整任务队列的大小，以减少线程竞争和阻塞的可能性。</p>
-</li>
-<li><p><strong>避免共享状态</strong>：尽量避免在多线程环境中共享可变状态。如果可能的话，可以将任务设计为无状态的，或者通过参数传递数据而不是共享变量。</p>
-</li>
-<li><p><strong>使用锁或同步机制</strong>：如果必须共享状态并且需要确保线程安全，可以使用适当的锁或同步机制来保护共享数据。例如，可以使用<code>synchronized</code>关键字或<code>ReentrantLock</code>等锁来实现线程同步。</p>
-</li>
+<li>reentrant实现Lock(锁机制)和持有Sync(同步队列)</li>
+<li>AQS负责实现同步队列的基本逻辑,如唤醒,加入队列等方法</li>
+<li>Sync继承AQS抽象类</li>
+<li>在Sync的基础上实现公平和非公平</li>
 </ul>
 </blockquote>
 </li>
 </ul>
-</li>
-</ul>
-</blockquote>
+<p>节点状态</p>
 <ul>
-<li><p>总结</p>
-<blockquote>
-<p>在并发场景中，<strong>线程通讯</strong>和<strong>资源分配</strong>的确是至关重要。</p>
-<p>线程通讯确保了不同线程之间能够有效地协调和交互信息。例如，通过共享变量、消息总线、信号量等机制，线程可以传递状态、通知任务完成或请求其他线程执行特定操作。良好的线程通讯机制可以避免数据不一致、竞态条件等问题。比如在生产者-消费者模式中，生产者线程和消费者线程通过特定的通讯方式来协调生产和消费行为。</p>
-<p>资源分配则直接关系到系统的性能和稳定性。合理地分配诸如内存、CPU 时间、网络带宽等资源，能够避免资源竞争导致的死锁、性能下降等情况。比如，在多线程访问数据库时，需要合理地分配数据库连接资源，以确保线程不会因为竞争连接而阻塞。同时，对于关键资源的分配策略也需要精心设计，以满足不同场景下的需求。</p>
-<p>总之，在并发场景下，对线程通讯和资源分配的妥善处理是构建高效、可靠的并发系统的关键要素。它们相互配合，共同保障系统在高并发环境下的正常运行和良好性能表现。</p>
-</blockquote>
-</li>
+<li>signal  需要被唤醒的一个节点</li>
+<li>cancelled 一个取消的节点</li>
+<li>condition </li>
+<li>propgate</li>
+<li>0 默认值</li>
 </ul>
-<h3 id="20-CPU是如何保证同步的"><a href="#20-CPU是如何保证同步的" class="headerlink" title="20.CPU是如何保证同步的"></a>20.CPU是如何保证同步的</h3><ul>
-<li><strong>Synchroized</strong></li>
-</ul>
-<blockquote>
-<p>在Linux环境下，针对Java中<code>synchronized</code>关键字及其在HotSpot虚拟机中的不同锁实现机制（轻量级锁、偏向锁、重量级锁）所依赖的关键机制和与Linux紧密相关的指令或函数，可以总结如下：</p>
+<p>公平锁和非公平锁</p>
 <ul>
-<li><p><strong>轻量级锁</strong>:</p>
+<li><p>是否阻塞线程</p>
+</li>
+<li><p>是否公平</p>
+</li>
+<li><p>抢占时机</p>
+</li>
+<li><p>抢占失败</p>
 <ul>
-<li><strong>核心依赖</strong>：利用CPU的<code>cmpxchg</code>指令执行Compare-And-Swap操作，以原子性尝试获取锁。</li>
-<li><strong>自旋优化</strong>：在自旋等待期间，可能会使用<code>pause</code>指令来减少CPU的空闲循环开销。</li>
-</ul>
+<li><p>进入队列</p>
 </li>
-<li><p><strong>偏向锁</strong>:</p>
-<ul>
-<li><strong>初始化与撤销</strong>：偏向锁的分配和撤销同样依靠<code>cmpxchg</code>指令，进行原子性地更新对象头Mark Word，以记录或清除线程ID。</li>
-<li><strong>状态检查</strong>：偏向锁维持期间，虽然直接关联的CPU指令不显著，但依赖硬件提供的原子读取来确认偏向状态。</li>
-<li><strong>撤销机制</strong>：撤销偏向锁可能涉及额外的原子操作和内存屏障，以确保数据一致性。</li>
-</ul>
-<blockquote>
-<p>从Java 15开始，偏向锁的默认启用被禁用，意味着JVM在启动时不会自动使用偏向锁。这一改动是因为在很多实际应用场景中，偏向锁带来的性能提升并不明显，有时甚至因为偏向锁的维护成本（如撤销偏向锁的操作）而导致性能下降。</p>
-<p>如果开发者确定自己的应用程序能够从偏向锁中获益，可以通过JVM启动参数 <code>-XX:+UseBiasedLocking</code> 显式启用偏向锁。尽管如此，Oracle官方建议除非经过充分测试并明确知道偏向锁能为特定的应用场景带来性能优势，否则应让JVM默认行为保持不变，即不使用偏向锁。</p>
-<p>因此，偏向锁并未废弃，只是其默认启用状态发生了变化，需要时仍可手动启用。</p>
-</blockquote>
+<li><p>自旋(重试获取锁),等待(重试达到上限后将节点状态变为阻塞)</p>
 </li>
-<li><p><strong>重量级锁</strong>:</p>
-<ul>
-<li><strong>核心机制</strong>：依赖于Linux内核提供的<strong>futex</strong>（Fast Userspace Mutex）机制来实现线程的阻塞与唤醒。当锁竞争激烈，轻量级锁膨胀为重量级锁时，通过<code>futex</code>系统调用（如<code>SYS_futex</code>）与内核交互，这可能间接触发<code>syscall</code>指令来切换到内核态处理线程状态。</li>
-<li><strong>内存屏障</strong>：确保锁操作的内存可见性和正确顺序，使用如<code>mfence</code>之类的内存屏障指令。</li>
-</ul>
+<li><p>阻塞重试达到上限的线程</p>
 </li>
-</ul>
-<p><strong>总结</strong>： 在Linux平台上，轻量级锁和偏向锁主要利用CPU级别的原子操作指令（如<code>cmpxchg</code>）来提升同步效率，减少开销，尤其是通过CAS操作。而重量级锁则借助操作系统级的futex机制来处理更复杂的线程同步问题，包括线程的阻塞与唤醒，这一过程涉及操作系统内核与用户空间的交互，间接使用到如<code>syscall</code>等指令。无论是哪种锁机制，为了确保数据一致性和操作的正确性，内存屏障的使用都是不可或缺的。</p>
-</blockquote>
-<ul>
-<li><strong>ReentrantLock</strong></li>
-</ul>
-<blockquote>
-<p><code>ReentrantLock</code>是Java并发包中的一个重入锁实现，它提供了与<code>synchronized</code>关键字类似的线程同步功能，但具有更高的灵活性和可控性。在HotSpot虚拟机中，<code>ReentrantLock</code>的实现（特别是公平锁与非公平锁）主要依赖以下机制和潜在的CPU指令：</p>
-<ul>
-<li><strong>非公平锁&#x2F;公平锁初始化</strong>:<ul>
-<li>初始状态下，<code>ReentrantLock</code>通过<code>AbstractQueuedSynchronizer</code>（AQS）内部的<code>state</code>变量来追踪锁的状态，该状态的修改通常基于CAS操作，使用CPU的<code>cmpxchg</code>指令来保证原子性。</li>
-</ul>
+<li><p>等待唤醒</p>
 </li>
-<li><strong>锁获取</strong>:<ul>
-<li><strong>非公平锁</strong>：在尝试获取锁时，首先尝试通过CAS操作快速获取锁，这一步骤直接利用了CPU的原子指令。</li>
-<li><strong>公平锁</strong>：会先检查是否有等待线程，然后决定是否尝试获取锁，尽管步骤更为复杂，但CAS操作依然是核心，确保了线程安全。</li>
-</ul>
-</li>
-<li><strong>自旋与阻塞</strong>:<ul>
-<li>在锁竞争激烈时，<code>ReentrantLock</code>可能会采用自旋等待策略，这期间可能会使用<code>pause</code>指令减少CPU消耗。</li>
-<li>自旋失败后，未能获取锁的线程会通过<code>LockSupport.park(this)</code>方法被阻塞，背后可能涉及系统调用（如在Linux中通过futex机制）来挂起线程，间接使用到<code>syscall</code>指令。</li>
-</ul>
-</li>
-<li><strong>锁释放</strong>:<ul>
-<li>锁的释放同样依赖CAS操作来原子性地修改AQS的<code>state</code>变量，并可能唤醒等待队列中的下一个线程，这过程涉及内存屏障指令确保释放操作的可见性。</li>
-</ul>
-</li>
-<li><strong>内存屏障</strong>:<ul>
-<li>在锁的获取和释放过程中，为了确保操作的内存效应得到正确传播，JVM会插入必要的内存屏障指令，如<code>mfence</code>，来维持内存的有序访问。</li>
-</ul>
-</li>
-</ul>
-<p>综上所述，<code>ReentrantLock</code>通过高度优化的CAS操作和AQS框架，实现了灵活且高效的锁管理机制。它在非竞争和轻度竞争情况下尽量减少开销，而在高竞争场景下能有效地通过自旋、阻塞与唤醒线程来保证同步，整个过程中充分利用了现代CPU的原子指令和内存屏障特性，同时也依赖于操作系统（如Linux的futex）来实现更复杂的线程管理功能。</p>
-</blockquote>
-<ul>
-<li><p>总结</p>
-<blockquote>
-<ul>
-<li><strong><code>synchronized</code>关键字</strong>：<ul>
-<li>在<strong>重量级锁</strong>场景下，确实高度依赖于操作系统提供的互斥量（mutex）来管理线程的阻塞与唤醒，这在Linux中可能通过<code>futex</code>系统调用实现。这背后的机制虽然不直接关联特定的CPU指令，但涉及操作系统层面的线程管理，可能间接使用到如<code>syscall</code>指令来进入内核模式处理线程状态。</li>
-<li>对于<strong>轻量级锁和偏向锁</strong>，主要依赖于CPU的<strong>Compare-And-Swap (CAS)</strong> 指令，如x86架构的<code>cmpxchg</code>，来实现原子性的锁获取与释放，减少重量级锁的开销，提高并发性能。</li>
-</ul>
-</li>
-<li>**<code>ReentrantLock</code>**：<ul>
-<li>无论是在公平锁还是非公平锁的实现中，<code>ReentrantLock</code>大量依赖于<strong>CAS指令</strong>来实现锁的获取与释放，尤其是在非竞争或轻度竞争的场景下，这使得它能够提供与<code>轻量级锁</code>相似的高效性能。即使是锁的竞争变得激烈，导致线程需要被阻塞，其底层的自旋、阻塞与唤醒机制也始于尝试通过CAS操作避免进入阻塞状态，体现了对CAS指令的广泛依赖。</li>
-</ul>
-</li>
-</ul>
-<p>总的来说，<code>synchronized</code>在不同锁状态下的实现策略反映了从轻量级的乐观锁策略（偏向锁、轻量级锁）逐渐过渡到重量级锁的悲观策略，而<code>ReentrantLock</code>则在设计上更加倾向于使用CAS指令实现的乐观锁策略，提供更多的控制选项和更高的灵活性。两者均利用了现代CPU的特性来优化性能，但具体的依赖机制根据锁的类型和竞争状况有所不同。</p>
-</blockquote>
-</li>
-<li><p>存在的问题</p>
-<ul>
-<li><p>锁饥饿</p>
-<ul>
-<li>合理的资源分配,患寡而患不均</li>
-</ul>
+<li><p>当前线程抢占失败—&gt;进入同步队列—&gt;包装成Node节点.赋waitStatus状态为0—&gt;自旋,判断前置节点</p>
+<p>—&gt;尝试获取锁,重试上限—&gt;放弃获取,进入阻塞状态</p>
 </li>
 </ul>
 </li>
-<li><p>活锁</p>
-<ul>
-<li><p>执行顺序设定,无需相互让步</p>
+<li><p>唤醒时机</p>
 </li>
-<li><p><strong>引入随机等待时间</strong>：在释放锁后，让线程等待一段随机的时间再尝试获取锁，避免多个线程总是同步地抢锁和让锁。</p>
-<ul>
-<li><strong>设置优先级</strong>：给线程明确不同的优先级，让高优先级的线程优先获取锁，减少无序竞争。</li>
-<li><strong>优化业务逻辑</strong>：仔细审查和改进业务流程，避免不合理的频繁获取和释放锁的操作模式。</li>
-<li><strong>限制重试频率</strong>：对线程获取锁的重试频率进行一定的限制，防止过于频繁的尝试。</li>
-<li><strong>使用更合适的同步机制</strong>：根据实际情况评估是否有更适合的同步方式来替代可能导致活锁的机制。</li>
-<li><strong>增加资源缓冲</strong>：例如设置一定数量的资源缓冲池，避免线程因直接竞争同一资源而容易陷入活锁。</li>
-<li><strong>监控和预警</strong>：建立监控系统，及时发现可能出现活锁的迹象并发出预警，以便及时干预和调整。</li>
-<li>核心是减轻竞争,避免线程之间相互影响</li>
-</ul>
-</li>
-<li><p>死锁</p>
-<ul>
-<li>使用完成后直接释放之前的资源,避免资源浪费</li>
-</ul>
+<li><p>锁释放</p>
 </li>
 </ul>
-</li>
-<li><p>线程通讯</p>
-<ul>
-<li>控制执行的先后顺序<ul>
-<li>线程通讯之间的协调</li>
-</ul>
-</li>
-<li>线程的优先级</li>
-</ul>
-</li>
-</ul>
-<h3 id="21-Java对锁的优化和实现"><a href="#21-Java对锁的优化和实现" class="headerlink" title="21.Java对锁的优化和实现"></a>21.Java对锁的优化和实现</h3><ul>
-<li><strong>优化及实现</strong></li>
-</ul>
-<blockquote>
-<p>在并发编程的广阔天地里，锁机制扮演着确保数据一致性和线程安全的中心角色。我们已经探讨了锁升级、锁退化，以及锁粗化和锁膨胀等关键概念，它们共同编织了一个复杂而精妙的并发控制网。为了提供一个全面且优化的视角，让我们再次整合这些概念，特别强调锁粗化与锁膨胀的内涵，以及其他重要机制：</p>
-<h3 id="锁的动态调整与优化"><a href="#锁的动态调整与优化" class="headerlink" title="锁的动态调整与优化"></a>锁的动态调整与优化</h3><ul>
-<li><strong>锁升级与退化</strong>：反映锁机制根据竞争程度动态调整的能力。从偏向锁或无锁状态逐步过渡到轻量级锁，乃至最终的重量级锁，以应对不断加剧的线程竞争，此为锁升级。反之，在竞争减缓时，重量级锁退回到轻量级或无锁状态，减少资源消耗，即锁退化。</li>
-<li><strong>锁粗化与膨胀</strong>：<strong>锁粗化</strong>，作为优化策略，通过合并相邻且频繁被同一线程持有的细粒度锁为更广泛的锁，减少了锁操作的频次，提升了执行效率。相对地，<strong>锁膨胀</strong>是在面临高度竞争时，将原本轻量级的锁机制“膨胀”为重量级锁，以更强有力的手段管理并发访问，即使这可能伴随着更高的开销。</li>
-</ul>
-<h3 id="高级锁特性与策略"><a href="#高级锁特性与策略" class="headerlink" title="高级锁特性与策略"></a>高级锁特性与策略</h3><ul>
-<li><strong>锁消除</strong>：一种高级优化技术，编译器或运行时环境通过深度分析确定某段代码在执行过程中无并发风险，从而直接移除不必要的加锁操作，进一步提升性能。</li>
-<li><strong>读写锁</strong>：相较于传统互斥锁的独占访问，<strong>读写锁</strong>允许多线程同时读取共享资源，仅在写入时排斥所有读写访问，极大提高了读多写少场景下的并发效能。</li>
-<li><strong>可重入性</strong>：<strong>可重入锁</strong>允许线程多次获取同一锁而不会引发死锁，是<code>synchronized</code>和<code>ReentrantLock</code>等机制的核心特征。</li>
-<li><strong>公平与非公平锁</strong>：<strong>公平锁</strong>遵循先进先出原则，确保等待最久的线程优先获得锁；而<strong>非公平锁</strong>允许线程“插队”，牺牲一定的公平性以换取更快的响应速度。</li>
-<li><strong>偏向锁的动态管理</strong>：偏向锁设计为无竞争场景优化，当遇到竞争时撤销为轻量级锁或无锁状态，而原线程后续可能重新获取时恢复偏向状态，这一过程展示了锁状态的动态适应性。</li>
-<li><strong>自适应自旋</strong>：通过动态调整自旋周期，依据过去的自旋成功情况和CPU负载来决定最优自旋策略，力求平衡CPU使用效率与响应时间。</li>
-</ul>
-<p>这些机制共同构成了并发控制的生态系统，每一种都在特定场景下发挥着关键作用，以确保程序的高效执行与数据安全性。</p>
-</blockquote>
-<ul>
-<li><p>总结</p>
-<blockquote>
-<p>确切地说，锁机制的<strong>核心实现及优化策略</strong>，诸如偏向锁、轻量级锁、重量级锁的转换，以及自旋、锁粗化与膨胀等，主要由<strong>Java虚拟机</strong>（JVM，特别是HotSpot VM）<strong>负责实现与管理</strong>。这些底层机制确保了在不同并发场景下，资源访问的高效与安全。<strong>而Java语言层面上</strong>，<strong>则通过关键字如<code>synchronized</code>、<code>volatile</code>以及<code>java.util.concurrent</code>包中的高级并发类</strong>（如<code>ReentrantLock</code>, <code>ReadWriteLock</code>, <code>Semaphore</code>等）<strong>为开发者提供了便捷的接口和抽象</strong>，使得开发者能够在不直接操作JVM底层细节的前提下，轻松实现复杂的并发控制逻辑。简言之，JVM专注于优化和实现锁的底层机制，而Java语言及标准库则专注于提供易于使用的并发编程工具和接口，二者协同工作，共同支撑起了Java平台的并发编程模型。</p>
-</blockquote>
-</li>
-<li><p>分布式场景下的三大特性</p>
-<blockquote>
-<p>确实，无论是单体架构还是分布式微服务，甚至更广泛的并发编程场景，其核心问题往往归结于处理好三个基本特性：原子性、有序性、可见性。这些特性是并发控制和数据一致性的基石，无论架构如何变化，都是确保程序正确性的关键所在。</p>
-<ul>
-<li><strong>原子性</strong>：无论是在单线程环境下的简单操作，还是分布式系统中的事务处理，确保操作的不可分割性都是基础。在分布式系统中，通过两阶段提交、Saga事务等机制实现跨服务操作的原子性。</li>
-<li><strong>有序性</strong>：无论是单机多线程间的内存模型，还是分布式系统中的消息传递顺序，控制操作的执行顺序对于正确性至关重要。分布式系统中，消息队列、分布式协调服务（如Zookeeper）帮助维持操作的全局有序执行。</li>
-<li><strong>可见性</strong>：无论是在单个JVM内的线程共享数据，还是跨微服务间的数据同步，确保数据更新对所有访问者可见是避免数据不一致性的关键。分布式缓存、一致性协议（如Raft、Paxos）等技术保证数据的全局一致性或最终一致性。</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<h3 id="22-CPU亲和性"><a href="#22-CPU亲和性" class="headerlink" title="22.CPU亲和性"></a>22.CPU亲和性</h3><blockquote>
-<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * 设置当前线程的 CPU 亲和性，即绑定线程到特定的 CPU 核心。</span></span><br><span class="line"><span class="comment"> * 优化线程在 CPU 上的调度和执行，减少线程在不同 CPU 核心之间切换的开销，从而提高系统性能。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">redisSetCpuAffinity(server.server_cpulist);</span><br></pre></td></tr></table></figure></div>
-
-<p>在 Redis 中使用 CPU 亲和性主要有以下原因：</p>
-<ol>
-<li><strong>提高性能稳定性</strong>：确保 Redis 进程主要在特定的 CPU 核心上运行，减少因 CPU 核心切换导致的性能波动，使性能表现更加稳定和可预测。</li>
-<li><strong>充分利用缓存</strong>：有助于保持相关数据和指令在特定 CPU 的缓存中，避免频繁在不同 CPU 间切换导致缓存失效和重新加载，提升数据访问效率。</li>
-<li><strong>降低上下文切换</strong>：减少进程在不同 CPU 间迁移带来的上下文切换开销，让 Redis 能够更专注和高效地处理任务。</li>
-<li><strong>优化资源分配</strong>：可以更好地规划和分配 CPU 资源，避免与其他进程竞争导致的性能下降，保障 Redis 对 CPU 资源的有效利用。</li>
+<h3 id="5-遵守原则"><a href="#5-遵守原则" class="headerlink" title="5.遵守原则"></a>5.遵守原则</h3><ol>
+<li><strong>缓存一致性模型</strong>：保证不同处理器核心或线程的缓存数据同步。</li>
+<li><strong>重排序规则</strong>：指令执行顺序可能会被重新排列，但要遵循特定的约束以保证正确性。</li>
+<li><strong>Happen-Before 关系</strong>：明确操作之间的先后顺序，确保多线程程序的正确执行。</li>
+<li><strong>同步机制规则</strong>：包括锁、同步方法和同步块等的使用规则。</li>
+<li><strong>内存屏障规则</strong>：用于控制指令重排序和确保内存操作的顺序。</li>
 </ol>
-</blockquote>
-<h3 id="23-多线程任务"><a href="#23-多线程任务" class="headerlink" title="23.多线程任务"></a>23.多线程任务</h3><ul>
-<li>数据分片导入</li>
-</ul>
-<blockquote>
-<p>整体思路:</p>
-<p>1.数据分片,使用业务唯一字段,或组合字段作为区分依据 </p>
 <ul>
-<li>将数据分片后,交给线程执行</li>
-<li>当出现异常时需要进行回滚操作</li>
+<li>按照这些规则做,就会降低线程安全产生的风险</li>
 </ul>
-<p>2.出口,使用CountDownLatch作为最终汇总依据 </p>
-<ul>
-<li>需要对线程执行的异常情况进行兜底</li>
-<li>当出现异常导致一直未归零,将之前的数据进行回滚操作</li>
-</ul>
-<p>3.导入成功 </p>
-<p>需要注意的是,在将数据分片时,每个线程执行的任务不应具有关联性,</p>
-<p>互为一个整体,避免相互影响,然后就是在异常情况下需要将原来的数据</p>
-<p>进行回滚操作,保证数据的一致性和完整性</p>
-<p>具体示例:</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//以下是一个简单的代码示例，展示了使用业务分片、多线程以及处理异常时回滚的基本思路：</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.CountDownLatch;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DataShardingExample</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">SHARD_COUNT</span> <span class="operator">=</span> <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 模拟数据</span></span><br><span class="line">        <span class="type">int</span>[][] data = &#123;</span><br><span class="line">                &#123;<span class="number">1</span>, <span class="number">2</span>&#125;,</span><br><span class="line">                &#123;<span class="number">3</span>, <span class="number">4</span>&#125;,</span><br><span class="line">                &#123;<span class="number">5</span>, <span class="number">6</span>&#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="type">CountDownLatch</span> <span class="variable">latch</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CountDownLatch</span>(SHARD_COUNT);</span><br><span class="line"></span><br><span class="line">        <span class="type">ExecutorService</span> <span class="variable">executor</span> <span class="operator">=</span> Executors.newFixedThreadPool(SHARD_COUNT);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; SHARD_COUNT; i++) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">finalI</span> <span class="operator">=</span> i;</span><br><span class="line">            executor.submit(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="comment">// 模拟处理分片数据</span></span><br><span class="line">                    System.out.println(<span class="string">&quot;处理分片 &quot;</span> + finalI + <span class="string">&quot; 数据&quot;</span>);</span><br><span class="line">                    <span class="keyword">if</span> (finalI == <span class="number">1</span>) &#123;</span><br><span class="line">                        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;模拟异常&quot;</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    <span class="comment">// 记录异常</span></span><br><span class="line">                    System.out.println(<span class="string">&quot;分片 &quot;</span> + finalI + <span class="string">&quot; 出现异常&quot;</span>);</span><br><span class="line">                &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                    latch.countDown();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 等待所有线程完成</span></span><br><span class="line">            latch.await(<span class="number">10</span>, TimeUnit.SECONDS);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (latch.getCount()!= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// 未归零，进行回滚操作</span></span><br><span class="line">            System.out.println(<span class="string">&quot;进行数据回滚&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;数据处理成功&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        executor.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这只是一个基础示例，实际应用中还需要根据具体业务逻辑进行更完善的设计和处理。</span></span><br></pre></td></tr></table></figure></div>
-
-<p>补充点:</p>
-<ul>
-<li>需要考虑数据分片的<strong>均衡性</strong>，<strong>避免某些分片任务过重或过轻</strong>。</li>
-<li>对于回滚操作，需要明确具体的实现机制和范围，比如是整个事务回滚还是部分数据的特定处理。</li>
-<li>异常情况的定义和分类需要更细致，不同类型的异常可能有不同的处理策略。</li>
-<li>线程池的管理和配置也很重要，包括线程数量的设置、资源的合理分配等。</li>
-<li>要考虑在高并发场景下的性能和稳定性，可能需要一些优化措施。</li>
-<li>对数据一致性和完整性的验证机制也应该明确，如何确保回滚后数据确实达到了预期状态。</li>
-</ul>
-<p>总体而言，这个思路是基础和核心的，但还需要结合具体业务场景和需求进一步细化和完善。</p>
-</blockquote>
-<ul>
-<li>CAS无锁机制<ul>
-<li>仅仅保证操作的原子性,无法保证线程执行的顺序性,容易导致阻塞,cpu空转</li>
-</ul>
-</li>
-</ul>
-<h3 id="24-高并发性能"><a href="#24-高并发性能" class="headerlink" title="24.高并发性能"></a>24.高并发性能</h3><p>高并发是什么</p>
-<ul>
-<li>高并发是在突发的情况下,出现大量请求到达服务端,导致处理效率降低的场景</li>
-</ul>
-<p>如何支持高并发性能</p>
-<ul>
-<li><p>可以从业务,异步,缓存,堆积,负载均衡,分布式处理,资源隔离,技术优化(尽最大努力)</p>
-<blockquote>
-<p>锁粒度变小主要带来了以下一些好处：</p>
-<p><strong>提高并发度</strong>：能让更多的线程或进程同时进行操作，而不会因为大范围的锁而相互阻塞，极大地提升了系统在高并发场景下的处理能力。</p>
-<p><strong>减少锁竞争</strong>：降低了发生激烈锁竞争的概率，从而减少了因锁等待导致的性能开销。</p>
-<p><strong>增强系统灵活性</strong>：可以根据具体业务需求更灵活地设置锁的范围，更好地适应不同的场景和操作模式。</p>
-<p><strong>提升资源利用率</strong>：使系统资源能更充分地被利用，避免因大范围锁导致的资源闲置或浪费。</p>
-<p>不过，锁粒度变小也并非全是优点，它可能会带来一定的设计和管理复杂性增加等问题哦。</p>
-</blockquote>
-</li>
-<li><p>限流和重试上限(快速失败),请求和异常场景下的控制</p>
-</li>
-</ul>
-<p>高并发性能带来了什么</p>
-<ul>
-<li>更好的用户体验:提高了用户访问系统的体验,可以感受到系统的快速响应</li>
-<li>提升系统效率:充分利用系统资源,实现更高的吞吐量</li>
-<li>支持业务增长:为业务规模的不断扩大提供有力支持,适应海量用户和业务量的需求</li>
-<li>增加竞争力:同类产品或服务中脱颖而出,吸引更多的用户和客户</li>
-<li>促进技术创新:促使开发者不断探索和采用更先进的技术来应对高并发带来的性能挑战</li>
-<li>更高的商业价值:有助于提高业务收益和商业成功的可能性</li>
-</ul>
-<p>其它相关特性</p>
-<ul>
-<li><p>高性能&#x2F;高并发,高性能作为能够支撑高并发的处理的基石,侧重于初期的设计,并且需要预留高可用的设计,</p>
-<p>否则一旦出现问题将会导致服务不可用</p>
-</li>
-<li><p>高可用,则更侧重于部署的方式</p>
-</li>
-</ul>
+<p>JMM</p>
+<p>JUC</p>
+<p>ThreadExectors</p>
+<p>阻塞队列</p>
+<p>可见性—&gt;缓存一致性问题—&gt;MESI和总线锁</p>
+<p>有序性—&gt;CPU指令重排序—&gt;Volatile</p>
+<p>happens-before</p>
 ]]></content>
   </entry>
 </search>
