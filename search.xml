@@ -15,6 +15,302 @@
 ]]></content>
   </entry>
   <entry>
+    <title>JMM模型</title>
+    <url>/2024/05/06/JMM%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<h2 id="JMM模型"><a href="#JMM模型" class="headerlink" title="JMM模型"></a>JMM模型</h2><h3 id="1-可见性"><a href="#1-可见性" class="headerlink" title="1.可见性"></a>1.可见性</h3><p>Volitale</p>
+<ul>
+<li>CPU缓存问题</li>
+<li>MESI协议<ul>
+<li>缓存锁</li>
+<li>总线锁</li>
+<li>基于LOCK这么一个汇编指令</li>
+</ul>
+</li>
+<li>可见性,有序性保证</li>
+</ul>
+<h3 id="2-有序性"><a href="#2-有序性" class="headerlink" title="2.有序性"></a>2.有序性</h3><ul>
+<li><p>JVM如何实现跨平台下的线程安全</p>
+<ul>
+<li><p>JMM模型,定义多线程场景下数据操作逻辑,根据不同平台生成对应的指令</p>
+<ul>
+<li>通过区分本地内存和主内存</li>
+<li>线程操作数据都会先从主内存拷贝,自己的本地内存完成修改后,再将其同步到主内存</li>
+<li>每个线程都存有一个数据副本到自己的本地内存</li>
+</ul>
+</li>
+<li><p>CPU内存屏障指令(针对不同系统,架构有不同实现)</p>
+<p>屏障类型</p>
+<ul>
+<li><p>LoadLoad  读1操作不可优先于读2操作</p>
+</li>
+<li><p>StoreStore 写1操作不可优先于写2操作</p>
+</li>
+<li><p>LoadStore 读操作优先于写操作</p>
+</li>
+<li><p>StoreLoad 写操作优先于读操作</p>
+</li>
+<li><p>基于上述方法接口,实现出不同平台下的逻辑</p>
+</li>
+<li><blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs%5CJMM%5C%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C%E7%B1%BB%E5%9E%8B.png"
+                      alt="内存屏障类型"
+                ></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>产生原因</p>
+<ul>
+<li>CPU高速缓存<ul>
+<li>MESI(同步给其它cpu),解决可见性,保证缓存一致性</li>
+</ul>
+</li>
+<li>指令重排序<ul>
+<li>内存屏障(避免指令执行顺序被优化),解决有序性</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>volitale重排序规则</p>
+<p>不管是普通变量还是volitale变量,对于在volitale变量的读操作之间进行写操作是不允许重排序的</p>
+<ul>
+<li><blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs%5CJMM%5CVolatile%E9%87%8D%E6%8E%92%E5%BA%8F%E8%A7%84%E5%88%99.png"
+                      alt="Volatile重排序规则"
+                ></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>如何解决上述问题</p>
+<ul>
+<li><p>synchroized</p>
+</li>
+<li><p>volitale</p>
+</li>
+<li><p>final(内存屏障指令),只能在构造方法之内完成初始化,而在构造方法中初始化的指令,不允许重排序到构造</p>
+<p>方法之外,这里使用了内存屏障指令</p>
+</li>
+</ul>
+<p><strong>不是所有的程序指令都会存在可见性或指令重排序(as-if-serial )问题</strong></p>
+<p>Happens-Before(明确哪些场景下不会出现问题)操作的有序性,操作性依赖</p>
+<ul>
+<li>程序顺序型规则 (as-if-serial),单线程执行不影响</li>
+<li>传递性规则</li>
+<li>volatile变量规则</li>
+<li>监视器锁规则</li>
+<li>start规则</li>
+<li>join规则<ul>
+<li>哪个线程调用就阻塞哪个线程,必须等待join线程完成,适用于按照指定顺序执行的情况</li>
+</ul>
+</li>
+<li>单线程环境下不改变程序运行的结果,以及不存在依赖关系这些场景允许重排序</li>
+<li>本质上是描述可见性的规则(有序性导致的可见性问题)</li>
+</ul>
+<p>典型案例</p>
+<p>DCL(Double Check Lock)</p>
+<ul>
+<li><p>在new对象的过程中,在jvm里需要三个步骤,开辟空间—&gt;对象初始化—&gt;返回对象引用</p>
+</li>
+<li><p>而在多线程场景下,如果不对这个对象使用Volatile修饰(lock指令加锁),就有可能出现指令</p>
+<p>重排序的问题</p>
+</li>
+</ul>
+<h3 id="3-Lock设计预想"><a href="#3-Lock设计预想" class="headerlink" title="3.Lock设计预想"></a>3.Lock设计预想</h3><p>重入锁指的是再获取同一把锁时,无需重复获取,记录持有次数即可</p>
+<p>特点</p>
+<ul>
+<li>可重入</li>
+<li>支持公平,非公平锁</li>
+<li>支持打断</li>
+<li>支持多条件变量</li>
+<li>支持手动释放,需要在finally使用完后进行兜底释放</li>
+</ul>
+<p>实现原理</p>
+<ul>
+<li><p>如何支持线程互斥特性,只有拿到锁后才能执行lock方法里的代码,否则只能排队等待</p>
+<ul>
+<li>涉及到锁的抢占,需要一个标记是否有线程获取到锁,全局变量(0,1)</li>
+<li>抢到会怎么样,无需任何操作</li>
+<li>没抢到会怎么样<ul>
+<li>需要等待 (等待线程进入阻塞状态,释放CPU资源,阻塞—&gt;CPU资源释放)<ul>
+<li>如何让线程等待<ul>
+<li>wait&#x2F;notify线程通信机制,但无法指定唤醒某个线程</li>
+<li>LockSupport.park&#x2F;unpark (阻塞一个指定线程,唤醒一个指定线程)</li>
+<li>Condition</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>需要排队 (运行有n个线程被阻塞,被存储之前的线程都处于活跃状态)<ul>
+<li>通过一个数据结构,把需要等待线程存储起来</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>使用完如何释放<ul>
+<li>LockSupport.park—-&gt;唤醒队列中指定线程</li>
+</ul>
+</li>
+<li>锁抢占的公平性(是否允许插队)<ul>
+<li>公平</li>
+<li>非公平</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>获取不到锁会阻塞,直到获取到后才会继续执行</p>
+</li>
+<li><p>抢占锁—&gt;抢占到后修改状态—&gt;执行任务—&gt;执行完成—&gt;修改state—&gt;释放锁资源—&gt;唤醒队列中等待线程</p>
+<p>​           —&gt;没抢占到进入阻塞队列—&gt;修改线程状态—&gt;释放CPU执行资源—&gt;等待唤醒—&gt;再次抢占</p>
+</li>
+</ul>
+<p>具体实现</p>
+<ul>
+<li><p>reentrantLock本质上就是AQS+LOCK组成</p>
+</li>
+<li><p>内部结构</p>
+<ul>
+<li><p>锁持有线程(记录当前持有线程对象)</p>
+</li>
+<li><p>共享变量(初始0,持有为1,重入则可能大于0(重入次数))</p>
+<ul>
+<li>volatile修饰保证可见性</li>
+<li>cas()方法保证原子性,尝试修改</li>
+</ul>
+</li>
+<li><p>等待队列</p>
+<ul>
+<li><p>双向链表存储,Head节点指向第一个节点,tail指向最后一个节点,将线程对象封装c</p>
+<p>成Node对象</p>
+</li>
+<li><p>自旋操作,尝试抢占资源,未获取成功则进入阻塞状态,避免浪费cpu资源</p>
+<p>调用LockSupport.parlk(this),阻塞自己</p>
+</li>
+<li><p>线程使用完锁后,唤醒等待队列的线程,从Head开始唤醒,唤醒它的下一个节点</p>
+<p>.再调用LockSupport.unpark(ThreadB),唤醒指定线程</p>
+</li>
+<li><p>非公平允许插队,不管队列中有没有线程,公平则不允许,必须加入队列,排队等待</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>流程图</p>
+<ul>
+<li><blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs%5CJMM%5CReenTrantLock%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png"
+                      alt="ReenTrantLock实现原理"
+                ></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-LOCK的具体实现"><a href="#4-LOCK的具体实现" class="headerlink" title="4.LOCK的具体实现"></a>4.LOCK的具体实现</h3><ul>
+<li><p>具体实现</p>
+<blockquote>
+<p>ReentrantLock</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs%5CJMM%5CJava%E9%94%81%E5%AE%9E%E7%8E%B0%E5%85%B3%E7%B3%BB.png"
+                      alt="Java锁实现关系"
+                ></p>
+<ul>
+<li>reentrant实现Lock(锁机制)和持有Sync(同步队列)</li>
+<li>AQS负责实现同步队列的基本逻辑,如唤醒,加入队列等方法</li>
+<li>Sync继承AQS抽象类</li>
+<li>在Sync的基础上实现公平和非公平</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>节点状态</p>
+<ul>
+<li>signal  需要被唤醒的一个节点</li>
+<li>cancelled 一个取消的节点</li>
+<li>condition </li>
+<li>propgate</li>
+<li>0 默认值</li>
+</ul>
+<p>公平锁和非公平锁</p>
+<ul>
+<li><p>是否阻塞线程</p>
+</li>
+<li><p>是否公平</p>
+</li>
+<li><p>抢占时机</p>
+</li>
+<li><p>抢占失败</p>
+<ul>
+<li><p>进入队列</p>
+</li>
+<li><p>自旋(重试获取锁),等待(重试达到上限后将节点状态变为阻塞)</p>
+</li>
+<li><p>阻塞重试达到上限的线程</p>
+</li>
+<li><p>等待唤醒</p>
+</li>
+<li><p>当前线程抢占失败—&gt;进入同步队列—&gt;包装成Node节点.赋waitStatus状态为0—&gt;自旋,判断前置节点</p>
+<p>—&gt;尝试获取锁,重试上限—&gt;放弃获取,进入阻塞状态</p>
+</li>
+</ul>
+</li>
+<li><p>唤醒时机</p>
+</li>
+<li><p>锁释放</p>
+</li>
+</ul>
+<h3 id="5-遵守原则"><a href="#5-遵守原则" class="headerlink" title="5.遵守原则"></a>5.遵守原则</h3><ol>
+<li><strong>缓存一致性模型</strong>：保证不同处理器核心或线程的缓存数据同步。</li>
+<li><strong>重排序规则</strong>：指令执行顺序可能会被重新排列，但要遵循特定的约束以保证正确性。</li>
+<li><strong>Happen-Before 关系</strong>：明确操作之间的先后顺序，确保多线程程序的正确执行。</li>
+<li><strong>同步机制规则</strong>：包括锁、同步方法和同步块等的使用规则。</li>
+<li><strong>内存屏障规则</strong>：用于控制指令重排序和确保内存操作的顺序。</li>
+</ol>
+<ul>
+<li>按照这些规则做,就会降低线程安全产生的风险</li>
+</ul>
+<p>JMM</p>
+<p>JUC</p>
+<p>ThreadExectors</p>
+<p>阻塞队列</p>
+<p>可见性—&gt;缓存一致性问题—&gt;MESI和总线锁</p>
+<p>有序性—&gt;CPU指令重排序—&gt;Volatile</p>
+<p>happens-before</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2024/07/06/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/writing.html" >Writing <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/server.html" >Server <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/generating.html" >Generating <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Neetty高性能网络通讯框架</title>
     <url>/2024/07/07/Netty%20%E9%AB%98%E6%80%A7%E8%83%BD%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF%E6%A1%86%E6%9E%B6/</url>
     <content><![CDATA[<h2 id="Netty-高性能网络通讯框架"><a href="#Netty-高性能网络通讯框架" class="headerlink" title="Netty 高性能网络通讯框架"></a>Netty 高性能网络通讯框架</h2><p>关联网络I&#x2F;O模型,I&#x2F;O多路复用机制,Reactor模型(分治思想)</p>
@@ -40,12 +336,22 @@
 <ul>
 <li><p>事件注册&#x2F;提交</p>
 <blockquote>
-<p><img lazyload src="/images/loading.svg" data-src="/imgs%5CNetty%5C%E4%BA%8B%E4%BB%B6%E6%B3%A8%E5%86%8C%E6%88%96%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B.png" alt="事件注册或提交流程"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs/Netty/%E4%BA%8B%E4%BB%B6%E6%B3%A8%E5%86%8C%E6%88%96%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B.png"
+                      alt="事件注册或提交流程"
+                ></p>
 </blockquote>
 </li>
 <li><p>整体流程</p>
 <blockquote>
-<p><img lazyload src="/images/loading.svg" data-src="/imgs%5CNetty%5C%E4%BA%8B%E4%BB%B6%E8%B0%83%E5%BA%A6%E6%B5%81%E7%A8%8B.png" alt="事件调度流程"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs/Netty/%E4%BA%8B%E4%BB%B6%E8%B0%83%E5%BA%A6%E6%B5%81%E7%A8%8B.png"
+                      alt="事件调度流程"
+                ></p>
 </blockquote>
 </li>
 </ul>
@@ -450,445 +756,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>JMM模型</title>
-    <url>/2024/05/06/JMM%E6%A8%A1%E5%9E%8B/</url>
-    <content><![CDATA[<h2 id="JMM模型"><a href="#JMM模型" class="headerlink" title="JMM模型"></a>JMM模型</h2><h3 id="1-可见性"><a href="#1-可见性" class="headerlink" title="1.可见性"></a>1.可见性</h3><p>Volitale</p>
-<ul>
-<li>CPU缓存问题</li>
-<li>MESI协议<ul>
-<li>缓存锁</li>
-<li>总线锁</li>
-<li>基于LOCK这么一个汇编指令</li>
-</ul>
-</li>
-<li>可见性,有序性保证</li>
-</ul>
-<h3 id="2-有序性"><a href="#2-有序性" class="headerlink" title="2.有序性"></a>2.有序性</h3><ul>
-<li><p>JVM如何实现跨平台下的线程安全</p>
-<ul>
-<li><p>JMM模型,定义多线程场景下数据操作逻辑,根据不同平台生成对应的指令</p>
-<ul>
-<li>通过区分本地内存和主内存</li>
-<li>线程操作数据都会先从主内存拷贝,自己的本地内存完成修改后,再将其同步到主内存</li>
-<li>每个线程都存有一个数据副本到自己的本地内存</li>
-</ul>
-</li>
-<li><p>CPU内存屏障指令(针对不同系统,架构有不同实现)</p>
-<p>屏障类型</p>
-<ul>
-<li><p>LoadLoad  读1操作不可优先于读2操作</p>
-</li>
-<li><p>StoreStore 写1操作不可优先于写2操作</p>
-</li>
-<li><p>LoadStore 读操作优先于写操作</p>
-</li>
-<li><p>StoreLoad 写操作优先于读操作</p>
-</li>
-<li><p>基于上述方法接口,实现出不同平台下的逻辑</p>
-</li>
-<li><blockquote>
-<p><img lazyload src="/images/loading.svg" data-src="/imgs%5CJMM%5C%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C%E7%B1%BB%E5%9E%8B.png" alt="内存屏障类型"></p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>产生原因</p>
-<ul>
-<li>CPU高速缓存<ul>
-<li>MESI(同步给其它cpu),解决可见性,保证缓存一致性</li>
-</ul>
-</li>
-<li>指令重排序<ul>
-<li>内存屏障(避免指令执行顺序被优化),解决有序性</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>volitale重排序规则</p>
-<p>不管是普通变量还是volitale变量,对于在volitale变量的读操作之间进行写操作是不允许重排序的</p>
-<ul>
-<li><blockquote>
-<p><img lazyload src="/images/loading.svg" data-src="/imgs%5CJMM%5CVolatile%E9%87%8D%E6%8E%92%E5%BA%8F%E8%A7%84%E5%88%99.png" alt="Volatile重排序规则"></p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<p>如何解决上述问题</p>
-<ul>
-<li><p>synchroized</p>
-</li>
-<li><p>volitale</p>
-</li>
-<li><p>final(内存屏障指令),只能在构造方法之内完成初始化,而在构造方法中初始化的指令,不允许重排序到构造</p>
-<p>方法之外,这里使用了内存屏障指令</p>
-</li>
-</ul>
-<p><strong>不是所有的程序指令都会存在可见性或指令重排序(as-if-serial )问题</strong></p>
-<p>Happens-Before(明确哪些场景下不会出现问题)操作的有序性,操作性依赖</p>
-<ul>
-<li>程序顺序型规则 (as-if-serial),单线程执行不影响</li>
-<li>传递性规则</li>
-<li>volatile变量规则</li>
-<li>监视器锁规则</li>
-<li>start规则</li>
-<li>join规则<ul>
-<li>哪个线程调用就阻塞哪个线程,必须等待join线程完成,适用于按照指定顺序执行的情况</li>
-</ul>
-</li>
-<li>单线程环境下不改变程序运行的结果,以及不存在依赖关系这些场景允许重排序</li>
-<li>本质上是描述可见性的规则(有序性导致的可见性问题)</li>
-</ul>
-<p>典型案例</p>
-<p>DCL(Double Check Lock)</p>
-<ul>
-<li><p>在new对象的过程中,在jvm里需要三个步骤,开辟空间—&gt;对象初始化—&gt;返回对象引用</p>
-</li>
-<li><p>而在多线程场景下,如果不对这个对象使用Volatile修饰(lock指令加锁),就有可能出现指令</p>
-<p>重排序的问题</p>
-</li>
-</ul>
-<h3 id="3-Lock设计预想"><a href="#3-Lock设计预想" class="headerlink" title="3.Lock设计预想"></a>3.Lock设计预想</h3><p>重入锁指的是再获取同一把锁时,无需重复获取,记录持有次数即可</p>
-<p>特点</p>
-<ul>
-<li>可重入</li>
-<li>支持公平,非公平锁</li>
-<li>支持打断</li>
-<li>支持多条件变量</li>
-<li>支持手动释放,需要在finally使用完后进行兜底释放</li>
-</ul>
-<p>实现原理</p>
-<ul>
-<li><p>如何支持线程互斥特性,只有拿到锁后才能执行lock方法里的代码,否则只能排队等待</p>
-<ul>
-<li>涉及到锁的抢占,需要一个标记是否有线程获取到锁,全局变量(0,1)</li>
-<li>抢到会怎么样,无需任何操作</li>
-<li>没抢到会怎么样<ul>
-<li>需要等待 (等待线程进入阻塞状态,释放CPU资源,阻塞—&gt;CPU资源释放)<ul>
-<li>如何让线程等待<ul>
-<li>wait&#x2F;notify线程通信机制,但无法指定唤醒某个线程</li>
-<li>LockSupport.park&#x2F;unpark (阻塞一个指定线程,唤醒一个指定线程)</li>
-<li>Condition</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>需要排队 (运行有n个线程被阻塞,被存储之前的线程都处于活跃状态)<ul>
-<li>通过一个数据结构,把需要等待线程存储起来</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>使用完如何释放<ul>
-<li>LockSupport.park—-&gt;唤醒队列中指定线程</li>
-</ul>
-</li>
-<li>锁抢占的公平性(是否允许插队)<ul>
-<li>公平</li>
-<li>非公平</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>获取不到锁会阻塞,直到获取到后才会继续执行</p>
-</li>
-<li><p>抢占锁—&gt;抢占到后修改状态—&gt;执行任务—&gt;执行完成—&gt;修改state—&gt;释放锁资源—&gt;唤醒队列中等待线程</p>
-<p>​           —&gt;没抢占到进入阻塞队列—&gt;修改线程状态—&gt;释放CPU执行资源—&gt;等待唤醒—&gt;再次抢占</p>
-</li>
-</ul>
-<p>具体实现</p>
-<ul>
-<li><p>reentrantLock本质上就是AQS+LOCK组成</p>
-</li>
-<li><p>内部结构</p>
-<ul>
-<li><p>锁持有线程(记录当前持有线程对象)</p>
-</li>
-<li><p>共享变量(初始0,持有为1,重入则可能大于0(重入次数))</p>
-<ul>
-<li>volatile修饰保证可见性</li>
-<li>cas()方法保证原子性,尝试修改</li>
-</ul>
-</li>
-<li><p>等待队列</p>
-<ul>
-<li><p>双向链表存储,Head节点指向第一个节点,tail指向最后一个节点,将线程对象封装c</p>
-<p>成Node对象</p>
-</li>
-<li><p>自旋操作,尝试抢占资源,未获取成功则进入阻塞状态,避免浪费cpu资源</p>
-<p>调用LockSupport.parlk(this),阻塞自己</p>
-</li>
-<li><p>线程使用完锁后,唤醒等待队列的线程,从Head开始唤醒,唤醒它的下一个节点</p>
-<p>.再调用LockSupport.unpark(ThreadB),唤醒指定线程</p>
-</li>
-<li><p>非公平允许插队,不管队列中有没有线程,公平则不允许,必须加入队列,排队等待</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>流程图</p>
-<ul>
-<li><blockquote>
-<p><img lazyload src="/images/loading.svg" data-src="/imgs%5CJMM%5CReenTrantLock%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png" alt="ReenTrantLock实现原理"></p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="4-LOCK的具体实现"><a href="#4-LOCK的具体实现" class="headerlink" title="4.LOCK的具体实现"></a>4.LOCK的具体实现</h3><ul>
-<li><p>具体实现</p>
-<blockquote>
-<p>ReentrantLock</p>
-<p><img lazyload src="/images/loading.svg" data-src="/imgs%5CJMM%5CJava%E9%94%81%E5%AE%9E%E7%8E%B0%E5%85%B3%E7%B3%BB.png" alt="Java锁实现关系"></p>
-<ul>
-<li>reentrant实现Lock(锁机制)和持有Sync(同步队列)</li>
-<li>AQS负责实现同步队列的基本逻辑,如唤醒,加入队列等方法</li>
-<li>Sync继承AQS抽象类</li>
-<li>在Sync的基础上实现公平和非公平</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<p>节点状态</p>
-<ul>
-<li>signal  需要被唤醒的一个节点</li>
-<li>cancelled 一个取消的节点</li>
-<li>condition </li>
-<li>propgate</li>
-<li>0 默认值</li>
-</ul>
-<p>公平锁和非公平锁</p>
-<ul>
-<li><p>是否阻塞线程</p>
-</li>
-<li><p>是否公平</p>
-</li>
-<li><p>抢占时机</p>
-</li>
-<li><p>抢占失败</p>
-<ul>
-<li><p>进入队列</p>
-</li>
-<li><p>自旋(重试获取锁),等待(重试达到上限后将节点状态变为阻塞)</p>
-</li>
-<li><p>阻塞重试达到上限的线程</p>
-</li>
-<li><p>等待唤醒</p>
-</li>
-<li><p>当前线程抢占失败—&gt;进入同步队列—&gt;包装成Node节点.赋waitStatus状态为0—&gt;自旋,判断前置节点</p>
-<p>—&gt;尝试获取锁,重试上限—&gt;放弃获取,进入阻塞状态</p>
-</li>
-</ul>
-</li>
-<li><p>唤醒时机</p>
-</li>
-<li><p>锁释放</p>
-</li>
-</ul>
-<h3 id="5-遵守原则"><a href="#5-遵守原则" class="headerlink" title="5.遵守原则"></a>5.遵守原则</h3><ol>
-<li><strong>缓存一致性模型</strong>：保证不同处理器核心或线程的缓存数据同步。</li>
-<li><strong>重排序规则</strong>：指令执行顺序可能会被重新排列，但要遵循特定的约束以保证正确性。</li>
-<li><strong>Happen-Before 关系</strong>：明确操作之间的先后顺序，确保多线程程序的正确执行。</li>
-<li><strong>同步机制规则</strong>：包括锁、同步方法和同步块等的使用规则。</li>
-<li><strong>内存屏障规则</strong>：用于控制指令重排序和确保内存操作的顺序。</li>
-</ol>
-<ul>
-<li>按照这些规则做,就会降低线程安全产生的风险</li>
-</ul>
-<p>JMM</p>
-<p>JUC</p>
-<p>ThreadExectors</p>
-<p>阻塞队列</p>
-<p>可见性—&gt;缓存一致性问题—&gt;MESI和总线锁</p>
-<p>有序性—&gt;CPU指令重排序—&gt;Volatile</p>
-<p>happens-before</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2024/07/06/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a class="link" href="https://hexo.io/">Hexo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>! This is your very first post. Check <a class="link" href="https://hexo.io/docs/">documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link" href="https://hexo.io/docs/troubleshooting.html">troubleshooting <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> or you can ask me on <a class="link" href="https://github.com/hexojs/hexo/issues">GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link" href="https://hexo.io/docs/writing.html">Writing <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link" href="https://hexo.io/docs/server.html">Server <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link" href="https://hexo.io/docs/generating.html">Generating <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link" href="https://hexo.io/docs/one-command-deployment.html">Deployment <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>网络I/O模型</title>
-    <url>/2024/06/19/%E7%BD%91%E7%BB%9CIO%E6%A8%A1%E5%9E%8B/</url>
-    <content><![CDATA[<h2 id="网络I-O模型"><a href="#网络I-O模型" class="headerlink" title="网络I&#x2F;O模型"></a>网络I&#x2F;O模型</h2><p>1.阻塞&#x2F;非阻塞</p>
-<p><strong>阻塞分为连接阻塞(处理数量)和I&#x2F;O阻塞(读取数据)</strong></p>
-<p>非阻塞</p>
-<ul>
-<li>异步</li>
-<li>多路复用</li>
-</ul>
-<p>2.异步&#x2F;同步</p>
-<p>3.TCP&#x2F;UDP协议</p>
-<p>4.Socket(套接字)</p>
-<p>是什么</p>
-<ul>
-<li>它是TCP&#x2F;UDP封装后的用户网络数据传输的接口工具</li>
-</ul>
-<p>底层实现</p>
-<ul>
-<li>底层通过TCP&#x2F;UDP的方式实现通过网络传送数据</li>
-<li>在监听连接和接收数据时会阻塞</li>
-<li>创建完socket后,会使用poll select recv 接收数据,这里使用方法<br>和操作系统相关</li>
-</ul>
-<p>使用场景</p>
-<blockquote>
-<p>使用Socket实现网络 I&#x2F;O 传输流程：</p>
-<ol>
-<li><p><strong>应用程序调用 <code>socket()</code> 创建套接字</strong>，并指定相关参数（如协议类型等），套接字进入监听状态，等待外部客户端连接。</p>
-</li>
-<li><p><strong>客户端发起连接请求</strong>，经过网络传输到达服务器。</p>
-</li>
-<li><p><strong>服务器端操作系统接收到连接请求</strong>，验证并建立连接，为该连接分配一个独特的 <code>fd</code> 文件描述符。</p>
-</li>
-<li><p>数据传输阶段</p>
-<p>：</p>
-<ul>
-<li><strong>发送数据</strong>：应用程序将待发送数据写入与套接字对应的内核缓冲区，操作系统根据网络状况和协议栈逐步将数据从缓冲区通过网卡发送出去。</li>
-<li><strong>接收数据</strong>：网卡接收到外部数据后，通知操作系统，操作系统将数据写入到内核缓冲区中与该套接字相关的区域。</li>
-</ul>
-</li>
-<li><p><strong>应用程序调用相关函数获取接收数据</strong>，从内核缓冲区读取数据到应用程序的内存空间。</p>
-</li>
-<li><p><strong>读取完成后</strong>，操作系统可能会根据情况清空或重新管理相应的内核缓冲区数据，以准备接收新的数据。</p>
-</li>
-</ol>
-<p>需要注意的是，这只是一个简化的流程，实际中还涉及到很多细节和优化机制，比如缓冲区的管理、数据的确认与重传、拥塞控制等，以确保网络通信的高效和可靠。</p>
-</blockquote>
-<p>数据到达之后如何唤醒(硬件层面)</p>
-<p>网络数据包到达网卡—&gt;发送中断信号告知CPU有数据写入—&gt;然后唤醒阻塞进程,然后通过硬件电路将数据写入内存</p>
-<p>阻塞流程</p>
-<p>操作系统多任务调度,所以它有一个存储进程的<strong>运行队列</strong>,用于执行多任务调度,阻塞的进程就在<br>这里阻塞等待唤醒</p>
-<p>在创建完socket后会为其创建一个fd描述对象,用于关联socket</p>
-<p>连接创建—&gt;等待接收数据</p>
-<p>5.I&#x2F;O多路复用</p>
-<p>是什么</p>
-<ul>
-<li><p>一种用于提高服务器处理数据传输的并发处理以及提高系统资源利用率的方式</p>
-</li>
-<li><p>可以同时监听多个文件描述符,避免大量线程或进程阻塞等待单个I&#x2F;O的操作</p>
-</li>
-<li><p>能够处理大量并发连接,使得服务器能够同时处理多个客户端的请求,而不是组个处理</p>
-</li>
-<li><p>简化编程模型,让开发者可以通过统一的接口来管理多个I&#x2F;O操作,降低编程的复杂性,</p>
-<p>无需我们实现</p>
-</li>
-<li><p>epoll通过事件驱动的方式唤醒线程&#x2F;进程,提高资源利用率,避免使用阻塞的方式降低性能</p>
-<p>而select&#x2F;poll都会产生阻塞</p>
-</li>
-<li><p>单个socket的监听如 Recv,在使用多路复用之前</p>
-</li>
-</ul>
-<p>现模型</p>
-<ul>
-<li><p>select(连接上限1024)</p>
-</li>
-<li><p>poll(无上限)</p>
-</li>
-<li><p>epoll(事件驱动)</p>
-<ul>
-<li><p>核心角色</p>
-<ul>
-<li><p>事件池,包含事件对象以及事件队列</p>
-</li>
-<li><p>Socket对象,在创建后为其关联了一个fd描述符,内部存储了读&#x2F;写缓冲区以及等待队列</p>
-<p>用于管理连接的客户端,用于后续的唤醒,中断等操作</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>三者区别</p>
-<p>6.TCP&#x2F;IP网络模型</p>
-<ul>
-<li>应用层</li>
-<li>传输层</li>
-<li>网络层</li>
-<li>数据链路层</li>
-<li>功能参考OSI七层模型</li>
-</ul>
-<p>7.OSI网络七层模型</p>
-<ul>
-<li>应用层(客户端)</li>
-<li>表示层(数据转换)</li>
-<li>会话层(连接创建&#x2F;校验)</li>
-<li>传输层(数据传输)</li>
-<li>网络层(路由寻址)</li>
-<li>数据链路层(数据打包)</li>
-<li>物理层(硬件设备)</li>
-</ul>
-<p>8.流量整形TODO</p>
-<p>9.网络通讯就是网络编程</p>
-<p>10.Reactor(响应式)I&#x2F;O模型</p>
-<p>它是基于NIO来实现的高性能I&#x2F;O模型</p>
-<p>NIO的核心角色</p>
-<ul>
-<li><p>Selector ,注册器,负责管理和协调Channel</p>
-</li>
-<li><p>Channel,包装后的Socket对象,相当于一个高级的双向连接对象</p>
-</li>
-<li><p>ByteBuffer,用于缓存传输的数据</p>
-</li>
-<li><p>Selector和Channel的关系</p>
-<blockquote>
-<p>就相当于拍卖物品,首先我将物品寄放到拍卖行,告知拍卖行我的预期价格,然后等达到预期价格后,拍卖行就通知我,有符合我预期的价格了</p>
-<p>在这个类比中：</p>
-<ul>
-<li>“物品”就相当于 Channel。</li>
-<li>“拍卖行”相当于 Selector 。</li>
-<li>“预期价格”相当于您为 Channel 注册到 Selector 时指定的感兴趣的事件（比如可读、可写等）。</li>
-<li>“达到预期价格”相当于 Channel 上发生了您注册时指定的事件。</li>
-<li>“拍卖行通知您”相当于 Selector 回调 Channel 。</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<p>核心角色</p>
-<ul>
-<li>Reactor,负责监听和分发事件,将事件分发给对应的Handler进行处理</li>
-<li>Acceptors,处理客户端连接请求,创建对应的Handler</li>
-<li>Handler,异步(非阻塞)执行读写任务,处理具体业务逻辑</li>
-</ul>
-<p>单线程</p>
-<ul>
-<li>只有一个主线程负责处理连接和请求</li>
-</ul>
-<p>多线程(线程池)</p>
-<ul>
-<li>职责拆分,主线程负责处理连接,使用线程池中的线程异步处理请求</li>
-</ul>
-<p>主从多线程(线程池)</p>
-<ul>
-<li>主线程负责处理连接,将连接请分发给从线程,从线程负责请求的处理</li>
-</ul>
-<p>11.三种网络I&#x2F;O模型的生动描述</p>
-<p>再次理解AIO,BIO,NIO 先描述一个场景 假设有一家很火的餐饮店,需要排队,有一天我到了这家店,店员告知我前面咩有空桌,需要排队等待 </p>
-<p>但店员告知我有三种方案你选哪一种 </p>
-<p>第一种,你先取一个号,等叫号叫到你后,我通过电话通知你,这就是AIO </p>
-<p>第二种,你就在门口等着,等叫到你后,你再进去,这就是BIO </p>
-<p>第三种,你取一个号,但你需要时不时过来看一看,在这期间你可以做其它的事,这是NIO </p>
-<p>其中第一种和第三种方法比较类似,在等待的时间里你可以做自己的时,但一个是我主动叫你,一个是你主动查看</p>
-]]></content>
-  </entry>
-  <entry>
     <title>八股知识点</title>
     <url>/2024/06/01/%E5%85%AB%E8%82%A1%E7%9F%A5%E8%AF%86%E7%82%B9/</url>
     <content><![CDATA[<h2 id="八股知识点"><a href="#八股知识点" class="headerlink" title="八股知识点"></a>八股知识点</h2><h3 id="1-是否会注入"><a href="#1-是否会注入" class="headerlink" title="1.是否会注入"></a>1.是否会注入</h3><p>不会</p>
@@ -984,7 +851,7 @@
 <li><strong>全局变量或静态方法的使用</strong>：限制了代码的可复用性和可扩展性。</li>
 <li><strong>紧密耦合的组件</strong>：组件之间耦合度过高，使得扩展一个组件可能影响其他组件。</li>
 <li><strong>缺乏抽象</strong>：没有正确使用抽象类或接口，导致具体实现与扩展紧密绑定。</li>
-<li><strong>代码重复</strong>：大量重复的代码使得维护和扩展变得复杂，容易引入错误。<br>为了避免破坏开闭原则，应该尽量采用更灵活的扩展方式，如使用抽象、接口、组合等设计模式，以及配置文件、<a class="link" href="coco://sendMessage?ext={" s%24wiki_link"%3a"https%3a%2f%2fm.baike.com%2fwikiid%2f5672419420006108837"}&msg="插件"">插件 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>机制等技术。这样可以提高代码的可维护性和可扩展性，使系统更易于应对变化和扩展。</li>
+<li><strong>代码重复</strong>：大量重复的代码使得维护和扩展变得复杂，容易引入错误。<br>为了避免破坏开闭原则，应该尽量采用更灵活的扩展方式，如使用抽象、接口、组合等设计模式，以及配置文件、<a class="link"   href="coco://sendMessage?ext={" s%24wiki_link"%3A"https%3A%2F%2Fm.baike.com%2Fwikiid%2F5672419420006108837"}&msg=插件">插件 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>机制等技术。这样可以提高代码的可维护性和可扩展性，使系统更易于应对变化和扩展。</li>
 </ol>
 <h3 id="6-为什么要使用final修饰变量"><a href="#6-为什么要使用final修饰变量" class="headerlink" title="6.为什么要使用final修饰变量"></a>6.为什么要使用final修饰变量</h3><p>是的，在某些场景下，使用 <code>final</code> 可以作为一种兜底的安全策略。</p>
 <p>将变量声明为 <code>final</code> 可以带来以下安全方面的好处：</p>
@@ -1006,7 +873,12 @@
 </ol>
 <p>这种处理方式使得属性注入更加精确和可控，有助于提高系统的稳定性和可维护性。</p>
 <h3 id="8-线上GC如何处理"><a href="#8-线上GC如何处理" class="headerlink" title="8.线上GC如何处理"></a>8.线上GC如何处理</h3><blockquote>
-<p><img lazyload src="/images/loading.svg" data-src="/imgs%5C%E5%85%AB%E8%82%A1%E6%96%87%5C%E7%BA%BF%E4%B8%8AGC%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86.png" alt="线上GC如何处理"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs%5C%E5%85%AB%E8%82%A1%E6%96%87%5C%E7%BA%BF%E4%B8%8AGC%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86.png"
+                      alt="线上GC如何处理"
+                ></p>
 </blockquote>
 <h3 id="9-遇到一个设计题：亿级订单，千万日活，如何设计存储方案，容量，性能，拓展性，业务场景聚焦个大电商物流单，要给个成熟方案，大家思考一下"><a href="#9-遇到一个设计题：亿级订单，千万日活，如何设计存储方案，容量，性能，拓展性，业务场景聚焦个大电商物流单，要给个成熟方案，大家思考一下" class="headerlink" title="9.遇到一个设计题：亿级订单，千万日活，如何设计存储方案，容量，性能，拓展性，业务场景聚焦个大电商物流单，要给个成熟方案，大家思考一下"></a>9.遇到一个设计题：亿级订单，千万日活，如何设计存储方案，容量，性能，拓展性，业务场景聚焦个大电商物流单，要给个成熟方案，大家思考一下</h3><blockquote>
 <p>存储层设计：<br>订单数据库： 使用分布式数据库（例如MySQL Cluster、TiDB等）存储订单信息，按照订单号进行分片存储，保证存储和查询的高性能。<br>缓存层： 使用分布式缓存系统（例如Redis Cluster）缓存热门订单数据和查询结果，减少数据库访问压力。<br>日志存储： 使用分布式文件系统（例如HDFS）存储订单操作日志，保证数据可追溯性和故障恢复能力。<br>应用层设计：<br>订单服务： 提供订单的创建、查询、修改和删除等接口，负责处理订单相关的业务逻辑。<br>物流服务： 提供物流信息的查询和更新接口，负责物流状态的实时更新和查询。<br>用户服务： 提供用户信息的查询和更新接口，负责管理用户账号和地址信息。</p>
@@ -1740,6 +1612,169 @@
 ]]></content>
   </entry>
   <entry>
+    <title>网络I/O模型</title>
+    <url>/2024/06/19/%E7%BD%91%E7%BB%9CIO%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<h2 id="网络I-O模型"><a href="#网络I-O模型" class="headerlink" title="网络I&#x2F;O模型"></a>网络I&#x2F;O模型</h2><p>1.阻塞&#x2F;非阻塞</p>
+<p><strong>阻塞分为连接阻塞(处理数量)和I&#x2F;O阻塞(读取数据)</strong></p>
+<p>非阻塞</p>
+<ul>
+<li>异步</li>
+<li>多路复用</li>
+</ul>
+<p>2.异步&#x2F;同步</p>
+<p>3.TCP&#x2F;UDP协议</p>
+<p>4.Socket(套接字)</p>
+<p>是什么</p>
+<ul>
+<li>它是TCP&#x2F;UDP封装后的用户网络数据传输的接口工具</li>
+</ul>
+<p>底层实现</p>
+<ul>
+<li>底层通过TCP&#x2F;UDP的方式实现通过网络传送数据</li>
+<li>在监听连接和接收数据时会阻塞</li>
+<li>创建完socket后,会使用poll select recv 接收数据,这里使用方法<br>和操作系统相关</li>
+</ul>
+<p>使用场景</p>
+<blockquote>
+<p>使用Socket实现网络 I&#x2F;O 传输流程：</p>
+<ol>
+<li><p><strong>应用程序调用 <code>socket()</code> 创建套接字</strong>，并指定相关参数（如协议类型等），套接字进入监听状态，等待外部客户端连接。</p>
+</li>
+<li><p><strong>客户端发起连接请求</strong>，经过网络传输到达服务器。</p>
+</li>
+<li><p><strong>服务器端操作系统接收到连接请求</strong>，验证并建立连接，为该连接分配一个独特的 <code>fd</code> 文件描述符。</p>
+</li>
+<li><p>数据传输阶段</p>
+<p>：</p>
+<ul>
+<li><strong>发送数据</strong>：应用程序将待发送数据写入与套接字对应的内核缓冲区，操作系统根据网络状况和协议栈逐步将数据从缓冲区通过网卡发送出去。</li>
+<li><strong>接收数据</strong>：网卡接收到外部数据后，通知操作系统，操作系统将数据写入到内核缓冲区中与该套接字相关的区域。</li>
+</ul>
+</li>
+<li><p><strong>应用程序调用相关函数获取接收数据</strong>，从内核缓冲区读取数据到应用程序的内存空间。</p>
+</li>
+<li><p><strong>读取完成后</strong>，操作系统可能会根据情况清空或重新管理相应的内核缓冲区数据，以准备接收新的数据。</p>
+</li>
+</ol>
+<p>需要注意的是，这只是一个简化的流程，实际中还涉及到很多细节和优化机制，比如缓冲区的管理、数据的确认与重传、拥塞控制等，以确保网络通信的高效和可靠。</p>
+</blockquote>
+<p>数据到达之后如何唤醒(硬件层面)</p>
+<p>网络数据包到达网卡—&gt;发送中断信号告知CPU有数据写入—&gt;然后唤醒阻塞进程,然后通过硬件电路将数据写入内存</p>
+<p>阻塞流程</p>
+<p>操作系统多任务调度,所以它有一个存储进程的<strong>运行队列</strong>,用于执行多任务调度,阻塞的进程就在<br>这里阻塞等待唤醒</p>
+<p>在创建完socket后会为其创建一个fd描述对象,用于关联socket</p>
+<p>连接创建—&gt;等待接收数据</p>
+<p>5.I&#x2F;O多路复用</p>
+<p>是什么</p>
+<ul>
+<li><p>一种用于提高服务器处理数据传输的并发处理以及提高系统资源利用率的方式</p>
+</li>
+<li><p>可以同时监听多个文件描述符,避免大量线程或进程阻塞等待单个I&#x2F;O的操作</p>
+</li>
+<li><p>能够处理大量并发连接,使得服务器能够同时处理多个客户端的请求,而不是组个处理</p>
+</li>
+<li><p>简化编程模型,让开发者可以通过统一的接口来管理多个I&#x2F;O操作,降低编程的复杂性,</p>
+<p>无需我们实现</p>
+</li>
+<li><p>epoll通过事件驱动的方式唤醒线程&#x2F;进程,提高资源利用率,避免使用阻塞的方式降低性能</p>
+<p>而select&#x2F;poll都会产生阻塞</p>
+</li>
+<li><p>单个socket的监听如 Recv,在使用多路复用之前</p>
+</li>
+</ul>
+<p>现模型</p>
+<ul>
+<li><p>select(连接上限1024)</p>
+</li>
+<li><p>poll(无上限)</p>
+</li>
+<li><p>epoll(事件驱动)</p>
+<ul>
+<li><p>核心角色</p>
+<ul>
+<li><p>事件池,包含事件对象以及事件队列</p>
+</li>
+<li><p>Socket对象,在创建后为其关联了一个fd描述符,内部存储了读&#x2F;写缓冲区以及等待队列</p>
+<p>用于管理连接的客户端,用于后续的唤醒,中断等操作</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>三者区别</p>
+<p>6.TCP&#x2F;IP网络模型</p>
+<ul>
+<li>应用层</li>
+<li>传输层</li>
+<li>网络层</li>
+<li>数据链路层</li>
+<li>功能参考OSI七层模型</li>
+</ul>
+<p>7.OSI网络七层模型</p>
+<ul>
+<li>应用层(客户端)</li>
+<li>表示层(数据转换)</li>
+<li>会话层(连接创建&#x2F;校验)</li>
+<li>传输层(数据传输)</li>
+<li>网络层(路由寻址)</li>
+<li>数据链路层(数据打包)</li>
+<li>物理层(硬件设备)</li>
+</ul>
+<p>8.流量整形TODO</p>
+<p>9.网络通讯就是网络编程</p>
+<p>10.Reactor(响应式)I&#x2F;O模型</p>
+<p>它是基于NIO来实现的高性能I&#x2F;O模型</p>
+<p>NIO的核心角色</p>
+<ul>
+<li><p>Selector ,注册器,负责管理和协调Channel</p>
+</li>
+<li><p>Channel,包装后的Socket对象,相当于一个高级的双向连接对象</p>
+</li>
+<li><p>ByteBuffer,用于缓存传输的数据</p>
+</li>
+<li><p>Selector和Channel的关系</p>
+<blockquote>
+<p>就相当于拍卖物品,首先我将物品寄放到拍卖行,告知拍卖行我的预期价格,然后等达到预期价格后,拍卖行就通知我,有符合我预期的价格了</p>
+<p>在这个类比中：</p>
+<ul>
+<li>“物品”就相当于 Channel。</li>
+<li>“拍卖行”相当于 Selector 。</li>
+<li>“预期价格”相当于您为 Channel 注册到 Selector 时指定的感兴趣的事件（比如可读、可写等）。</li>
+<li>“达到预期价格”相当于 Channel 上发生了您注册时指定的事件。</li>
+<li>“拍卖行通知您”相当于 Selector 回调 Channel 。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>核心角色</p>
+<ul>
+<li>Reactor,负责监听和分发事件,将事件分发给对应的Handler进行处理</li>
+<li>Acceptors,处理客户端连接请求,创建对应的Handler</li>
+<li>Handler,异步(非阻塞)执行读写任务,处理具体业务逻辑</li>
+</ul>
+<p>单线程</p>
+<ul>
+<li>只有一个主线程负责处理连接和请求</li>
+</ul>
+<p>多线程(线程池)</p>
+<ul>
+<li>职责拆分,主线程负责处理连接,使用线程池中的线程异步处理请求</li>
+</ul>
+<p>主从多线程(线程池)</p>
+<ul>
+<li>主线程负责处理连接,将连接请分发给从线程,从线程负责请求的处理</li>
+</ul>
+<p>11.三种网络I&#x2F;O模型的生动描述</p>
+<p>再次理解AIO,BIO,NIO 先描述一个场景 假设有一家很火的餐饮店,需要排队,有一天我到了这家店,店员告知我前面咩有空桌,需要排队等待 </p>
+<p>但店员告知我有三种方案你选哪一种 </p>
+<p>第一种,你先取一个号,等叫号叫到你后,我通过电话通知你,这就是AIO </p>
+<p>第二种,你就在门口等着,等叫到你后,你再进去,这就是BIO </p>
+<p>第三种,你取一个号,但你需要时不时过来看一看,在这期间你可以做其它的事,这是NIO </p>
+<p>其中第一种和第三种方法比较类似,在等待的时间里你可以做自己的时,但一个是我主动叫你,一个是你主动查看</p>
+]]></content>
+  </entry>
+  <entry>
     <title>网络编程协议</title>
     <url>/2024/05/28/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%8D%8F%E8%AE%AE/</url>
     <content><![CDATA[<h2 id="网络编程协议"><a href="#网络编程协议" class="headerlink" title="网络编程协议"></a>网络编程协议</h2><h3 id="1-网络模型"><a href="#1-网络模型" class="headerlink" title="1.网络模型"></a>1.网络模型</h3><p>OSI网络模型</p>
@@ -1863,12 +1898,27 @@
 </ul>
 <h3 id="4-网络层"><a href="#4-网络层" class="headerlink" title="4.网络层"></a>4.网络层</h3><p>层级</p>
 <blockquote>
-<p><img lazyload src="/images/loading.svg" data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E5%B1%82.png" alt="网络协议分层"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E5%B1%82.png"
+                      alt="网络协议分层"
+                ></p>
 </blockquote>
 <p>数据结构</p>
 <blockquote>
-<p><img lazyload src="/images/loading.svg" data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.png" alt="网络协议数据结构"></p>
-<p><img lazyload src="/images/loading.svg" data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E6%8A%93%E5%8C%85%E7%BB%93%E6%9E%84.png" alt="网络协议抓包结构"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.png"
+                      alt="网络协议数据结构"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E6%8A%93%E5%8C%85%E7%BB%93%E6%9E%84.png"
+                      alt="网络协议抓包结构"
+                ></p>
 </blockquote>
 <p>什么是网络</p>
 <ul>
@@ -2094,7 +2144,12 @@
 <li><p>1+1时,高位加1,低位变0</p>
 <p>逢二进一,当计算结果为2时,高位就加1,低位就变为0</p>
 </li>
-<li><p><img lazyload src="/images/loading.svg" data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5CIdea%E7%9A%84Debugger%E8%B0%83%E7%94%A8%E6%A0%88.png" alt="Idea的Debugger调用栈"></p>
+<li><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5CIdea%E7%9A%84Debugger%E8%B0%83%E7%94%A8%E6%A0%88.png"
+                      alt="Idea的Debugger调用栈"
+                ></p>
 </li>
 </ul>
 </li>
@@ -2124,7 +2179,12 @@
 </li>
 <li><p>例如 5%2,此时5为被除数.2为除数</p>
 <blockquote>
-<p><img lazyload src="/images/loading.svg" data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5C%E5%8F%96%E6%A8%A1%E5%8F%96%E4%BD%99%E8%BF%90%E7%AE%97%E5%B7%AE%E5%BC%82.png" alt="取模取余运算差异"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5C%E5%8F%96%E6%A8%A1%E5%8F%96%E4%BD%99%E8%BF%90%E7%AE%97%E5%B7%AE%E5%BC%82.png"
+                      alt="取模取余运算差异"
+                ></p>
 </blockquote>
 </li>
 </ul>
@@ -2248,7 +2308,12 @@
 </li>
 <li><p>IP类型数据报(打包后的数据包裹)Header的构成</p>
 <blockquote>
-<p><img lazyload src="/images/loading.svg" data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5CIp%E5%8D%8F%E8%AE%AEHeader%E7%BB%93%E6%9E%84.png" alt="Ip协议Header结构"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5CIp%E5%8D%8F%E8%AE%AEHeader%E7%BB%93%E6%9E%84.png"
+                      alt="Ip协议Header结构"
+                ></p>
 <ul>
 <li>一行占32bit</li>
 <li>Vesion IP协议版本好,占4bit,如IPV6,版本号显示为6</li>
@@ -2532,7 +2597,12 @@
 </li>
 <li><p>协议数据单元(数据传输时的结构&#x2F;数据结构) Segment(包含头Header和数据段data)</p>
 <blockquote>
-<p><img lazyload src="/images/loading.svg" data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5CTcp%E5%8D%8F%E8%AE%AE%E6%95%B0%E6%8D%AE%E5%8D%95%E5%85%83.png" alt="Tcp协议数据单元"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5CTcp%E5%8D%8F%E8%AE%AE%E6%95%B0%E6%8D%AE%E5%8D%95%E5%85%83.png"
+                      alt="Tcp协议数据单元"
+                ></p>
 </blockquote>
 <ul>
 <li>Source Port  源端口号 </li>
@@ -2554,7 +2624,12 @@
 </li>
 <li><p>Packet(数据包)</p>
 <blockquote>
-<p><img lazyload src="/images/loading.svg" data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5CTcp%E5%8D%8F%E8%AE%AE%E6%95%B0%E6%8D%AE%E5%8C%85.png" alt="Tcp协议数据包"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5CTcp%E5%8D%8F%E8%AE%AE%E6%95%B0%E6%8D%AE%E5%8C%85.png"
+                      alt="Tcp协议数据包"
+                ></p>
 </blockquote>
 <ul>
 <li><p>Segment属于数据包所拆分出的一部分</p>
@@ -2676,7 +2751,7 @@
 </ol>
 <p>数据报则更侧重于：</p>
 <ol>
-<li><strong>传输过程</strong>：如何在网络中<a class="link" href="coco://sendMessage?ext={" s%24wiki_link"%3a"https%3a%2f%2fm.baike.com%2fwikiid%2f2129442810616176116"}&msg="路由"">路由 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>和传递。</li>
+<li><strong>传输过程</strong>：如何在网络中<a class="link"   href="coco://sendMessage?ext={" s%24wiki_link"%3A"https%3A%2F%2Fm.baike.com%2Fwikiid%2F2129442810616176116"}&msg=路由">路由 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>和传递。</li>
 <li><strong>实时性</strong>：满足某些应用对实时性的要求。</li>
 <li><strong>效率和性能</strong>：优化传输速度和资源利用。</li>
 </ol>
@@ -2843,7 +2918,12 @@
 <li>Https可以有效防止运营商劫持,解决了防止劫持的问题</li>
 </ul>
 <blockquote>
-<p><img lazyload src="/images/loading.svg" data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5CHttp%E4%B8%8EHttps%E5%8C%BA%E5%88%AB.png" alt="Http与Https区别"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs%5C%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%5CHttp%E4%B8%8EHttps%E5%8C%BA%E5%88%AB.png"
+                      alt="Http与Https区别"
+                ></p>
 </blockquote>
 <h3 id="13-HTTP2"><a href="#13-HTTP2" class="headerlink" title="13.HTTP2"></a>13.HTTP2</h3><p>优点</p>
 <ul>
@@ -2966,7 +3046,7 @@
 <p>下层提供的服务为上层提供了基础，上层在此基础上进行增强和扩展：</p>
 <ol>
 <li><strong>网络接口层</strong>：提供物理连接和数据传输功能。</li>
-<li><strong>IP 层</strong>：实现网络寻址和数据包<a class="link" href="coco://sendMessage?ext={" s%24wiki_link"%3a"https%3a%2f%2fm.baike.com%2fwikiid%2f2129442810616176116"}&msg="路由"">路由 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。</li>
+<li><strong>IP 层</strong>：实现网络寻址和数据包<a class="link"   href="coco://sendMessage?ext={" s%24wiki_link"%3A"https%3A%2F%2Fm.baike.com%2Fwikiid%2F2129442810616176116"}&msg=路由">路由 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。</li>
 <li><strong>TCP 层</strong>：保证可靠的数据传输。</li>
 </ol>
 <p>每一层都对下层的功能进行了扩展和优化，以满足不同的需求。</p>
