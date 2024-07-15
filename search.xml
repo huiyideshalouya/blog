@@ -15,251 +15,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Neetty高性能网络通讯框架</title>
-    <url>/2024/07/07/Netty%20%E9%AB%98%E6%80%A7%E8%83%BD%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF%E6%A1%86%E6%9E%B6/</url>
-    <content><![CDATA[<h2 id="Netty-高性能网络通讯框架"><a href="#Netty-高性能网络通讯框架" class="headerlink" title="Netty 高性能网络通讯框架"></a>Netty 高性能网络通讯框架</h2><p>关联网络I&#x2F;O模型,I&#x2F;O多路复用机制,Reactor模型(分治思想)</p>
-<p>前置知识<br>阻塞队列是一种特殊的队列，当队列为空时进行获取操作会阻塞线程，直到队列中有元素；当队列已满时进行添加操作会阻塞线程，直到队列有空间。很多情况下，线程池使用的任务队列就是阻塞队列，比如常见的有<code>ArrayBlockingQueue</code>、<code>LinkedBlockingQueue</code>等，它们能很好地配合线程池的运行机制，实现任务的暂存和调度。但也存在一些非阻塞队列被用作任务队列的情况。</p>
-<p>它其实是对NIO的一种封装后的高性能通讯框架</p>
-<h3 id="1-常用api"><a href="#1-常用api" class="headerlink" title="1.常用api"></a>1.常用api</h3><ul>
-<li>EventLoop</li>
-<li>TransSportChannel</li>
-<li>ChannelPipline</li>
-<li>ChannelHandler</li>
-<li>ByteBuffer</li>
-<li>Bootstrap</li>
-<li>ServerBootStrap</li>
-</ul>
-<h3 id="2-Netty工作机制"><a href="#2-Netty工作机制" class="headerlink" title="2.Netty工作机制"></a>2.Netty工作机制</h3><ul>
-<li><p>核心流程</p>
-</li>
-<li><p>层次划分</p>
-<ul>
-<li><p>网络通讯层</p>
-</li>
-<li><p>事件调度器</p>
-<ul>
-<li><p>事件注册&#x2F;提交</p>
-<blockquote>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/imgs/Netty/%E4%BA%8B%E4%BB%B6%E6%B3%A8%E5%86%8C%E6%88%96%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B.png"
-                      alt="事件注册或提交流程"
-                ></p>
-</blockquote>
-</li>
-<li><p>整体流程</p>
-<blockquote>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/imgs/Netty/%E4%BA%8B%E4%BB%B6%E8%B0%83%E5%BA%A6%E6%B5%81%E7%A8%8B.png"
-                      alt="事件调度流程"
-                ></p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>服务编排层</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="3-支持的I-O模式"><a href="#3-支持的I-O模式" class="headerlink" title="3.支持的I&#x2F;O模式"></a>3.支持的I&#x2F;O模式</h3><ul>
-<li>NIO,主要支持的模型,同步非阻塞,支持Reactor模式,如单线程,多线程,主从多线程</li>
-<li>OIO,同步阻塞</li>
-</ul>
-<h3 id="4-请求处理"><a href="#4-请求处理" class="headerlink" title="4.请求处理"></a>4.请求处理</h3><p>Tomcat也是对请求参数的封装,然后再传递到对应的展现层,否则Http请求无法直接使用<br>需要一个转换的过程</p>
-<p>Netty则使用了Handler的方式完成参数的处理</p>
-<h3 id="5-事件轮询"><a href="#5-事件轮询" class="headerlink" title="5.事件轮询"></a>5.事件轮询</h3><p>轮询注册器找到需要执行的I&#x2F;O事件,这个操作是阻塞的,会让线程阻塞一段时间,等待一下<br>超时</p>
-<h3 id="6-服务编排"><a href="#6-服务编排" class="headerlink" title="6.服务编排"></a>6.服务编排</h3><p>每个channel 具有一个channelPipline,所以这个管道是线程安全的,不会出现数据安全问题</p>
-<p>存储的结构为双向链表,对应的channelHandler存储在这里</p>
-<h3 id="7-核心角色"><a href="#7-核心角色" class="headerlink" title="7.核心角色"></a>7.核心角色</h3><p>事件循环组</p>
-<p>工作时间循环</p>
-<p>注册器</p>
-<p>处理器</p>
-<p>处理器管道</p>
-<p>通道</p>
-<p>通道管道</p>
-<h3 id="8-注册"><a href="#8-注册" class="headerlink" title="8.注册"></a>8.注册</h3><p>serverSocket开启端口监听,多个客户端连接该端口,server在监听到连接请求后,<br>为其分配channel并将其注册到不同的Selector上,交给不同线程处理</p>
-<h3 id="9-实现"><a href="#9-实现" class="headerlink" title="9.实现"></a>9.实现</h3><ul>
-<li>RPC<ul>
-<li>Dubbo</li>
-<li>gRpc</li>
-</ul>
-</li>
-<li>MQ<ul>
-<li>Rocket</li>
-</ul>
-</li>
-<li>WEB<ul>
-<li>Spring WebFlux</li>
-</ul>
-</li>
-<li>DB<ul>
-<li>ElasticSearch</li>
-</ul>
-</li>
-</ul>
-<h3 id="10-ByteBuf"><a href="#10-ByteBuf" class="headerlink" title="10.ByteBuf"></a>10.ByteBuf</h3><p>它是NIO中的Bytebuffer的具体实现,用于网络通讯中的数据缓冲,<br>但不同的点是它使用了池化技术</p>
-<h3 id="11-拆包和粘包"><a href="#11-拆包和粘包" class="headerlink" title="11.拆包和粘包"></a>11.拆包和粘包</h3><p>定义消息传输协议,在这里面就会涉及到数据的粘包和拆包,通俗的说<br>就是数据包如何装起来,倒出来</p>
-<p>数据结构</p>
-<ul>
-<li>销毁</li>
-<li>读取</li>
-<li>写入</li>
-<li>扩容</li>
-<li>当前容量</li>
-<li>最大容量</li>
-</ul>
-<p>回退</p>
-<ul>
-<li>为什么要回退</li>
-<li>对于已经读取过的数据,想要再次读取,就可以使用对应方法再次读取</li>
-<li>分别为读回退和写回退</li>
-</ul>
-<p>零拷贝(浅拷贝,修改引用内容,而不是深拷贝)</p>
-<ul>
-<li>如何提高内存复制性能,这里和网络拷贝的零拷贝不一样</li>
-<li>如何实现,对元素数据切片,再修改指定索引的元素,意思是直接修改的内存数据吗<br>而不是先拷贝,再修改</li>
-<li>逻辑合并的原理是其内部维护了一个引用列表?然后对对应的指针完成引用数据数据修改,而不是拷贝出来一个新的</li>
-<li>拆分场景</li>
-<li>合并场景<ul>
-<li>深拷贝</li>
-<li>浅拷贝</li>
-<li>Unpooled</li>
-</ul>
-</li>
-</ul>
-<p>拆包&#x2F;粘包</p>
-<p>拆分原因,TCP的传输是基于数据流传输,而流化的数据是没有界限的,当客户端向服务端<br>发送数据时,可能会把一个完整的数据报文拆分成多个小报文进行传输,也可能将多个报文<br>合并成一个大报文进行传输</p>
-<ul>
-<li>大包拆分</li>
-<li>大包+小包</li>
-<li>小包+(小包+小包)</li>
-<li>主要分为拆分+混装+合并</li>
-</ul>
-<h3 id="12-通讯协议定义"><a href="#12-通讯协议定义" class="headerlink" title="12.通讯协议定义"></a>12.通讯协议定义</h3><ul>
-<li>Zookeeper</li>
-</ul>
-<h3 id="13-解码器的实现"><a href="#13-解码器的实现" class="headerlink" title="13.解码器的实现"></a>13.解码器的实现</h3><ul>
-<li><p>固定长度</p>
-</li>
-<li><p>特殊分隔符</p>
-</li>
-<li><p>长度域解码器(特定消息协议的解码,针对复杂消息报文)</p>
-<ul>
-<li><p>报文长度,决定拆包的范围</p>
-</li>
-<li><p>报文内容,根据需求选择是否拆包和截取指定范围的报文内容</p>
-</li>
-<li><p>长度域调整计算公式</p>
-<ul>
-<li><p>需要字节数-包实际字节数-长度字节数-不需要字节数</p>
-</li>
-<li><p>如一个包的总长为14字节,长度占2个字节,不需要的占2个字节</p>
-<p>实际只需要10个字节</p>
-<p>计算公式如下:</p>
-<p>10-14-2-2 &#x3D; -8</p>
-<p>得出长度域调整值为-8,代表长度域需要覆盖到这个位置</p>
-</li>
-</ul>
-</li>
-<li><p>对于长度域的调整可以理解为扩展字段,等于框架的扩展点,都是为了增强</p>
-<p>某个场景,解决如复杂的数据结构,将主要数据和其它数据分开的场景</p>
-</li>
-<li><p>在这里主要是为了处理粘包合并数据的拆分场景,也就是拆包</p>
-</li>
-</ul>
-</li>
-<li><p>编码的容错机制</p>
-<ul>
-<li>快速失败</li>
-<li>尽最大努力</li>
-</ul>
-</li>
-</ul>
-<h3 id="14-源码核心"><a href="#14-源码核心" class="headerlink" title="14.源码核心"></a>14.源码核心</h3><ul>
-<li>ServerBootStrap初始化<ul>
-<li>服务参数<ul>
-<li>SocketChannel,比如NioSocketChannel,EpollSocketChannel,需要根据不同的操作系统选择<ul>
-<li>可以理解为就是一个抽象的Channel,只不过Server持有了这个抽象Channel的集合,并且对其管理和协调,其中主要的工作就是channel分发及channel事件发现(注册)</li>
-<li>作为客户端和服务端之间数据传输的桥梁</li>
-<li>ServerSocketChannel和SocketChannel,分别处理客户端连接时间和I&#x2F;O事件,角色不同</li>
-</ul>
-</li>
-<li>Handler</li>
-<li>ChildHandler<ul>
-<li>Pipeline,针对当前ServerSocketChannel关联,只要进入当前服务都会进入该处理器链</li>
-</ul>
-</li>
-<li>Bind</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Bind端口绑定</li>
-<li>Pipeline构建</li>
-<li>流程<ul>
-<li>参数设置</li>
-<li>Handler初始化</li>
-<li>EventLoop初始化</li>
-<li>SocketChannel注册,客户端将自己注册到BossEventLoopGroup的Selector中,成为一个被监听Channel</li>
-</ul>
-</li>
-<li>为什么要使用反射的方式构建Channel</li>
-<li>事件循环组担当了Selector的功能,完成Channel事件的注册和协调工作</li>
-</ul>
-<p>EventLoop</p>
-<ul>
-<li><p>本质是一个线程池,Event就相当于里面的线程池</p>
-</li>
-<li><p>netty支持异步和异步延时执行</p>
-</li>
-<li><p>NioEventLoop通过轮询Selector完成Channel事件监听,然后执行任务</p>
-</li>
-<li><p>线程执行流程</p>
-<ul>
-<li>外部(主线程)调用excute提交一个任务</li>
-<li>内部(工作线程)起一个线程去执行任务</li>
-<li>调用Selector的select方法获取任务,有就执行,咩有就持续轮询</li>
-<li>内部维护了一套策略,针对队列任务,避免一直阻塞,导致无法真正执行<ul>
-<li>如何处理</li>
-<li>返回结果</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>事件状态</p>
-<ul>
-<li>ACCEPT</li>
-<li>READ</li>
-<li>WRITE</li>
-</ul>
-</li>
-<li><p>空轮转</p>
-<ul>
-<li><p>指的是线程在轮询阻塞的过程中,产生的异常唤醒,其实没有实际事件可执行</p>
-<p>如何处理</p>
-</li>
-<li><p>数据迁移过程中,使用双写,旧的仍然可读,在迁移过程中产生的数据放入新的,保证可用且不影响性能</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>数据包和数据报的区别</p>
-<p>您的这种理解有一定的道理。</p>
-<p>数据报，尤其是像 IP 数据报这样在网络层中具有明确规范的，其格式和结构相对较为固定和严谨。这有助于在网络中进行统一的路由和转发处理。</p>
-<p>而数据包的概念更为广泛，确实会因为处于不同的网络层次和遵循不同的协议而在格式和内容上有所变化和转换。</p>
-<p>例如，在传输层的 TCP 数据包和 UDP 数据包，它们除了包含源端口和目的端口等特定信息外，格式和控制字段与 IP 数据报就有所不同。</p>
-<p>当数据在网络中传输时，可能会根据需要在不同层次进行封装和解封装，导致数据包的形式和内容发生相应的改变。</p>
-<p>但需要注意的是，严谨性的比较也不能绝对化，这取决于具体的网络环境和需求。在某些特定的场景中，特定协议下的数据包也可能具有高度的严谨性和规范性。</p>
-<blockquote>
-<p>报文重在特定协议的传输格式的数据,包重在数据的传输内容本身</p>
-</blockquote>
-]]></content>
-  </entry>
-  <entry>
     <title>JMM模型</title>
     <url>/2024/05/06/JMM%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[<h2 id="JMM模型"><a href="#JMM模型" class="headerlink" title="JMM模型"></a>JMM模型</h2><h3 id="1-可见性"><a href="#1-可见性" class="headerlink" title="1.可见性"></a>1.可见性</h3><p>Volitale</p>
@@ -538,6 +293,473 @@
 ]]></content>
   </entry>
   <entry>
+    <title>Java语言设计思路</title>
+    <url>/2024/07/15/Java%E8%AF%AD%E8%A8%80%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF/</url>
+    <content><![CDATA[<h2 id="Java语言设计思路"><a href="#Java语言设计思路" class="headerlink" title="Java语言设计思路"></a>Java语言设计思路</h2><h3 id="1-方法入参强转-健壮性"><a href="#1-方法入参强转-健壮性" class="headerlink" title="1.方法入参强转(健壮性)"></a>1.方法入参强转(健壮性)</h3><blockquote>
+<p>原因</p>
+<p>这种设计是为了达到程序的健壮性考虑,而不是三天两头出现问题,从源头避免,类似的场景还有受检异常,泛型,都是在编译器发现问题</p>
+<p>您的观点十分准确。这种在编译阶段进行严格检查和限制的设计，的确是为了增强程序的健壮性。</p>
+<p><strong>就像您提到的受检异常（Checked Exceptions），它要求开发者在代码中显式地处理可能抛出的异常，否则无法通过编译。这促使开发者提前考虑并处理可能出现的错误情况，而不是在运行时才面对无法处理的异常导致程序崩溃。</strong></p>
+<p>泛型（Generics）也是一个很好的例子。通过在编译时对泛型类型进行检查，可以避免在运行时出现类型转换错误等问题，提高了代码的类型安全性。</p>
+<p>这些设计都是为了在程序开发的早期，即在编译器能够发现问题的时候，就将潜在的错误暴露出来，让开发者及时修正，从而从源头上减少程序在运行时出现问题的可能性，提高程序的稳定性和可靠性。</p>
+<p>例如，在使用泛型的集合时，如果尝试向一个指定类型的集合中添加不匹配的元素，编译器会给出错误提示，避免了在运行时才发现类型不匹配的问题。</p>
+<p>又如，处理受检异常时，如果方法可能抛出 <code>FileNotFoundException</code>，而调用者没有进行捕获或声明抛出，编译就会失败，促使开发者提前想好如何处理文件不存在的情况。</p>
+</blockquote>
+<h3 id="2-T和-的区别-扩展性"><a href="#2-T和-的区别-扩展性" class="headerlink" title="2.T和?的区别(扩展性)"></a>2.T和?的区别(扩展性)</h3><h4 id="2-1-是什么"><a href="#2-1-是什么" class="headerlink" title="2.1.是什么"></a>2.1.是什么</h4><p>T和?作为Java语言中的泛型占位符,一个用于接收明确类型,一个用于接收<br>未知类型,是为了提高代码复用的一个技巧,但在使用时需要注意类型转换<br>的问题</p>
+<p>通常情况下，<code>T</code> 更常用于在方法之间进行类型的传递，以保持类型的一致性和准确性，并且可能会涉及到写入操作。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="keyword">void</span> <span class="title function_">processAndReturn</span><span class="params">(T data)</span> &#123;</span><br><span class="line">    <span class="comment">// 对 data 进行处理</span></span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>而 <code>?</code> 更多地用于表示不确定性，更侧重于接收和读取，强调对多种类型的兼容性。</p>
+<p>然而，也存在一些特殊情况，可能会在特定的设计中对 <code>?</code> 进行一些特殊的传递或操作。但总体来说，您所描述的这种倾向是比较常见和符合一般编程习惯的。</p>
+<h4 id="2-2-使用场景"><a href="#2-2-使用场景" class="headerlink" title="2.2.使用场景"></a>2.2.使用场景</h4><blockquote>
+<p><code>T</code> 作为泛型类型参数，确实常用于类、成员变量、参数列表等场景，因为它能够提供更明确的类型约束和操作方式。</p>
+<p>而 <code>Class&lt;?&gt;</code> （其中 <code>?</code> 表示通配符）不仅可以用于局部变量，也可以在一些情况下用于方法的参数或返回值，以表示对类型的更宽松的约束。</p>
+<p>例如，在某些方法中，如果您不关心具体的类型，只需要进行一些通用的操作，就可以使用 <code>Class&lt;?&gt;</code> 作为参数类型。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line">Public <span class="keyword">class</span> <span class="title class_">A</span>&lt;T&gt; &#123; <span class="comment">//表示为泛型类型,在创建A类时指定,A&lt;String&gt; a = new A&lt;&gt;();</span></span><br><span class="line">    <span class="keyword">private</span> T obj; <span class="comment">//表示任意类型,在构造方法中初始化在构造方法中传递给成员变量</span></span><br><span class="line">                   <span class="comment">//此处将构造方法的泛型和成员变量的泛型进行关联</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">A</span><span class="params">(T obj)</span>&#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; T <span class="title function_">change</span><span class="params">(T param)</span>&#123; <span class="comment">//&lt;T&gt; 表示泛型方法</span></span><br><span class="line">                                  <span class="comment">// T 表示返回结果可以为任意类型</span></span><br><span class="line">                                  <span class="comment">// T param 表示接收参数为任意类型</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> (T)param; <span class="comment">//显式强转,调用方的类型需要和方法返回类型一致</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+
+</blockquote>
+<h4 id="2-3-T的传递性"><a href="#2-3-T的传递性" class="headerlink" title="2.3.T的传递性"></a>2.3.T的传递性</h4><blockquote>
+<p><strong>T的传递场景</strong><br>1.参数使用<br>2.参数传递<br>3.在泛型方法中使用成员变量&#x2F;其它方法对T进行使用或参数传递<br>4.不进行上述操作的话,就只是一个标记而已</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> T value;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyClass</span><span class="params">(T value)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.value = value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; T <span class="title function_">myMethod</span><span class="params">(String methodName)</span> &#123;</span><br><span class="line">        <span class="comment">// 这里可以根据类中保存的 value 的类型进行相关操作，建立了关联</span></span><br><span class="line">        <span class="keyword">if</span> (value <span class="keyword">instanceof</span> String &amp;&amp; methodName.equals(<span class="string">&quot;getString&quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> (T) <span class="string">&quot;Some String&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        MyClass&lt;Integer&gt; integerMyClass = <span class="keyword">new</span> <span class="title class_">MyClass</span>&lt;&gt;(<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> integerMyClass.myMethod(<span class="string">&quot;getString&quot;</span>);</span><br><span class="line">        System.out.println(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>T的覆盖</strong></p>
+<blockquote>
+<p>默认声明位置为类名后方,如public class  A<T> {</p>
+<p>}</p>
+<p>其它位置,可在除构造方法外的方法定义,如public <T>  T  change(T param)<br><strong>在方法前声明会覆盖类上的声明,类似独立定义</strong></p>
+</blockquote>
+</blockquote>
+<h3 id="3-显式转换和隐式转换-扩展性"><a href="#3-显式转换和隐式转换-扩展性" class="headerlink" title="3.显式转换和隐式转换(扩展性)"></a>3.显式转换和隐式转换(扩展性)</h3><blockquote>
+<p>显式转换更需要开发者谨慎处理，确保转换的正确性；隐式转换通常由编译器根据特定的规则自动处理，但也需要了解其可能的影响和限制。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//显式</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//被调用方</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; T <span class="title function_">invoke</span><span class="params">(String methodName)</span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//传入目标类和其方法</span></span><br><span class="line">            <span class="comment">//获取反射后的实例</span></span><br><span class="line">            <span class="comment">//反射调用目标方法返回结果</span></span><br><span class="line">            <span class="comment">//这里的目的是判断传递进来的类型是否属于Class</span></span><br><span class="line">            <span class="keyword">if</span> (targetClass <span class="keyword">instanceof</span> Class&lt;?&gt;)&#123;</span><br><span class="line">                <span class="comment">//强制类型转换</span></span><br><span class="line">                <span class="comment">//?表示未知类型的Class对象</span></span><br><span class="line">                <span class="comment">//T表示确定类型的Class对象</span></span><br><span class="line">                <span class="comment">//二者都可用于参数传递</span></span><br><span class="line">                <span class="comment">//T常用于写入和读取参数</span></span><br><span class="line">                <span class="comment">//?仅用于读取参数</span></span><br><span class="line">                Class&lt;?&gt;  clazz = (Class&lt;?&gt;) targetClass;</span><br><span class="line">                <span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> clazz.newInstance();</span><br><span class="line"></span><br><span class="line">                <span class="comment">//反射掉目标方法返回结果</span></span><br><span class="line">                <span class="type">Method</span> <span class="variable">method</span> <span class="operator">=</span> clazz.getMethod(methodName);</span><br><span class="line"></span><br><span class="line">                <span class="comment">//显式转换,在被调用方,告知编译器,我需要转换啦</span></span><br><span class="line">                <span class="keyword">return</span> (T)method.invoke(o);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">   <span class="comment">//调用方</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        Proxy&lt;Class&gt; proxy = <span class="keyword">new</span> <span class="title class_">Proxy</span>(Student.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//显式转换,在调用方强转,告知编译器我需要强转</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">changeVal</span> <span class="operator">=</span> (String) proxy.invoke(<span class="string">&quot;changeName&quot;</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(changeVal);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//隐式转换-正确场景</span></span><br><span class="line"><span class="type">Integer</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; <span class="comment">//自动装包</span></span><br><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> i <span class="comment">//自动拆包</span></span><br><span class="line"><span class="type">Animal</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Lion</span>(); <span class="comment">//lion继承自父类,所以属于隐式转换</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//显式转换-正确场景</span></span><br><span class="line"><span class="type">Animal</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Lion</span>();</span><br><span class="line"><span class="type">Lion</span> <span class="variable">lion</span> <span class="operator">=</span> (Lion)a;<span class="comment">//因为a本身就是Lion类型的对象,所以可以转换</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//转换-失败场景</span></span><br><span class="line"><span class="type">Integer</span> <span class="variable">i</span> <span class="operator">=</span> (String)<span class="string">&quot;&quot;</span>; <span class="comment">//这种转换应该发生于子类或同类之间</span></span><br><span class="line"></span><br><span class="line"><span class="type">Animal</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Animal</span>(); </span><br><span class="line"><span class="type">Lion</span> <span class="variable">lion</span> <span class="operator">=</span> (Lion)a;<span class="comment">//这种也是如此,需要转换的类型必须是同类或子类</span></span><br></pre></td></tr></table></figure></div>
+
+
+</blockquote>
+<h4 id="3-1-转换检查-健壮性"><a href="#3-1-转换检查-健壮性" class="headerlink" title="3.1.转换检查(健壮性)"></a>3.1.转换检查(健壮性)</h4><blockquote>
+<p>编译期间</p>
+<ul>
+<li><p>方法参数</p>
+<blockquote>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line">change( (Integer) <span class="string">&quot;&quot;</span>); <span class="comment">//方法参数需要Integer类型,你传入String类型</span></span><br></pre></td></tr></table></figure></div>
+
+
+</blockquote>
+</li>
+<li><p>局部</p>
+<blockquote>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Integer</span> <span class="variable">i</span> <span class="operator">=</span> <span class="literal">null</span>; <span class="comment">//这种是需要提前预知的</span></span><br><span class="line">        </span><br><span class="line">i = (Integer) <span class="string">&quot;&quot;</span>;</span><br></pre></td></tr></table></figure></div>
+
+</blockquote>
+</li>
+</ul>
+<p>运行期间</p>
+<ul>
+<li><p>方法参数</p>
+<blockquote>
+<p>通过编译期检查后,需要再对一些涉及多态和强制类型转换的情况进行检查,<br>在运行时会再次检测传递的类型是否能够转换为方法内部期待的类型</p>
+</blockquote>
+</li>
+<li><p>局部</p>
+<blockquote>
+<p>当从方法返回一个值并进行类型转换时，如果实际返回的值类型与接收方期望的类型不兼容，会在运行时出错</p>
+</blockquote>
+</li>
+<li><p>返回结果</p>
+<blockquote>
+<p>当从方法返回一个值并进行类型转换时，如果实际返回的值类型与接收方期望的类型不兼容，会在运行时出错</p>
+</blockquote>
+</li>
+</ul>
+<p>总结</p>
+<ul>
+<li>有些强转如方法入参和初始化是可以预见的,<strong>需要提前感知</strong></li>
+<li>而一些涉及多态的场景下的强转则是需要主动关注的,<strong>如第一次使用时</strong><br><strong>使用父类接收子类,之后在使用时又强转回子类的场景</strong></li>
+</ul>
+</blockquote>
+<h3 id="4-访问修饰符-安全性"><a href="#4-访问修饰符-安全性" class="headerlink" title="4.访问修饰符(安全性)"></a>4.访问修饰符(安全性)</h3><ul>
+<li>类<ul>
+<li>public,任意位置都能访问,new的方式</li>
+<li>private,只有在当前类能访问</li>
+<li>default,如com.xxx.example,只有处于这个绝对路径下的类才能访问</li>
+</ul>
+</li>
+<li>变量<ul>
+<li>public,任意位置都能访问,如new Person().属性,可以直接获取,无需get&#x2F;set方法</li>
+<li>private,只有在当前类能访问</li>
+<li>default,如com.xxx.example,只有处于这个绝对路径下的类才能访问</li>
+</ul>
+</li>
+<li>方法<ul>
+<li>public,任意位置都能访问,如new Person().方法,可以直接获取</li>
+<li>private,只有在当前类能访问</li>
+<li>protected,只有子类能够访问</li>
+<li>default,如com.xxx.example,只有处于这个绝对路径下的类才能访问</li>
+</ul>
+</li>
+<li>代码块<ul>
+<li>普通<ul>
+<li>每次new的时候都会执行</li>
+</ul>
+</li>
+<li>静态<ul>
+<li>优先执行</li>
+<li>只会在类加载的第一次执行</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-接口-扩展性"><a href="#5-接口-扩展性" class="headerlink" title="5.接口(扩展性)"></a>5.接口(扩展性)</h3><ul>
+<li>抽象</li>
+<li>仅定义方法</li>
+<li>只能有一个默认方法,包含实现</li>
+<li>多实现</li>
+</ul>
+<h3 id="6-抽象-耦合性"><a href="#6-抽象-耦合性" class="headerlink" title="6.抽象(耦合性)"></a>6.抽象(耦合性)</h3><ul>
+<li>抽象方法,有抽象方法的一定是抽象类</li>
+</ul>
+<h3 id="7-继承-耦合性"><a href="#7-继承-耦合性" class="headerlink" title="7.继承(耦合性)"></a>7.继承(耦合性)</h3><ul>
+<li>单继承</li>
+</ul>
+<h3 id="8-函数式接口-复用性"><a href="#8-函数式接口-复用性" class="headerlink" title="8.函数式接口(复用性)"></a>8.函数式接口(复用性)</h3><h3 id="9-面向对象设计-封装性"><a href="#9-面向对象设计-封装性" class="headerlink" title="9.面向对象设计(封装性)"></a>9.面向对象设计(封装性)</h3><ul>
+<li>包装类</li>
+<li>异常</li>
+<li>配置</li>
+</ul>
+<h3 id="10-静态-常量"><a href="#10-静态-常量" class="headerlink" title="10.静态&#x2F;常量"></a>10.静态&#x2F;常量</h3><ul>
+<li>变量</li>
+<li>代码块</li>
+</ul>
+<h3 id="11-注解"><a href="#11-注解" class="headerlink" title="11.注解"></a>11.注解</h3><ul>
+<li>使用位置</li>
+<li>内部构造</li>
+<li>生效时间</li>
+</ul>
+<h3 id="12-枚举"><a href="#12-枚举" class="headerlink" title="12.枚举"></a>12.枚举</h3><ul>
+<li>类型</li>
+<li>值</li>
+</ul>
+<h3 id="13-字符串"><a href="#13-字符串" class="headerlink" title="13.字符串"></a>13.字符串</h3><ul>
+<li>不可修改,内部维护final的char数组</li>
+</ul>
+<h3 id="14-多线程"><a href="#14-多线程" class="headerlink" title="14.多线程"></a>14.多线程</h3><ul>
+<li>内存模型<ul>
+<li>共享空间</li>
+<li>线程独立空间</li>
+<li>修改数据在自己的空间完成,再同步到共享空间</li>
+</ul>
+</li>
+<li>锁机制<ul>
+<li>Synchroized<ul>
+<li>锁粗化</li>
+<li>锁升级</li>
+<li>锁降级</li>
+</ul>
+</li>
+<li>Lock<ul>
+<li>公平</li>
+<li>非公平</li>
+</ul>
+</li>
+<li>CAS<ul>
+<li>吞吐量,性能</li>
+<li>CPU空转</li>
+<li>ABA问题,一个线程修改的数据被其它线程修改回去了</li>
+</ul>
+</li>
+<li>场景问题<ul>
+<li>锁饥饿,一直获取不到锁</li>
+<li>死锁,双方互相持有对方的锁</li>
+<li>活锁,双方你先拿,但发现对方需要,又给对方了,类似你走一步,我走一步的场景</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>安全容器<ul>
+<li>Vector</li>
+<li>StringBuffer</li>
+<li>ConcurrentHashMap</li>
+</ul>
+</li>
+<li>并发三大特性<ul>
+<li>原子性<ul>
+<li>锁</li>
+<li>Volatile,单个线程操作原子性</li>
+</ul>
+</li>
+<li>有序性<ul>
+<li>执行顺序<ul>
+<li>Synchroized,保证顺序一定不会打乱</li>
+<li>Volitale,从某个层面有序,保证代码的有序,不会发生顺序变化</li>
+</ul>
+</li>
+<li>指令<ul>
+<li>Volitale,开启读写屏障,避免CPU指令重排序</li>
+<li>关闭jit优化,关闭即时编译器优化功能,对指令重新排序</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>可见性<ul>
+<li>一致性协议,如MESI协议,通过消息机制保证内存和CPU缓存的数据一致性</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>Neetty高性能网络通讯框架</title>
+    <url>/2024/07/07/Netty%20%E9%AB%98%E6%80%A7%E8%83%BD%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF%E6%A1%86%E6%9E%B6/</url>
+    <content><![CDATA[<h2 id="Netty-高性能网络通讯框架"><a href="#Netty-高性能网络通讯框架" class="headerlink" title="Netty 高性能网络通讯框架"></a>Netty 高性能网络通讯框架</h2><p>关联网络I&#x2F;O模型,I&#x2F;O多路复用机制,Reactor模型(分治思想)</p>
+<p>前置知识<br>阻塞队列是一种特殊的队列，当队列为空时进行获取操作会阻塞线程，直到队列中有元素；当队列已满时进行添加操作会阻塞线程，直到队列有空间。很多情况下，线程池使用的任务队列就是阻塞队列，比如常见的有<code>ArrayBlockingQueue</code>、<code>LinkedBlockingQueue</code>等，它们能很好地配合线程池的运行机制，实现任务的暂存和调度。但也存在一些非阻塞队列被用作任务队列的情况。</p>
+<p>它其实是对NIO的一种封装后的高性能通讯框架</p>
+<h3 id="1-常用api"><a href="#1-常用api" class="headerlink" title="1.常用api"></a>1.常用api</h3><ul>
+<li>EventLoop</li>
+<li>TransSportChannel</li>
+<li>ChannelPipline</li>
+<li>ChannelHandler</li>
+<li>ByteBuffer</li>
+<li>Bootstrap</li>
+<li>ServerBootStrap</li>
+</ul>
+<h3 id="2-Netty工作机制"><a href="#2-Netty工作机制" class="headerlink" title="2.Netty工作机制"></a>2.Netty工作机制</h3><ul>
+<li><p>核心流程</p>
+</li>
+<li><p>层次划分</p>
+<ul>
+<li><p>网络通讯层</p>
+</li>
+<li><p>事件调度器</p>
+<ul>
+<li><p>事件注册&#x2F;提交</p>
+<blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs/Netty/%E4%BA%8B%E4%BB%B6%E6%B3%A8%E5%86%8C%E6%88%96%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B.png"
+                      alt="事件注册或提交流程"
+                ></p>
+</blockquote>
+</li>
+<li><p>整体流程</p>
+<blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs/Netty/%E4%BA%8B%E4%BB%B6%E8%B0%83%E5%BA%A6%E6%B5%81%E7%A8%8B.png"
+                      alt="事件调度流程"
+                ></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>服务编排层</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-支持的I-O模式"><a href="#3-支持的I-O模式" class="headerlink" title="3.支持的I&#x2F;O模式"></a>3.支持的I&#x2F;O模式</h3><ul>
+<li>NIO,主要支持的模型,同步非阻塞,支持Reactor模式,如单线程,多线程,主从多线程</li>
+<li>OIO,同步阻塞</li>
+</ul>
+<h3 id="4-请求处理"><a href="#4-请求处理" class="headerlink" title="4.请求处理"></a>4.请求处理</h3><p>Tomcat也是对请求参数的封装,然后再传递到对应的展现层,否则Http请求无法直接使用<br>需要一个转换的过程</p>
+<p>Netty则使用了Handler的方式完成参数的处理</p>
+<h3 id="5-事件轮询"><a href="#5-事件轮询" class="headerlink" title="5.事件轮询"></a>5.事件轮询</h3><p>轮询注册器找到需要执行的I&#x2F;O事件,这个操作是阻塞的,会让线程阻塞一段时间,等待一下<br>超时</p>
+<h3 id="6-服务编排"><a href="#6-服务编排" class="headerlink" title="6.服务编排"></a>6.服务编排</h3><p>每个channel 具有一个channelPipline,所以这个管道是线程安全的,不会出现数据安全问题</p>
+<p>存储的结构为双向链表,对应的channelHandler存储在这里</p>
+<h3 id="7-核心角色"><a href="#7-核心角色" class="headerlink" title="7.核心角色"></a>7.核心角色</h3><p>事件循环组</p>
+<p>工作时间循环</p>
+<p>注册器</p>
+<p>处理器</p>
+<p>处理器管道</p>
+<p>通道</p>
+<p>通道管道</p>
+<h3 id="8-注册"><a href="#8-注册" class="headerlink" title="8.注册"></a>8.注册</h3><p>serverSocket开启端口监听,多个客户端连接该端口,server在监听到连接请求后,<br>为其分配channel并将其注册到不同的Selector上,交给不同线程处理</p>
+<h3 id="9-实现"><a href="#9-实现" class="headerlink" title="9.实现"></a>9.实现</h3><ul>
+<li>RPC<ul>
+<li>Dubbo</li>
+<li>gRpc</li>
+</ul>
+</li>
+<li>MQ<ul>
+<li>Rocket</li>
+</ul>
+</li>
+<li>WEB<ul>
+<li>Spring WebFlux</li>
+</ul>
+</li>
+<li>DB<ul>
+<li>ElasticSearch</li>
+</ul>
+</li>
+</ul>
+<h3 id="10-ByteBuf"><a href="#10-ByteBuf" class="headerlink" title="10.ByteBuf"></a>10.ByteBuf</h3><p>它是NIO中的Bytebuffer的具体实现,用于网络通讯中的数据缓冲,<br>但不同的点是它使用了池化技术</p>
+<h3 id="11-拆包和粘包"><a href="#11-拆包和粘包" class="headerlink" title="11.拆包和粘包"></a>11.拆包和粘包</h3><p>定义消息传输协议,在这里面就会涉及到数据的粘包和拆包,通俗的说<br>就是数据包如何装起来,倒出来</p>
+<p>数据结构</p>
+<ul>
+<li>销毁</li>
+<li>读取</li>
+<li>写入</li>
+<li>扩容</li>
+<li>当前容量</li>
+<li>最大容量</li>
+</ul>
+<p>回退</p>
+<ul>
+<li>为什么要回退</li>
+<li>对于已经读取过的数据,想要再次读取,就可以使用对应方法再次读取</li>
+<li>分别为读回退和写回退</li>
+</ul>
+<p>零拷贝(浅拷贝,修改引用内容,而不是深拷贝)</p>
+<ul>
+<li>如何提高内存复制性能,这里和网络拷贝的零拷贝不一样</li>
+<li>如何实现,对元素数据切片,再修改指定索引的元素,意思是直接修改的内存数据吗<br>而不是先拷贝,再修改</li>
+<li>逻辑合并的原理是其内部维护了一个引用列表?然后对对应的指针完成引用数据数据修改,而不是拷贝出来一个新的</li>
+<li>拆分场景</li>
+<li>合并场景<ul>
+<li>深拷贝</li>
+<li>浅拷贝</li>
+<li>Unpooled</li>
+</ul>
+</li>
+</ul>
+<p>拆包&#x2F;粘包</p>
+<p>拆分原因,TCP的传输是基于数据流传输,而流化的数据是没有界限的,当客户端向服务端<br>发送数据时,可能会把一个完整的数据报文拆分成多个小报文进行传输,也可能将多个报文<br>合并成一个大报文进行传输</p>
+<ul>
+<li>大包拆分</li>
+<li>大包+小包</li>
+<li>小包+(小包+小包)</li>
+<li>主要分为拆分+混装+合并</li>
+</ul>
+<h3 id="12-通讯协议定义"><a href="#12-通讯协议定义" class="headerlink" title="12.通讯协议定义"></a>12.通讯协议定义</h3><ul>
+<li>Zookeeper</li>
+</ul>
+<h3 id="13-解码器的实现"><a href="#13-解码器的实现" class="headerlink" title="13.解码器的实现"></a>13.解码器的实现</h3><ul>
+<li><p>固定长度</p>
+</li>
+<li><p>特殊分隔符</p>
+</li>
+<li><p>长度域解码器(特定消息协议的解码,针对复杂消息报文)</p>
+<ul>
+<li><p>报文长度,决定拆包的范围</p>
+</li>
+<li><p>报文内容,根据需求选择是否拆包和截取指定范围的报文内容</p>
+</li>
+<li><p>长度域调整计算公式</p>
+<ul>
+<li><p>需要字节数-包实际字节数-长度字节数-不需要字节数</p>
+</li>
+<li><p>如一个包的总长为14字节,长度占2个字节,不需要的占2个字节</p>
+<p>实际只需要10个字节</p>
+<p>计算公式如下:</p>
+<p>10-14-2-2 &#x3D; -8</p>
+<p>得出长度域调整值为-8,代表长度域需要覆盖到这个位置</p>
+</li>
+</ul>
+</li>
+<li><p>对于长度域的调整可以理解为扩展字段,等于框架的扩展点,都是为了增强</p>
+<p>某个场景,解决如复杂的数据结构,将主要数据和其它数据分开的场景</p>
+</li>
+<li><p>在这里主要是为了处理粘包合并数据的拆分场景,也就是拆包</p>
+</li>
+</ul>
+</li>
+<li><p>编码的容错机制</p>
+<ul>
+<li>快速失败</li>
+<li>尽最大努力</li>
+</ul>
+</li>
+</ul>
+<h3 id="14-源码核心"><a href="#14-源码核心" class="headerlink" title="14.源码核心"></a>14.源码核心</h3><ul>
+<li>ServerBootStrap初始化<ul>
+<li>服务参数<ul>
+<li>SocketChannel,比如NioSocketChannel,EpollSocketChannel,需要根据不同的操作系统选择<ul>
+<li>可以理解为就是一个抽象的Channel,只不过Server持有了这个抽象Channel的集合,并且对其管理和协调,其中主要的工作就是channel分发及channel事件发现(注册)</li>
+<li>作为客户端和服务端之间数据传输的桥梁</li>
+<li>ServerSocketChannel和SocketChannel,分别处理客户端连接时间和I&#x2F;O事件,角色不同</li>
+</ul>
+</li>
+<li>Handler</li>
+<li>ChildHandler<ul>
+<li>Pipeline,针对当前ServerSocketChannel关联,只要进入当前服务都会进入该处理器链</li>
+</ul>
+</li>
+<li>Bind</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Bind端口绑定</li>
+<li>Pipeline构建</li>
+<li>流程<ul>
+<li>参数设置</li>
+<li>Handler初始化</li>
+<li>EventLoop初始化</li>
+<li>SocketChannel注册,客户端将自己注册到BossEventLoopGroup的Selector中,成为一个被监听Channel</li>
+</ul>
+</li>
+<li>为什么要使用反射的方式构建Channel</li>
+<li>事件循环组担当了Selector的功能,完成Channel事件的注册和协调工作</li>
+</ul>
+<p>EventLoop</p>
+<ul>
+<li><p>本质是一个线程池,Event就相当于里面的线程池</p>
+</li>
+<li><p>netty支持异步和异步延时执行</p>
+</li>
+<li><p>NioEventLoop通过轮询Selector完成Channel事件监听,然后执行任务</p>
+</li>
+<li><p>线程执行流程</p>
+<ul>
+<li>外部(主线程)调用excute提交一个任务</li>
+<li>内部(工作线程)起一个线程去执行任务</li>
+<li>调用Selector的select方法获取任务,有就执行,咩有就持续轮询</li>
+<li>内部维护了一套策略,针对队列任务,避免一直阻塞,导致无法真正执行<ul>
+<li>如何处理</li>
+<li>返回结果</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>事件状态</p>
+<ul>
+<li>ACCEPT</li>
+<li>READ</li>
+<li>WRITE</li>
+</ul>
+</li>
+<li><p>空轮转</p>
+<ul>
+<li><p>指的是线程在轮询阻塞的过程中,产生的异常唤醒,其实没有实际事件可执行</p>
+<p>如何处理</p>
+</li>
+<li><p>数据迁移过程中,使用双写,旧的仍然可读,在迁移过程中产生的数据放入新的,保证可用且不影响性能</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>数据包和数据报的区别</p>
+<p>您的这种理解有一定的道理。</p>
+<p>数据报，尤其是像 IP 数据报这样在网络层中具有明确规范的，其格式和结构相对较为固定和严谨。这有助于在网络中进行统一的路由和转发处理。</p>
+<p>而数据包的概念更为广泛，确实会因为处于不同的网络层次和遵循不同的协议而在格式和内容上有所变化和转换。</p>
+<p>例如，在传输层的 TCP 数据包和 UDP 数据包，它们除了包含源端口和目的端口等特定信息外，格式和控制字段与 IP 数据报就有所不同。</p>
+<p>当数据在网络中传输时，可能会根据需要在不同层次进行封装和解封装，导致数据包的形式和内容发生相应的改变。</p>
+<p>但需要注意的是，严谨性的比较也不能绝对化，这取决于具体的网络环境和需求。在某些特定的场景中，特定协议下的数据包也可能具有高度的严谨性和规范性。</p>
+<blockquote>
+<p>报文重在特定协议的传输格式的数据,包重在数据的传输内容本身</p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2024/07/06/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
@@ -753,6 +975,169 @@
 <li>正数压缩</li>
 <li>负数压缩</li>
 </ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>网络I/O模型</title>
+    <url>/2024/06/19/%E7%BD%91%E7%BB%9CIO%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<h2 id="网络I-O模型"><a href="#网络I-O模型" class="headerlink" title="网络I&#x2F;O模型"></a>网络I&#x2F;O模型</h2><p>1.阻塞&#x2F;非阻塞</p>
+<p><strong>阻塞分为连接阻塞(处理数量)和I&#x2F;O阻塞(读取数据)</strong></p>
+<p>非阻塞</p>
+<ul>
+<li>异步</li>
+<li>多路复用</li>
+</ul>
+<p>2.异步&#x2F;同步</p>
+<p>3.TCP&#x2F;UDP协议</p>
+<p>4.Socket(套接字)</p>
+<p>是什么</p>
+<ul>
+<li>它是TCP&#x2F;UDP封装后的用户网络数据传输的接口工具</li>
+</ul>
+<p>底层实现</p>
+<ul>
+<li>底层通过TCP&#x2F;UDP的方式实现通过网络传送数据</li>
+<li>在监听连接和接收数据时会阻塞</li>
+<li>创建完socket后,会使用poll select recv 接收数据,这里使用方法<br>和操作系统相关</li>
+</ul>
+<p>使用场景</p>
+<blockquote>
+<p>使用Socket实现网络 I&#x2F;O 传输流程：</p>
+<ol>
+<li><p><strong>应用程序调用 <code>socket()</code> 创建套接字</strong>，并指定相关参数（如协议类型等），套接字进入监听状态，等待外部客户端连接。</p>
+</li>
+<li><p><strong>客户端发起连接请求</strong>，经过网络传输到达服务器。</p>
+</li>
+<li><p><strong>服务器端操作系统接收到连接请求</strong>，验证并建立连接，为该连接分配一个独特的 <code>fd</code> 文件描述符。</p>
+</li>
+<li><p>数据传输阶段</p>
+<p>：</p>
+<ul>
+<li><strong>发送数据</strong>：应用程序将待发送数据写入与套接字对应的内核缓冲区，操作系统根据网络状况和协议栈逐步将数据从缓冲区通过网卡发送出去。</li>
+<li><strong>接收数据</strong>：网卡接收到外部数据后，通知操作系统，操作系统将数据写入到内核缓冲区中与该套接字相关的区域。</li>
+</ul>
+</li>
+<li><p><strong>应用程序调用相关函数获取接收数据</strong>，从内核缓冲区读取数据到应用程序的内存空间。</p>
+</li>
+<li><p><strong>读取完成后</strong>，操作系统可能会根据情况清空或重新管理相应的内核缓冲区数据，以准备接收新的数据。</p>
+</li>
+</ol>
+<p>需要注意的是，这只是一个简化的流程，实际中还涉及到很多细节和优化机制，比如缓冲区的管理、数据的确认与重传、拥塞控制等，以确保网络通信的高效和可靠。</p>
+</blockquote>
+<p>数据到达之后如何唤醒(硬件层面)</p>
+<p>网络数据包到达网卡—&gt;发送中断信号告知CPU有数据写入—&gt;然后唤醒阻塞进程,然后通过硬件电路将数据写入内存</p>
+<p>阻塞流程</p>
+<p>操作系统多任务调度,所以它有一个存储进程的<strong>运行队列</strong>,用于执行多任务调度,阻塞的进程就在<br>这里阻塞等待唤醒</p>
+<p>在创建完socket后会为其创建一个fd描述对象,用于关联socket</p>
+<p>连接创建—&gt;等待接收数据</p>
+<p>5.I&#x2F;O多路复用</p>
+<p>是什么</p>
+<ul>
+<li><p>一种用于提高服务器处理数据传输的并发处理以及提高系统资源利用率的方式</p>
+</li>
+<li><p>可以同时监听多个文件描述符,避免大量线程或进程阻塞等待单个I&#x2F;O的操作</p>
+</li>
+<li><p>能够处理大量并发连接,使得服务器能够同时处理多个客户端的请求,而不是组个处理</p>
+</li>
+<li><p>简化编程模型,让开发者可以通过统一的接口来管理多个I&#x2F;O操作,降低编程的复杂性,</p>
+<p>无需我们实现</p>
+</li>
+<li><p>epoll通过事件驱动的方式唤醒线程&#x2F;进程,提高资源利用率,避免使用阻塞的方式降低性能</p>
+<p>而select&#x2F;poll都会产生阻塞</p>
+</li>
+<li><p>单个socket的监听如 Recv,在使用多路复用之前</p>
+</li>
+</ul>
+<p>现模型</p>
+<ul>
+<li><p>select(连接上限1024)</p>
+</li>
+<li><p>poll(无上限)</p>
+</li>
+<li><p>epoll(事件驱动)</p>
+<ul>
+<li><p>核心角色</p>
+<ul>
+<li><p>事件池,包含事件对象以及事件队列</p>
+</li>
+<li><p>Socket对象,在创建后为其关联了一个fd描述符,内部存储了读&#x2F;写缓冲区以及等待队列</p>
+<p>用于管理连接的客户端,用于后续的唤醒,中断等操作</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>三者区别</p>
+<p>6.TCP&#x2F;IP网络模型</p>
+<ul>
+<li>应用层</li>
+<li>传输层</li>
+<li>网络层</li>
+<li>数据链路层</li>
+<li>功能参考OSI七层模型</li>
+</ul>
+<p>7.OSI网络七层模型</p>
+<ul>
+<li>应用层(客户端)</li>
+<li>表示层(数据转换)</li>
+<li>会话层(连接创建&#x2F;校验)</li>
+<li>传输层(数据传输)</li>
+<li>网络层(路由寻址)</li>
+<li>数据链路层(数据打包)</li>
+<li>物理层(硬件设备)</li>
+</ul>
+<p>8.流量整形TODO</p>
+<p>9.网络通讯就是网络编程</p>
+<p>10.Reactor(响应式)I&#x2F;O模型</p>
+<p>它是基于NIO来实现的高性能I&#x2F;O模型</p>
+<p>NIO的核心角色</p>
+<ul>
+<li><p>Selector ,注册器,负责管理和协调Channel</p>
+</li>
+<li><p>Channel,包装后的Socket对象,相当于一个高级的双向连接对象</p>
+</li>
+<li><p>ByteBuffer,用于缓存传输的数据</p>
+</li>
+<li><p>Selector和Channel的关系</p>
+<blockquote>
+<p>就相当于拍卖物品,首先我将物品寄放到拍卖行,告知拍卖行我的预期价格,然后等达到预期价格后,拍卖行就通知我,有符合我预期的价格了</p>
+<p>在这个类比中：</p>
+<ul>
+<li>“物品”就相当于 Channel。</li>
+<li>“拍卖行”相当于 Selector 。</li>
+<li>“预期价格”相当于您为 Channel 注册到 Selector 时指定的感兴趣的事件（比如可读、可写等）。</li>
+<li>“达到预期价格”相当于 Channel 上发生了您注册时指定的事件。</li>
+<li>“拍卖行通知您”相当于 Selector 回调 Channel 。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>核心角色</p>
+<ul>
+<li>Reactor,负责监听和分发事件,将事件分发给对应的Handler进行处理</li>
+<li>Acceptors,处理客户端连接请求,创建对应的Handler</li>
+<li>Handler,异步(非阻塞)执行读写任务,处理具体业务逻辑</li>
+</ul>
+<p>单线程</p>
+<ul>
+<li>只有一个主线程负责处理连接和请求</li>
+</ul>
+<p>多线程(线程池)</p>
+<ul>
+<li>职责拆分,主线程负责处理连接,使用线程池中的线程异步处理请求</li>
+</ul>
+<p>主从多线程(线程池)</p>
+<ul>
+<li>主线程负责处理连接,将连接请分发给从线程,从线程负责请求的处理</li>
+</ul>
+<p>11.三种网络I&#x2F;O模型的生动描述</p>
+<p>再次理解AIO,BIO,NIO 先描述一个场景 假设有一家很火的餐饮店,需要排队,有一天我到了这家店,店员告知我前面咩有空桌,需要排队等待 </p>
+<p>但店员告知我有三种方案你选哪一种 </p>
+<p>第一种,你先取一个号,等叫号叫到你后,我通过电话通知你,这就是AIO </p>
+<p>第二种,你就在门口等着,等叫到你后,你再进去,这就是BIO </p>
+<p>第三种,你取一个号,但你需要时不时过来看一看,在这期间你可以做其它的事,这是NIO </p>
+<p>其中第一种和第三种方法比较类似,在等待的时间里你可以做自己的时,但一个是我主动叫你,一个是你主动查看</p>
 ]]></content>
   </entry>
   <entry>
@@ -1609,169 +1994,6 @@
 <li><p>高可用,则更侧重于部署的方式</p>
 </li>
 </ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>网络I/O模型</title>
-    <url>/2024/06/19/%E7%BD%91%E7%BB%9CIO%E6%A8%A1%E5%9E%8B/</url>
-    <content><![CDATA[<h2 id="网络I-O模型"><a href="#网络I-O模型" class="headerlink" title="网络I&#x2F;O模型"></a>网络I&#x2F;O模型</h2><p>1.阻塞&#x2F;非阻塞</p>
-<p><strong>阻塞分为连接阻塞(处理数量)和I&#x2F;O阻塞(读取数据)</strong></p>
-<p>非阻塞</p>
-<ul>
-<li>异步</li>
-<li>多路复用</li>
-</ul>
-<p>2.异步&#x2F;同步</p>
-<p>3.TCP&#x2F;UDP协议</p>
-<p>4.Socket(套接字)</p>
-<p>是什么</p>
-<ul>
-<li>它是TCP&#x2F;UDP封装后的用户网络数据传输的接口工具</li>
-</ul>
-<p>底层实现</p>
-<ul>
-<li>底层通过TCP&#x2F;UDP的方式实现通过网络传送数据</li>
-<li>在监听连接和接收数据时会阻塞</li>
-<li>创建完socket后,会使用poll select recv 接收数据,这里使用方法<br>和操作系统相关</li>
-</ul>
-<p>使用场景</p>
-<blockquote>
-<p>使用Socket实现网络 I&#x2F;O 传输流程：</p>
-<ol>
-<li><p><strong>应用程序调用 <code>socket()</code> 创建套接字</strong>，并指定相关参数（如协议类型等），套接字进入监听状态，等待外部客户端连接。</p>
-</li>
-<li><p><strong>客户端发起连接请求</strong>，经过网络传输到达服务器。</p>
-</li>
-<li><p><strong>服务器端操作系统接收到连接请求</strong>，验证并建立连接，为该连接分配一个独特的 <code>fd</code> 文件描述符。</p>
-</li>
-<li><p>数据传输阶段</p>
-<p>：</p>
-<ul>
-<li><strong>发送数据</strong>：应用程序将待发送数据写入与套接字对应的内核缓冲区，操作系统根据网络状况和协议栈逐步将数据从缓冲区通过网卡发送出去。</li>
-<li><strong>接收数据</strong>：网卡接收到外部数据后，通知操作系统，操作系统将数据写入到内核缓冲区中与该套接字相关的区域。</li>
-</ul>
-</li>
-<li><p><strong>应用程序调用相关函数获取接收数据</strong>，从内核缓冲区读取数据到应用程序的内存空间。</p>
-</li>
-<li><p><strong>读取完成后</strong>，操作系统可能会根据情况清空或重新管理相应的内核缓冲区数据，以准备接收新的数据。</p>
-</li>
-</ol>
-<p>需要注意的是，这只是一个简化的流程，实际中还涉及到很多细节和优化机制，比如缓冲区的管理、数据的确认与重传、拥塞控制等，以确保网络通信的高效和可靠。</p>
-</blockquote>
-<p>数据到达之后如何唤醒(硬件层面)</p>
-<p>网络数据包到达网卡—&gt;发送中断信号告知CPU有数据写入—&gt;然后唤醒阻塞进程,然后通过硬件电路将数据写入内存</p>
-<p>阻塞流程</p>
-<p>操作系统多任务调度,所以它有一个存储进程的<strong>运行队列</strong>,用于执行多任务调度,阻塞的进程就在<br>这里阻塞等待唤醒</p>
-<p>在创建完socket后会为其创建一个fd描述对象,用于关联socket</p>
-<p>连接创建—&gt;等待接收数据</p>
-<p>5.I&#x2F;O多路复用</p>
-<p>是什么</p>
-<ul>
-<li><p>一种用于提高服务器处理数据传输的并发处理以及提高系统资源利用率的方式</p>
-</li>
-<li><p>可以同时监听多个文件描述符,避免大量线程或进程阻塞等待单个I&#x2F;O的操作</p>
-</li>
-<li><p>能够处理大量并发连接,使得服务器能够同时处理多个客户端的请求,而不是组个处理</p>
-</li>
-<li><p>简化编程模型,让开发者可以通过统一的接口来管理多个I&#x2F;O操作,降低编程的复杂性,</p>
-<p>无需我们实现</p>
-</li>
-<li><p>epoll通过事件驱动的方式唤醒线程&#x2F;进程,提高资源利用率,避免使用阻塞的方式降低性能</p>
-<p>而select&#x2F;poll都会产生阻塞</p>
-</li>
-<li><p>单个socket的监听如 Recv,在使用多路复用之前</p>
-</li>
-</ul>
-<p>现模型</p>
-<ul>
-<li><p>select(连接上限1024)</p>
-</li>
-<li><p>poll(无上限)</p>
-</li>
-<li><p>epoll(事件驱动)</p>
-<ul>
-<li><p>核心角色</p>
-<ul>
-<li><p>事件池,包含事件对象以及事件队列</p>
-</li>
-<li><p>Socket对象,在创建后为其关联了一个fd描述符,内部存储了读&#x2F;写缓冲区以及等待队列</p>
-<p>用于管理连接的客户端,用于后续的唤醒,中断等操作</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>三者区别</p>
-<p>6.TCP&#x2F;IP网络模型</p>
-<ul>
-<li>应用层</li>
-<li>传输层</li>
-<li>网络层</li>
-<li>数据链路层</li>
-<li>功能参考OSI七层模型</li>
-</ul>
-<p>7.OSI网络七层模型</p>
-<ul>
-<li>应用层(客户端)</li>
-<li>表示层(数据转换)</li>
-<li>会话层(连接创建&#x2F;校验)</li>
-<li>传输层(数据传输)</li>
-<li>网络层(路由寻址)</li>
-<li>数据链路层(数据打包)</li>
-<li>物理层(硬件设备)</li>
-</ul>
-<p>8.流量整形TODO</p>
-<p>9.网络通讯就是网络编程</p>
-<p>10.Reactor(响应式)I&#x2F;O模型</p>
-<p>它是基于NIO来实现的高性能I&#x2F;O模型</p>
-<p>NIO的核心角色</p>
-<ul>
-<li><p>Selector ,注册器,负责管理和协调Channel</p>
-</li>
-<li><p>Channel,包装后的Socket对象,相当于一个高级的双向连接对象</p>
-</li>
-<li><p>ByteBuffer,用于缓存传输的数据</p>
-</li>
-<li><p>Selector和Channel的关系</p>
-<blockquote>
-<p>就相当于拍卖物品,首先我将物品寄放到拍卖行,告知拍卖行我的预期价格,然后等达到预期价格后,拍卖行就通知我,有符合我预期的价格了</p>
-<p>在这个类比中：</p>
-<ul>
-<li>“物品”就相当于 Channel。</li>
-<li>“拍卖行”相当于 Selector 。</li>
-<li>“预期价格”相当于您为 Channel 注册到 Selector 时指定的感兴趣的事件（比如可读、可写等）。</li>
-<li>“达到预期价格”相当于 Channel 上发生了您注册时指定的事件。</li>
-<li>“拍卖行通知您”相当于 Selector 回调 Channel 。</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<p>核心角色</p>
-<ul>
-<li>Reactor,负责监听和分发事件,将事件分发给对应的Handler进行处理</li>
-<li>Acceptors,处理客户端连接请求,创建对应的Handler</li>
-<li>Handler,异步(非阻塞)执行读写任务,处理具体业务逻辑</li>
-</ul>
-<p>单线程</p>
-<ul>
-<li>只有一个主线程负责处理连接和请求</li>
-</ul>
-<p>多线程(线程池)</p>
-<ul>
-<li>职责拆分,主线程负责处理连接,使用线程池中的线程异步处理请求</li>
-</ul>
-<p>主从多线程(线程池)</p>
-<ul>
-<li>主线程负责处理连接,将连接请分发给从线程,从线程负责请求的处理</li>
-</ul>
-<p>11.三种网络I&#x2F;O模型的生动描述</p>
-<p>再次理解AIO,BIO,NIO 先描述一个场景 假设有一家很火的餐饮店,需要排队,有一天我到了这家店,店员告知我前面咩有空桌,需要排队等待 </p>
-<p>但店员告知我有三种方案你选哪一种 </p>
-<p>第一种,你先取一个号,等叫号叫到你后,我通过电话通知你,这就是AIO </p>
-<p>第二种,你就在门口等着,等叫到你后,你再进去,这就是BIO </p>
-<p>第三种,你取一个号,但你需要时不时过来看一看,在这期间你可以做其它的事,这是NIO </p>
-<p>其中第一种和第三种方法比较类似,在等待的时间里你可以做自己的时,但一个是我主动叫你,一个是你主动查看</p>
 ]]></content>
   </entry>
   <entry>
