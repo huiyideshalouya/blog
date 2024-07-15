@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="The YangZheng Team">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://huiyideshalouya.github.io/2024/07/15/java语言设计思路/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Java语言设计思路1.方法入参强转(健壮性) 原因 这种设计是为了达到程序的健壮性考虑,而不是三天两头出现问题,从源头避免,类似的场景还有受检异常,泛型,都是在编译器发现问题 您的观点十分准确。这种在编译阶段进行严格检查和限制的设计，的确是为了增强程序的健壮性。 就像您提到的受检异常（Checked Exceptions），它要求开发者在代码中显式地处理可能抛出的异常，否则无法通过编译。这促使开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java语言设计思路">
+<meta property="og:url" content="https://huiyideshalouya.github.io/2024/07/15/Java%E8%AF%AD%E8%A8%80%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Java语言设计思路1.方法入参强转(健壮性) 原因 这种设计是为了达到程序的健壮性考虑,而不是三天两头出现问题,从源头避免,类似的场景还有受检异常,泛型,都是在编译器发现问题 您的观点十分准确。这种在编译阶段进行严格检查和限制的设计，的确是为了增强程序的健壮性。 就像您提到的受检异常（Checked Exceptions），它要求开发者在代码中显式地处理可能抛出的异常，否则无法通过编译。这促使开">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-07-15T12:59:48.000Z">
+<meta property="article:modified_time" content="2024-07-15T12:59:16.639Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Java语言设计思路 -
+        
+        YangZheng Blog
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"huiyideshalouya.github.io","root":"/","language":"en","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"YangZheng Blog","subtitle":{"text":["This is the first message","This is the second message","etc"],"hitokoto":{"enable":true,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"ShuoShuo":{"path":"/essays","icon":"fa-regular fa-comment-dots"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+    <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        YangZheng Blog
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [40,0],
+                translateZ: 0,
+                opacity: [0,1],
+                filter: ['blur(5px)', 'blur(0px)'], // Starting from blurred to unblurred
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i,
+            }).add({
+                targets: '.ml13 .letter',
+                translateY: [0,-40],
+                opacity: [1,0],
+                filter: ['blur(0px)', 'blur(5px)'], // Ending from unblurred to blurred
+                easing: "easeInExpo",
+                duration: 1200,
+                delay: (el, i) => 100 + 30 * i,
+                complete: function() {
+                    hidePreloader(); // Call hidePreloader after the animation completes
+                }
+            });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                YangZheng Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/archives"
+                        >
+                            <span>Archives</span>
+                            <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/essays"
+                        >
+                            <span>ShuoShuo</span>
+                            <i class="fa-regular fa-comment-dots fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">9</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Java语言设计思路</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">The YangZheng Team</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-07-15 20:59:48</span>
+        <span class="mobile">2024-07-15 20:59:48</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-07-15 20:59:16</span>
+            <span class="mobile">2024-07-15 20:59:16</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h2 id="Java语言设计思路"><a href="#Java语言设计思路" class="headerlink" title="Java语言设计思路"></a>Java语言设计思路</h2><h3 id="1-方法入参强转-健壮性"><a href="#1-方法入参强转-健壮性" class="headerlink" title="1.方法入参强转(健壮性)"></a>1.方法入参强转(健壮性)</h3><blockquote>
+<p>原因</p>
+<p>这种设计是为了达到程序的健壮性考虑,而不是三天两头出现问题,从源头避免,类似的场景还有受检异常,泛型,都是在编译器发现问题</p>
+<p>您的观点十分准确。这种在编译阶段进行严格检查和限制的设计，的确是为了增强程序的健壮性。</p>
+<p><strong>就像您提到的受检异常（Checked Exceptions），它要求开发者在代码中显式地处理可能抛出的异常，否则无法通过编译。这促使开发者提前考虑并处理可能出现的错误情况，而不是在运行时才面对无法处理的异常导致程序崩溃。</strong></p>
+<p>泛型（Generics）也是一个很好的例子。通过在编译时对泛型类型进行检查，可以避免在运行时出现类型转换错误等问题，提高了代码的类型安全性。</p>
+<p>这些设计都是为了在程序开发的早期，即在编译器能够发现问题的时候，就将潜在的错误暴露出来，让开发者及时修正，从而从源头上减少程序在运行时出现问题的可能性，提高程序的稳定性和可靠性。</p>
+<p>例如，在使用泛型的集合时，如果尝试向一个指定类型的集合中添加不匹配的元素，编译器会给出错误提示，避免了在运行时才发现类型不匹配的问题。</p>
+<p>又如，处理受检异常时，如果方法可能抛出 <code>FileNotFoundException</code>，而调用者没有进行捕获或声明抛出，编译就会失败，促使开发者提前想好如何处理文件不存在的情况。</p>
+</blockquote>
+<h3 id="2-T和-的区别-扩展性"><a href="#2-T和-的区别-扩展性" class="headerlink" title="2.T和?的区别(扩展性)"></a>2.T和?的区别(扩展性)</h3><h4 id="2-1-是什么"><a href="#2-1-是什么" class="headerlink" title="2.1.是什么"></a>2.1.是什么</h4><p>T和?作为Java语言中的泛型占位符,一个用于接收明确类型,一个用于接收<br>未知类型,是为了提高代码复用的一个技巧,但在使用时需要注意类型转换<br>的问题</p>
+<p>通常情况下，<code>T</code> 更常用于在方法之间进行类型的传递，以保持类型的一致性和准确性，并且可能会涉及到写入操作。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="keyword">void</span> <span class="title function_">processAndReturn</span><span class="params">(T data)</span> &#123;</span><br><span class="line">    <span class="comment">// 对 data 进行处理</span></span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>而 <code>?</code> 更多地用于表示不确定性，更侧重于接收和读取，强调对多种类型的兼容性。</p>
+<p>然而，也存在一些特殊情况，可能会在特定的设计中对 <code>?</code> 进行一些特殊的传递或操作。但总体来说，您所描述的这种倾向是比较常见和符合一般编程习惯的。</p>
+<h4 id="2-2-使用场景"><a href="#2-2-使用场景" class="headerlink" title="2.2.使用场景"></a>2.2.使用场景</h4><blockquote>
+<p><code>T</code> 作为泛型类型参数，确实常用于类、成员变量、参数列表等场景，因为它能够提供更明确的类型约束和操作方式。</p>
+<p>而 <code>Class&lt;?&gt;</code> （其中 <code>?</code> 表示通配符）不仅可以用于局部变量，也可以在一些情况下用于方法的参数或返回值，以表示对类型的更宽松的约束。</p>
+<p>例如，在某些方法中，如果您不关心具体的类型，只需要进行一些通用的操作，就可以使用 <code>Class&lt;?&gt;</code> 作为参数类型。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Public <span class="keyword">class</span> <span class="title class_">A</span>&lt;T&gt; &#123; <span class="comment">//表示为泛型类型,在创建A类时指定,A&lt;String&gt; a = new A&lt;&gt;();</span></span><br><span class="line">    <span class="keyword">private</span> T obj; <span class="comment">//表示任意类型,在构造方法中初始化在构造方法中传递给成员变量</span></span><br><span class="line">                   <span class="comment">//此处将构造方法的泛型和成员变量的泛型进行关联</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">A</span><span class="params">(T obj)</span>&#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; T <span class="title function_">change</span><span class="params">(T param)</span>&#123; <span class="comment">//&lt;T&gt; 表示泛型方法</span></span><br><span class="line">                                  <span class="comment">// T 表示返回结果可以为任意类型</span></span><br><span class="line">                                  <span class="comment">// T param 表示接收参数为任意类型</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> (T)param; <span class="comment">//显式强转,调用方的类型需要和方法返回类型一致</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+
+</blockquote>
+<h4 id="2-3-T的传递性"><a href="#2-3-T的传递性" class="headerlink" title="2.3.T的传递性"></a>2.3.T的传递性</h4><blockquote>
+<p><strong>T的传递场景</strong><br>1.参数使用<br>2.参数传递<br>3.在泛型方法中使用成员变量&#x2F;其它方法对T进行使用或参数传递<br>4.不进行上述操作的话,就只是一个标记而已</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> T value;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyClass</span><span class="params">(T value)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.value = value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; T <span class="title function_">myMethod</span><span class="params">(String methodName)</span> &#123;</span><br><span class="line">        <span class="comment">// 这里可以根据类中保存的 value 的类型进行相关操作，建立了关联</span></span><br><span class="line">        <span class="keyword">if</span> (value <span class="keyword">instanceof</span> String &amp;&amp; methodName.equals(<span class="string">&quot;getString&quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> (T) <span class="string">&quot;Some String&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        MyClass&lt;Integer&gt; integerMyClass = <span class="keyword">new</span> <span class="title class_">MyClass</span>&lt;&gt;(<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> integerMyClass.myMethod(<span class="string">&quot;getString&quot;</span>);</span><br><span class="line">        System.out.println(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>T的覆盖</strong></p>
+<blockquote>
+<p>默认声明位置为类名后方,如public class  A<T> {</p>
+<p>}</p>
+<p>其它位置,可在除构造方法外的方法定义,如public <T>  T  change(T param)<br><strong>在方法前声明会覆盖类上的声明,类似独立定义</strong></p>
+</blockquote>
+</blockquote>
+<h3 id="3-显式转换和隐式转换-扩展性"><a href="#3-显式转换和隐式转换-扩展性" class="headerlink" title="3.显式转换和隐式转换(扩展性)"></a>3.显式转换和隐式转换(扩展性)</h3><blockquote>
+<p>显式转换更需要开发者谨慎处理，确保转换的正确性；隐式转换通常由编译器根据特定的规则自动处理，但也需要了解其可能的影响和限制。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//显式</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//被调用方</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; T <span class="title function_">invoke</span><span class="params">(String methodName)</span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//传入目标类和其方法</span></span><br><span class="line">            <span class="comment">//获取反射后的实例</span></span><br><span class="line">            <span class="comment">//反射调用目标方法返回结果</span></span><br><span class="line">            <span class="comment">//这里的目的是判断传递进来的类型是否属于Class</span></span><br><span class="line">            <span class="keyword">if</span> (targetClass <span class="keyword">instanceof</span> Class&lt;?&gt;)&#123;</span><br><span class="line">                <span class="comment">//强制类型转换</span></span><br><span class="line">                <span class="comment">//?表示未知类型的Class对象</span></span><br><span class="line">                <span class="comment">//T表示确定类型的Class对象</span></span><br><span class="line">                <span class="comment">//二者都可用于参数传递</span></span><br><span class="line">                <span class="comment">//T常用于写入和读取参数</span></span><br><span class="line">                <span class="comment">//?仅用于读取参数</span></span><br><span class="line">                Class&lt;?&gt;  clazz = (Class&lt;?&gt;) targetClass;</span><br><span class="line">                <span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> clazz.newInstance();</span><br><span class="line"></span><br><span class="line">                <span class="comment">//反射掉目标方法返回结果</span></span><br><span class="line">                <span class="type">Method</span> <span class="variable">method</span> <span class="operator">=</span> clazz.getMethod(methodName);</span><br><span class="line"></span><br><span class="line">                <span class="comment">//显式转换,在被调用方,告知编译器,我需要转换啦</span></span><br><span class="line">                <span class="keyword">return</span> (T)method.invoke(o);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">   <span class="comment">//调用方</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        Proxy&lt;Class&gt; proxy = <span class="keyword">new</span> <span class="title class_">Proxy</span>(Student.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//显式转换,在调用方强转,告知编译器我需要强转</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">changeVal</span> <span class="operator">=</span> (String) proxy.invoke(<span class="string">&quot;changeName&quot;</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(changeVal);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//隐式转换-正确场景</span></span><br><span class="line"><span class="type">Integer</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; <span class="comment">//自动装包</span></span><br><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> i <span class="comment">//自动拆包</span></span><br><span class="line"><span class="type">Animal</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Lion</span>(); <span class="comment">//lion继承自父类,所以属于隐式转换</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//显式转换-正确场景</span></span><br><span class="line"><span class="type">Animal</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Lion</span>();</span><br><span class="line"><span class="type">Lion</span> <span class="variable">lion</span> <span class="operator">=</span> (Lion)a;<span class="comment">//因为a本身就是Lion类型的对象,所以可以转换</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//转换-失败场景</span></span><br><span class="line"><span class="type">Integer</span> <span class="variable">i</span> <span class="operator">=</span> (String)<span class="string">&quot;&quot;</span>; <span class="comment">//这种转换应该发生于子类或同类之间</span></span><br><span class="line"></span><br><span class="line"><span class="type">Animal</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Animal</span>(); </span><br><span class="line"><span class="type">Lion</span> <span class="variable">lion</span> <span class="operator">=</span> (Lion)a;<span class="comment">//这种也是如此,需要转换的类型必须是同类或子类</span></span><br></pre></td></tr></table></figure></div>
+
+
+</blockquote>
+<h4 id="3-1-转换检查-健壮性"><a href="#3-1-转换检查-健壮性" class="headerlink" title="3.1.转换检查(健壮性)"></a>3.1.转换检查(健壮性)</h4><blockquote>
+<p>编译期间</p>
+<ul>
+<li><p>方法参数</p>
+<blockquote>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">change( (Integer) <span class="string">&quot;&quot;</span>); <span class="comment">//方法参数需要Integer类型,你传入String类型</span></span><br></pre></td></tr></table></figure></div>
+
+
+</blockquote>
+</li>
+<li><p>局部</p>
+<blockquote>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Integer</span> <span class="variable">i</span> <span class="operator">=</span> <span class="literal">null</span>; <span class="comment">//这种是需要提前预知的</span></span><br><span class="line">        </span><br><span class="line">i = (Integer) <span class="string">&quot;&quot;</span>;</span><br></pre></td></tr></table></figure></div>
+
+</blockquote>
+</li>
+</ul>
+<p>运行期间</p>
+<ul>
+<li><p>方法参数</p>
+<blockquote>
+<p>通过编译期检查后,需要再对一些涉及多态和强制类型转换的情况进行检查,<br>在运行时会再次检测传递的类型是否能够转换为方法内部期待的类型</p>
+</blockquote>
+</li>
+<li><p>局部</p>
+<blockquote>
+<p>当从方法返回一个值并进行类型转换时，如果实际返回的值类型与接收方期望的类型不兼容，会在运行时出错</p>
+</blockquote>
+</li>
+<li><p>返回结果</p>
+<blockquote>
+<p>当从方法返回一个值并进行类型转换时，如果实际返回的值类型与接收方期望的类型不兼容，会在运行时出错</p>
+</blockquote>
+</li>
+</ul>
+<p>总结</p>
+<ul>
+<li>有些强转如方法入参和初始化是可以预见的,<strong>需要提前感知</strong></li>
+<li>而一些涉及多态的场景下的强转则是需要主动关注的,<strong>如第一次使用时</strong><br><strong>使用父类接收子类,之后在使用时又强转回子类的场景</strong></li>
+</ul>
+</blockquote>
+<h3 id="4-访问修饰符-安全性"><a href="#4-访问修饰符-安全性" class="headerlink" title="4.访问修饰符(安全性)"></a>4.访问修饰符(安全性)</h3><ul>
+<li>类<ul>
+<li>public,任意位置都能访问,new的方式</li>
+<li>private,只有在当前类能访问</li>
+<li>default,如com.xxx.example,只有处于这个绝对路径下的类才能访问</li>
+</ul>
+</li>
+<li>变量<ul>
+<li>public,任意位置都能访问,如new Person().属性,可以直接获取,无需get&#x2F;set方法</li>
+<li>private,只有在当前类能访问</li>
+<li>default,如com.xxx.example,只有处于这个绝对路径下的类才能访问</li>
+</ul>
+</li>
+<li>方法<ul>
+<li>public,任意位置都能访问,如new Person().方法,可以直接获取</li>
+<li>private,只有在当前类能访问</li>
+<li>protected,只有子类能够访问</li>
+<li>default,如com.xxx.example,只有处于这个绝对路径下的类才能访问</li>
+</ul>
+</li>
+<li>代码块<ul>
+<li>普通<ul>
+<li>每次new的时候都会执行</li>
+</ul>
+</li>
+<li>静态<ul>
+<li>优先执行</li>
+<li>只会在类加载的第一次执行</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-接口-扩展性"><a href="#5-接口-扩展性" class="headerlink" title="5.接口(扩展性)"></a>5.接口(扩展性)</h3><ul>
+<li>抽象</li>
+<li>仅定义方法</li>
+<li>只能有一个默认方法,包含实现</li>
+<li>多实现</li>
+</ul>
+<h3 id="6-抽象-耦合性"><a href="#6-抽象-耦合性" class="headerlink" title="6.抽象(耦合性)"></a>6.抽象(耦合性)</h3><ul>
+<li>抽象方法,有抽象方法的一定是抽象类</li>
+</ul>
+<h3 id="7-继承-耦合性"><a href="#7-继承-耦合性" class="headerlink" title="7.继承(耦合性)"></a>7.继承(耦合性)</h3><ul>
+<li>单继承</li>
+</ul>
+<h3 id="8-函数式接口-复用性"><a href="#8-函数式接口-复用性" class="headerlink" title="8.函数式接口(复用性)"></a>8.函数式接口(复用性)</h3><h3 id="9-面向对象设计-封装性"><a href="#9-面向对象设计-封装性" class="headerlink" title="9.面向对象设计(封装性)"></a>9.面向对象设计(封装性)</h3><ul>
+<li>包装类</li>
+<li>异常</li>
+<li>配置</li>
+</ul>
+<h3 id="10-静态-常量"><a href="#10-静态-常量" class="headerlink" title="10.静态&#x2F;常量"></a>10.静态&#x2F;常量</h3><ul>
+<li>变量</li>
+<li>代码块</li>
+</ul>
+<h3 id="11-注解"><a href="#11-注解" class="headerlink" title="11.注解"></a>11.注解</h3><ul>
+<li>使用位置</li>
+<li>内部构造</li>
+<li>生效时间</li>
+</ul>
+<h3 id="12-枚举"><a href="#12-枚举" class="headerlink" title="12.枚举"></a>12.枚举</h3><ul>
+<li>类型</li>
+<li>值</li>
+</ul>
+<h3 id="13-字符串"><a href="#13-字符串" class="headerlink" title="13.字符串"></a>13.字符串</h3><ul>
+<li>不可修改,内部维护final的char数组</li>
+</ul>
+<h3 id="14-多线程"><a href="#14-多线程" class="headerlink" title="14.多线程"></a>14.多线程</h3><ul>
+<li>内存模型<ul>
+<li>共享空间</li>
+<li>线程独立空间</li>
+<li>修改数据在自己的空间完成,再同步到共享空间</li>
+</ul>
+</li>
+<li>锁机制<ul>
+<li>Synchroized<ul>
+<li>锁粗化</li>
+<li>锁升级</li>
+<li>锁降级</li>
+</ul>
+</li>
+<li>Lock<ul>
+<li>公平</li>
+<li>非公平</li>
+</ul>
+</li>
+<li>CAS<ul>
+<li>吞吐量,性能</li>
+<li>CPU空转</li>
+<li>ABA问题,一个线程修改的数据被其它线程修改回去了</li>
+</ul>
+</li>
+<li>场景问题<ul>
+<li>锁饥饿,一直获取不到锁</li>
+<li>死锁,双方互相持有对方的锁</li>
+<li>活锁,双方你先拿,但发现对方需要,又给对方了,类似你走一步,我走一步的场景</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>安全容器<ul>
+<li>Vector</li>
+<li>StringBuffer</li>
+<li>ConcurrentHashMap</li>
+</ul>
+</li>
+<li>并发三大特性<ul>
+<li>原子性<ul>
+<li>锁</li>
+<li>Volatile,单个线程操作原子性</li>
+</ul>
+</li>
+<li>有序性<ul>
+<li>执行顺序<ul>
+<li>Synchroized,保证顺序一定不会打乱</li>
+<li>Volitale,从某个层面有序,保证代码的有序,不会发生顺序变化</li>
+</ul>
+</li>
+<li>指令<ul>
+<li>Volitale,开启读写屏障,避免CPU指令重排序</li>
+<li>关闭jit优化,关闭即时编译器优化功能,对指令重新排序</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>可见性<ul>
+<li>一致性协议,如MESI协议,通过消息机制保证内存和CPU缓存的数据一致性</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Java语言设计思路</li>
+        <li><strong>Author:</strong> The YangZheng Team</li>
+        <li><strong>Created at
+                :</strong> 2024-07-15 20:59:48</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-07-15 20:59:16
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://redefine.ohevan.com/2024/07/15/Java语言设计思路/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/07/07/Netty%20%E9%AB%98%E6%80%A7%E8%83%BD%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF%E6%A1%86%E6%9E%B6/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Neetty高性能网络通讯框架</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-swup-reload-script
+            src="//cdn.staticfile.org/gitalk/1.8.0/gitalk.min.js"></script>
+    <script data-swup-reload-script>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: 'Ov23liACnpszFmh94Y7I',
+                    clientSecret: '876419e8cf5a5b472ee391ec5de61f6ac901c68c',
+                    repo: 'GitTalk',
+                    owner: 'huiyideshalouya',
+                    admin: ['huiyideshalouya'],
+                    id: __gitalk__pathname,
+                    language: 'en',
+                    proxy: 'https://strong-caramel-969805.netlify.app/github_access_token'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Java语言设计思路</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E8%AF%AD%E8%A8%80%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF"><span class="nav-text">Java语言设计思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%96%B9%E6%B3%95%E5%85%A5%E5%8F%82%E5%BC%BA%E8%BD%AC-%E5%81%A5%E5%A3%AE%E6%80%A7"><span class="nav-text">1.方法入参强转(健壮性)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-T%E5%92%8C-%E7%9A%84%E5%8C%BA%E5%88%AB-%E6%89%A9%E5%B1%95%E6%80%A7"><span class="nav-text">2.T和?的区别(扩展性)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%98%BE%E5%BC%8F%E8%BD%AC%E6%8D%A2%E5%92%8C%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2-%E6%89%A9%E5%B1%95%E6%80%A7"><span class="nav-text">3.显式转换和隐式转换(扩展性)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6-%E5%AE%89%E5%85%A8%E6%80%A7"><span class="nav-text">4.访问修饰符(安全性)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%8E%A5%E5%8F%A3-%E6%89%A9%E5%B1%95%E6%80%A7"><span class="nav-text">5.接口(扩展性)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E6%8A%BD%E8%B1%A1-%E8%80%A6%E5%90%88%E6%80%A7"><span class="nav-text">6.抽象(耦合性)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E7%BB%A7%E6%89%BF-%E8%80%A6%E5%90%88%E6%80%A7"><span class="nav-text">7.继承(耦合性)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3-%E5%A4%8D%E7%94%A8%E6%80%A7"><span class="nav-text">8.函数式接口(复用性)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1-%E5%B0%81%E8%A3%85%E6%80%A7"><span class="nav-text">9.面向对象设计(封装性)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E9%9D%99%E6%80%81-%E5%B8%B8%E9%87%8F"><span class="nav-text">10.静态&#x2F;常量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E6%B3%A8%E8%A7%A3"><span class="nav-text">11.注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E6%9E%9A%E4%B8%BE"><span class="nav-text">12.枚举</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-text">13.字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-text">14.多线程</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">The YangZheng Team</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        9 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>
