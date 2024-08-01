@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>BPMN相关知识</title>
-    <url>/2024/05/29/BPMN%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</url>
-    <content><![CDATA[<h2 id="BPMN相关知识"><a href="#BPMN相关知识" class="headerlink" title="BPMN相关知识"></a>BPMN相关知识</h2><p>1.基础概念</p>
-<p><strong>流程（Process）</strong>：BPMN 所描述的业务运行的过程。</p>
-<p><strong>活动（Activity）</strong>：流程中的具体任务或操作。</p>
-<p><strong>事件（Event）</strong>：流程中引发或响应的特定点，如开始事件、结束事件等。</p>
-<p><strong>网关（Gateway）</strong>：用于控制流程的分支和合并。</p>
-<p><strong>顺序流（Sequence Flow）</strong>：指示活动的执行顺序。</p>
-<p><strong>泳道（Swimlane）</strong>：通常分为池（Pool）和道（Lane），用于划分不同的组织或角色在流程中的责任区域。</p>
-<p><strong>数据对象（Data Object）</strong>：与流程相关的数据。</p>
-<p><strong>消息流（Message Flow）</strong>：用于表示不同池之间的通信。</p>
-]]></content>
-  </entry>
-  <entry>
     <title>JMM模型</title>
     <url>/2024/05/06/JMM%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[<h2 id="JMM模型"><a href="#JMM模型" class="headerlink" title="JMM模型"></a>JMM模型</h2><h3 id="1-可见性"><a href="#1-可见性" class="headerlink" title="1.可见性"></a>1.可见性</h3><p>Volitale</p>
@@ -290,6 +276,265 @@
 <p>可见性—&gt;缓存一致性问题—&gt;MESI和总线锁</p>
 <p>有序性—&gt;CPU指令重排序—&gt;Volatile</p>
 <p>happens-before</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>BPMN相关知识</title>
+    <url>/2024/05/29/BPMN%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<h2 id="BPMN相关知识"><a href="#BPMN相关知识" class="headerlink" title="BPMN相关知识"></a>BPMN相关知识</h2><p>1.基础概念</p>
+<p><strong>流程（Process）</strong>：BPMN 所描述的业务运行的过程。</p>
+<p><strong>活动（Activity）</strong>：流程中的具体任务或操作。</p>
+<p><strong>事件（Event）</strong>：流程中引发或响应的特定点，如开始事件、结束事件等。</p>
+<p><strong>网关（Gateway）</strong>：用于控制流程的分支和合并。</p>
+<p><strong>顺序流（Sequence Flow）</strong>：指示活动的执行顺序。</p>
+<p><strong>泳道（Swimlane）</strong>：通常分为池（Pool）和道（Lane），用于划分不同的组织或角色在流程中的责任区域。</p>
+<p><strong>数据对象（Data Object）</strong>：与流程相关的数据。</p>
+<p><strong>消息流（Message Flow）</strong>：用于表示不同池之间的通信。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Neetty高性能网络通讯框架</title>
+    <url>/2024/07/07/Netty%20%E9%AB%98%E6%80%A7%E8%83%BD%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF%E6%A1%86%E6%9E%B6/</url>
+    <content><![CDATA[<h2 id="Netty-高性能网络通讯框架"><a href="#Netty-高性能网络通讯框架" class="headerlink" title="Netty 高性能网络通讯框架"></a>Netty 高性能网络通讯框架</h2><p>关联网络I&#x2F;O模型,I&#x2F;O多路复用机制,Reactor模型(分治思想)</p>
+<p>前置知识<br>阻塞队列是一种特殊的队列，当队列为空时进行获取操作会阻塞线程，直到队列中有元素；当队列已满时进行添加操作会阻塞线程，直到队列有空间。很多情况下，线程池使用的任务队列就是阻塞队列，比如常见的有<code>ArrayBlockingQueue</code>、<code>LinkedBlockingQueue</code>等，它们能很好地配合线程池的运行机制，实现任务的暂存和调度。但也存在一些非阻塞队列被用作任务队列的情况。</p>
+<p>它其实是对NIO的一种封装后的高性能通讯框架</p>
+<h3 id="1-常用api"><a href="#1-常用api" class="headerlink" title="1.常用api"></a>1.常用api</h3><ul>
+<li>EventLoop</li>
+<li>TransSportChannel</li>
+<li>ChannelPipline</li>
+<li>ChannelHandler</li>
+<li>ByteBuffer</li>
+<li>Bootstrap</li>
+<li>ServerBootStrap</li>
+</ul>
+<h3 id="2-Netty工作机制"><a href="#2-Netty工作机制" class="headerlink" title="2.Netty工作机制"></a>2.Netty工作机制</h3><ul>
+<li><p>核心流程</p>
+</li>
+<li><p>层次划分</p>
+<ul>
+<li><p>网络通讯层</p>
+</li>
+<li><p>事件调度器</p>
+<ul>
+<li><p>事件注册&#x2F;提交</p>
+<blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs/Netty/%E4%BA%8B%E4%BB%B6%E6%B3%A8%E5%86%8C%E6%88%96%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B.png"
+                      alt="事件注册或提交流程"
+                ></p>
+</blockquote>
+</li>
+<li><p>整体流程</p>
+<blockquote>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/imgs/Netty/%E4%BA%8B%E4%BB%B6%E8%B0%83%E5%BA%A6%E6%B5%81%E7%A8%8B.png"
+                      alt="事件调度流程"
+                ></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>服务编排层</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-支持的I-O模式"><a href="#3-支持的I-O模式" class="headerlink" title="3.支持的I&#x2F;O模式"></a>3.支持的I&#x2F;O模式</h3><ul>
+<li>NIO,主要支持的模型,同步非阻塞,支持Reactor模式,如单线程,多线程,主从多线程</li>
+<li>OIO,同步阻塞</li>
+</ul>
+<h3 id="4-请求处理"><a href="#4-请求处理" class="headerlink" title="4.请求处理"></a>4.请求处理</h3><p>Tomcat也是对请求参数的封装,然后再传递到对应的展现层,否则Http请求无法直接使用<br>需要一个转换的过程</p>
+<p>Netty则使用了Handler的方式完成参数的处理</p>
+<h3 id="5-事件轮询"><a href="#5-事件轮询" class="headerlink" title="5.事件轮询"></a>5.事件轮询</h3><p>轮询注册器找到需要执行的I&#x2F;O事件,这个操作是阻塞的,会让线程阻塞一段时间,等待一下<br>超时</p>
+<h3 id="6-服务编排"><a href="#6-服务编排" class="headerlink" title="6.服务编排"></a>6.服务编排</h3><p>每个channel 具有一个channelPipline,所以这个管道是线程安全的,不会出现数据安全问题</p>
+<p>存储的结构为双向链表,对应的channelHandler存储在这里</p>
+<h3 id="7-核心角色"><a href="#7-核心角色" class="headerlink" title="7.核心角色"></a>7.核心角色</h3><p>事件循环组</p>
+<p>工作时间循环</p>
+<p>注册器</p>
+<p>处理器</p>
+<p>处理器管道</p>
+<p>通道</p>
+<p>通道管道</p>
+<h3 id="8-注册"><a href="#8-注册" class="headerlink" title="8.注册"></a>8.注册</h3><p>serverSocket开启端口监听,多个客户端连接该端口,server在监听到连接请求后,<br>为其分配channel并将其注册到不同的Selector上,交给不同线程处理</p>
+<h3 id="9-实现"><a href="#9-实现" class="headerlink" title="9.实现"></a>9.实现</h3><ul>
+<li>RPC<ul>
+<li>Dubbo</li>
+<li>gRpc</li>
+</ul>
+</li>
+<li>MQ<ul>
+<li>Rocket</li>
+</ul>
+</li>
+<li>WEB<ul>
+<li>Spring WebFlux</li>
+</ul>
+</li>
+<li>DB<ul>
+<li>ElasticSearch</li>
+</ul>
+</li>
+</ul>
+<h3 id="10-ByteBuf"><a href="#10-ByteBuf" class="headerlink" title="10.ByteBuf"></a>10.ByteBuf</h3><p>它是NIO中的Bytebuffer的具体实现,用于网络通讯中的数据缓冲,<br>但不同的点是它使用了池化技术</p>
+<h3 id="11-拆包和粘包"><a href="#11-拆包和粘包" class="headerlink" title="11.拆包和粘包"></a>11.拆包和粘包</h3><p>定义消息传输协议,在这里面就会涉及到数据的粘包和拆包,通俗的说<br>就是数据包如何装起来,倒出来</p>
+<p>数据结构</p>
+<ul>
+<li>销毁</li>
+<li>读取</li>
+<li>写入</li>
+<li>扩容</li>
+<li>当前容量</li>
+<li>最大容量</li>
+</ul>
+<p>回退</p>
+<ul>
+<li>为什么要回退</li>
+<li>对于已经读取过的数据,想要再次读取,就可以使用对应方法再次读取</li>
+<li>分别为读回退和写回退</li>
+</ul>
+<p>零拷贝(浅拷贝,修改引用内容,而不是深拷贝)</p>
+<ul>
+<li>如何提高内存复制性能,这里和网络拷贝的零拷贝不一样</li>
+<li>如何实现,对元素数据切片,再修改指定索引的元素,意思是直接修改的内存数据吗<br>而不是先拷贝,再修改</li>
+<li>逻辑合并的原理是其内部维护了一个引用列表?然后对对应的指针完成引用数据数据修改,而不是拷贝出来一个新的</li>
+<li>拆分场景</li>
+<li>合并场景<ul>
+<li>深拷贝</li>
+<li>浅拷贝</li>
+<li>Unpooled</li>
+</ul>
+</li>
+</ul>
+<p>拆包&#x2F;粘包</p>
+<p>拆分原因,TCP的传输是基于数据流传输,而流化的数据是没有界限的,当客户端向服务端<br>发送数据时,可能会把一个完整的数据报文拆分成多个小报文进行传输,也可能将多个报文<br>合并成一个大报文进行传输</p>
+<ul>
+<li>大包拆分</li>
+<li>大包+小包</li>
+<li>小包+(小包+小包)</li>
+<li>主要分为拆分+混装+合并</li>
+</ul>
+<h3 id="12-通讯协议定义"><a href="#12-通讯协议定义" class="headerlink" title="12.通讯协议定义"></a>12.通讯协议定义</h3><ul>
+<li>Zookeeper</li>
+</ul>
+<h3 id="13-解码器的实现"><a href="#13-解码器的实现" class="headerlink" title="13.解码器的实现"></a>13.解码器的实现</h3><ul>
+<li><p>固定长度</p>
+</li>
+<li><p>特殊分隔符</p>
+</li>
+<li><p>长度域解码器(特定消息协议的解码,针对复杂消息报文)</p>
+<ul>
+<li><p>报文长度,决定拆包的范围</p>
+</li>
+<li><p>报文内容,根据需求选择是否拆包和截取指定范围的报文内容</p>
+</li>
+<li><p>长度域调整计算公式</p>
+<ul>
+<li><p>需要字节数-包实际字节数-长度字节数-不需要字节数</p>
+</li>
+<li><p>如一个包的总长为14字节,长度占2个字节,不需要的占2个字节</p>
+<p>实际只需要10个字节</p>
+<p>计算公式如下:</p>
+<p>10-14-2-2 &#x3D; -8</p>
+<p>得出长度域调整值为-8,代表长度域需要覆盖到这个位置</p>
+</li>
+</ul>
+</li>
+<li><p>对于长度域的调整可以理解为扩展字段,等于框架的扩展点,都是为了增强</p>
+<p>某个场景,解决如复杂的数据结构,将主要数据和其它数据分开的场景</p>
+</li>
+<li><p>在这里主要是为了处理粘包合并数据的拆分场景,也就是拆包</p>
+</li>
+</ul>
+</li>
+<li><p>编码的容错机制</p>
+<ul>
+<li>快速失败</li>
+<li>尽最大努力</li>
+</ul>
+</li>
+</ul>
+<h3 id="14-源码核心"><a href="#14-源码核心" class="headerlink" title="14.源码核心"></a>14.源码核心</h3><ul>
+<li>ServerBootStrap初始化<ul>
+<li>服务参数<ul>
+<li>SocketChannel,比如NioSocketChannel,EpollSocketChannel,需要根据不同的操作系统选择<ul>
+<li>可以理解为就是一个抽象的Channel,只不过Server持有了这个抽象Channel的集合,并且对其管理和协调,其中主要的工作就是channel分发及channel事件发现(注册)</li>
+<li>作为客户端和服务端之间数据传输的桥梁</li>
+<li>ServerSocketChannel和SocketChannel,分别处理客户端连接时间和I&#x2F;O事件,角色不同</li>
+</ul>
+</li>
+<li>Handler</li>
+<li>ChildHandler<ul>
+<li>Pipeline,针对当前ServerSocketChannel关联,只要进入当前服务都会进入该处理器链</li>
+</ul>
+</li>
+<li>Bind</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Bind端口绑定</li>
+<li>Pipeline构建</li>
+<li>流程<ul>
+<li>参数设置</li>
+<li>Handler初始化</li>
+<li>EventLoop初始化</li>
+<li>SocketChannel注册,客户端将自己注册到BossEventLoopGroup的Selector中,成为一个被监听Channel</li>
+</ul>
+</li>
+<li>为什么要使用反射的方式构建Channel</li>
+<li>事件循环组担当了Selector的功能,完成Channel事件的注册和协调工作</li>
+</ul>
+<p>EventLoop</p>
+<ul>
+<li><p>本质是一个线程池,Event就相当于里面的线程池</p>
+</li>
+<li><p>netty支持异步和异步延时执行</p>
+</li>
+<li><p>NioEventLoop通过轮询Selector完成Channel事件监听,然后执行任务</p>
+</li>
+<li><p>线程执行流程</p>
+<ul>
+<li>外部(主线程)调用excute提交一个任务</li>
+<li>内部(工作线程)起一个线程去执行任务</li>
+<li>调用Selector的select方法获取任务,有就执行,咩有就持续轮询</li>
+<li>内部维护了一套策略,针对队列任务,避免一直阻塞,导致无法真正执行<ul>
+<li>如何处理</li>
+<li>返回结果</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>事件状态</p>
+<ul>
+<li>ACCEPT</li>
+<li>READ</li>
+<li>WRITE</li>
+</ul>
+</li>
+<li><p>空轮转</p>
+<ul>
+<li><p>指的是线程在轮询阻塞的过程中,产生的异常唤醒,其实没有实际事件可执行</p>
+<p>如何处理</p>
+</li>
+<li><p>数据迁移过程中,使用双写,旧的仍然可读,在迁移过程中产生的数据放入新的,保证可用且不影响性能</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>数据包和数据报的区别</p>
+<p>您的这种理解有一定的道理。</p>
+<p>数据报，尤其是像 IP 数据报这样在网络层中具有明确规范的，其格式和结构相对较为固定和严谨。这有助于在网络中进行统一的路由和转发处理。</p>
+<p>而数据包的概念更为广泛，确实会因为处于不同的网络层次和遵循不同的协议而在格式和内容上有所变化和转换。</p>
+<p>例如，在传输层的 TCP 数据包和 UDP 数据包，它们除了包含源端口和目的端口等特定信息外，格式和控制字段与 IP 数据报就有所不同。</p>
+<p>当数据在网络中传输时，可能会根据需要在不同层次进行封装和解封装，导致数据包的形式和内容发生相应的改变。</p>
+<p>但需要注意的是，严谨性的比较也不能绝对化，这取决于具体的网络环境和需求。在某些特定的场景中，特定协议下的数据包也可能具有高度的严谨性和规范性。</p>
+<blockquote>
+<p>报文重在特定协议的传输格式的数据,包重在数据的传输内容本身</p>
+</blockquote>
 ]]></content>
   </entry>
   <entry>
@@ -759,248 +1004,21 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Neetty高性能网络通讯框架</title>
-    <url>/2024/07/07/Netty%20%E9%AB%98%E6%80%A7%E8%83%BD%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF%E6%A1%86%E6%9E%B6/</url>
-    <content><![CDATA[<h2 id="Netty-高性能网络通讯框架"><a href="#Netty-高性能网络通讯框架" class="headerlink" title="Netty 高性能网络通讯框架"></a>Netty 高性能网络通讯框架</h2><p>关联网络I&#x2F;O模型,I&#x2F;O多路复用机制,Reactor模型(分治思想)</p>
-<p>前置知识<br>阻塞队列是一种特殊的队列，当队列为空时进行获取操作会阻塞线程，直到队列中有元素；当队列已满时进行添加操作会阻塞线程，直到队列有空间。很多情况下，线程池使用的任务队列就是阻塞队列，比如常见的有<code>ArrayBlockingQueue</code>、<code>LinkedBlockingQueue</code>等，它们能很好地配合线程池的运行机制，实现任务的暂存和调度。但也存在一些非阻塞队列被用作任务队列的情况。</p>
-<p>它其实是对NIO的一种封装后的高性能通讯框架</p>
-<h3 id="1-常用api"><a href="#1-常用api" class="headerlink" title="1.常用api"></a>1.常用api</h3><ul>
-<li>EventLoop</li>
-<li>TransSportChannel</li>
-<li>ChannelPipline</li>
-<li>ChannelHandler</li>
-<li>ByteBuffer</li>
-<li>Bootstrap</li>
-<li>ServerBootStrap</li>
-</ul>
-<h3 id="2-Netty工作机制"><a href="#2-Netty工作机制" class="headerlink" title="2.Netty工作机制"></a>2.Netty工作机制</h3><ul>
-<li><p>核心流程</p>
-</li>
-<li><p>层次划分</p>
-<ul>
-<li><p>网络通讯层</p>
-</li>
-<li><p>事件调度器</p>
-<ul>
-<li><p>事件注册&#x2F;提交</p>
-<blockquote>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/imgs/Netty/%E4%BA%8B%E4%BB%B6%E6%B3%A8%E5%86%8C%E6%88%96%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B.png"
-                      alt="事件注册或提交流程"
-                ></p>
-</blockquote>
-</li>
-<li><p>整体流程</p>
-<blockquote>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/imgs/Netty/%E4%BA%8B%E4%BB%B6%E8%B0%83%E5%BA%A6%E6%B5%81%E7%A8%8B.png"
-                      alt="事件调度流程"
-                ></p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>服务编排层</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="3-支持的I-O模式"><a href="#3-支持的I-O模式" class="headerlink" title="3.支持的I&#x2F;O模式"></a>3.支持的I&#x2F;O模式</h3><ul>
-<li>NIO,主要支持的模型,同步非阻塞,支持Reactor模式,如单线程,多线程,主从多线程</li>
-<li>OIO,同步阻塞</li>
-</ul>
-<h3 id="4-请求处理"><a href="#4-请求处理" class="headerlink" title="4.请求处理"></a>4.请求处理</h3><p>Tomcat也是对请求参数的封装,然后再传递到对应的展现层,否则Http请求无法直接使用<br>需要一个转换的过程</p>
-<p>Netty则使用了Handler的方式完成参数的处理</p>
-<h3 id="5-事件轮询"><a href="#5-事件轮询" class="headerlink" title="5.事件轮询"></a>5.事件轮询</h3><p>轮询注册器找到需要执行的I&#x2F;O事件,这个操作是阻塞的,会让线程阻塞一段时间,等待一下<br>超时</p>
-<h3 id="6-服务编排"><a href="#6-服务编排" class="headerlink" title="6.服务编排"></a>6.服务编排</h3><p>每个channel 具有一个channelPipline,所以这个管道是线程安全的,不会出现数据安全问题</p>
-<p>存储的结构为双向链表,对应的channelHandler存储在这里</p>
-<h3 id="7-核心角色"><a href="#7-核心角色" class="headerlink" title="7.核心角色"></a>7.核心角色</h3><p>事件循环组</p>
-<p>工作时间循环</p>
-<p>注册器</p>
-<p>处理器</p>
-<p>处理器管道</p>
-<p>通道</p>
-<p>通道管道</p>
-<h3 id="8-注册"><a href="#8-注册" class="headerlink" title="8.注册"></a>8.注册</h3><p>serverSocket开启端口监听,多个客户端连接该端口,server在监听到连接请求后,<br>为其分配channel并将其注册到不同的Selector上,交给不同线程处理</p>
-<h3 id="9-实现"><a href="#9-实现" class="headerlink" title="9.实现"></a>9.实现</h3><ul>
-<li>RPC<ul>
-<li>Dubbo</li>
-<li>gRpc</li>
-</ul>
-</li>
-<li>MQ<ul>
-<li>Rocket</li>
-</ul>
-</li>
-<li>WEB<ul>
-<li>Spring WebFlux</li>
-</ul>
-</li>
-<li>DB<ul>
-<li>ElasticSearch</li>
-</ul>
-</li>
-</ul>
-<h3 id="10-ByteBuf"><a href="#10-ByteBuf" class="headerlink" title="10.ByteBuf"></a>10.ByteBuf</h3><p>它是NIO中的Bytebuffer的具体实现,用于网络通讯中的数据缓冲,<br>但不同的点是它使用了池化技术</p>
-<h3 id="11-拆包和粘包"><a href="#11-拆包和粘包" class="headerlink" title="11.拆包和粘包"></a>11.拆包和粘包</h3><p>定义消息传输协议,在这里面就会涉及到数据的粘包和拆包,通俗的说<br>就是数据包如何装起来,倒出来</p>
-<p>数据结构</p>
-<ul>
-<li>销毁</li>
-<li>读取</li>
-<li>写入</li>
-<li>扩容</li>
-<li>当前容量</li>
-<li>最大容量</li>
-</ul>
-<p>回退</p>
-<ul>
-<li>为什么要回退</li>
-<li>对于已经读取过的数据,想要再次读取,就可以使用对应方法再次读取</li>
-<li>分别为读回退和写回退</li>
-</ul>
-<p>零拷贝(浅拷贝,修改引用内容,而不是深拷贝)</p>
-<ul>
-<li>如何提高内存复制性能,这里和网络拷贝的零拷贝不一样</li>
-<li>如何实现,对元素数据切片,再修改指定索引的元素,意思是直接修改的内存数据吗<br>而不是先拷贝,再修改</li>
-<li>逻辑合并的原理是其内部维护了一个引用列表?然后对对应的指针完成引用数据数据修改,而不是拷贝出来一个新的</li>
-<li>拆分场景</li>
-<li>合并场景<ul>
-<li>深拷贝</li>
-<li>浅拷贝</li>
-<li>Unpooled</li>
-</ul>
-</li>
-</ul>
-<p>拆包&#x2F;粘包</p>
-<p>拆分原因,TCP的传输是基于数据流传输,而流化的数据是没有界限的,当客户端向服务端<br>发送数据时,可能会把一个完整的数据报文拆分成多个小报文进行传输,也可能将多个报文<br>合并成一个大报文进行传输</p>
-<ul>
-<li>大包拆分</li>
-<li>大包+小包</li>
-<li>小包+(小包+小包)</li>
-<li>主要分为拆分+混装+合并</li>
-</ul>
-<h3 id="12-通讯协议定义"><a href="#12-通讯协议定义" class="headerlink" title="12.通讯协议定义"></a>12.通讯协议定义</h3><ul>
-<li>Zookeeper</li>
-</ul>
-<h3 id="13-解码器的实现"><a href="#13-解码器的实现" class="headerlink" title="13.解码器的实现"></a>13.解码器的实现</h3><ul>
-<li><p>固定长度</p>
-</li>
-<li><p>特殊分隔符</p>
-</li>
-<li><p>长度域解码器(特定消息协议的解码,针对复杂消息报文)</p>
-<ul>
-<li><p>报文长度,决定拆包的范围</p>
-</li>
-<li><p>报文内容,根据需求选择是否拆包和截取指定范围的报文内容</p>
-</li>
-<li><p>长度域调整计算公式</p>
-<ul>
-<li><p>需要字节数-包实际字节数-长度字节数-不需要字节数</p>
-</li>
-<li><p>如一个包的总长为14字节,长度占2个字节,不需要的占2个字节</p>
-<p>实际只需要10个字节</p>
-<p>计算公式如下:</p>
-<p>10-14-2-2 &#x3D; -8</p>
-<p>得出长度域调整值为-8,代表长度域需要覆盖到这个位置</p>
-</li>
-</ul>
-</li>
-<li><p>对于长度域的调整可以理解为扩展字段,等于框架的扩展点,都是为了增强</p>
-<p>某个场景,解决如复杂的数据结构,将主要数据和其它数据分开的场景</p>
-</li>
-<li><p>在这里主要是为了处理粘包合并数据的拆分场景,也就是拆包</p>
-</li>
-</ul>
-</li>
-<li><p>编码的容错机制</p>
-<ul>
-<li>快速失败</li>
-<li>尽最大努力</li>
-</ul>
-</li>
-</ul>
-<h3 id="14-源码核心"><a href="#14-源码核心" class="headerlink" title="14.源码核心"></a>14.源码核心</h3><ul>
-<li>ServerBootStrap初始化<ul>
-<li>服务参数<ul>
-<li>SocketChannel,比如NioSocketChannel,EpollSocketChannel,需要根据不同的操作系统选择<ul>
-<li>可以理解为就是一个抽象的Channel,只不过Server持有了这个抽象Channel的集合,并且对其管理和协调,其中主要的工作就是channel分发及channel事件发现(注册)</li>
-<li>作为客户端和服务端之间数据传输的桥梁</li>
-<li>ServerSocketChannel和SocketChannel,分别处理客户端连接时间和I&#x2F;O事件,角色不同</li>
-</ul>
-</li>
-<li>Handler</li>
-<li>ChildHandler<ul>
-<li>Pipeline,针对当前ServerSocketChannel关联,只要进入当前服务都会进入该处理器链</li>
-</ul>
-</li>
-<li>Bind</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Bind端口绑定</li>
-<li>Pipeline构建</li>
-<li>流程<ul>
-<li>参数设置</li>
-<li>Handler初始化</li>
-<li>EventLoop初始化</li>
-<li>SocketChannel注册,客户端将自己注册到BossEventLoopGroup的Selector中,成为一个被监听Channel</li>
-</ul>
-</li>
-<li>为什么要使用反射的方式构建Channel</li>
-<li>事件循环组担当了Selector的功能,完成Channel事件的注册和协调工作</li>
-</ul>
-<p>EventLoop</p>
-<ul>
-<li><p>本质是一个线程池,Event就相当于里面的线程池</p>
-</li>
-<li><p>netty支持异步和异步延时执行</p>
-</li>
-<li><p>NioEventLoop通过轮询Selector完成Channel事件监听,然后执行任务</p>
-</li>
-<li><p>线程执行流程</p>
-<ul>
-<li>外部(主线程)调用excute提交一个任务</li>
-<li>内部(工作线程)起一个线程去执行任务</li>
-<li>调用Selector的select方法获取任务,有就执行,咩有就持续轮询</li>
-<li>内部维护了一套策略,针对队列任务,避免一直阻塞,导致无法真正执行<ul>
-<li>如何处理</li>
-<li>返回结果</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>事件状态</p>
-<ul>
-<li>ACCEPT</li>
-<li>READ</li>
-<li>WRITE</li>
-</ul>
-</li>
-<li><p>空轮转</p>
-<ul>
-<li><p>指的是线程在轮询阻塞的过程中,产生的异常唤醒,其实没有实际事件可执行</p>
-<p>如何处理</p>
-</li>
-<li><p>数据迁移过程中,使用双写,旧的仍然可读,在迁移过程中产生的数据放入新的,保证可用且不影响性能</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>数据包和数据报的区别</p>
-<p>您的这种理解有一定的道理。</p>
-<p>数据报，尤其是像 IP 数据报这样在网络层中具有明确规范的，其格式和结构相对较为固定和严谨。这有助于在网络中进行统一的路由和转发处理。</p>
-<p>而数据包的概念更为广泛，确实会因为处于不同的网络层次和遵循不同的协议而在格式和内容上有所变化和转换。</p>
-<p>例如，在传输层的 TCP 数据包和 UDP 数据包，它们除了包含源端口和目的端口等特定信息外，格式和控制字段与 IP 数据报就有所不同。</p>
-<p>当数据在网络中传输时，可能会根据需要在不同层次进行封装和解封装，导致数据包的形式和内容发生相应的改变。</p>
-<p>但需要注意的是，严谨性的比较也不能绝对化，这取决于具体的网络环境和需求。在某些特定的场景中，特定协议下的数据包也可能具有高度的严谨性和规范性。</p>
-<blockquote>
-<p>报文重在特定协议的传输格式的数据,包重在数据的传输内容本身</p>
-</blockquote>
+    <title>Hello World</title>
+    <url>/2024/07/06/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/writing.html" >Writing <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/server.html" >Server <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/generating.html" >Generating <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
+
+<p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 ]]></content>
   </entry>
   <entry>
@@ -1204,21 +1222,166 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2024/07/06/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/writing.html" >Writing <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/server.html" >Server <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/generating.html" >Generating <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+    <title>网络I/O模型</title>
+    <url>/2024/06/19/%E7%BD%91%E7%BB%9CIO%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<h2 id="网络I-O模型"><a href="#网络I-O模型" class="headerlink" title="网络I&#x2F;O模型"></a>网络I&#x2F;O模型</h2><p>1.阻塞&#x2F;非阻塞</p>
+<p><strong>阻塞分为连接阻塞(处理数量)和I&#x2F;O阻塞(读取数据)</strong></p>
+<p>非阻塞</p>
+<ul>
+<li>异步</li>
+<li>多路复用</li>
+</ul>
+<p>2.异步&#x2F;同步</p>
+<p>3.TCP&#x2F;UDP协议</p>
+<p>4.Socket(套接字)</p>
+<p>是什么</p>
+<ul>
+<li>它是TCP&#x2F;UDP封装后的用户网络数据传输的接口工具</li>
+</ul>
+<p>底层实现</p>
+<ul>
+<li>底层通过TCP&#x2F;UDP的方式实现通过网络传送数据</li>
+<li>在监听连接和接收数据时会阻塞</li>
+<li>创建完socket后,会使用poll select recv 接收数据,这里使用方法<br>和操作系统相关</li>
+</ul>
+<p>使用场景</p>
+<blockquote>
+<p>使用Socket实现网络 I&#x2F;O 传输流程：</p>
+<ol>
+<li><p><strong>应用程序调用 <code>socket()</code> 创建套接字</strong>，并指定相关参数（如协议类型等），套接字进入监听状态，等待外部客户端连接。</p>
+</li>
+<li><p><strong>客户端发起连接请求</strong>，经过网络传输到达服务器。</p>
+</li>
+<li><p><strong>服务器端操作系统接收到连接请求</strong>，验证并建立连接，为该连接分配一个独特的 <code>fd</code> 文件描述符。</p>
+</li>
+<li><p>数据传输阶段</p>
+<p>：</p>
+<ul>
+<li><strong>发送数据</strong>：应用程序将待发送数据写入与套接字对应的内核缓冲区，操作系统根据网络状况和协议栈逐步将数据从缓冲区通过网卡发送出去。</li>
+<li><strong>接收数据</strong>：网卡接收到外部数据后，通知操作系统，操作系统将数据写入到内核缓冲区中与该套接字相关的区域。</li>
+</ul>
+</li>
+<li><p><strong>应用程序调用相关函数获取接收数据</strong>，从内核缓冲区读取数据到应用程序的内存空间。</p>
+</li>
+<li><p><strong>读取完成后</strong>，操作系统可能会根据情况清空或重新管理相应的内核缓冲区数据，以准备接收新的数据。</p>
+</li>
+</ol>
+<p>需要注意的是，这只是一个简化的流程，实际中还涉及到很多细节和优化机制，比如缓冲区的管理、数据的确认与重传、拥塞控制等，以确保网络通信的高效和可靠。</p>
+</blockquote>
+<p>数据到达之后如何唤醒(硬件层面)</p>
+<p>网络数据包到达网卡—&gt;发送中断信号告知CPU有数据写入—&gt;然后唤醒阻塞进程,然后通过硬件电路将数据写入内存</p>
+<p>阻塞流程</p>
+<p>操作系统多任务调度,所以它有一个存储进程的<strong>运行队列</strong>,用于执行多任务调度,阻塞的进程就在<br>这里阻塞等待唤醒</p>
+<p>在创建完socket后会为其创建一个fd描述对象,用于关联socket</p>
+<p>连接创建—&gt;等待接收数据</p>
+<p>5.I&#x2F;O多路复用</p>
+<p>是什么</p>
+<ul>
+<li><p>一种用于提高服务器处理数据传输的并发处理以及提高系统资源利用率的方式</p>
+</li>
+<li><p>可以同时监听多个文件描述符,避免大量线程或进程阻塞等待单个I&#x2F;O的操作</p>
+</li>
+<li><p>能够处理大量并发连接,使得服务器能够同时处理多个客户端的请求,而不是组个处理</p>
+</li>
+<li><p>简化编程模型,让开发者可以通过统一的接口来管理多个I&#x2F;O操作,降低编程的复杂性,</p>
+<p>无需我们实现</p>
+</li>
+<li><p>epoll通过事件驱动的方式唤醒线程&#x2F;进程,提高资源利用率,避免使用阻塞的方式降低性能</p>
+<p>而select&#x2F;poll都会产生阻塞</p>
+</li>
+<li><p>单个socket的监听如 Recv,在使用多路复用之前</p>
+</li>
+</ul>
+<p>现模型</p>
+<ul>
+<li><p>select(连接上限1024)</p>
+</li>
+<li><p>poll(无上限)</p>
+</li>
+<li><p>epoll(事件驱动)</p>
+<ul>
+<li><p>核心角色</p>
+<ul>
+<li><p>事件池,包含事件对象以及事件队列</p>
+</li>
+<li><p>Socket对象,在创建后为其关联了一个fd描述符,内部存储了读&#x2F;写缓冲区以及等待队列</p>
+<p>用于管理连接的客户端,用于后续的唤醒,中断等操作</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>三者区别</p>
+<p>6.TCP&#x2F;IP网络模型</p>
+<ul>
+<li>应用层</li>
+<li>传输层</li>
+<li>网络层</li>
+<li>数据链路层</li>
+<li>功能参考OSI七层模型</li>
+</ul>
+<p>7.OSI网络七层模型</p>
+<ul>
+<li>应用层(客户端)</li>
+<li>表示层(数据转换)</li>
+<li>会话层(连接创建&#x2F;校验)</li>
+<li>传输层(数据传输)</li>
+<li>网络层(路由寻址)</li>
+<li>数据链路层(数据打包)</li>
+<li>物理层(硬件设备)</li>
+</ul>
+<p>8.流量整形TODO</p>
+<p>9.网络通讯就是网络编程</p>
+<p>10.Reactor(响应式)I&#x2F;O模型</p>
+<p>它是基于NIO来实现的高性能I&#x2F;O模型</p>
+<p>NIO的核心角色</p>
+<ul>
+<li><p>Selector ,注册器,负责管理和协调Channel</p>
+</li>
+<li><p>Channel,包装后的Socket对象,相当于一个高级的双向连接对象</p>
+</li>
+<li><p>ByteBuffer,用于缓存传输的数据</p>
+</li>
+<li><p>Selector和Channel的关系</p>
+<blockquote>
+<p>就相当于拍卖物品,首先我将物品寄放到拍卖行,告知拍卖行我的预期价格,然后等达到预期价格后,拍卖行就通知我,有符合我预期的价格了</p>
+<p>在这个类比中：</p>
+<ul>
+<li>“物品”就相当于 Channel。</li>
+<li>“拍卖行”相当于 Selector 。</li>
+<li>“预期价格”相当于您为 Channel 注册到 Selector 时指定的感兴趣的事件（比如可读、可写等）。</li>
+<li>“达到预期价格”相当于 Channel 上发生了您注册时指定的事件。</li>
+<li>“拍卖行通知您”相当于 Selector 回调 Channel 。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>核心角色</p>
+<ul>
+<li>Reactor,负责监听和分发事件,将事件分发给对应的Handler进行处理</li>
+<li>Acceptors,处理客户端连接请求,创建对应的Handler</li>
+<li>Handler,异步(非阻塞)执行读写任务,处理具体业务逻辑</li>
+</ul>
+<p>单线程</p>
+<ul>
+<li>只有一个主线程负责处理连接和请求</li>
+</ul>
+<p>多线程(线程池)</p>
+<ul>
+<li>职责拆分,主线程负责处理连接,使用线程池中的线程异步处理请求</li>
+</ul>
+<p>主从多线程(线程池)</p>
+<ul>
+<li>主线程负责处理连接,将连接请分发给从线程,从线程负责请求的处理</li>
+</ul>
+<p>11.三种网络I&#x2F;O模型的生动描述</p>
+<p>再次理解AIO,BIO,NIO 先描述一个场景 假设有一家很火的餐饮店,需要排队,有一天我到了这家店,店员告知我前面咩有空桌,需要排队等待 </p>
+<p>但店员告知我有三种方案你选哪一种 </p>
+<p>第一种,你先取一个号,等叫号叫到你后,我通过电话通知你,这就是AIO </p>
+<p>第二种,你就在门口等着,等叫到你后,你再进去,这就是BIO </p>
+<p>第三种,你取一个号,但你需要时不时过来看一看,在这期间你可以做其它的事,这是NIO </p>
+<p>其中第一种和第三种方法比较类似,在等待的时间里你可以做自己的时,但一个是我主动叫你,一个是你主动查看</p>
 ]]></content>
   </entry>
   <entry>
@@ -2512,169 +2675,6 @@
 <li><strong>协议具有强制性</strong>：所有遵循 TCP&#x2F;IP 协议的系统都必须遵循相应的规范。</li>
 </ol>
 <p>尽管存在一些差异，但两者都关注于提供一种灵活、可扩展的方式来处理复杂的功能</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>网络I/O模型</title>
-    <url>/2024/06/19/%E7%BD%91%E7%BB%9CIO%E6%A8%A1%E5%9E%8B/</url>
-    <content><![CDATA[<h2 id="网络I-O模型"><a href="#网络I-O模型" class="headerlink" title="网络I&#x2F;O模型"></a>网络I&#x2F;O模型</h2><p>1.阻塞&#x2F;非阻塞</p>
-<p><strong>阻塞分为连接阻塞(处理数量)和I&#x2F;O阻塞(读取数据)</strong></p>
-<p>非阻塞</p>
-<ul>
-<li>异步</li>
-<li>多路复用</li>
-</ul>
-<p>2.异步&#x2F;同步</p>
-<p>3.TCP&#x2F;UDP协议</p>
-<p>4.Socket(套接字)</p>
-<p>是什么</p>
-<ul>
-<li>它是TCP&#x2F;UDP封装后的用户网络数据传输的接口工具</li>
-</ul>
-<p>底层实现</p>
-<ul>
-<li>底层通过TCP&#x2F;UDP的方式实现通过网络传送数据</li>
-<li>在监听连接和接收数据时会阻塞</li>
-<li>创建完socket后,会使用poll select recv 接收数据,这里使用方法<br>和操作系统相关</li>
-</ul>
-<p>使用场景</p>
-<blockquote>
-<p>使用Socket实现网络 I&#x2F;O 传输流程：</p>
-<ol>
-<li><p><strong>应用程序调用 <code>socket()</code> 创建套接字</strong>，并指定相关参数（如协议类型等），套接字进入监听状态，等待外部客户端连接。</p>
-</li>
-<li><p><strong>客户端发起连接请求</strong>，经过网络传输到达服务器。</p>
-</li>
-<li><p><strong>服务器端操作系统接收到连接请求</strong>，验证并建立连接，为该连接分配一个独特的 <code>fd</code> 文件描述符。</p>
-</li>
-<li><p>数据传输阶段</p>
-<p>：</p>
-<ul>
-<li><strong>发送数据</strong>：应用程序将待发送数据写入与套接字对应的内核缓冲区，操作系统根据网络状况和协议栈逐步将数据从缓冲区通过网卡发送出去。</li>
-<li><strong>接收数据</strong>：网卡接收到外部数据后，通知操作系统，操作系统将数据写入到内核缓冲区中与该套接字相关的区域。</li>
-</ul>
-</li>
-<li><p><strong>应用程序调用相关函数获取接收数据</strong>，从内核缓冲区读取数据到应用程序的内存空间。</p>
-</li>
-<li><p><strong>读取完成后</strong>，操作系统可能会根据情况清空或重新管理相应的内核缓冲区数据，以准备接收新的数据。</p>
-</li>
-</ol>
-<p>需要注意的是，这只是一个简化的流程，实际中还涉及到很多细节和优化机制，比如缓冲区的管理、数据的确认与重传、拥塞控制等，以确保网络通信的高效和可靠。</p>
-</blockquote>
-<p>数据到达之后如何唤醒(硬件层面)</p>
-<p>网络数据包到达网卡—&gt;发送中断信号告知CPU有数据写入—&gt;然后唤醒阻塞进程,然后通过硬件电路将数据写入内存</p>
-<p>阻塞流程</p>
-<p>操作系统多任务调度,所以它有一个存储进程的<strong>运行队列</strong>,用于执行多任务调度,阻塞的进程就在<br>这里阻塞等待唤醒</p>
-<p>在创建完socket后会为其创建一个fd描述对象,用于关联socket</p>
-<p>连接创建—&gt;等待接收数据</p>
-<p>5.I&#x2F;O多路复用</p>
-<p>是什么</p>
-<ul>
-<li><p>一种用于提高服务器处理数据传输的并发处理以及提高系统资源利用率的方式</p>
-</li>
-<li><p>可以同时监听多个文件描述符,避免大量线程或进程阻塞等待单个I&#x2F;O的操作</p>
-</li>
-<li><p>能够处理大量并发连接,使得服务器能够同时处理多个客户端的请求,而不是组个处理</p>
-</li>
-<li><p>简化编程模型,让开发者可以通过统一的接口来管理多个I&#x2F;O操作,降低编程的复杂性,</p>
-<p>无需我们实现</p>
-</li>
-<li><p>epoll通过事件驱动的方式唤醒线程&#x2F;进程,提高资源利用率,避免使用阻塞的方式降低性能</p>
-<p>而select&#x2F;poll都会产生阻塞</p>
-</li>
-<li><p>单个socket的监听如 Recv,在使用多路复用之前</p>
-</li>
-</ul>
-<p>现模型</p>
-<ul>
-<li><p>select(连接上限1024)</p>
-</li>
-<li><p>poll(无上限)</p>
-</li>
-<li><p>epoll(事件驱动)</p>
-<ul>
-<li><p>核心角色</p>
-<ul>
-<li><p>事件池,包含事件对象以及事件队列</p>
-</li>
-<li><p>Socket对象,在创建后为其关联了一个fd描述符,内部存储了读&#x2F;写缓冲区以及等待队列</p>
-<p>用于管理连接的客户端,用于后续的唤醒,中断等操作</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>三者区别</p>
-<p>6.TCP&#x2F;IP网络模型</p>
-<ul>
-<li>应用层</li>
-<li>传输层</li>
-<li>网络层</li>
-<li>数据链路层</li>
-<li>功能参考OSI七层模型</li>
-</ul>
-<p>7.OSI网络七层模型</p>
-<ul>
-<li>应用层(客户端)</li>
-<li>表示层(数据转换)</li>
-<li>会话层(连接创建&#x2F;校验)</li>
-<li>传输层(数据传输)</li>
-<li>网络层(路由寻址)</li>
-<li>数据链路层(数据打包)</li>
-<li>物理层(硬件设备)</li>
-</ul>
-<p>8.流量整形TODO</p>
-<p>9.网络通讯就是网络编程</p>
-<p>10.Reactor(响应式)I&#x2F;O模型</p>
-<p>它是基于NIO来实现的高性能I&#x2F;O模型</p>
-<p>NIO的核心角色</p>
-<ul>
-<li><p>Selector ,注册器,负责管理和协调Channel</p>
-</li>
-<li><p>Channel,包装后的Socket对象,相当于一个高级的双向连接对象</p>
-</li>
-<li><p>ByteBuffer,用于缓存传输的数据</p>
-</li>
-<li><p>Selector和Channel的关系</p>
-<blockquote>
-<p>就相当于拍卖物品,首先我将物品寄放到拍卖行,告知拍卖行我的预期价格,然后等达到预期价格后,拍卖行就通知我,有符合我预期的价格了</p>
-<p>在这个类比中：</p>
-<ul>
-<li>“物品”就相当于 Channel。</li>
-<li>“拍卖行”相当于 Selector 。</li>
-<li>“预期价格”相当于您为 Channel 注册到 Selector 时指定的感兴趣的事件（比如可读、可写等）。</li>
-<li>“达到预期价格”相当于 Channel 上发生了您注册时指定的事件。</li>
-<li>“拍卖行通知您”相当于 Selector 回调 Channel 。</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<p>核心角色</p>
-<ul>
-<li>Reactor,负责监听和分发事件,将事件分发给对应的Handler进行处理</li>
-<li>Acceptors,处理客户端连接请求,创建对应的Handler</li>
-<li>Handler,异步(非阻塞)执行读写任务,处理具体业务逻辑</li>
-</ul>
-<p>单线程</p>
-<ul>
-<li>只有一个主线程负责处理连接和请求</li>
-</ul>
-<p>多线程(线程池)</p>
-<ul>
-<li>职责拆分,主线程负责处理连接,使用线程池中的线程异步处理请求</li>
-</ul>
-<p>主从多线程(线程池)</p>
-<ul>
-<li>主线程负责处理连接,将连接请分发给从线程,从线程负责请求的处理</li>
-</ul>
-<p>11.三种网络I&#x2F;O模型的生动描述</p>
-<p>再次理解AIO,BIO,NIO 先描述一个场景 假设有一家很火的餐饮店,需要排队,有一天我到了这家店,店员告知我前面咩有空桌,需要排队等待 </p>
-<p>但店员告知我有三种方案你选哪一种 </p>
-<p>第一种,你先取一个号,等叫号叫到你后,我通过电话通知你,这就是AIO </p>
-<p>第二种,你就在门口等着,等叫到你后,你再进去,这就是BIO </p>
-<p>第三种,你取一个号,但你需要时不时过来看一看,在这期间你可以做其它的事,这是NIO </p>
-<p>其中第一种和第三种方法比较类似,在等待的时间里你可以做自己的时,但一个是我主动叫你,一个是你主动查看</p>
 ]]></content>
   </entry>
   <entry>
