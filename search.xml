@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>BPMN相关知识</title>
+    <url>/2024/05/29/BPMN%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<h2 id="BPMN相关知识"><a href="#BPMN相关知识" class="headerlink" title="BPMN相关知识"></a>BPMN相关知识</h2><p>1.基础概念</p>
+<p><strong>流程（Process）</strong>：BPMN 所描述的业务运行的过程。</p>
+<p><strong>活动（Activity）</strong>：流程中的具体任务或操作。</p>
+<p><strong>事件（Event）</strong>：流程中引发或响应的特定点，如开始事件、结束事件等。</p>
+<p><strong>网关（Gateway）</strong>：用于控制流程的分支和合并。</p>
+<p><strong>顺序流（Sequence Flow）</strong>：指示活动的执行顺序。</p>
+<p><strong>泳道（Swimlane）</strong>：通常分为池（Pool）和道（Lane），用于划分不同的组织或角色在流程中的责任区域。</p>
+<p><strong>数据对象（Data Object）</strong>：与流程相关的数据。</p>
+<p><strong>消息流（Message Flow）</strong>：用于表示不同池之间的通信。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>JMM模型</title>
     <url>/2024/05/06/JMM%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[<h2 id="JMM模型"><a href="#JMM模型" class="headerlink" title="JMM模型"></a>JMM模型</h2><h3 id="1-可见性"><a href="#1-可见性" class="headerlink" title="1.可见性"></a>1.可见性</h3><p>Volitale</p>
@@ -279,17 +293,469 @@
 ]]></content>
   </entry>
   <entry>
-    <title>BPMN相关知识</title>
-    <url>/2024/05/29/BPMN%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</url>
-    <content><![CDATA[<h2 id="BPMN相关知识"><a href="#BPMN相关知识" class="headerlink" title="BPMN相关知识"></a>BPMN相关知识</h2><p>1.基础概念</p>
-<p><strong>流程（Process）</strong>：BPMN 所描述的业务运行的过程。</p>
-<p><strong>活动（Activity）</strong>：流程中的具体任务或操作。</p>
-<p><strong>事件（Event）</strong>：流程中引发或响应的特定点，如开始事件、结束事件等。</p>
-<p><strong>网关（Gateway）</strong>：用于控制流程的分支和合并。</p>
-<p><strong>顺序流（Sequence Flow）</strong>：指示活动的执行顺序。</p>
-<p><strong>泳道（Swimlane）</strong>：通常分为池（Pool）和道（Lane），用于划分不同的组织或角色在流程中的责任区域。</p>
-<p><strong>数据对象（Data Object）</strong>：与流程相关的数据。</p>
-<p><strong>消息流（Message Flow）</strong>：用于表示不同池之间的通信。</p>
+    <title>Java语言设计思路</title>
+    <url>/2024/07/15/Java%E8%AF%AD%E8%A8%80%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF/</url>
+    <content><![CDATA[<h2 id="Java语言设计思路"><a href="#Java语言设计思路" class="headerlink" title="Java语言设计思路"></a>Java语言设计思路</h2><h3 id="1-方法入参强转-健壮性"><a href="#1-方法入参强转-健壮性" class="headerlink" title="1.方法入参强转(健壮性)"></a>1.方法入参强转(健壮性)</h3><blockquote>
+<p>原因</p>
+<p>这种设计是为了达到程序的健壮性考虑,而不是三天两头出现问题,从源头避免,类似的场景还有受检异常,泛型,都是在编译器发现问题</p>
+<p>您的观点十分准确。这种在编译阶段进行严格检查和限制的设计，的确是为了增强程序的健壮性。</p>
+<p><strong>就像您提到的受检异常（Checked Exceptions），它要求开发者在代码中显式地处理可能抛出的异常，否则无法通过编译。这促使开发者提前考虑并处理可能出现的错误情况，而不是在运行时才面对无法处理的异常导致程序崩溃。</strong></p>
+<p>泛型（Generics）也是一个很好的例子。通过在编译时对泛型类型进行检查，可以避免在运行时出现类型转换错误等问题，提高了代码的类型安全性。</p>
+<p>这些设计都是为了在程序开发的早期，即在编译器能够发现问题的时候，就将潜在的错误暴露出来，让开发者及时修正，从而从源头上减少程序在运行时出现问题的可能性，提高程序的稳定性和可靠性。</p>
+<p>例如，在使用泛型的集合时，如果尝试向一个指定类型的集合中添加不匹配的元素，编译器会给出错误提示，避免了在运行时才发现类型不匹配的问题。</p>
+<p>又如，处理受检异常时，如果方法可能抛出 <code>FileNotFoundException</code>，而调用者没有进行捕获或声明抛出，编译就会失败，促使开发者提前想好如何处理文件不存在的情况。</p>
+</blockquote>
+<h3 id="2-T和-的区别-扩展性"><a href="#2-T和-的区别-扩展性" class="headerlink" title="2.T和?的区别(扩展性)"></a>2.T和?的区别(扩展性)</h3><h4 id="2-1-是什么"><a href="#2-1-是什么" class="headerlink" title="2.1.是什么"></a>2.1.是什么</h4><p>T和?作为Java语言中的泛型占位符,一个用于接收明确类型,一个用于接收<br>未知类型,是为了提高代码复用的一个技巧,但在使用时需要注意类型转换<br>的问题</p>
+<p>通常情况下，<code>T</code> 更常用于在方法之间进行类型的传递，以保持类型的一致性和准确性，并且可能会涉及到写入操作。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="keyword">void</span> <span class="title function_">processAndReturn</span><span class="params">(T data)</span> &#123;</span><br><span class="line">    <span class="comment">// 对 data 进行处理</span></span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>而 <code>?</code> 更多地用于表示不确定性，更侧重于接收和读取，强调对多种类型的兼容性。</p>
+<p>然而，也存在一些特殊情况，可能会在特定的设计中对 <code>?</code> 进行一些特殊的传递或操作。但总体来说，您所描述的这种倾向是比较常见和符合一般编程习惯的。</p>
+<h4 id="2-2-使用场景"><a href="#2-2-使用场景" class="headerlink" title="2.2.使用场景"></a>2.2.使用场景</h4><blockquote>
+<p><code>T</code> 作为泛型类型参数，确实常用于类、成员变量、参数列表等场景，因为它能够提供更明确的类型约束和操作方式。</p>
+<p>而 <code>Class&lt;?&gt;</code> （其中 <code>?</code> 表示通配符）不仅可以用于局部变量，也可以在一些情况下用于方法的参数或返回值，以表示对类型的更宽松的约束。</p>
+<p>例如，在某些方法中，如果您不关心具体的类型，只需要进行一些通用的操作，就可以使用 <code>Class&lt;?&gt;</code> 作为参数类型。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line">Public <span class="keyword">class</span> <span class="title class_">A</span>&lt;T&gt; &#123; <span class="comment">//表示为泛型类型,在创建A类时指定,A&lt;String&gt; a = new A&lt;&gt;();</span></span><br><span class="line">    <span class="keyword">private</span> T obj; <span class="comment">//表示任意类型,在构造方法中初始化在构造方法中传递给成员变量</span></span><br><span class="line">                   <span class="comment">//此处将构造方法的泛型和成员变量的泛型进行关联</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">A</span><span class="params">(T obj)</span>&#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; T <span class="title function_">change</span><span class="params">(T param)</span>&#123; <span class="comment">//&lt;T&gt; 表示泛型方法</span></span><br><span class="line">                                  <span class="comment">// T 表示返回结果可以为任意类型</span></span><br><span class="line">                                  <span class="comment">// T param 表示接收参数为任意类型</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> (T)param; <span class="comment">//显式强转,调用方的类型需要和方法返回类型一致</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+
+</blockquote>
+<h4 id="2-3-T的传递性"><a href="#2-3-T的传递性" class="headerlink" title="2.3.T的传递性"></a>2.3.T的传递性</h4><blockquote>
+<p><strong>T的传递场景</strong><br>1.参数使用<br>2.参数传递<br>3.在泛型方法中使用成员变量&#x2F;其它方法对T进行使用或参数传递<br>4.不进行上述操作的话,就只是一个标记而已</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> T value;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyClass</span><span class="params">(T value)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.value = value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; T <span class="title function_">myMethod</span><span class="params">(String methodName)</span> &#123;</span><br><span class="line">        <span class="comment">// 这里可以根据类中保存的 value 的类型进行相关操作，建立了关联</span></span><br><span class="line">        <span class="keyword">if</span> (value <span class="keyword">instanceof</span> String &amp;&amp; methodName.equals(<span class="string">&quot;getString&quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> (T) <span class="string">&quot;Some String&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        MyClass&lt;Integer&gt; integerMyClass = <span class="keyword">new</span> <span class="title class_">MyClass</span>&lt;&gt;(<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> integerMyClass.myMethod(<span class="string">&quot;getString&quot;</span>);</span><br><span class="line">        System.out.println(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>T的覆盖</strong></p>
+<blockquote>
+<p>默认声明位置为类名后方,如public class  A<T> {</p>
+<p>}</p>
+<p>其它位置,可在除构造方法外的方法定义,如public <T>  T  change(T param)<br><strong>在方法前声明会覆盖类上的声明,类似独立定义</strong></p>
+</blockquote>
+</blockquote>
+<h3 id="3-显式转换和隐式转换-扩展性"><a href="#3-显式转换和隐式转换-扩展性" class="headerlink" title="3.显式转换和隐式转换(扩展性)"></a>3.显式转换和隐式转换(扩展性)</h3><blockquote>
+<p>显式转换更需要开发者谨慎处理，确保转换的正确性；隐式转换通常由编译器根据特定的规则自动处理，但也需要了解其可能的影响和限制。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//显式</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//被调用方</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; T <span class="title function_">invoke</span><span class="params">(String methodName)</span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//传入目标类和其方法</span></span><br><span class="line">            <span class="comment">//获取反射后的实例</span></span><br><span class="line">            <span class="comment">//反射调用目标方法返回结果</span></span><br><span class="line">            <span class="comment">//这里的目的是判断传递进来的类型是否属于Class</span></span><br><span class="line">            <span class="keyword">if</span> (targetClass <span class="keyword">instanceof</span> Class&lt;?&gt;)&#123;</span><br><span class="line">                <span class="comment">//强制类型转换</span></span><br><span class="line">                <span class="comment">//?表示未知类型的Class对象</span></span><br><span class="line">                <span class="comment">//T表示确定类型的Class对象</span></span><br><span class="line">                <span class="comment">//二者都可用于参数传递</span></span><br><span class="line">                <span class="comment">//T常用于写入和读取参数</span></span><br><span class="line">                <span class="comment">//?仅用于读取参数</span></span><br><span class="line">                Class&lt;?&gt;  clazz = (Class&lt;?&gt;) targetClass;</span><br><span class="line">                <span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> clazz.newInstance();</span><br><span class="line"></span><br><span class="line">                <span class="comment">//反射掉目标方法返回结果</span></span><br><span class="line">                <span class="type">Method</span> <span class="variable">method</span> <span class="operator">=</span> clazz.getMethod(methodName);</span><br><span class="line"></span><br><span class="line">                <span class="comment">//显式转换,在被调用方,告知编译器,我需要转换啦</span></span><br><span class="line">                <span class="keyword">return</span> (T)method.invoke(o);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">   <span class="comment">//调用方</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        Proxy&lt;Class&gt; proxy = <span class="keyword">new</span> <span class="title class_">Proxy</span>(Student.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//显式转换,在调用方强转,告知编译器我需要强转</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">changeVal</span> <span class="operator">=</span> (String) proxy.invoke(<span class="string">&quot;changeName&quot;</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(changeVal);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//隐式转换-正确场景</span></span><br><span class="line"><span class="type">Integer</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; <span class="comment">//自动装包</span></span><br><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> i <span class="comment">//自动拆包</span></span><br><span class="line"><span class="type">Animal</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Lion</span>(); <span class="comment">//lion继承自父类,所以属于隐式转换</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//显式转换-正确场景</span></span><br><span class="line"><span class="type">Animal</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Lion</span>();</span><br><span class="line"><span class="type">Lion</span> <span class="variable">lion</span> <span class="operator">=</span> (Lion)a;<span class="comment">//因为a本身就是Lion类型的对象,所以可以转换</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//转换-失败场景</span></span><br><span class="line"><span class="type">Integer</span> <span class="variable">i</span> <span class="operator">=</span> (String)<span class="string">&quot;&quot;</span>; <span class="comment">//这种转换应该发生于子类或同类之间</span></span><br><span class="line"></span><br><span class="line"><span class="type">Animal</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Animal</span>(); </span><br><span class="line"><span class="type">Lion</span> <span class="variable">lion</span> <span class="operator">=</span> (Lion)a;<span class="comment">//这种也是如此,需要转换的类型必须是同类或子类</span></span><br></pre></td></tr></table></figure></div>
+
+
+</blockquote>
+<h4 id="3-1-转换检查-健壮性"><a href="#3-1-转换检查-健壮性" class="headerlink" title="3.1.转换检查(健壮性)"></a>3.1.转换检查(健壮性)</h4><blockquote>
+<p>编译期间</p>
+<ul>
+<li><p>方法参数</p>
+<blockquote>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line">change( (Integer) <span class="string">&quot;&quot;</span>); <span class="comment">//方法参数需要Integer类型,你传入String类型</span></span><br></pre></td></tr></table></figure></div>
+
+
+</blockquote>
+</li>
+<li><p>局部</p>
+<blockquote>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Integer</span> <span class="variable">i</span> <span class="operator">=</span> <span class="literal">null</span>; <span class="comment">//这种是需要提前预知的</span></span><br><span class="line">        </span><br><span class="line">i = (Integer) <span class="string">&quot;&quot;</span>;</span><br></pre></td></tr></table></figure></div>
+
+</blockquote>
+</li>
+</ul>
+<p>运行期间</p>
+<ul>
+<li><p>方法参数</p>
+<blockquote>
+<p>通过编译期检查后,需要再对一些涉及多态和强制类型转换的情况进行检查,<br>在运行时会再次检测传递的类型是否能够转换为方法内部期待的类型</p>
+</blockquote>
+</li>
+<li><p>局部</p>
+<blockquote>
+<p>当从方法返回一个值并进行类型转换时，如果实际返回的值类型与接收方期望的类型不兼容，会在运行时出错</p>
+</blockquote>
+</li>
+<li><p>返回结果</p>
+<blockquote>
+<p>当从方法返回一个值并进行类型转换时，如果实际返回的值类型与接收方期望的类型不兼容，会在运行时出错</p>
+</blockquote>
+</li>
+</ul>
+<p>总结</p>
+<ul>
+<li>有些强转如方法入参和初始化是可以预见的,<strong>需要提前感知</strong></li>
+<li>而一些涉及多态的场景下的强转则是需要主动关注的,<strong>如第一次使用时</strong><br><strong>使用父类接收子类,之后在使用时又强转回子类的场景</strong></li>
+</ul>
+</blockquote>
+<h3 id="4-访问修饰符-安全性"><a href="#4-访问修饰符-安全性" class="headerlink" title="4.访问修饰符(安全性)"></a>4.访问修饰符(安全性)</h3><ul>
+<li>类<ul>
+<li>public,任意位置都能访问,new的方式</li>
+<li>private,只有在当前类能访问</li>
+<li>default,如com.xxx.example,只有处于这个绝对路径下或同级包的类才能访问</li>
+</ul>
+</li>
+<li>变量<ul>
+<li>public,任意位置都能访问,如new Person().属性,可以直接获取,无需get&#x2F;set方法</li>
+<li>private,只有在当前类能访问</li>
+<li>default,如com.xxx.example,只有处于这个绝对路径下或同级包的类才能访问</li>
+</ul>
+</li>
+<li>方法<ul>
+<li>public,任意位置都能访问,如new Person().方法,可以直接获取</li>
+<li>private,只有在当前类能访问</li>
+<li>protected,只有子类能够访问</li>
+<li>default,如com.xxx.example,只有处于这个绝对路径下或同级包的类才能访问</li>
+</ul>
+</li>
+<li>代码块<ul>
+<li>普通<ul>
+<li>每次new的时候都会执行</li>
+</ul>
+</li>
+<li>静态<ul>
+<li>优先执行</li>
+<li>只会在类加载的第一次执行</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-接口-扩展性"><a href="#5-接口-扩展性" class="headerlink" title="5.接口(扩展性)"></a>5.接口(扩展性)</h3><ul>
+<li><p>抽象,就是一个抽象类</p>
+<blockquote>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//默认就是抽象类,可以不写关键字</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">interface</span> <span class="title class_">Course</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//接口中的变量只能是常量,不可修改</span></span><br><span class="line">    <span class="keyword">final</span> List&lt;Course&gt; courses = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">abstract</span> String <span class="title function_">getCourseName</span><span class="params">()</span>; <span class="comment">//默认就是抽象方法,可以不写关键字</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">abstract</span> Double <span class="title function_">getCoursePrice</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">abstract</span> Short <span class="title function_">getCourseType</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">abstract</span> String <span class="title function_">getCourseDesc</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">abstract</span> String <span class="title function_">getCourseTeacher</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">default</span> Double <span class="title function_">calcPrice</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">Double</span> <span class="variable">initVal</span> <span class="operator">=</span> <span class="number">0.0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//fori方式</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; courses.size(); i++) &#123;</span><br><span class="line"></span><br><span class="line">            initVal += courses.get(i).getCoursePrice();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//Stream流方式</span></span><br><span class="line">        initVal = courses.stream()</span><br><span class="line">                .mapToDouble(Course::getCoursePrice)</span><br><span class="line">                .sum();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> initVal;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//条件</span></span><br><span class="line">        Stream&lt;Course&gt; courseStream = courses.stream()</span><br><span class="line">                .filter(course -&gt; course.getCoursePrice() == <span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//匿名内部类(new)</span></span><br><span class="line">        <span class="type">Thread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;test_lambda&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();<span class="comment">//启动线程</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//匿名内部类(函数式)</span></span><br><span class="line">        <span class="type">Thread</span> <span class="variable">Thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; System.out.println(<span class="string">&quot;test_lambda&quot;</span>));</span><br><span class="line">        thread.start();<span class="comment">//启动线程</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//接口实现(new)</span></span><br><span class="line">        <span class="type">Course</span> <span class="variable">course</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Course</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> String <span class="title function_">getCourseName</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> Double <span class="title function_">getCoursePrice</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> Short <span class="title function_">getCourseType</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> String <span class="title function_">getCourseDesc</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> String <span class="title function_">getCourseTeacher</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//接口实现(函数式)</span></span><br><span class="line">        Function&lt;Integer, Byte&gt; stringLengthFunction = i -&gt; i.byteValue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+
+</blockquote>
+</li>
+<li><p>仅定义方法</p>
+</li>
+<li><p>只能有一个默认方法,包含实现</p>
+</li>
+<li><p>多实现</p>
+</li>
+</ul>
+<h3 id="6-抽象-耦合性"><a href="#6-抽象-耦合性" class="headerlink" title="6.抽象(耦合性)"></a>6.抽象(耦合性)</h3><ul>
+<li>抽象方法,有抽象方法的一定是抽象类</li>
+</ul>
+<h3 id="7-继承-耦合性"><a href="#7-继承-耦合性" class="headerlink" title="7.继承(耦合性)"></a>7.继承(耦合性)</h3><ul>
+<li>单继承</li>
+</ul>
+<h3 id="8-函数式接口-复用性"><a href="#8-函数式接口-复用性" class="headerlink" title="8.函数式接口(复用性)"></a>8.函数式接口(复用性)</h3><ul>
+<li><p>FunctionInterface标明的接口</p>
+</li>
+<li><p>有且只有一个抽象的方法</p>
+</li>
+<li><p>有0个或任意个default方法</p>
+</li>
+<li><p>示例</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1.Function&lt;T, R&gt;：接受一个类型为 T 的参数，并返回一个类型为 R 的结果。</span></span><br><span class="line">示例：Function&lt;String, Integer&gt; stringLengthFunction = s -&gt; s.length();</span><br><span class="line"><span class="comment">//2.Predicate&lt;T&gt;：接受一个类型为 T 的参数，并返回一个布尔值。</span></span><br><span class="line">示例：Predicate&lt;String&gt; isLongString = s -&gt; s.length() &gt; <span class="number">10</span>;</span><br><span class="line"><span class="comment">//3.Consumer&lt;T&gt;：接受一个类型为 T 的参数，不返回值。</span></span><br><span class="line">示例：Consumer&lt;String&gt; printString = s -&gt; System.out.println(s);</span><br><span class="line"><span class="comment">//4.Supplier&lt;T&gt;：不接受参数，返回一个类型为 T 的结果。</span></span><br><span class="line">示例：Supplier&lt;String&gt; randomStringSupplier = () -&gt; <span class="string">&quot;Random String&quot;</span>;</span><br><span class="line"><span class="comment">//5.UnaryOperator&lt;T&gt;：接受一个类型为 T 的参数，并返回同类型 T 的结果。</span></span><br><span class="line">示例：UnaryOperator&lt;Integer&gt; doubleInteger = i -&gt; i * <span class="number">2</span>;</span><br><span class="line"><span class="comment">//6.BinaryOperator&lt;T&gt;：接受两个类型为 T 的参数，并返回同类型 T 的结果。</span></span><br><span class="line">示例：BinaryOperator&lt;Integer&gt; sumIntegers = (i1, i2) -&gt; i1 + i2;</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h3 id="9-面向对象设计-封装性"><a href="#9-面向对象设计-封装性" class="headerlink" title="9.面向对象设计(封装性)"></a>9.面向对象设计(封装性)</h3><ul>
+<li>包装类</li>
+<li>异常</li>
+<li>配置</li>
+</ul>
+<h3 id="10-静态-常量"><a href="#10-静态-常量" class="headerlink" title="10.静态&#x2F;常量"></a>10.静态&#x2F;常量</h3><ul>
+<li>变量</li>
+<li>代码块</li>
+</ul>
+<h3 id="11-注解"><a href="#11-注解" class="headerlink" title="11.注解"></a>11.注解</h3><ul>
+<li>使用位置</li>
+<li>内部构造</li>
+<li>生效时间</li>
+</ul>
+<h3 id="12-枚举"><a href="#12-枚举" class="headerlink" title="12.枚举"></a>12.枚举</h3><ul>
+<li>类型</li>
+<li>值</li>
+</ul>
+<h3 id="13-字符串"><a href="#13-字符串" class="headerlink" title="13.字符串"></a>13.字符串</h3><ul>
+<li>不可修改,内部维护final的char数组</li>
+</ul>
+<h3 id="14-多线程"><a href="#14-多线程" class="headerlink" title="14.多线程"></a>14.多线程</h3><ul>
+<li>内存模型<ul>
+<li>共享空间</li>
+<li>线程独立空间</li>
+<li>修改数据在自己的空间完成,再同步到共享空间</li>
+</ul>
+</li>
+<li>锁机制<ul>
+<li>Synchroized<ul>
+<li>锁粗化</li>
+<li>锁升级</li>
+<li>锁降级</li>
+</ul>
+</li>
+<li>Lock<ul>
+<li>公平</li>
+<li>非公平</li>
+</ul>
+</li>
+<li>CAS<ul>
+<li>吞吐量,性能</li>
+<li>CPU空转</li>
+<li>ABA问题,一个线程修改的数据被其它线程修改回去了</li>
+</ul>
+</li>
+<li>场景问题<ul>
+<li>锁饥饿,一直获取不到锁</li>
+<li>死锁,双方互相持有对方的锁</li>
+<li>活锁,双方你先拿,但发现对方需要,又给对方了,类似你走一步,我走一步的场景</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>安全容器<ul>
+<li>Vector</li>
+<li>StringBuffer</li>
+<li>ConcurrentHashMap</li>
+</ul>
+</li>
+<li>并发三大特性<ul>
+<li>原子性<ul>
+<li>锁</li>
+<li>Volatile,单个线程操作原子性</li>
+</ul>
+</li>
+<li>有序性<ul>
+<li>执行顺序<ul>
+<li>Synchroized,保证顺序一定不会打乱</li>
+<li>Volitale,从某个层面有序,保证代码的有序,不会发生顺序变化</li>
+</ul>
+</li>
+<li>指令<ul>
+<li>Volitale,开启读写屏障,避免CPU指令重排序</li>
+<li>关闭jit优化,关闭即时编译器优化功能,对指令重新排序</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>可见性<ul>
+<li>一致性协议,如MESI协议,通过消息机制保证内存和CPU缓存的数据一致性</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="15-函数式"><a href="#15-函数式" class="headerlink" title="15.函数式"></a>15.函数式</h3><ul>
+<li><p><strong>lambda</strong></p>
+<ul>
+<li><p>考虑线程安全,在函数内部只能使用final修饰的变量&#x2F;线程安全的变量</p>
+<blockquote>
+<p><strong>闭包</strong></p>
+<p>假设你有个函数A,这个函数A里定义了一个变量x,然后再函数A中又<br>定义了一个B函数,这个B函数用到了变量x,那么这个新函数B就形成<br>了一个闭包,就像你出去吃自助餐.但时间已经结束了,但你说你要打包,<br>还要带走一些菜,打破了规则,本意上是局部变量的范围只有在当前函数,<br>不能传递给其它的函数,尤其是函数内的函数,如lambda,强行获取函数内<br>的局部变量</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ClosureExample</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">ClosureExample</span> <span class="variable">example</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClosureExample</span>();</span><br><span class="line">        example.outerFunction();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">outerFunction</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 这里定义的 innerFunction 形成了闭包</span></span><br><span class="line">        <span class="type">Runnable</span> <span class="variable">innerFunction</span> <span class="operator">=</span> () -&gt; &#123;</span><br><span class="line">            System.out.println(count);</span><br><span class="line">            count++;</span><br><span class="line">        &#125;;</span><br><span class="line">        innerFunction.run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>总结</strong></p>
+<ol>
+<li><p>由于局部变量的使用范围只有当前函数,不可被其它函数主动获取</p>
+</li>
+<li><p>所以闭包的这种场景是lambda函数已经不属于当前函数的范围了<br>所以不该获取到,然后进行修改,仅仅允许只读是最大的范围了</p>
+</li>
+<li><p>所以lambda想要使用局部变量,不建议修改局部变量,建议要使用<br>就用final修饰局部变量,但对象除外,不修饰也可使用,但不建议这么<br>做</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//例子如下</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LambdaExample</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">strBuilder</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">        Consumer&lt;StringBuilder&gt; consumer = s -&gt; s.append(<span class="string">&quot; World&quot;</span>); </span><br><span class="line">        consumer.accept(strBuilder);</span><br><span class="line">        System.out.println(strBuilder.toString()); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+</li>
+<li><p>这样既可以保证数据安全和程序健壮性,避免出现意外修改导致问题<br>也变相的保证了多线程场景下操作共享变量的安全问题</p>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>简洁,可用于声明匿名内部类,函数式方法</p>
+</li>
+<li><p>类似面向过程的编程,而不是抽象出一个对象来封装具体逻辑</p>
+<blockquote>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//条件</span></span><br><span class="line">        Stream&lt;Course&gt; courseStream = courses.stream()</span><br><span class="line">                .filter(course -&gt; course.getCoursePrice() == <span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//匿名内部类(new)</span></span><br><span class="line">        <span class="type">Thread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;test_lambda&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();<span class="comment">//启动线程</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//匿名内部类(函数式)</span></span><br><span class="line">        <span class="type">Thread</span> <span class="variable">Thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; System.out.println(<span class="string">&quot;test_lambda&quot;</span>));</span><br><span class="line">        thread.start();<span class="comment">//启动线程</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//接口实现(new)</span></span><br><span class="line">        <span class="type">Course</span> <span class="variable">course</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Course</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> String <span class="title function_">getCourseName</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> Double <span class="title function_">getCoursePrice</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> Short <span class="title function_">getCourseType</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> String <span class="title function_">getCourseDesc</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> String <span class="title function_">getCourseTeacher</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//接口实现(函数式),主要针对接口内唯一的抽象方法</span></span><br><span class="line">        Function&lt;Integer, Byte&gt; stringLengthFunction = i -&gt; i.byteValue();</span><br></pre></td></tr></table></figure></div>
+
+
+</blockquote>
+</li>
+<li><p>但面向过程的方法调用,数据和数据操作是分开的,仅仅是通过顺序执行<br>一系列函数来完成任务</p>
+<blockquote>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">dogName</span> <span class="operator">=</span> <span class="string">&quot;Fido&quot;</span>;</span><br><span class="line">        makeDogSound(dogName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">makeDogSound</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        System.out.println(name + <span class="string">&quot; barks&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="16-Java对象传递方式"><a href="#16-Java对象传递方式" class="headerlink" title="16.Java对象传递方式"></a>16.Java对象传递方式</h3><p>在Java中,对象之间的传递常常是通过引用来完成传递的,这样一方面是为了数据安全考虑以外,<br>也是为了提高效率,避免因大对象的值传递导致性能开销变大而降低传递效率,所以传递引用要<br>比值要小得多,类似指针和压缩列表的概念</p>
+<p><strong>使用原因</strong></p>
+<ul>
+<li>传递效率,通过减少大对象复制产生性能开销,来提升传递效率</li>
+<li>修改可见,其它位置的修改对于当前是可见的</li>
+<li>内存节省,避免不必要的对象复制,内存使用就变少了</li>
+<li>支持复杂的数据结构,对于复杂的属性(状态)的类型,无需关注怎么调整</li>
+<li>实现动态,可以在运行时灵活的改变引用所指向的对象,实现更加灵活的编程逻辑</li>
+<li>为Java中的对象操作提供了高效,灵活,方便的方式,有助于编写更复杂和高效的程序</li>
+</ul>
+<p><strong>类型划分</strong></p>
+<ul>
+<li><p>基本类型,如int,byte,long,这些属于值传递,在赋值,入参,返回是都是通过复制一份值副本完成</p>
+<p>操作的</p>
+</li>
+<li><p>引用类型</p>
+<ul>
+<li>可变,如StringBuilder,自定义类型等,这些类型常常涉及到属性,也就是状态的变化,所以需要可变</li>
+<li>不可变,如String,Integer等包装类型及一些简单类型,在赋值以后就不希望在发生变化,这也是为了数据安全考虑,避免被恶意篡改,所以天生线程安全</li>
+</ul>
+</li>
+</ul>
+<p>使用场景</p>
+<ul>
+<li>finally<ul>
+<li>这里主要是会对可变的引用类型产生影响,会在return之前覆盖掉原来想要返回的值,所以需要避免在这里操作可变的引用类型</li>
+</ul>
+</li>
+<li>method param<ul>
+<li>这里在方法入参时,会将一份引用的副本传递进来,在方法内部操作该引用副本,如果在方法内部对入参的引用进行修改,那原来的引用就不会感知到后来的修改,是不建议这么使用的</li>
+</ul>
+</li>
+</ul>
+<h3 id="什么是好的编程语言"><a href="#什么是好的编程语言" class="headerlink" title="什么是好的编程语言"></a>什么是好的编程语言</h3><ol>
+<li>简洁性与可读性<ul>
+<li>代码语法清晰、简洁，易于理解和编写。具有直观的关键字和语法结构，能够以简洁的方式表达复杂的逻辑。</li>
+</ul>
+</li>
+<li>高效性<ul>
+<li>能够在运行时提供出色的性能，包括快速的执行速度和低内存消耗。</li>
+<li>支持高效的算法和数据结构实现，以便开发者能够轻松优化程序的性能。</li>
+</ul>
+</li>
+<li>可扩展性<ul>
+<li>便于添加新的功能和特性，能够适应不断变化的需求和技术发展。</li>
+<li>拥有丰富的库和框架生态系统，方便开发者扩展其功能。</li>
+</ul>
+</li>
+<li>安全性<ul>
+<li>具备强大的类型系统，有助于在编译时捕获错误，减少运行时错误的发生。</li>
+<li>能够防止常见的编程错误，如缓冲区溢出、内存泄漏等。</li>
+</ul>
+</li>
+<li>跨平台性<ul>
+<li>可以在不同的操作系统和硬件架构上运行，无需大量的修改。</li>
+</ul>
+</li>
+<li>易学性<ul>
+<li>对于初学者来说，容易入门和掌握，拥有清晰的文档和学习资源。</li>
+</ul>
+</li>
+<li>强大的功能<ul>
+<li>支持面向对象、函数式、过程式等多种编程范式，以满足不同的编程需求。</li>
+<li>提供丰富的控制结构和数据类型。</li>
+</ul>
+</li>
+<li>良好的错误处理机制<ul>
+<li>能够清晰地报告错误，并提供有效的调试工具和信息，帮助开发者快速定位和解决问题。</li>
+</ul>
+</li>
+<li>社区支持与生态系统<ul>
+<li>拥有活跃的开发者社区，能够提供及时的技术支持和交流。</li>
+<li>有大量的开源项目和库可供复用。</li>
+</ul>
+</li>
+<li>可维护性<ul>
+<li>代码结构清晰，易于维护和更新，便于团队协作开发。</li>
+</ul>
+</li>
+</ol>
+<h3 id="17-Java语法糖"><a href="#17-Java语法糖" class="headerlink" title="17.Java语法糖"></a>17.Java语法糖</h3><p>一种经常使用,虽然看起来不起眼,但实际上是很重要的特性,和语言息息相关,只不过语言帮我们<br>隐藏了细节,让我们只用关心具体开发</p>
+<p><strong>常见语法糖</strong></p>
+<ol>
+<li><p>泛型</p>
+<blockquote>
+<p>编译检查,在编译期可提前发现类型问题,避免到运行期出现类型转换错误的问题</p>
+<p>参数灵活,如在泛型接口中,可以灵活的定义方法的入参,返回,提高代码的复用性</p>
+<p>逻辑通用,泛型的类或接口可以根据泛型来传入不同的类型,但它的逻辑代码是</p>
+<p>高度通用的</p>
+</blockquote>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line">Public <span class="keyword">class</span> <span class="title class_">A</span>&lt;T&gt; &#123; <span class="comment">//表示为泛型类型,在创建A类时指定,A&lt;String&gt; a = new A&lt;&gt;();</span></span><br><span class="line"> <span class="keyword">private</span> T obj; <span class="comment">//表示任意类型,在构造方法中初始化在构造方法中传递给成员变量</span></span><br><span class="line">                <span class="comment">//此处将构造方法的泛型和成员变量的泛型进行关联</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span> <span class="title function_">A</span><span class="params">(T obj)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span> &lt;T&gt; T <span class="title function_">change</span><span class="params">(T param)</span>&#123; <span class="comment">//&lt;T&gt; 表示泛型方法</span></span><br><span class="line">                               <span class="comment">// T 表示返回结果可以为任意类型</span></span><br><span class="line">                               <span class="comment">// T param 表示接收参数为任意类型</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     <span class="keyword">return</span> (T)param; <span class="comment">//显式强转,调用方的类型需要和方法返回类型一致</span></span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+</li>
+<li><p>自动装箱,拆箱</p>
+<blockquote>
+<p>兼容,大多发生在基础类型和包装类型的转换中,由编译器在编译过程中自动生成</p>
+<p>隐式,这个动作是隐式发生,而不用我们手动的去执行对应逻辑</p>
+</blockquote>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Integer</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">        <span class="comment">//拆箱</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> num;</span><br><span class="line">        <span class="comment">//编译后</span></span><br><span class="line">        n = num.intValue();</span><br><span class="line">        <span class="comment">//装箱</span></span><br><span class="line">        num = n;</span><br><span class="line">        <span class="comment">//编译后</span></span><br><span class="line">        num = Integer.valueOf(n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>函数参数</p>
+<blockquote>
+<p>使用函数作为方法入参</p>
+</blockquote>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line">addComment(Data::getComment);</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>Switch支持String和枚举类型</p>
+<blockquote>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;nihao&quot;</span>;</span><br><span class="line">        <span class="keyword">switch</span> (str) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;nihao&quot;</span>:</span><br><span class="line">                System.out.println(<span class="string">&quot;nihao&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;hello&quot;</span>:</span><br><span class="line">                System.out.println(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+</blockquote>
+</li>
+<li><p>可变长参数</p>
+<blockquote>
+<p>一次性传输多个同类型参数,类似一维数组的数据结构</p>
+</blockquote>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">(String... strs)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//参数相当于一个一维数组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; strs.length; i++) &#123;</span><br><span class="line">        System.out.println(strs[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+</li>
+<li><p>断言</p>
+<blockquote>
+<p>从JavaSE 1.4之后引入的,为了避免老版本代码使用了assert关键字导致的错,默认是不启动</p>
+<p>断言检查,类似if else的判断作用,可用作参数校验,判断</p>
+</blockquote>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">checkPass</span><span class="params">(String passWord)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//参数校验</span></span><br><span class="line">    <span class="keyword">assert</span> passWord.length() &lt; <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+</li>
+<li><p>数值字面量</p>
+<blockquote>
+<p>字面量,字面上的表达上的值,使用下划线的作用是为了增加可读性,在编译时会被编译器忽略</p>
+</blockquote>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">literal</span><span class="params">()</span>&#123;</span><br><span class="line">   </span><br><span class="line">    <span class="comment">//字面量</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10_000</span>;</span><br><span class="line">   </span><br><span class="line">    <span class="type">double</span> <span class="variable">d</span> <span class="operator">=</span> <span class="number">10.00_00_00</span>;</span><br><span class="line">   </span><br><span class="line">    System.out.println(i);</span><br><span class="line">   </span><br><span class="line">    System.out.println(d);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+</li>
+<li><p>For-each</p>
+<blockquote>
+<p>常用的循环方式,一般底层都是迭代器,并且使用了fail-fast机制</p>
+</blockquote>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">(String... strs)</span>&#123;</span><br><span class="line">   </span><br><span class="line">    <span class="comment">//增强for循环</span></span><br><span class="line">    <span class="keyword">for</span> (String str : strs) &#123;</span><br><span class="line">        System.out.println(str);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//转换为集合</span></span><br><span class="line">    List&lt;String&gt; list  = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    </span><br><span class="line">    list.add(<span class="string">&quot;123&quot;</span>);</span><br><span class="line">    </span><br><span class="line">    String s;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//普通for循环</span></span><br><span class="line">    <span class="comment">//底层是迭代器</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">Iterator</span> <span class="variable">iterator</span> <span class="operator">=</span> list.iterator();iterator.hasNext(); System.out.println(s)) &#123;</span><br><span class="line">        s = (String) iterator.next();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ol>
+<p><strong>注意事项</strong></p>
+<ol>
+<li><p>泛型擦除带来问题</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//由于泛型在编译后会擦除为Object,所以无法再构成重载,会导致编译无法通过</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">method</span><span class="params">(List&lt;String&gt; list)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Hello World String list&quot;</span>);</span><br><span class="line">   </span><br><span class="line">&#125;</span><br><span class="line">   </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">method</span><span class="params">(List&lt;Long&gt; list)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Hello World long list&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Try catch也无法去区别一次的泛型类型,同样也是因为泛型擦除机制</span></span><br></pre></td></tr></table></figure></div>
+
+
+</li>
+<li><p>自动拆箱和装箱</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="comment">//由于缓存机制,会将-128-127的数值缓存起来</span></span><br><span class="line">    <span class="comment">//因为可能使用的频率较高,所以将其缓存</span></span><br><span class="line">    <span class="type">Integer</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">129</span>;</span><br><span class="line">    <span class="type">Integer</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">128</span>;</span><br><span class="line">    <span class="type">Integer</span> <span class="variable">c</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line">    <span class="type">Integer</span> <span class="variable">d</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line">   </span><br><span class="line">    System.out.println(a == b);</span><br><span class="line">    System.out.println(c == d);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>增强for循环</p>
+<blockquote>
+<p>由于底层使用的是迭代器,在遍历时对象不允许修改或删除,会出现cms(并发修改异常),</p>
+<p>也就fail-fast机制,防止多线程修改,所以建议使用迭代器或者Stream流提供的方法进行修改</p>
+</blockquote>
+</li>
+</ol>
+<p><strong>总结</strong></p>
+<ol>
+<li>Java 虚拟机并不直接支持这些语法糖，它们在编译阶段会被还原成简单的基础语法结构。这种解语法糖的过程可以让 Java 代码在保持简洁性和可读性的同时，在虚拟机中正确运行。</li>
+<li>虽然语法糖可以使代码更简洁易读，但过度使用或不恰当地使用也可能导致代码变得难以理解或维护。在实际编程中，应根据具体情况权衡使用语法糖的利弊，以保证代码的可读性、可维护性和性能</li>
+</ol>
+<h3 id="如何明确一件事的功能点或目标"><a href="#如何明确一件事的功能点或目标" class="headerlink" title="如何明确一件事的功能点或目标"></a>如何明确一件事的功能点或目标</h3><ol>
+<li>明确是什么用途,具体是干什么,想要做到什么事情,比如跑步,你是想在什么场景下跑步</li>
+<li>确定场景和用户群,确定是谁会使用,给谁使用,带入场景</li>
+<li>设定性能指标,必须是可量化和衡量的指标,如电池的充电瓦数,时长,容量</li>
+<li>考虑用户体验,关注使用的方便性和直观性,让用户用的爽,满足他的预期,如我就想充电快,拍照好</li>
+<li>对比竞争,和同类产品比较,和他人比较,才能衡量做的是否足够</li>
+<li>评估可靠性,对于功能点在未来的场景或不同场景下的稳定性</li>
+<li>思考扩展性和兼容性,在未来,是否可以对当前的不足的功能点进行升级和其它场景的兼容</li>
+<li>分析成本效益,评估功能点的成本和效益的关系</li>
+</ol>
+<h3 id="考虑角度"><a href="#考虑角度" class="headerlink" title="考虑角度"></a>考虑角度</h3><ol>
+<li>可以从未来,过去,当下三个角度考虑问题</li>
+<li>未来的话,如扩展和兼容性,可靠性,是最终能否满足可能出现的新需求和变化</li>
+<li>过去的话,如功能点,竞争,用户体验,是对于过去的经验教训吸取</li>
+<li>现在的话,用途,场景和用户群,性能指标,可靠性,是必须考虑的现实情况,更具有实用性</li>
+</ol>
 ]]></content>
   </entry>
   <entry>
@@ -535,6 +1001,206 @@
 <blockquote>
 <p>报文重在特定协议的传输格式的数据,包重在数据的传输内容本身</p>
 </blockquote>
+]]></content>
+  </entry>
+  <entry>
+    <title>消息协议设计及实战</title>
+    <url>/2024/06/22/%E6%B6%88%E6%81%AF%E5%8D%8F%E8%AE%AE%E8%AE%BE%E8%AE%A1%E5%8F%8A%E5%AE%9E%E6%88%98/</url>
+    <content><![CDATA[<h3 id="消息协议设计及实战"><a href="#消息协议设计及实战" class="headerlink" title="消息协议设计及实战"></a>消息协议设计及实战</h3><h3 id="1-协议"><a href="#1-协议" class="headerlink" title="1.协议"></a>1.协议</h3><ul>
+<li><p>协议</p>
+<ul>
+<li><p>Http</p>
+</li>
+<li><p>Jute</p>
+<ul>
+<li><p>请求</p>
+<blockquote>
+<p>分为请求头和请求体</p>
+<ul>
+<li><p>长度(使用0-3byte的范围)</p>
+<ul>
+<li>len,表示整个请求的长度,使用0-3byte的范围表示</li>
+</ul>
+</li>
+<li><p>请求头(使用4-11byte的范围)</p>
+<ul>
+<li>xid,客户端请求序号,使用4-7byte的范围表示</li>
+<li>type,客户端请求的类类型,使用8-11byte的范围表示</li>
+</ul>
+</li>
+<li><p>请求体(使用12-n byte的范围)</p>
+<ul>
+<li>len,表示请求体的长度,使用12-15byte的范围表示</li>
+<li>path,表示节点的路径,使用16-(n-1)byte的范围表示</li>
+<li>watch,表示是否主从,使用n位置的字节表示</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Dubbo</p>
+</li>
+</ul>
+</li>
+<li><p>定义格式(约定)</p>
+<ul>
+<li><p>自定义</p>
+<blockquote>
+<ul>
+<li>魔数,CAFE特殊标识</li>
+<li>版本号</li>
+<li>消息类型,标识请求的方式类型,如请求&#x2F;响应,CRUD,PING&#x2F;PONG</li>
+<li>序列化算法,传输的格式</li>
+<li>请求序号,对Future的返回的内容进行编号</li>
+<li>消息长度</li>
+<li>消息正文</li>
+<li>……</li>
+<li>等一些属性</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>定义协议</p>
+<ul>
+<li>对协议需要的参数进行定义,约束</li>
+<li>sessionId</li>
+<li>reqType</li>
+<li>Content-length</li>
+<li>Content</li>
+</ul>
+</li>
+<li><p>实现的功能</p>
+<ul>
+<li>定义一个协议</li>
+<li>针对定义协议实现编解码</li>
+<li>基于自定义协议实现通讯</li>
+</ul>
+</li>
+<li><p>数据结构</p>
+</li>
+</ul>
+<h3 id="2-序列化"><a href="#2-序列化" class="headerlink" title="2.序列化"></a>2.序列化</h3><p>为什么要这么传输</p>
+<blockquote>
+<p>使用流的形式进行传输<br>“一组数据”“一套数据”“一条数据”这类描述往往暗示了数据的数量、类型等是相对明确和固定的。</p>
+<p>而“流”的概念更侧重于强调数据的动态性、连续性和不确定性，就像水流一样，不知道它会持续多久、包含多少以及具体的内容变化。</p>
+<p>例如，在实时视频流中，我们无法事先确切知道每一帧的具体内容和整个流的长度；在网络接收数据的过程中，流的大小和持续时间也可能是未知的，直到传输结束。</p>
+<p>这种对“流”与固定形式描述的区分，有助于我们在不同的场景中选择合适的方式来理解和处理数据。</p>
+</blockquote>
+<ul>
+<li><p>字节码</p>
+</li>
+<li><p>二进制流&#x2F;xxx进制流</p>
+</li>
+<li><p>JSON</p>
+</li>
+<li><p>XML</p>
+</li>
+<li><p>使用IO流</p>
+<ul>
+<li><p>API命名方式和下述场景相关</p>
+</li>
+<li><p>面向磁盘的</p>
+</li>
+<li><p>面向网络的</p>
+</li>
+<li><p>面向内存的</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Java序列化方式</p>
+<ul>
+<li><p>为什么</p>
+<ul>
+<li>保证安全,避免篡改导致的安全问题</li>
+</ul>
+</li>
+<li><p>怎么做</p>
+<ul>
+<li><p>实现Serializable接口,申明SerialVersionUID,表明唯一性</p>
+<blockquote>
+<p>为什么要实现</p>
+<p>在RPC这种场景下实现该接口,只是一个默认的策略,保证在传输过程中能够序列化</p>
+<p>序列化id</p>
+<p>双方需保证一致才能操作,并且需要显式设置,不然当类发生变化时,反序列化方没有感知到,将会导致序列化错误</p>
+</blockquote>
+</li>
+<li><p>对字段添加transient关键字决定是否序列化,压缩传输数据大小,<br>减少资源浪费</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>序列化方式考虑(不仅仅是序列化,技术方案的考虑也是如此)</p>
+<ul>
+<li>性能<ul>
+<li>空间—&gt;序列化后的数据报文大小</li>
+<li>时间—&gt;序列化消耗的时间</li>
+</ul>
+</li>
+<li>支持<ul>
+<li>语言特性</li>
+<li>跨平台</li>
+</ul>
+</li>
+<li>成熟度<ul>
+<li>生态</li>
+</ul>
+</li>
+<li>扩展性,兼容性<ul>
+<li>延展</li>
+<li>提升</li>
+</ul>
+</li>
+<li>示例<ul>
+<li>跨平台<ul>
+<li>XML</li>
+<li>web(Service)</li>
+<li>soap(html+xml)</li>
+<li>wsdl</li>
+<li>axis&#x2F;cxf</li>
+<li>json</li>
+</ul>
+</li>
+<li>独立平台<ul>
+<li>Java</li>
+<li>Dubbo</li>
+</ul>
+</li>
+<li>对内和对外通讯区别</li>
+<li>为什么要压缩数据报文大小<ul>
+<li>xml&#x2F;json</li>
+<li>hession&#x2F;jute</li>
+<li>进行对比</li>
+<li>因为序列化的方法相当于使用不同的语言进行翻译,最终翻译的格式和长短也就不一样,不同序列化的方式带来的结果也就不一样</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>3.Protobuf序列化</p>
+<p>为什么小</p>
+<p>存储结构</p>
+<ul>
+<li>类似传输协议的结构</li>
+<li>使用计算后的值代替属性名,压缩空间</li>
+<li>无效字节压缩</li>
+<li>tag</li>
+<li>length</li>
+<li>value</li>
+</ul>
+<p>什么情况下才能压缩</p>
+<ul>
+<li>有效</li>
+<li>无效</li>
+</ul>
+<p>压缩的方式</p>
+<ul>
+<li>正数压缩</li>
+<li>负数压缩</li>
+</ul>
 ]]></content>
   </entry>
   <entry>
@@ -2012,472 +2678,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Java语言设计思路</title>
-    <url>/2024/07/15/Java%E8%AF%AD%E8%A8%80%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF/</url>
-    <content><![CDATA[<h2 id="Java语言设计思路"><a href="#Java语言设计思路" class="headerlink" title="Java语言设计思路"></a>Java语言设计思路</h2><h3 id="1-方法入参强转-健壮性"><a href="#1-方法入参强转-健壮性" class="headerlink" title="1.方法入参强转(健壮性)"></a>1.方法入参强转(健壮性)</h3><blockquote>
-<p>原因</p>
-<p>这种设计是为了达到程序的健壮性考虑,而不是三天两头出现问题,从源头避免,类似的场景还有受检异常,泛型,都是在编译器发现问题</p>
-<p>您的观点十分准确。这种在编译阶段进行严格检查和限制的设计，的确是为了增强程序的健壮性。</p>
-<p><strong>就像您提到的受检异常（Checked Exceptions），它要求开发者在代码中显式地处理可能抛出的异常，否则无法通过编译。这促使开发者提前考虑并处理可能出现的错误情况，而不是在运行时才面对无法处理的异常导致程序崩溃。</strong></p>
-<p>泛型（Generics）也是一个很好的例子。通过在编译时对泛型类型进行检查，可以避免在运行时出现类型转换错误等问题，提高了代码的类型安全性。</p>
-<p>这些设计都是为了在程序开发的早期，即在编译器能够发现问题的时候，就将潜在的错误暴露出来，让开发者及时修正，从而从源头上减少程序在运行时出现问题的可能性，提高程序的稳定性和可靠性。</p>
-<p>例如，在使用泛型的集合时，如果尝试向一个指定类型的集合中添加不匹配的元素，编译器会给出错误提示，避免了在运行时才发现类型不匹配的问题。</p>
-<p>又如，处理受检异常时，如果方法可能抛出 <code>FileNotFoundException</code>，而调用者没有进行捕获或声明抛出，编译就会失败，促使开发者提前想好如何处理文件不存在的情况。</p>
-</blockquote>
-<h3 id="2-T和-的区别-扩展性"><a href="#2-T和-的区别-扩展性" class="headerlink" title="2.T和?的区别(扩展性)"></a>2.T和?的区别(扩展性)</h3><h4 id="2-1-是什么"><a href="#2-1-是什么" class="headerlink" title="2.1.是什么"></a>2.1.是什么</h4><p>T和?作为Java语言中的泛型占位符,一个用于接收明确类型,一个用于接收<br>未知类型,是为了提高代码复用的一个技巧,但在使用时需要注意类型转换<br>的问题</p>
-<p>通常情况下，<code>T</code> 更常用于在方法之间进行类型的传递，以保持类型的一致性和准确性，并且可能会涉及到写入操作。</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="keyword">void</span> <span class="title function_">processAndReturn</span><span class="params">(T data)</span> &#123;</span><br><span class="line">    <span class="comment">// 对 data 进行处理</span></span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>而 <code>?</code> 更多地用于表示不确定性，更侧重于接收和读取，强调对多种类型的兼容性。</p>
-<p>然而，也存在一些特殊情况，可能会在特定的设计中对 <code>?</code> 进行一些特殊的传递或操作。但总体来说，您所描述的这种倾向是比较常见和符合一般编程习惯的。</p>
-<h4 id="2-2-使用场景"><a href="#2-2-使用场景" class="headerlink" title="2.2.使用场景"></a>2.2.使用场景</h4><blockquote>
-<p><code>T</code> 作为泛型类型参数，确实常用于类、成员变量、参数列表等场景，因为它能够提供更明确的类型约束和操作方式。</p>
-<p>而 <code>Class&lt;?&gt;</code> （其中 <code>?</code> 表示通配符）不仅可以用于局部变量，也可以在一些情况下用于方法的参数或返回值，以表示对类型的更宽松的约束。</p>
-<p>例如，在某些方法中，如果您不关心具体的类型，只需要进行一些通用的操作，就可以使用 <code>Class&lt;?&gt;</code> 作为参数类型。</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line">Public <span class="keyword">class</span> <span class="title class_">A</span>&lt;T&gt; &#123; <span class="comment">//表示为泛型类型,在创建A类时指定,A&lt;String&gt; a = new A&lt;&gt;();</span></span><br><span class="line">    <span class="keyword">private</span> T obj; <span class="comment">//表示任意类型,在构造方法中初始化在构造方法中传递给成员变量</span></span><br><span class="line">                   <span class="comment">//此处将构造方法的泛型和成员变量的泛型进行关联</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">A</span><span class="params">(T obj)</span>&#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; T <span class="title function_">change</span><span class="params">(T param)</span>&#123; <span class="comment">//&lt;T&gt; 表示泛型方法</span></span><br><span class="line">                                  <span class="comment">// T 表示返回结果可以为任意类型</span></span><br><span class="line">                                  <span class="comment">// T param 表示接收参数为任意类型</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> (T)param; <span class="comment">//显式强转,调用方的类型需要和方法返回类型一致</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-
-
-
-</blockquote>
-<h4 id="2-3-T的传递性"><a href="#2-3-T的传递性" class="headerlink" title="2.3.T的传递性"></a>2.3.T的传递性</h4><blockquote>
-<p><strong>T的传递场景</strong><br>1.参数使用<br>2.参数传递<br>3.在泛型方法中使用成员变量&#x2F;其它方法对T进行使用或参数传递<br>4.不进行上述操作的话,就只是一个标记而已</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> T value;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyClass</span><span class="params">(T value)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.value = value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; T <span class="title function_">myMethod</span><span class="params">(String methodName)</span> &#123;</span><br><span class="line">        <span class="comment">// 这里可以根据类中保存的 value 的类型进行相关操作，建立了关联</span></span><br><span class="line">        <span class="keyword">if</span> (value <span class="keyword">instanceof</span> String &amp;&amp; methodName.equals(<span class="string">&quot;getString&quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> (T) <span class="string">&quot;Some String&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        MyClass&lt;Integer&gt; integerMyClass = <span class="keyword">new</span> <span class="title class_">MyClass</span>&lt;&gt;(<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> integerMyClass.myMethod(<span class="string">&quot;getString&quot;</span>);</span><br><span class="line">        System.out.println(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p><strong>T的覆盖</strong></p>
-<blockquote>
-<p>默认声明位置为类名后方,如public class  A<T> {</p>
-<p>}</p>
-<p>其它位置,可在除构造方法外的方法定义,如public <T>  T  change(T param)<br><strong>在方法前声明会覆盖类上的声明,类似独立定义</strong></p>
-</blockquote>
-</blockquote>
-<h3 id="3-显式转换和隐式转换-扩展性"><a href="#3-显式转换和隐式转换-扩展性" class="headerlink" title="3.显式转换和隐式转换(扩展性)"></a>3.显式转换和隐式转换(扩展性)</h3><blockquote>
-<p>显式转换更需要开发者谨慎处理，确保转换的正确性；隐式转换通常由编译器根据特定的规则自动处理，但也需要了解其可能的影响和限制。</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//显式</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//被调用方</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; T <span class="title function_">invoke</span><span class="params">(String methodName)</span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//传入目标类和其方法</span></span><br><span class="line">            <span class="comment">//获取反射后的实例</span></span><br><span class="line">            <span class="comment">//反射调用目标方法返回结果</span></span><br><span class="line">            <span class="comment">//这里的目的是判断传递进来的类型是否属于Class</span></span><br><span class="line">            <span class="keyword">if</span> (targetClass <span class="keyword">instanceof</span> Class&lt;?&gt;)&#123;</span><br><span class="line">                <span class="comment">//强制类型转换</span></span><br><span class="line">                <span class="comment">//?表示未知类型的Class对象</span></span><br><span class="line">                <span class="comment">//T表示确定类型的Class对象</span></span><br><span class="line">                <span class="comment">//二者都可用于参数传递</span></span><br><span class="line">                <span class="comment">//T常用于写入和读取参数</span></span><br><span class="line">                <span class="comment">//?仅用于读取参数</span></span><br><span class="line">                Class&lt;?&gt;  clazz = (Class&lt;?&gt;) targetClass;</span><br><span class="line">                <span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> clazz.newInstance();</span><br><span class="line"></span><br><span class="line">                <span class="comment">//反射掉目标方法返回结果</span></span><br><span class="line">                <span class="type">Method</span> <span class="variable">method</span> <span class="operator">=</span> clazz.getMethod(methodName);</span><br><span class="line"></span><br><span class="line">                <span class="comment">//显式转换,在被调用方,告知编译器,我需要转换啦</span></span><br><span class="line">                <span class="keyword">return</span> (T)method.invoke(o);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">   <span class="comment">//调用方</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        Proxy&lt;Class&gt; proxy = <span class="keyword">new</span> <span class="title class_">Proxy</span>(Student.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//显式转换,在调用方强转,告知编译器我需要强转</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">changeVal</span> <span class="operator">=</span> (String) proxy.invoke(<span class="string">&quot;changeName&quot;</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(changeVal);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
-
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//隐式转换-正确场景</span></span><br><span class="line"><span class="type">Integer</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; <span class="comment">//自动装包</span></span><br><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> i <span class="comment">//自动拆包</span></span><br><span class="line"><span class="type">Animal</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Lion</span>(); <span class="comment">//lion继承自父类,所以属于隐式转换</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//显式转换-正确场景</span></span><br><span class="line"><span class="type">Animal</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Lion</span>();</span><br><span class="line"><span class="type">Lion</span> <span class="variable">lion</span> <span class="operator">=</span> (Lion)a;<span class="comment">//因为a本身就是Lion类型的对象,所以可以转换</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//转换-失败场景</span></span><br><span class="line"><span class="type">Integer</span> <span class="variable">i</span> <span class="operator">=</span> (String)<span class="string">&quot;&quot;</span>; <span class="comment">//这种转换应该发生于子类或同类之间</span></span><br><span class="line"></span><br><span class="line"><span class="type">Animal</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Animal</span>(); </span><br><span class="line"><span class="type">Lion</span> <span class="variable">lion</span> <span class="operator">=</span> (Lion)a;<span class="comment">//这种也是如此,需要转换的类型必须是同类或子类</span></span><br></pre></td></tr></table></figure></div>
-
-
-</blockquote>
-<h4 id="3-1-转换检查-健壮性"><a href="#3-1-转换检查-健壮性" class="headerlink" title="3.1.转换检查(健壮性)"></a>3.1.转换检查(健壮性)</h4><blockquote>
-<p>编译期间</p>
-<ul>
-<li><p>方法参数</p>
-<blockquote>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line">change( (Integer) <span class="string">&quot;&quot;</span>); <span class="comment">//方法参数需要Integer类型,你传入String类型</span></span><br></pre></td></tr></table></figure></div>
-
-
-</blockquote>
-</li>
-<li><p>局部</p>
-<blockquote>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Integer</span> <span class="variable">i</span> <span class="operator">=</span> <span class="literal">null</span>; <span class="comment">//这种是需要提前预知的</span></span><br><span class="line">        </span><br><span class="line">i = (Integer) <span class="string">&quot;&quot;</span>;</span><br></pre></td></tr></table></figure></div>
-
-</blockquote>
-</li>
-</ul>
-<p>运行期间</p>
-<ul>
-<li><p>方法参数</p>
-<blockquote>
-<p>通过编译期检查后,需要再对一些涉及多态和强制类型转换的情况进行检查,<br>在运行时会再次检测传递的类型是否能够转换为方法内部期待的类型</p>
-</blockquote>
-</li>
-<li><p>局部</p>
-<blockquote>
-<p>当从方法返回一个值并进行类型转换时，如果实际返回的值类型与接收方期望的类型不兼容，会在运行时出错</p>
-</blockquote>
-</li>
-<li><p>返回结果</p>
-<blockquote>
-<p>当从方法返回一个值并进行类型转换时，如果实际返回的值类型与接收方期望的类型不兼容，会在运行时出错</p>
-</blockquote>
-</li>
-</ul>
-<p>总结</p>
-<ul>
-<li>有些强转如方法入参和初始化是可以预见的,<strong>需要提前感知</strong></li>
-<li>而一些涉及多态的场景下的强转则是需要主动关注的,<strong>如第一次使用时</strong><br><strong>使用父类接收子类,之后在使用时又强转回子类的场景</strong></li>
-</ul>
-</blockquote>
-<h3 id="4-访问修饰符-安全性"><a href="#4-访问修饰符-安全性" class="headerlink" title="4.访问修饰符(安全性)"></a>4.访问修饰符(安全性)</h3><ul>
-<li>类<ul>
-<li>public,任意位置都能访问,new的方式</li>
-<li>private,只有在当前类能访问</li>
-<li>default,如com.xxx.example,只有处于这个绝对路径下或同级包的类才能访问</li>
-</ul>
-</li>
-<li>变量<ul>
-<li>public,任意位置都能访问,如new Person().属性,可以直接获取,无需get&#x2F;set方法</li>
-<li>private,只有在当前类能访问</li>
-<li>default,如com.xxx.example,只有处于这个绝对路径下或同级包的类才能访问</li>
-</ul>
-</li>
-<li>方法<ul>
-<li>public,任意位置都能访问,如new Person().方法,可以直接获取</li>
-<li>private,只有在当前类能访问</li>
-<li>protected,只有子类能够访问</li>
-<li>default,如com.xxx.example,只有处于这个绝对路径下或同级包的类才能访问</li>
-</ul>
-</li>
-<li>代码块<ul>
-<li>普通<ul>
-<li>每次new的时候都会执行</li>
-</ul>
-</li>
-<li>静态<ul>
-<li>优先执行</li>
-<li>只会在类加载的第一次执行</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="5-接口-扩展性"><a href="#5-接口-扩展性" class="headerlink" title="5.接口(扩展性)"></a>5.接口(扩展性)</h3><ul>
-<li><p>抽象,就是一个抽象类</p>
-<blockquote>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//默认就是抽象类,可以不写关键字</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">interface</span> <span class="title class_">Course</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//接口中的变量只能是常量,不可修改</span></span><br><span class="line">    <span class="keyword">final</span> List&lt;Course&gt; courses = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">abstract</span> String <span class="title function_">getCourseName</span><span class="params">()</span>; <span class="comment">//默认就是抽象方法,可以不写关键字</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">abstract</span> Double <span class="title function_">getCoursePrice</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">abstract</span> Short <span class="title function_">getCourseType</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">abstract</span> String <span class="title function_">getCourseDesc</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">abstract</span> String <span class="title function_">getCourseTeacher</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">default</span> Double <span class="title function_">calcPrice</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">Double</span> <span class="variable">initVal</span> <span class="operator">=</span> <span class="number">0.0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//fori方式</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; courses.size(); i++) &#123;</span><br><span class="line"></span><br><span class="line">            initVal += courses.get(i).getCoursePrice();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//Stream流方式</span></span><br><span class="line">        initVal = courses.stream()</span><br><span class="line">                .mapToDouble(Course::getCoursePrice)</span><br><span class="line">                .sum();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> initVal;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//条件</span></span><br><span class="line">        Stream&lt;Course&gt; courseStream = courses.stream()</span><br><span class="line">                .filter(course -&gt; course.getCoursePrice() == <span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//匿名内部类(new)</span></span><br><span class="line">        <span class="type">Thread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;test_lambda&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();<span class="comment">//启动线程</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//匿名内部类(函数式)</span></span><br><span class="line">        <span class="type">Thread</span> <span class="variable">Thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; System.out.println(<span class="string">&quot;test_lambda&quot;</span>));</span><br><span class="line">        thread.start();<span class="comment">//启动线程</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//接口实现(new)</span></span><br><span class="line">        <span class="type">Course</span> <span class="variable">course</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Course</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> String <span class="title function_">getCourseName</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> Double <span class="title function_">getCoursePrice</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> Short <span class="title function_">getCourseType</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> String <span class="title function_">getCourseDesc</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> String <span class="title function_">getCourseTeacher</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//接口实现(函数式)</span></span><br><span class="line">        Function&lt;Integer, Byte&gt; stringLengthFunction = i -&gt; i.byteValue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-
-
-</blockquote>
-</li>
-<li><p>仅定义方法</p>
-</li>
-<li><p>只能有一个默认方法,包含实现</p>
-</li>
-<li><p>多实现</p>
-</li>
-</ul>
-<h3 id="6-抽象-耦合性"><a href="#6-抽象-耦合性" class="headerlink" title="6.抽象(耦合性)"></a>6.抽象(耦合性)</h3><ul>
-<li>抽象方法,有抽象方法的一定是抽象类</li>
-</ul>
-<h3 id="7-继承-耦合性"><a href="#7-继承-耦合性" class="headerlink" title="7.继承(耦合性)"></a>7.继承(耦合性)</h3><ul>
-<li>单继承</li>
-</ul>
-<h3 id="8-函数式接口-复用性"><a href="#8-函数式接口-复用性" class="headerlink" title="8.函数式接口(复用性)"></a>8.函数式接口(复用性)</h3><ul>
-<li><p>FunctionInterface标明的接口</p>
-</li>
-<li><p>有且只有一个抽象的方法</p>
-</li>
-<li><p>有0个或任意个default方法</p>
-</li>
-<li><p>示例</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1.Function&lt;T, R&gt;：接受一个类型为 T 的参数，并返回一个类型为 R 的结果。</span></span><br><span class="line">示例：Function&lt;String, Integer&gt; stringLengthFunction = s -&gt; s.length();</span><br><span class="line"><span class="comment">//2.Predicate&lt;T&gt;：接受一个类型为 T 的参数，并返回一个布尔值。</span></span><br><span class="line">示例：Predicate&lt;String&gt; isLongString = s -&gt; s.length() &gt; <span class="number">10</span>;</span><br><span class="line"><span class="comment">//3.Consumer&lt;T&gt;：接受一个类型为 T 的参数，不返回值。</span></span><br><span class="line">示例：Consumer&lt;String&gt; printString = s -&gt; System.out.println(s);</span><br><span class="line"><span class="comment">//4.Supplier&lt;T&gt;：不接受参数，返回一个类型为 T 的结果。</span></span><br><span class="line">示例：Supplier&lt;String&gt; randomStringSupplier = () -&gt; <span class="string">&quot;Random String&quot;</span>;</span><br><span class="line"><span class="comment">//5.UnaryOperator&lt;T&gt;：接受一个类型为 T 的参数，并返回同类型 T 的结果。</span></span><br><span class="line">示例：UnaryOperator&lt;Integer&gt; doubleInteger = i -&gt; i * <span class="number">2</span>;</span><br><span class="line"><span class="comment">//6.BinaryOperator&lt;T&gt;：接受两个类型为 T 的参数，并返回同类型 T 的结果。</span></span><br><span class="line">示例：BinaryOperator&lt;Integer&gt; sumIntegers = (i1, i2) -&gt; i1 + i2;</span><br></pre></td></tr></table></figure></div></li>
-</ul>
-<h3 id="9-面向对象设计-封装性"><a href="#9-面向对象设计-封装性" class="headerlink" title="9.面向对象设计(封装性)"></a>9.面向对象设计(封装性)</h3><ul>
-<li>包装类</li>
-<li>异常</li>
-<li>配置</li>
-</ul>
-<h3 id="10-静态-常量"><a href="#10-静态-常量" class="headerlink" title="10.静态&#x2F;常量"></a>10.静态&#x2F;常量</h3><ul>
-<li>变量</li>
-<li>代码块</li>
-</ul>
-<h3 id="11-注解"><a href="#11-注解" class="headerlink" title="11.注解"></a>11.注解</h3><ul>
-<li>使用位置</li>
-<li>内部构造</li>
-<li>生效时间</li>
-</ul>
-<h3 id="12-枚举"><a href="#12-枚举" class="headerlink" title="12.枚举"></a>12.枚举</h3><ul>
-<li>类型</li>
-<li>值</li>
-</ul>
-<h3 id="13-字符串"><a href="#13-字符串" class="headerlink" title="13.字符串"></a>13.字符串</h3><ul>
-<li>不可修改,内部维护final的char数组</li>
-</ul>
-<h3 id="14-多线程"><a href="#14-多线程" class="headerlink" title="14.多线程"></a>14.多线程</h3><ul>
-<li>内存模型<ul>
-<li>共享空间</li>
-<li>线程独立空间</li>
-<li>修改数据在自己的空间完成,再同步到共享空间</li>
-</ul>
-</li>
-<li>锁机制<ul>
-<li>Synchroized<ul>
-<li>锁粗化</li>
-<li>锁升级</li>
-<li>锁降级</li>
-</ul>
-</li>
-<li>Lock<ul>
-<li>公平</li>
-<li>非公平</li>
-</ul>
-</li>
-<li>CAS<ul>
-<li>吞吐量,性能</li>
-<li>CPU空转</li>
-<li>ABA问题,一个线程修改的数据被其它线程修改回去了</li>
-</ul>
-</li>
-<li>场景问题<ul>
-<li>锁饥饿,一直获取不到锁</li>
-<li>死锁,双方互相持有对方的锁</li>
-<li>活锁,双方你先拿,但发现对方需要,又给对方了,类似你走一步,我走一步的场景</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>安全容器<ul>
-<li>Vector</li>
-<li>StringBuffer</li>
-<li>ConcurrentHashMap</li>
-</ul>
-</li>
-<li>并发三大特性<ul>
-<li>原子性<ul>
-<li>锁</li>
-<li>Volatile,单个线程操作原子性</li>
-</ul>
-</li>
-<li>有序性<ul>
-<li>执行顺序<ul>
-<li>Synchroized,保证顺序一定不会打乱</li>
-<li>Volitale,从某个层面有序,保证代码的有序,不会发生顺序变化</li>
-</ul>
-</li>
-<li>指令<ul>
-<li>Volitale,开启读写屏障,避免CPU指令重排序</li>
-<li>关闭jit优化,关闭即时编译器优化功能,对指令重新排序</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>可见性<ul>
-<li>一致性协议,如MESI协议,通过消息机制保证内存和CPU缓存的数据一致性</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="15-函数式"><a href="#15-函数式" class="headerlink" title="15.函数式"></a>15.函数式</h3><ul>
-<li><p><strong>lambda</strong></p>
-<ul>
-<li><p>考虑线程安全,在函数内部只能使用final修饰的变量&#x2F;线程安全的变量</p>
-<blockquote>
-<p><strong>闭包</strong></p>
-<p>假设你有个函数A,这个函数A里定义了一个变量x,然后再函数A中又<br>定义了一个B函数,这个B函数用到了变量x,那么这个新函数B就形成<br>了一个闭包,就像你出去吃自助餐.但时间已经结束了,但你说你要打包,<br>还要带走一些菜,打破了规则,本意上是局部变量的范围只有在当前函数,<br>不能传递给其它的函数,尤其是函数内的函数,如lambda,强行获取函数内<br>的局部变量</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ClosureExample</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">ClosureExample</span> <span class="variable">example</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClosureExample</span>();</span><br><span class="line">        example.outerFunction();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">outerFunction</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 这里定义的 innerFunction 形成了闭包</span></span><br><span class="line">        <span class="type">Runnable</span> <span class="variable">innerFunction</span> <span class="operator">=</span> () -&gt; &#123;</span><br><span class="line">            System.out.println(count);</span><br><span class="line">            count++;</span><br><span class="line">        &#125;;</span><br><span class="line">        innerFunction.run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p><strong>总结</strong></p>
-<ol>
-<li><p>由于局部变量的使用范围只有当前函数,不可被其它函数主动获取</p>
-</li>
-<li><p>所以闭包的这种场景是lambda函数已经不属于当前函数的范围了<br>所以不该获取到,然后进行修改,仅仅允许只读是最大的范围了</p>
-</li>
-<li><p>所以lambda想要使用局部变量,不建议修改局部变量,建议要使用<br>就用final修饰局部变量,但对象除外,不修饰也可使用,但不建议这么<br>做</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//例子如下</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LambdaExample</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">strBuilder</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">        Consumer&lt;StringBuilder&gt; consumer = s -&gt; s.append(<span class="string">&quot; World&quot;</span>); </span><br><span class="line">        consumer.accept(strBuilder);</span><br><span class="line">        System.out.println(strBuilder.toString()); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-
-</li>
-<li><p>这样既可以保证数据安全和程序健壮性,避免出现意外修改导致问题<br>也变相的保证了多线程场景下操作共享变量的安全问题</p>
-</li>
-</ol>
-</blockquote>
-</li>
-<li><p>简洁,可用于声明匿名内部类,函数式方法</p>
-</li>
-<li><p>类似面向过程的编程,而不是抽象出一个对象来封装具体逻辑</p>
-<blockquote>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//条件</span></span><br><span class="line">        Stream&lt;Course&gt; courseStream = courses.stream()</span><br><span class="line">                .filter(course -&gt; course.getCoursePrice() == <span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//匿名内部类(new)</span></span><br><span class="line">        <span class="type">Thread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;test_lambda&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();<span class="comment">//启动线程</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//匿名内部类(函数式)</span></span><br><span class="line">        <span class="type">Thread</span> <span class="variable">Thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; System.out.println(<span class="string">&quot;test_lambda&quot;</span>));</span><br><span class="line">        thread.start();<span class="comment">//启动线程</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//接口实现(new)</span></span><br><span class="line">        <span class="type">Course</span> <span class="variable">course</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Course</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> String <span class="title function_">getCourseName</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> Double <span class="title function_">getCoursePrice</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> Short <span class="title function_">getCourseType</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> String <span class="title function_">getCourseDesc</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> String <span class="title function_">getCourseTeacher</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//接口实现(函数式),主要针对接口内唯一的抽象方法</span></span><br><span class="line">        Function&lt;Integer, Byte&gt; stringLengthFunction = i -&gt; i.byteValue();</span><br></pre></td></tr></table></figure></div>
-
-
-</blockquote>
-</li>
-<li><p>但面向过程的方法调用,数据和数据操作是分开的,仅仅是通过顺序执行<br>一系列函数来完成任务</p>
-<blockquote>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">dogName</span> <span class="operator">=</span> <span class="string">&quot;Fido&quot;</span>;</span><br><span class="line">        makeDogSound(dogName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">makeDogSound</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        System.out.println(name + <span class="string">&quot; barks&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="16-Java对象传递方式"><a href="#16-Java对象传递方式" class="headerlink" title="16.Java对象传递方式"></a>16.Java对象传递方式</h3><p>在Java中,对象之间的传递常常是通过引用来完成传递的,这样一方面是为了数据安全考虑以外,<br>也是为了提高效率,避免因大对象的值传递导致性能开销变大而降低传递效率,所以传递引用要<br>比值要小得多,类似指针和压缩列表的概念</p>
-<p><strong>使用原因</strong></p>
-<ul>
-<li>传递效率,通过减少大对象复制产生性能开销,来提升传递效率</li>
-<li>修改可见,其它位置的修改对于当前是可见的</li>
-<li>内存节省,避免不必要的对象复制,内存使用就变少了</li>
-<li>支持复杂的数据结构,对于复杂的属性(状态)的类型,无需关注怎么调整</li>
-<li>实现动态,可以在运行时灵活的改变引用所指向的对象,实现更加灵活的编程逻辑</li>
-<li>为Java中的对象操作提供了高效,灵活,方便的方式,有助于编写更复杂和高效的程序</li>
-</ul>
-<p><strong>类型划分</strong></p>
-<ul>
-<li><p>基本类型,如int,byte,long,这些属于值传递,在赋值,入参,返回是都是通过复制一份值副本完成</p>
-<p>操作的</p>
-</li>
-<li><p>引用类型</p>
-<ul>
-<li>可变,如StringBuilder,自定义类型等,这些类型常常涉及到属性,也就是状态的变化,所以需要可变</li>
-<li>不可变,如String,Integer等包装类型及一些简单类型,在赋值以后就不希望在发生变化,这也是为了数据安全考虑,避免被恶意篡改,所以天生线程安全</li>
-</ul>
-</li>
-</ul>
-<p>使用场景</p>
-<ul>
-<li>finally<ul>
-<li>这里主要是会对可变的引用类型产生影响,会在return之前覆盖掉原来想要返回的值,所以需要避免在这里操作可变的引用类型</li>
-</ul>
-</li>
-<li>method param<ul>
-<li>这里在方法入参时,会将一份引用的副本传递进来,在方法内部操作该引用副本,如果在方法内部对入参的引用进行修改,那原来的引用就不会感知到后来的修改,是不建议这么使用的</li>
-</ul>
-</li>
-</ul>
-<h3 id="什么是好的编程语言"><a href="#什么是好的编程语言" class="headerlink" title="什么是好的编程语言"></a>什么是好的编程语言</h3><ol>
-<li>简洁性与可读性<ul>
-<li>代码语法清晰、简洁，易于理解和编写。具有直观的关键字和语法结构，能够以简洁的方式表达复杂的逻辑。</li>
-</ul>
-</li>
-<li>高效性<ul>
-<li>能够在运行时提供出色的性能，包括快速的执行速度和低内存消耗。</li>
-<li>支持高效的算法和数据结构实现，以便开发者能够轻松优化程序的性能。</li>
-</ul>
-</li>
-<li>可扩展性<ul>
-<li>便于添加新的功能和特性，能够适应不断变化的需求和技术发展。</li>
-<li>拥有丰富的库和框架生态系统，方便开发者扩展其功能。</li>
-</ul>
-</li>
-<li>安全性<ul>
-<li>具备强大的类型系统，有助于在编译时捕获错误，减少运行时错误的发生。</li>
-<li>能够防止常见的编程错误，如缓冲区溢出、内存泄漏等。</li>
-</ul>
-</li>
-<li>跨平台性<ul>
-<li>可以在不同的操作系统和硬件架构上运行，无需大量的修改。</li>
-</ul>
-</li>
-<li>易学性<ul>
-<li>对于初学者来说，容易入门和掌握，拥有清晰的文档和学习资源。</li>
-</ul>
-</li>
-<li>强大的功能<ul>
-<li>支持面向对象、函数式、过程式等多种编程范式，以满足不同的编程需求。</li>
-<li>提供丰富的控制结构和数据类型。</li>
-</ul>
-</li>
-<li>良好的错误处理机制<ul>
-<li>能够清晰地报告错误，并提供有效的调试工具和信息，帮助开发者快速定位和解决问题。</li>
-</ul>
-</li>
-<li>社区支持与生态系统<ul>
-<li>拥有活跃的开发者社区，能够提供及时的技术支持和交流。</li>
-<li>有大量的开源项目和库可供复用。</li>
-</ul>
-</li>
-<li>可维护性<ul>
-<li>代码结构清晰，易于维护和更新，便于团队协作开发。</li>
-</ul>
-</li>
-</ol>
-<h3 id="17-Java语法糖"><a href="#17-Java语法糖" class="headerlink" title="17.Java语法糖"></a>17.Java语法糖</h3><p>一种经常使用,虽然看起来不起眼,但实际上是很重要的特性,和语言息息相关,只不过语言帮我们<br>隐藏了细节,让我们只用关心具体开发</p>
-<p><strong>常见语法糖</strong></p>
-<ol>
-<li><p>泛型</p>
-<blockquote>
-<p>编译检查,在编译期可提前发现类型问题,避免到运行期出现类型转换错误的问题</p>
-<p>参数灵活,如在泛型接口中,可以灵活的定义方法的入参,返回,提高代码的复用性</p>
-<p>逻辑通用,泛型的类或接口可以根据泛型来传入不同的类型,但它的逻辑代码是</p>
-<p>高度通用的</p>
-</blockquote>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line">Public <span class="keyword">class</span> <span class="title class_">A</span>&lt;T&gt; &#123; <span class="comment">//表示为泛型类型,在创建A类时指定,A&lt;String&gt; a = new A&lt;&gt;();</span></span><br><span class="line"> <span class="keyword">private</span> T obj; <span class="comment">//表示任意类型,在构造方法中初始化在构造方法中传递给成员变量</span></span><br><span class="line">                <span class="comment">//此处将构造方法的泛型和成员变量的泛型进行关联</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span> <span class="title function_">A</span><span class="params">(T obj)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span> &lt;T&gt; T <span class="title function_">change</span><span class="params">(T param)</span>&#123; <span class="comment">//&lt;T&gt; 表示泛型方法</span></span><br><span class="line">                               <span class="comment">// T 表示返回结果可以为任意类型</span></span><br><span class="line">                               <span class="comment">// T param 表示接收参数为任意类型</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     <span class="keyword">return</span> (T)param; <span class="comment">//显式强转,调用方的类型需要和方法返回类型一致</span></span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-
-</li>
-<li><p>自动装箱,拆箱</p>
-<blockquote>
-<p>兼容,大多发生在基础类型和包装类型的转换中,由编译器在编译过程中自动生成</p>
-<p>隐式,这个动作是隐式发生,而不用我们手动的去执行对应逻辑</p>
-</blockquote>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Integer</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">        <span class="comment">//拆箱</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> num;</span><br><span class="line">        <span class="comment">//编译后</span></span><br><span class="line">        n = num.intValue();</span><br><span class="line">        <span class="comment">//装箱</span></span><br><span class="line">        num = n;</span><br><span class="line">        <span class="comment">//编译后</span></span><br><span class="line">        num = Integer.valueOf(n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>函数参数</p>
-<blockquote>
-<p>使用函数作为方法入参</p>
-</blockquote>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line">addComment(Data::getComment);</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>Switch支持String和枚举类型</p>
-<blockquote>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;nihao&quot;</span>;</span><br><span class="line">        <span class="keyword">switch</span> (str) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;nihao&quot;</span>:</span><br><span class="line">                System.out.println(<span class="string">&quot;nihao&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&quot;hello&quot;</span>:</span><br><span class="line">                System.out.println(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-
-</blockquote>
-</li>
-<li><p>可变长参数</p>
-<blockquote>
-<p>一次性传输多个同类型参数,类似一维数组的数据结构</p>
-</blockquote>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">(String... strs)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//参数相当于一个一维数组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; strs.length; i++) &#123;</span><br><span class="line">        System.out.println(strs[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-
-</li>
-<li><p>断言</p>
-<blockquote>
-<p>从JavaSE 1.4之后引入的,为了避免老版本代码使用了assert关键字导致的错,默认是不启动</p>
-<p>断言检查,类似if else的判断作用,可用作参数校验,判断</p>
-</blockquote>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">checkPass</span><span class="params">(String passWord)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//参数校验</span></span><br><span class="line">    <span class="keyword">assert</span> passWord.length() &lt; <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-
-</li>
-<li><p>数值字面量</p>
-<blockquote>
-<p>字面量,字面上的表达上的值,使用下划线的作用是为了增加可读性,在编译时会被编译器忽略</p>
-</blockquote>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">literal</span><span class="params">()</span>&#123;</span><br><span class="line">   </span><br><span class="line">    <span class="comment">//字面量</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10_000</span>;</span><br><span class="line">   </span><br><span class="line">    <span class="type">double</span> <span class="variable">d</span> <span class="operator">=</span> <span class="number">10.00_00_00</span>;</span><br><span class="line">   </span><br><span class="line">    System.out.println(i);</span><br><span class="line">   </span><br><span class="line">    System.out.println(d);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-
-</li>
-<li><p>For-each</p>
-<blockquote>
-<p>常用的循环方式,一般底层都是迭代器,并且使用了fail-fast机制</p>
-</blockquote>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">(String... strs)</span>&#123;</span><br><span class="line">   </span><br><span class="line">    <span class="comment">//增强for循环</span></span><br><span class="line">    <span class="keyword">for</span> (String str : strs) &#123;</span><br><span class="line">        System.out.println(str);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//转换为集合</span></span><br><span class="line">    List&lt;String&gt; list  = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    </span><br><span class="line">    list.add(<span class="string">&quot;123&quot;</span>);</span><br><span class="line">    </span><br><span class="line">    String s;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//普通for循环</span></span><br><span class="line">    <span class="comment">//底层是迭代器</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">Iterator</span> <span class="variable">iterator</span> <span class="operator">=</span> list.iterator();iterator.hasNext(); System.out.println(s)) &#123;</span><br><span class="line">        s = (String) iterator.next();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
-</ol>
-<p><strong>注意事项</strong></p>
-<ol>
-<li><p>泛型擦除带来问题</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//由于泛型在编译后会擦除为Object,所以无法再构成重载,会导致编译无法通过</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">method</span><span class="params">(List&lt;String&gt; list)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Hello World String list&quot;</span>);</span><br><span class="line">   </span><br><span class="line">&#125;</span><br><span class="line">   </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">method</span><span class="params">(List&lt;Long&gt; list)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Hello World long list&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Try catch也无法去区别一次的泛型类型,同样也是因为泛型擦除机制</span></span><br></pre></td></tr></table></figure></div>
-
-
-</li>
-<li><p>自动拆箱和装箱</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="comment">//由于缓存机制,会将-128-127的数值缓存起来</span></span><br><span class="line">    <span class="comment">//因为可能使用的频率较高,所以将其缓存</span></span><br><span class="line">    <span class="type">Integer</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">129</span>;</span><br><span class="line">    <span class="type">Integer</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">128</span>;</span><br><span class="line">    <span class="type">Integer</span> <span class="variable">c</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line">    <span class="type">Integer</span> <span class="variable">d</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line">   </span><br><span class="line">    System.out.println(a == b);</span><br><span class="line">    System.out.println(c == d);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>增强for循环</p>
-<blockquote>
-<p>由于底层使用的是迭代器,在遍历时对象不允许修改或删除,会出现cms(并发修改异常),</p>
-<p>也就fail-fast机制,防止多线程修改,所以建议使用迭代器或者Stream流提供的方法进行修改</p>
-</blockquote>
-</li>
-</ol>
-<p><strong>总结</strong></p>
-<ol>
-<li>Java 虚拟机并不直接支持这些语法糖，它们在编译阶段会被还原成简单的基础语法结构。这种解语法糖的过程可以让 Java 代码在保持简洁性和可读性的同时，在虚拟机中正确运行。</li>
-<li>虽然语法糖可以使代码更简洁易读，但过度使用或不恰当地使用也可能导致代码变得难以理解或维护。在实际编程中，应根据具体情况权衡使用语法糖的利弊，以保证代码的可读性、可维护性和性能</li>
-</ol>
-<h3 id="如何明确一件事的功能点或目标"><a href="#如何明确一件事的功能点或目标" class="headerlink" title="如何明确一件事的功能点或目标"></a>如何明确一件事的功能点或目标</h3><ol>
-<li>明确是什么用途,具体是干什么,想要做到什么事情,比如跑步,你是想在什么场景下跑步</li>
-<li>确定场景和用户群,确定是谁会使用,给谁使用,带入场景</li>
-<li>设定性能指标,必须是可量化和衡量的指标,如电池的充电瓦数,时长,容量</li>
-<li>考虑用户体验,关注使用的方便性和直观性,让用户用的爽,满足他的预期,如我就想充电快,拍照好</li>
-<li>对比竞争,和同类产品比较,和他人比较,才能衡量做的是否足够</li>
-<li>评估可靠性,对于功能点在未来的场景或不同场景下的稳定性</li>
-<li>思考扩展性和兼容性,在未来,是否可以对当前的不足的功能点进行升级和其它场景的兼容</li>
-<li>分析成本效益,评估功能点的成本和效益的关系</li>
-</ol>
-<h3 id="考虑角度"><a href="#考虑角度" class="headerlink" title="考虑角度"></a>考虑角度</h3><ol>
-<li>可以从未来,过去,当下三个角度考虑问题</li>
-<li>未来的话,如扩展和兼容性,可靠性,是最终能否满足可能出现的新需求和变化</li>
-<li>过去的话,如功能点,竞争,用户体验,是对于过去的经验教训吸取</li>
-<li>现在的话,用途,场景和用户群,性能指标,可靠性,是必须考虑的现实情况,更具有实用性</li>
-</ol>
-]]></content>
-  </entry>
-  <entry>
     <title>八股思考</title>
     <url>/2024/08/01/%E5%85%AB%E8%82%A1%E6%80%9D%E8%80%83/</url>
     <content><![CDATA[<h2 id="八股思考"><a href="#八股思考" class="headerlink" title="八股思考"></a>八股思考</h2><h3 id="1-是否会注入"><a href="#1-是否会注入" class="headerlink" title="1.是否会注入"></a>1.是否会注入</h3><p>不会</p>
@@ -2718,15 +2918,15 @@
 <p>4.需要注意的是，驱逐操作可能会导致<code>HashMap</code>中的元素被删除，因此在使用<code>evict</code>参数时，需要谨慎考虑其对应用程序的影响。</p>
 </blockquote>
 <h3 id="17-HashMap的增强点"><a href="#17-HashMap的增强点" class="headerlink" title="17.HashMap的增强点"></a>17.HashMap的增强点</h3><blockquote>
-<p>**afterNodeAccess(Node&lt;K,V&gt; p)**：</p>
+<p><strong>afterNodeAccess（Node&lt;K,V&gt; p）</strong>：</p>
 <ul>
 <li>主要用于在节点被访问后执行一些自定义的后续动作。比如可以用于统计节点的访问频率，或者根据访问情况进行一些状态更新等。</li>
 </ul>
-<p>**afterNodeInsertion(boolean evict)**：</p>
+<p><strong>afterNodeInsertion（boolean evict）</strong>：</p>
 <ul>
 <li>当元素插入后，通过这个方法可以根据插入的情况以及 <code>evict</code> 的值进行不同的处理。比如如果 <code>evict</code> 为 <code>false</code> 且处于特定的创建模式，可以进行一些与创建模式相关的操作或记录；如果 <code>evict</code> 为 <code>true</code> ，可能执行与正常模式下插入后不同的逻辑。</li>
 </ul>
-<p>**afterNodeRemoval(Node&lt;K,V&gt; p)**：</p>
+<p><strong>afterNodeRemoval（Node&lt;K,V&gt; p）</strong>：</p>
 <ul>
 <li>它允许在节点移除后进行一些清理或后续的处理工作。例如，可能需要释放与该节点相关的一些资源，或者对整个数据结构的状态进行相应调整。</li>
 </ul>
@@ -2740,15 +2940,15 @@
 <p>可分为以下三个阶段,单机式,集中式,分布式微服务</p>
 <p>下面演进过程中则是对应用模块的进一步划分,<strong>从一个整体到多个细分模块构成一个整体的过程</strong></p>
 <ul>
-<li><p>**单体架构(协调,整体)**：所有功能都集中在一个应用程序中，简单直接，但随着业务增长，会面临性能瓶颈、难以扩展和维护等问题,但简单直接、易于开发和部署。</p>
+<li><p><strong>单体架构（协调,整体）</strong>：所有功能都集中在一个应用程序中，简单直接，但随着业务增长，会面临性能瓶颈、难以扩展和维护等问题,但简单直接、易于开发和部署。</p>
 </li>
-<li><p>**垂直架构(职责分离)**：将单体架构按照不同的业务功能进行垂直拆分，形成多个独立的子系统，一定程度上提高了可扩展性和维护性,强调一定的分层和专业性。</p>
+<li><p><strong>垂直架构（职责分离）</strong>：将单体架构按照不同的业务功能进行垂直拆分，形成多个独立的子系统，一定程度上提高了可扩展性和维护性,强调一定的分层和专业性。</p>
 </li>
-<li><p>**分布式架构(分治,压力均摊)**：各个子系统进一步分布部署在不同的节点上，通过网络进行通信和协作，提升了系统的处理能力和可用性,保证了服务的高可用性、容错性等。</p>
+<li><p><strong>分布式架构（分治,压力均摊）</strong>：各个子系统进一步分布部署在不同的节点上，通过网络进行通信和协作，提升了系统的处理能力和可用性,保证了服务的高可用性、容错性等。</p>
 </li>
 <li><p><strong>SOA（面向服务架构,标准协议）</strong>：强调服务的概念，将系统功能封装为独立的服务，通过标准的接口进行交互，提高了系统的灵活性和复用性,强调服务的重用性和松耦合。</p>
 </li>
-<li><p>**微服务架构(独立,自主)**：将服务进一步细化和拆分，每个微服务都可以独立部署、扩展和维护，具有更高的灵活性、敏捷性和可扩展性,强调敏捷性、弹性等。</p>
+<li><p><strong>微服务架构（独立,自主）</strong>：将服务进一步细化和拆分，每个微服务都可以独立部署、扩展和维护，具有更高的灵活性、敏捷性和可扩展性,强调敏捷性、弹性等。</p>
 </li>
 <li><p>演进的过程从逻辑划分变为物理划分</p>
 </li>
@@ -3205,7 +3405,7 @@
 <li>对于<strong>轻量级锁和偏向锁</strong>，主要依赖于CPU的<strong>Compare-And-Swap (CAS)</strong> 指令，如x86架构的<code>cmpxchg</code>，来实现原子性的锁获取与释放，减少重量级锁的开销，提高并发性能。</li>
 </ul>
 </li>
-<li>**<code>ReentrantLock</code>**：<ul>
+<li><strong><code>ReentrantLock</code>锁</strong>：<ul>
 <li>无论是在公平锁还是非公平锁的实现中，<code>ReentrantLock</code>大量依赖于<strong>CAS指令</strong>来实现锁的获取与释放，尤其是在非竞争或轻度竞争的场景下，这使得它能够提供与<code>轻量级锁</code>相似的高效性能。即使是锁的竞争变得激烈，导致线程需要被阻塞，其底层的自旋、阻塞与唤醒机制也始于尝试通过CAS操作避免进入阻塞状态，体现了对CAS指令的广泛依赖。</li>
 </ul>
 </li>
@@ -3916,206 +4116,6 @@
 </li>
 <li><p>Binlog ,记录除查询操作以外的SQL操作,主从复制时,可使用该日志</p>
 </li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>消息协议设计及实战</title>
-    <url>/2024/06/22/%E6%B6%88%E6%81%AF%E5%8D%8F%E8%AE%AE%E8%AE%BE%E8%AE%A1%E5%8F%8A%E5%AE%9E%E6%88%98/</url>
-    <content><![CDATA[<h3 id="消息协议设计及实战"><a href="#消息协议设计及实战" class="headerlink" title="消息协议设计及实战"></a>消息协议设计及实战</h3><h3 id="1-协议"><a href="#1-协议" class="headerlink" title="1.协议"></a>1.协议</h3><ul>
-<li><p>协议</p>
-<ul>
-<li><p>Http</p>
-</li>
-<li><p>Jute</p>
-<ul>
-<li><p>请求</p>
-<blockquote>
-<p>分为请求头和请求体</p>
-<ul>
-<li><p>长度(使用0-3byte的范围)</p>
-<ul>
-<li>len,表示整个请求的长度,使用0-3byte的范围表示</li>
-</ul>
-</li>
-<li><p>请求头(使用4-11byte的范围)</p>
-<ul>
-<li>xid,客户端请求序号,使用4-7byte的范围表示</li>
-<li>type,客户端请求的类类型,使用8-11byte的范围表示</li>
-</ul>
-</li>
-<li><p>请求体(使用12-n byte的范围)</p>
-<ul>
-<li>len,表示请求体的长度,使用12-15byte的范围表示</li>
-<li>path,表示节点的路径,使用16-(n-1)byte的范围表示</li>
-<li>watch,表示是否主从,使用n位置的字节表示</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>Dubbo</p>
-</li>
-</ul>
-</li>
-<li><p>定义格式(约定)</p>
-<ul>
-<li><p>自定义</p>
-<blockquote>
-<ul>
-<li>魔数,CAFE特殊标识</li>
-<li>版本号</li>
-<li>消息类型,标识请求的方式类型,如请求&#x2F;响应,CRUD,PING&#x2F;PONG</li>
-<li>序列化算法,传输的格式</li>
-<li>请求序号,对Future的返回的内容进行编号</li>
-<li>消息长度</li>
-<li>消息正文</li>
-<li>……</li>
-<li>等一些属性</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>定义协议</p>
-<ul>
-<li>对协议需要的参数进行定义,约束</li>
-<li>sessionId</li>
-<li>reqType</li>
-<li>Content-length</li>
-<li>Content</li>
-</ul>
-</li>
-<li><p>实现的功能</p>
-<ul>
-<li>定义一个协议</li>
-<li>针对定义协议实现编解码</li>
-<li>基于自定义协议实现通讯</li>
-</ul>
-</li>
-<li><p>数据结构</p>
-</li>
-</ul>
-<h3 id="2-序列化"><a href="#2-序列化" class="headerlink" title="2.序列化"></a>2.序列化</h3><p>为什么要这么传输</p>
-<blockquote>
-<p>使用流的形式进行传输<br>“一组数据”“一套数据”“一条数据”这类描述往往暗示了数据的数量、类型等是相对明确和固定的。</p>
-<p>而“流”的概念更侧重于强调数据的动态性、连续性和不确定性，就像水流一样，不知道它会持续多久、包含多少以及具体的内容变化。</p>
-<p>例如，在实时视频流中，我们无法事先确切知道每一帧的具体内容和整个流的长度；在网络接收数据的过程中，流的大小和持续时间也可能是未知的，直到传输结束。</p>
-<p>这种对“流”与固定形式描述的区分，有助于我们在不同的场景中选择合适的方式来理解和处理数据。</p>
-</blockquote>
-<ul>
-<li><p>字节码</p>
-</li>
-<li><p>二进制流&#x2F;xxx进制流</p>
-</li>
-<li><p>JSON</p>
-</li>
-<li><p>XML</p>
-</li>
-<li><p>使用IO流</p>
-<ul>
-<li><p>API命名方式和下述场景相关</p>
-</li>
-<li><p>面向磁盘的</p>
-</li>
-<li><p>面向网络的</p>
-</li>
-<li><p>面向内存的</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>Java序列化方式</p>
-<ul>
-<li><p>为什么</p>
-<ul>
-<li>保证安全,避免篡改导致的安全问题</li>
-</ul>
-</li>
-<li><p>怎么做</p>
-<ul>
-<li><p>实现Serializable接口,申明SerialVersionUID,表明唯一性</p>
-<blockquote>
-<p>为什么要实现</p>
-<p>在RPC这种场景下实现该接口,只是一个默认的策略,保证在传输过程中能够序列化</p>
-<p>序列化id</p>
-<p>双方需保证一致才能操作,并且需要显式设置,不然当类发生变化时,反序列化方没有感知到,将会导致序列化错误</p>
-</blockquote>
-</li>
-<li><p>对字段添加transient关键字决定是否序列化,压缩传输数据大小,<br>减少资源浪费</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>序列化方式考虑(不仅仅是序列化,技术方案的考虑也是如此)</p>
-<ul>
-<li>性能<ul>
-<li>空间—&gt;序列化后的数据报文大小</li>
-<li>时间—&gt;序列化消耗的时间</li>
-</ul>
-</li>
-<li>支持<ul>
-<li>语言特性</li>
-<li>跨平台</li>
-</ul>
-</li>
-<li>成熟度<ul>
-<li>生态</li>
-</ul>
-</li>
-<li>扩展性,兼容性<ul>
-<li>延展</li>
-<li>提升</li>
-</ul>
-</li>
-<li>示例<ul>
-<li>跨平台<ul>
-<li>XML</li>
-<li>web(Service)</li>
-<li>soap(html+xml)</li>
-<li>wsdl</li>
-<li>axis&#x2F;cxf</li>
-<li>json</li>
-</ul>
-</li>
-<li>独立平台<ul>
-<li>Java</li>
-<li>Dubbo</li>
-</ul>
-</li>
-<li>对内和对外通讯区别</li>
-<li>为什么要压缩数据报文大小<ul>
-<li>xml&#x2F;json</li>
-<li>hession&#x2F;jute</li>
-<li>进行对比</li>
-<li>因为序列化的方法相当于使用不同的语言进行翻译,最终翻译的格式和长短也就不一样,不同序列化的方式带来的结果也就不一样</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>3.Protobuf序列化</p>
-<p>为什么小</p>
-<p>存储结构</p>
-<ul>
-<li>类似传输协议的结构</li>
-<li>使用计算后的值代替属性名,压缩空间</li>
-<li>无效字节压缩</li>
-<li>tag</li>
-<li>length</li>
-<li>value</li>
-</ul>
-<p>什么情况下才能压缩</p>
-<ul>
-<li>有效</li>
-<li>无效</li>
-</ul>
-<p>压缩的方式</p>
-<ul>
-<li>正数压缩</li>
-<li>负数压缩</li>
 </ul>
 ]]></content>
   </entry>

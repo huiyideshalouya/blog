@@ -27,7 +27,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://huiyideshalouya.github.io/imgs/%E5%85%AB%E8%82%A1%E6%96%87/%E7%BA%BF%E4%B8%8AGC%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86.png">
 <meta property="article:published_time" content="2024-08-01T12:28:35.000Z">
-<meta property="article:modified_time" content="2024-08-01T12:38:31.662Z">
+<meta property="article:modified_time" content="2024-08-01T14:11:54.770Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://huiyideshalouya.github.io/imgs/%E5%85%AB%E8%82%A1%E6%96%87/%E7%BA%BF%E4%B8%8AGC%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86.png">
@@ -445,8 +445,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-08-01 20:38:31</span>
-            <span class="mobile">2024-08-01 20:38:31</span>
+            <span class="desktop">2024-08-01 22:11:54</span>
+            <span class="mobile">2024-08-01 22:11:54</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -711,15 +711,15 @@
 <p>4.需要注意的是，驱逐操作可能会导致<code>HashMap</code>中的元素被删除，因此在使用<code>evict</code>参数时，需要谨慎考虑其对应用程序的影响。</p>
 </blockquote>
 <h3 id="17-HashMap的增强点"><a href="#17-HashMap的增强点" class="headerlink" title="17.HashMap的增强点"></a>17.HashMap的增强点</h3><blockquote>
-<p>**afterNodeAccess(Node&lt;K,V&gt; p)**：</p>
+<p><strong>afterNodeAccess（Node&lt;K,V&gt; p）</strong>：</p>
 <ul>
 <li>主要用于在节点被访问后执行一些自定义的后续动作。比如可以用于统计节点的访问频率，或者根据访问情况进行一些状态更新等。</li>
 </ul>
-<p>**afterNodeInsertion(boolean evict)**：</p>
+<p><strong>afterNodeInsertion（boolean evict）</strong>：</p>
 <ul>
 <li>当元素插入后，通过这个方法可以根据插入的情况以及 <code>evict</code> 的值进行不同的处理。比如如果 <code>evict</code> 为 <code>false</code> 且处于特定的创建模式，可以进行一些与创建模式相关的操作或记录；如果 <code>evict</code> 为 <code>true</code> ，可能执行与正常模式下插入后不同的逻辑。</li>
 </ul>
-<p>**afterNodeRemoval(Node&lt;K,V&gt; p)**：</p>
+<p><strong>afterNodeRemoval（Node&lt;K,V&gt; p）</strong>：</p>
 <ul>
 <li>它允许在节点移除后进行一些清理或后续的处理工作。例如，可能需要释放与该节点相关的一些资源，或者对整个数据结构的状态进行相应调整。</li>
 </ul>
@@ -733,15 +733,15 @@
 <p>可分为以下三个阶段,单机式,集中式,分布式微服务</p>
 <p>下面演进过程中则是对应用模块的进一步划分,<strong>从一个整体到多个细分模块构成一个整体的过程</strong></p>
 <ul>
-<li><p>**单体架构(协调,整体)**：所有功能都集中在一个应用程序中，简单直接，但随着业务增长，会面临性能瓶颈、难以扩展和维护等问题,但简单直接、易于开发和部署。</p>
+<li><p><strong>单体架构（协调,整体）</strong>：所有功能都集中在一个应用程序中，简单直接，但随着业务增长，会面临性能瓶颈、难以扩展和维护等问题,但简单直接、易于开发和部署。</p>
 </li>
-<li><p>**垂直架构(职责分离)**：将单体架构按照不同的业务功能进行垂直拆分，形成多个独立的子系统，一定程度上提高了可扩展性和维护性,强调一定的分层和专业性。</p>
+<li><p><strong>垂直架构（职责分离）</strong>：将单体架构按照不同的业务功能进行垂直拆分，形成多个独立的子系统，一定程度上提高了可扩展性和维护性,强调一定的分层和专业性。</p>
 </li>
-<li><p>**分布式架构(分治,压力均摊)**：各个子系统进一步分布部署在不同的节点上，通过网络进行通信和协作，提升了系统的处理能力和可用性,保证了服务的高可用性、容错性等。</p>
+<li><p><strong>分布式架构（分治,压力均摊）</strong>：各个子系统进一步分布部署在不同的节点上，通过网络进行通信和协作，提升了系统的处理能力和可用性,保证了服务的高可用性、容错性等。</p>
 </li>
 <li><p><strong>SOA（面向服务架构,标准协议）</strong>：强调服务的概念，将系统功能封装为独立的服务，通过标准的接口进行交互，提高了系统的灵活性和复用性,强调服务的重用性和松耦合。</p>
 </li>
-<li><p>**微服务架构(独立,自主)**：将服务进一步细化和拆分，每个微服务都可以独立部署、扩展和维护，具有更高的灵活性、敏捷性和可扩展性,强调敏捷性、弹性等。</p>
+<li><p><strong>微服务架构（独立,自主）</strong>：将服务进一步细化和拆分，每个微服务都可以独立部署、扩展和维护，具有更高的灵活性、敏捷性和可扩展性,强调敏捷性、弹性等。</p>
 </li>
 <li><p>演进的过程从逻辑划分变为物理划分</p>
 </li>
@@ -1198,7 +1198,7 @@
 <li>对于<strong>轻量级锁和偏向锁</strong>，主要依赖于CPU的<strong>Compare-And-Swap (CAS)</strong> 指令，如x86架构的<code>cmpxchg</code>，来实现原子性的锁获取与释放，减少重量级锁的开销，提高并发性能。</li>
 </ul>
 </li>
-<li>**<code>ReentrantLock</code>**：<ul>
+<li><strong><code>ReentrantLock</code>锁</strong>：<ul>
 <li>无论是在公平锁还是非公平锁的实现中，<code>ReentrantLock</code>大量依赖于<strong>CAS指令</strong>来实现锁的获取与释放，尤其是在非竞争或轻度竞争的场景下，这使得它能够提供与<code>轻量级锁</code>相似的高效性能。即使是锁的竞争变得激烈，导致线程需要被阻塞，其底层的自旋、阻塞与唤醒机制也始于尝试通过CAS操作避免进入阻塞状态，体现了对CAS指令的广泛依赖。</li>
 </ul>
 </li>
@@ -1924,7 +1924,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-08-01 20:38:31
+                    :</strong> 2024-08-01 22:11:54
             </li>
         
         <li>
